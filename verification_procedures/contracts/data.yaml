@@ -1,0 +1,61 @@
+# Contracts for the data stream. inventory is the only step that reads the
+# project's own files; it bundles them into project.json for every later step.
+# It requires the four declaration files. Every other project file is recorded
+# as an input through reads_optional, so verify can replay the step, and any
+# project that follows the conventions runs without editing this file.
+# inventory itself reports a file the declarations name that is missing. The record of the
+# AI's file edits (file_edits.yaml, as the audit layer writes it out) is bundled when it is
+# given, and attribute_ai says so when it is not.
+inventory:
+  reads: [pipeline.yaml, acquisition.yaml, params.yaml, numbers.yml]
+  reads_optional: ["*"]
+  produces:
+    project.json: {files: dict, pipeline: dict, numbers: dict, acquisition: dict, params: dict}
+    inventory.json: {steps: list, helpers: list, scripts: list, raw: list, outputs: list, n_steps: int, n_numbers: int}
+    findings_inventory.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+check_raw:
+  reads: [project.json, inventory.json]
+  produces:
+    findings_check_raw.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+check_params:
+  reads: [project.json, inventory.json]
+  produces:
+    params_usage.json: {}
+    findings_check_params.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+check_docs:
+  reads: [project.json, inventory.json, params_usage.json]
+  produces:
+    findings_check_docs.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+attribute_ai:
+  reads: [project.json, inventory.json, params_usage.json]
+  produces:
+    ai_work.json: {record_given: bool, changes: list, params: list, scripts: dict, numbers: dict}
+    findings_attribute_ai.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+replay_pipeline:
+  reads: [project.json, inventory.json]
+  produces:
+    replay.json: {steps: list, replayed: dict, crashed: int, all_reproduce: bool}
+    findings_replay_pipeline.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+check_records:
+  reads: [project.json, inventory.json, replay.json, params_usage.json]
+  produces:
+    records_status.json: {items: {step: str, records_ok: bool}}
+    findings_check_records.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+check_numbers:
+  reads: [project.json, inventory.json, replay.json]
+  produces:
+    numbers_check.json: {items: {key: str, value: str, from: str, ok: bool}}
+    findings_check_numbers.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+report:
+  reads_optional: ["findings_*.json"]  # any upstream findings
+  # steps.json is written by the runtime before this step (which steps ran, and why a skipped one did not)
+  reads: [project.json, inventory.json, replay.json, records_status.json, numbers_check.json,
+          ai_work.json, params_usage.json,
+          findings_inventory.json, findings_check_raw.json, findings_check_params.json,
+          findings_check_docs.json, findings_attribute_ai.json, findings_replay_pipeline.json,
+          findings_check_records.json, findings_check_numbers.json, steps.json]
+  produces:
+    fields.json: {schema: dict, run: dict, tables: dict}  # and items; the builder checks every field against the schema
+    findings_completeness.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+    findings.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+    report.md: {headings: [Summary, Problems, Numbers, AI changes to scripts, Parameters the AI set, Scripts, Reproducibility]}

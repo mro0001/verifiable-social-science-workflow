@@ -1,0 +1,17 @@
+# Runtime self-test: not a verification standard.
+stream: selftest
+version: 0.1
+goal: Prove the runtime walks, branches, judges per item, and replays.
+contracts: contracts/selftest.yaml
+entry: list_items
+exit: report
+nodes:
+  - {id: list_items, kind: tool, does: List the words in words.txt as items.}
+  - {id: judge_items, kind: judgment, does: Say whether each word is a color., foreach: items.json}
+  - {id: skipped_branch, kind: tool, does: Runs only when there are more than 100 items.}
+  - {id: report, kind: tool, does: Write findings and the report.}
+edges:
+  - {from: list_items, rel: LEADS_TO, to: judge_items, condition: Always., guidance: One ask per word., pitfalls: [Judging all words in one ask.], source: proposed}
+  - {from: list_items, rel: TRIGGERS, to: skipped_branch, condition: More than 100 items., check: "count.json:n > 100", guidance: Never fires in the self-test., pitfalls: [None.], source: proposed}
+  - {from: judge_items, rel: CONVERGES_TO, to: report, condition: Always., guidance: Report non-colors as warnings., pitfalls: [Dropping unparseable answers silently.], source: proposed}
+  - {from: skipped_branch, rel: CONVERGES_TO, to: report, condition: Always., guidance: n/a, pitfalls: [None.], source: proposed}

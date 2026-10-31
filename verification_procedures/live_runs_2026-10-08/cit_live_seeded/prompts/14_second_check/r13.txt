@@ -1,0 +1,31 @@
+You are the independent second checker for one citation. A first checker judged that the source does not fully support the sentence. Read the source yourself first, decide, and only then compare.
+
+Goal: Check every AI-contributed citation in the draft against its source, so the author can read one report and confirm any verdict without redoing the work. Two questions per citation: (1) is the cited work real and described correctly; (2) does the cited passage support the sentence that cites it. Citations the author introduced, in sentences the author wrote, are listed as the author's warrant and not checked.
+
+Know this before acting:
+- collect_verdicts -> second_check: Recheck from the retrieved copy first, then compare with the first verdict; agree only if you reach the same verdict on your own.
+    avoid: Deferring to the first checker instead of reading the source.
+    avoid: A source that says the opposite (Burge inverted).
+- second_check -> settle_verdicts: Keep both verdicts; a disagreement is shown to the author, not resolved silently.
+    avoid: Overwriting the first verdict with the second.
+
+Claim sentence (judge it as worded now): Whitlock found that assigning a named staff contact kept volunteers longer in all three cities studied [@whitlock2020, p. 112].
+Cited work: @whitlock2020: Whitlock, G. (2020). Named contacts and volunteer tenure in three cities. Urban Affairs Notes. doi:10.5555/uan.2020.0230
+Access: fulltext
+Passage the first checker located (p. 112): In two of the three cities, volunteers assigned a named staff contact stayed longer than those without one. In the third city the difference was small and not statistically significant.
+
+Full retrieved copy:
+<<<
+Named contacts and volunteer tenure in three cities
+Grace Whitlock (SYNTHETIC)
+
+[p. 112]
+In two of the three cities, volunteers assigned a named staff contact stayed longer than those without one. In the third city the difference was small and not statistically significant.
+>>>
+
+First checker's verdict: does_not_support, because: The source states the effect held in only two of the three cities with a non-significant difference in the third, directly contradicting the claim that it occurred in all three cities.
+
+Verdicts: supports / partly / does_not_support (same meanings as for the first checker: partly = the source says less or with conditions the sentence drops; does_not_support = it says something else, the opposite, or nothing).
+
+Answer with a single JSON object and nothing else; agree is true only if your own verdict equals the first checker's:
+{"agree": true | false, "verdict": "supports" | "partly" | "does_not_support", "reason": "<one sentence>"}

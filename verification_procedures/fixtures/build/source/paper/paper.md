@@ -1,0 +1,22 @@
+---
+title: "Meeting Cadence and Team Learning in Volunteer Fire Districts"
+author: "A. Example"
+---
+
+# Introduction
+
+Volunteer fire districts rely on meetings to carry lessons from one call to the next [@ardent2019; @boyle2021]. We ask whether meeting more often helps teams learn.
+
+# Data
+
+We surveyed {{num:n_districts}} districts and {{num:n_members}} members in the spring wave.
+
+# Results
+
+Districts that met monthly reported higher learning scores than districts that met quarterly (standardized difference {{num:effect_monthly}}, 95% interval {{num:ci_monthly}}).
+
+# Limitations
+
+The survey is cross-sectional, so cadence may follow learning rather than cause it.
+
+# References

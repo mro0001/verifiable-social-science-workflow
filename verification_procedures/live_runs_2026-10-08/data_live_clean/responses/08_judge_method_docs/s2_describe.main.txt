@@ -1,0 +1,5 @@
+{
+  "matches": true,
+  "mismatches": [],
+  "reason": "The code explicitly performs the sequence of summarizing data, writing a table, writing a figure, and writing a parameter record, which exactly matches the claims in the docstring."
+}

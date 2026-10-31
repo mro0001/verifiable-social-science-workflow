@@ -1,0 +1,16 @@
+[
+  {
+    "check": "match_references",
+    "evidence": "refs.yaml",
+    "item": "castellanos2017",
+    "message": "cited only in the author's own sentences; reference not checked",
+    "severity": "info"
+  },
+  {
+    "check": "match_references",
+    "evidence": "refs.yaml",
+    "item": "osei2015",
+    "message": "in the reference list but not cited in the draft",
+    "severity": "info"
+  }
+]

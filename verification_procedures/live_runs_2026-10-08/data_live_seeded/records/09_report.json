@@ -1,0 +1,49 @@
+{
+  "record_version": 1,
+  "seq": 9,
+  "node": "report",
+  "kind": "tool",
+  "graph_version": 0.1,
+  "started_at": "2026-10-08T13:10:06-07:00",
+  "duration_s": 0.16,
+  "inputs": {
+    "project.json": "sha256:786a34db6047dffba634c7eae42461d23db3550eeb681e4ee73c0f1dc1f9c1d2",
+    "inventory.json": "sha256:9c729f66b8bd507a6a918cd069773b179db35ab2dedcab65484c18fc49599118",
+    "replay.json": "sha256:a172b528001b8b556174d87d284411a4ba52484880e8bc9534c33b2f7a447a28",
+    "records_status.json": "sha256:77fa58b8c9e8c4140d52f6f909c82ebf31d111661802f100bb06541b2a52c2e2",
+    "numbers_check.json": "sha256:52253aae0c9d8f9f24b8b94e116a6279cdb0324070383dcb767b8ad6f4d2c64b",
+    "judge_method_docs.json": "sha256:e9389cd34c6cac23e22fef1e4d0ecf9ec562ae955b7c8477be7490a1fd5e1980",
+    "method_items.json": "sha256:a245931a32fd03542d31a2f5501f1f49965a6abdfe49823ef941956e5133cb68",
+    "findings_inventory.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "findings_check_raw.json": "sha256:fb0bbcd3c7587ab5e2be16ef9d6fe5095b710c4e64f2c3a6a8979cc92572200f",
+    "findings_check_params.json": "sha256:86b7d4b78b66f234adab589a7056a9323ff4e4851d63a22c15b98a40d7268827",
+    "findings_check_docs.json": "sha256:897cbaba349c537abf41f3535bb3504f934e82080261a9d99257a0bbc75062c5",
+    "findings_replay_pipeline.json": "sha256:6b3710be9ddf5caa00472247afa382c0ec2bf5a36865f72a53b6cccd55408320",
+    "findings_check_records.json": "sha256:b108abbd861db1ce7a19aba07ded3a26193d2e94af14097145b6a8a9730ca2a1",
+    "findings_check_numbers.json": "sha256:9b8433de6d4cac9aacce59b03a381227e2c5504d8e5539cbbbdf0c45c44da74c",
+    "findings_unjudged_judge_method_docs.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+  },
+  "execution": {
+    "type": "script",
+    "executor": "python3",
+    "code_files": {
+      "code/09_report/_lib.py": "sha256:bab908da53dea59fcf603a8d94c4e3e2e29312f8bf2ff66f631a5e273b937a8b",
+      "code/09_report/report.py": "sha256:a5bdc71ac6c66d2840ce70b8ef8772421f8ac6bc3c1ea757e1fb8b6995206037"
+    },
+    "exit_code": 0,
+    "logs": [
+      "logs/09_report.stdout",
+      "logs/09_report.stderr"
+    ],
+    "replay": "exact"
+  },
+  "outputs": {
+    "findings.json": "sha256:5450a11a68db42fba72899dbc2b37e25a621bb97b40da55b148353c4b0c5bfda",
+    "report.md": "sha256:ec02097086bb3242e3c5c9e5987198c290551fcefbe94578fe4b9b112a86cc76"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": []
+}

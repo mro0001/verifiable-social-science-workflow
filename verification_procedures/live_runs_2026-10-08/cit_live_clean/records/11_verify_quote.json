@@ -1,0 +1,43 @@
+{
+  "record_version": 1,
+  "seq": 11,
+  "node": "verify_quote",
+  "kind": "tool",
+  "graph_version": 0.1,
+  "started_at": "2026-10-08T13:10:40-07:00",
+  "duration_s": 0.11,
+  "inputs": {
+    "rows_access.json": "sha256:2287f999b068ed4dbdd3cadefb8a23c9d1fe14f077af8066acf3865f78bd56ef",
+    "locate_passage.json": "sha256:958c4a275328fa3392c851c82d68402547358347c38601733f61c8d274c330ba"
+  },
+  "execution": {
+    "type": "script",
+    "executor": "python3",
+    "code_files": {
+      "code/11_verify_quote/_lib.py": "sha256:bab908da53dea59fcf603a8d94c4e3e2e29312f8bf2ff66f631a5e273b937a8b",
+      "code/11_verify_quote/verify_quote.py": "sha256:984d303760891c195268f55a42132642a63342ad08788a3809cb8d97a0a4cf04"
+    },
+    "exit_code": 0,
+    "logs": [
+      "logs/11_verify_quote.stdout",
+      "logs/11_verify_quote.stderr"
+    ],
+    "replay": "exact"
+  },
+  "outputs": {
+    "rows_quoted.json": "sha256:2555ad3216fa622e37102d6cc68b6236f21a623741e7b936733ca2b75ba8f1f2",
+    "findings_verify_quote.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "judge_support",
+      "rel": "LEADS_TO",
+      "check": null,
+      "fired": true
+    }
+  ]
+}

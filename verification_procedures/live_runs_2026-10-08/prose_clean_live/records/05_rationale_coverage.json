@@ -1,0 +1,46 @@
+{
+  "record_version": 1,
+  "seq": 5,
+  "node": "rationale_coverage",
+  "kind": "tool",
+  "graph_version": 0.2,
+  "started_at": "2026-10-08T12:59:43-07:00",
+  "duration_s": 0.12,
+  "inputs": {
+    "ai_changes.json": "sha256:05859e0f1a0417cae243e53396e004fe8d92bdfb53efe74e958ad406848a8e6d",
+    "author_changes.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "content_tokens.json": "sha256:6b6135779fac3f8216bad8c8c72234dc87fa2ec1563ae8db2c71fbcacb6b7524",
+    "rationales.yaml": "sha256:1cac11c4735b559032bfafd52904aae02d51f2ec5755aaa4e0bef8e348804b60",
+    "revised.md": "sha256:1911caaa40c99550d07077b5191aff6e7c50f7a1d4112ac37d3877f4ed476426"
+  },
+  "execution": {
+    "type": "script",
+    "executor": "python3",
+    "code_files": {
+      "code/05_rationale_coverage/_lib.py": "sha256:bab908da53dea59fcf603a8d94c4e3e2e29312f8bf2ff66f631a5e273b937a8b",
+      "code/05_rationale_coverage/rationale_coverage.py": "sha256:a0c08bb3ce290db5c9e545400eeb8f8b4363f97e0f2a46fcf6d4adb113415be9"
+    },
+    "exit_code": 0,
+    "logs": [
+      "logs/05_rationale_coverage.stdout",
+      "logs/05_rationale_coverage.stderr"
+    ],
+    "replay": "exact"
+  },
+  "outputs": {
+    "judge_items.json": "sha256:5961ae8ddf1df266ba5a2a64241bda6b110d703501f0614cf86540e2c9e410cb",
+    "findings_rationale_coverage.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "judge_rationale",
+      "rel": "LEADS_TO",
+      "check": null,
+      "fired": true
+    }
+  ]
+}

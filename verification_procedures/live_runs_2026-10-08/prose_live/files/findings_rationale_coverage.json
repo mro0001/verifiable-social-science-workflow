@@ -1,0 +1,23 @@
+[
+  {
+    "check": "rationale_coverage",
+    "evidence": "Managers in our sample described the format as slow but fair. -> Managers in our sample called the format slow but fair.",
+    "item": "c05",
+    "message": "silent change: AI edit has no rationale",
+    "severity": "blocking"
+  },
+  {
+    "check": "rationale_coverage",
+    "evidence": "The next section turns to the interview protocol itself.",
+    "item": "c09",
+    "message": "kind mismatch: rationale r07 says edit, diff says insert",
+    "severity": "warning"
+  },
+  {
+    "check": "rationale_coverage",
+    "evidence": "anchor text is present unchanged in revised.md: This pattern held across agencies of different sizes.",
+    "item": "r08",
+    "message": "claimed change not made",
+    "severity": "warning"
+  }
+]

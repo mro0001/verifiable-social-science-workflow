@@ -1,0 +1,12 @@
+{
+  "tanaka2016|sha256:30ec7adba66f9f679daa0258aa9544bae77b717d7d6f2466ddf7817c30c59d50": {
+    "verdict": "supports",
+    "reason": "The source reports that training length alone did not predict retention once role clarity was accounted for.",
+    "quote": "Once role clarity was accounted for, the length of training alone did not predict retention.",
+    "location": "p. 19",
+    "access": "fulltext",
+    "checked_by": "live:qwen/qwen3.5-122b",
+    "checked_on": "2026-09-30",
+    "source_sha256": "sha256:233d015db38164f01a8744f6dfb94488de057922daaf83b32f4597634c202053"
+  }
+}

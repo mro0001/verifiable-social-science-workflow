@@ -1,0 +1,1 @@
+{"matches": true, "mismatches": [], "reason": "The code correctly implements the documented behavior of filtering rows where both outcome and predictor are non-empty and issuing a warning via stderr when rows are dropped."}

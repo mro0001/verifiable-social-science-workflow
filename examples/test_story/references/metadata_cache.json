@@ -1,0 +1,42 @@
+{
+  "10.5555/vss.2014.0048": {
+    "author": [
+      {
+        "family": "Dumont",
+        "given": "Claire"
+      }
+    ],
+    "container-title": "Voluntary Sector Studies",
+    "issued": 2014,
+    "title": "Fixed-term assignments and volunteer re-enlistment",
+    "type": "journal-article"
+  },
+  "10.5555/vss.2017.0021": {
+    "author": [
+      {
+        "family": "Castellanos",
+        "given": "Rosa"
+      },
+      {
+        "family": "Ibe",
+        "given": "Kelechi"
+      }
+    ],
+    "container-title": "Voluntary Sector Studies",
+    "issued": 2017,
+    "title": "Fit and retention in local volunteering",
+    "type": "journal-article"
+  },
+  "10.5555/vss.2020.0063": {
+    "author": [
+      {
+        "family": "Nakamura",
+        "given": "Emi"
+      }
+    ],
+    "container-title": "Voluntary Sector Studies",
+    "issued": 2020,
+    "title": "Recognition events and the long-serving volunteer",
+    "type": "journal-article"
+  }
+}

@@ -1,0 +1,129 @@
+[
+  {
+    "authors": [
+      {
+        "family": "Abara",
+        "given": "Nkem"
+      },
+      {
+        "family": "Hollis",
+        "given": "Teresa"
+      }
+    ],
+    "cited": true,
+    "cited_in_checked": true,
+    "container": "Journal of Civic Administration",
+    "doi": "10.5555/jca.2019.0142",
+    "id": "abara2019",
+    "in_refs": true,
+    "title": "Ownership and exit in municipal volunteer programs",
+    "type": "article-journal",
+    "year": 2019
+  },
+  {
+    "authors": [
+      {
+        "family": "Castellanos",
+        "given": "Rosa"
+      },
+      {
+        "family": "Ibe",
+        "given": "Kelechi"
+      }
+    ],
+    "cited": true,
+    "cited_in_checked": false,
+    "container": "Voluntary Sector Studies",
+    "doi": "10.5555/vss.2017.0021",
+    "id": "castellanos2017",
+    "in_refs": true,
+    "title": "Fit and retention in local volunteering",
+    "type": "article-journal",
+    "year": 2017
+  },
+  {
+    "authors": [
+      {
+        "family": "de Vries",
+        "given": "Maarten"
+      }
+    ],
+    "cited": true,
+    "cited_in_checked": true,
+    "container": "Nonprofit Management Review",
+    "doi": "10.5555/nmr.2021.0120",
+    "id": "devries2021",
+    "in_refs": true,
+    "title": "Scheduling flexibility and volunteer hours",
+    "type": "article-journal",
+    "year": 2021
+  },
+  {
+    "authors": [
+      {
+        "family": "Moreno",
+        "given": "Lucia"
+      }
+    ],
+    "cited": true,
+    "cited_in_checked": true,
+    "container": "Civic Press",
+    "doi": "10.5555/cp.2018.0011",
+    "id": "moreno2018",
+    "in_refs": true,
+    "title": "Matching volunteers to roles",
+    "type": "book",
+    "year": 2018
+  },
+  {
+    "authors": [
+      {
+        "family": "Osei",
+        "given": "Kwame"
+      }
+    ],
+    "cited": false,
+    "cited_in_checked": false,
+    "container": "Urban Affairs Notes",
+    "doi": "10.5555/uan.2015.0102",
+    "id": "osei2015",
+    "in_refs": true,
+    "title": "Volunteer motives across city sizes",
+    "type": "article-journal",
+    "year": 2015
+  },
+  {
+    "authors": [
+      {
+        "family": "Tanaka",
+        "given": "Hiroshi"
+      }
+    ],
+    "cited": true,
+    "cited_in_checked": true,
+    "container": "Public Service Quarterly",
+    "doi": "10.5555/psq.2016.0071",
+    "id": "tanaka2016",
+    "in_refs": true,
+    "title": "Training length and volunteer retention",
+    "type": "article-journal",
+    "year": 2016
+  },
+  {
+    "authors": [
+      {
+        "family": "Whitlock",
+        "given": "Grace"
+      }
+    ],
+    "cited": true,
+    "cited_in_checked": true,
+    "container": "Urban Affairs Notes",
+    "doi": "10.5555/uan.2020.0230",
+    "id": "whitlock2020",
+    "in_refs": true,
+    "title": "Named contacts and volunteer tenure in three cities",
+    "type": "article-journal",
+    "year": 2020
+  }
+]

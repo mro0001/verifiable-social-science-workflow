@@ -1,0 +1,11 @@
+# Settings for connecting the test story's project to a computing cluster. The
+# host, the user, and the identity file are synthetic, and apply is false, so a
+# run only plans.
+alias: cluster
+host: cluster.example.edu
+user: scholar
+identity_file: ~/.ssh/id_ed25519_cluster
+scheduler: slurm
+modules: [python/3.11]
+remote_dir: projects/test_story
+apply: false

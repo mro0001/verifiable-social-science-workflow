@@ -1,0 +1,5 @@
+{
+  "matches": true,
+  "mismatches": [],
+  "reason": "The code correctly implements all documented claims: it writes a JSON file containing the spec, parameters, params.yaml hash, n, outputs, and estimates, and the comment correctly identifies the JSON layout as a non-analytic choice."
+}

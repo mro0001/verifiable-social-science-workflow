@@ -1,0 +1,1 @@
+{"verdict": "supports", "reason": "The located passage explicitly states that turnover among volunteer coordinators tends to precede spikes in volunteer exit, matching the claim's assertion of temporal precedence and direction."}

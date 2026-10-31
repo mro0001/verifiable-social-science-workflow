@@ -1,0 +1,24 @@
+You are proposing a fix for one citation problem in a manuscript. The author decides; you propose.
+
+Goal: Check every AI-contributed citation in the draft against its source, so the author can read one report and confirm any verdict without redoing the work. Two questions per citation: (1) is the cited work real and described correctly; (2) does the cited passage support the sentence that cites it. Citations the author introduced, in sentences the author wrote, are listed as the author's warrant and not checked.
+
+Know this before acting:
+- settle_verdicts -> draft_fix: Propose the smallest change that makes the sentence true to the source, or replace or drop the citation. Never invent a new source.
+    avoid: Proposing a replacement source that was never retrieved or checked (a new fabrication).
+    avoid: Fixing the wording toward the preprint when the reference cites the journal version (DeepSeek-R1 case).
+- settle_unanimous -> draft_fix: Same as on the other branch; problem rows can exist without a support verdict problem (e.g. a fabricated reference).
+    avoid: Proposing a replacement source that was never retrieved or checked.
+- draft_fix -> record_verdicts: does_not_support is blocking; partly is a warning; a disagreement between checkers is a warning.
+    avoid: Dropping a judgment that came back unparseable instead of failing the step.
+
+Claim sentence: Volunteers who received written role descriptions stayed longer than those who did not [@okafor2018, p. 4].
+Cited work: @okafor2018: Okafor, A. (2018). Written role descriptions and volunteer tenure. Public Service Quarterly. doi:10.5555/psq.2019.0044
+Reference check: year mismatch: reference says 2018; record says 2019
+Verdict: partly: The source specifies that the comparison was against volunteers receiving only a verbal briefing, whereas the claim broadly states 'those who did not' receive written descriptions, omitting this specific condition.
+Problems found: ["year mismatch: reference says 2018; record says 2019"]
+Located passage (p. 4): Volunteers who received a written description of their role remained active longer than volunteers who received only a verbal briefing.
+
+Propose the smallest change that makes the sentence and its reference true to the source: correct the reference metadata, reword the sentence to what the passage says (give the new sentence), remove quotation marks from words the source does not use, or drop the citation and mark the claim as needing a source. Do not name a new source that has not been retrieved and checked.
+
+Answer with a single JSON object and nothing else:
+{"fix": "<one or two sentences>"}

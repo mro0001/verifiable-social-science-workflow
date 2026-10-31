@@ -1,0 +1,38 @@
+{
+  "schema": "verification-results",
+  "schema_version": 1,
+  "stream": "data_phases",
+  "run_id": "data_cleaning_clean",
+  "procedure_version": 0.1,
+  "inputs": {
+    "final_text.md": "sha256:2ec5e77afbd8878e77b9037ba0b2c3da529252eba53d642a03a578b43ef2c98d",
+    "pipeline.yaml": "sha256:9a752b98b171686a03d463149886cf513692caef0641af0159e5ece64bf64dbf",
+    "s0_collect.py": "sha256:83c741181757ee3fe498e3e7599dc17f72ebaa73d0c5c9dcd86616da3a7653ad",
+    "s1_clean.py": "sha256:9bcad0ae4fea754a196d3f522b62278650e6c6f14f8834226d169a75538b083c",
+    "s2_model.py": "sha256:d2340d8510c10e9837930d84b9dc9e5434facdfae43e57d9e5e7d80257ccfc30"
+  },
+  "items": [
+    {
+      "id": "d01",
+      "kind": "description",
+      "summary": "Rows with a missing income were dropped.",
+      "findings": [],
+      "needs_decision": true
+    },
+    {
+      "id": "d02",
+      "kind": "description",
+      "summary": "We kept respondents aged 18 or older.",
+      "findings": [],
+      "needs_decision": true
+    },
+    {
+      "id": "d03",
+      "kind": "description",
+      "summary": "Incomes above 250,000 were top-coded to 250,000.",
+      "findings": [],
+      "needs_decision": true
+    }
+  ],
+  "decisions": []
+}

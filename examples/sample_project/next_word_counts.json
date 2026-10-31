@@ -1,0 +1,125 @@
+{
+  "model": "mistral-small:22b",
+  "n_per_condition": 60,
+  "temperature": 1.0,
+  "question": "The ideal candidate for this internship is someone who is",
+  "conditions": [
+    {
+      "key": "none",
+      "label": "Question only",
+      "n": 60,
+      "distinct": 16,
+      "top_share": 30.0,
+      "top": [
+        {
+          "w": "proactive",
+          "count": 18,
+          "pct": 30.0
+        },
+        {
+          "w": "adaptable",
+          "count": 17,
+          "pct": 28.3
+        },
+        {
+          "w": "resilient",
+          "count": 4,
+          "pct": 6.7
+        },
+        {
+          "w": "dedicated",
+          "count": 4,
+          "pct": 6.7
+        },
+        {
+          "w": "driven",
+          "count": 3,
+          "pct": 5.0
+        },
+        {
+          "w": "ambitious",
+          "count": 2,
+          "pct": 3.3
+        }
+      ]
+    },
+    {
+      "key": "context",
+      "label": "Plus the posting",
+      "n": 60,
+      "distinct": 15,
+      "top_share": 25.0,
+      "top": [
+        {
+          "w": "analytical",
+          "count": 15,
+          "pct": 25.0
+        },
+        {
+          "w": "curious",
+          "count": 14,
+          "pct": 23.3
+        },
+        {
+          "w": "proactive",
+          "count": 10,
+          "pct": 16.7
+        },
+        {
+          "w": "proficient",
+          "count": 6,
+          "pct": 10.0
+        },
+        {
+          "w": "enthusiastic",
+          "count": 5,
+          "pct": 8.3
+        },
+        {
+          "w": "self-driven",
+          "count": 1,
+          "pct": 1.7
+        }
+      ]
+    },
+    {
+      "key": "definition",
+      "label": "Plus a definition",
+      "n": 60,
+      "distinct": 10,
+      "top_share": 30.0,
+      "top": [
+        {
+          "w": "meticulous",
+          "count": 18,
+          "pct": 30.0
+        },
+        {
+          "w": "reliable",
+          "count": 17,
+          "pct": 28.3
+        },
+        {
+          "w": "organized",
+          "count": 7,
+          "pct": 11.7
+        },
+        {
+          "w": "detail-oriented",
+          "count": 6,
+          "pct": 10.0
+        },
+        {
+          "w": "self-driven",
+          "count": 4,
+          "pct": 6.7
+        },
+        {
+          "w": "independent",
+          "count": 4,
+          "pct": 6.7
+        }
+      ]
+    }
+  ]
+}

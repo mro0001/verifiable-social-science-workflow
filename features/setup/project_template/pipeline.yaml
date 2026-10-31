@@ -1,0 +1,5 @@
+# The pipeline from raw data to the results the text cites.
+# Each step runs as <runner> <script> in this folder, and helpers are the files
+# the steps share.
+helpers: []
+steps: []

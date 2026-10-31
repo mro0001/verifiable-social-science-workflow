@@ -1,0 +1,4 @@
+# Planted faults in the seeded ssh config. item matches the finding's item field.
+faults:
+  - {id: F1, check: hpc_ssh_entry, item: cluster User}          # another user than the settings give
+  - {id: F2, check: hpc_ssh_entry, item: cluster IdentityFile}  # no identity file in the entry

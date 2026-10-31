@@ -1,0 +1,4 @@
+# Each computed value the text cites is listed here, with the output it comes from.
+# The build fills each placeholder from its value, and the data procedure checks
+# each value against a rerun of the pipeline from the raw data.
+numbers: {}

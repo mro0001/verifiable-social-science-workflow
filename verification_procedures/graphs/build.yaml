@@ -1,0 +1,186 @@
+# Build structure stream. A proposal for what build verification means; every step is mechanical.
+stream: build
+version: 0.1
+goal: >
+  Show that every deliverable is a product of the build and only of the build.
+  The author can trust a deliverable when five things hold. (1) The map (the
+  Makefile) names exactly one canonical file per deliverable, and nothing else
+  claims to be it. (2) Every build preference the author wrote down is carried by
+  the map's command and shows in the built output. (3) Every build on disk is the
+  file its ledger row recorded. (4) Rebuilding from the recorded snapshot with the
+  map's command reproduces the ledgered file byte for byte, so no build carries
+  text the build did not produce. (5) Results reach the deliverable through
+  numbers.yml placeholders, not typed into prose, and the session record shows no
+  AI write to a build except through the map's rule. This is the build-side form
+  of "results are the output of a process, not hard-coded": the deliverable is
+  the output of a process, not hand-made. No judgment step: each of the five is
+  a hash, a parse, or a re-run.
+contracts: contracts/build.yaml
+schema: schemas/build.yaml
+entry: read_map
+exit: report
+nodes:
+  - id: read_map
+    kind: tool
+    does: >
+      Parse the Makefile map from project.tar: each deliverable's rule, canonical
+      source, builds dir, manifest, template, and pandoc command. Flag rules
+      naming zero or several canonicals, canonicals that do not exist, shared
+      builds dirs, and any other file that reads as a deliverable without an
+      ARCHIVE line.
+    invariant: Exactly one canonical file per deliverable; every look-alike is bannered.
+  - id: check_ledger
+    kind: tool
+    does: >
+      For each deliverable, compare every file in its builds dir with BUILDS.md:
+      every build and snapshot has a row, every row's file exists, every sha256
+      matches.
+    invariant: Builds are never edited after they are cut.
+  - id: check_prefs
+    kind: tool
+    does: >
+      Read build_prefs.yaml (the author's preferences, in the author's words) and
+      check each one is carried by the map's pandoc command for every deliverable
+      it applies to, and visible in that deliverable's latest build where the
+      output can show it.
+    invariant: The author's preferences live in the build files, not in habits or app settings.
+  - id: rebuild
+    kind: tool
+    does: >
+      For each ledgered build, re-run the map's pandoc command on the frozen
+      snapshot in a scratch copy of the project and compare with the ledger's
+      sha256. When the canonical and numbers.yml are unchanged since the build,
+      also re-resolve the canonical and compare with the snapshot. Writes rebuild.json.
+    invariant: A deliverable is derived, so the derivation reproduces it.
+  - id: no_rebuild
+    kind: tool
+    does: Record that the ledger is empty, so the rebuild witness was not exercised.
+  - id: check_hardcoding
+    kind: tool
+    does: >
+      Scan each canonical source: every {{num:key}} must resolve in the manifest;
+      a bare numeral equal to a manifest value is a hard-coded result; any other
+      bare numeral outside the allowlist would be refused at ship.
+    invariant: Results reach the deliverable through the numbers file.
+  - id: check_ai_touch
+    kind: tool
+    does: >
+      Read session_writes.jsonl (the session record) and flag any AI write inside
+      a builds dir or ship/, any hand write to a build, and any build write that
+      did not come from the deliverable's own make rule.
+    invariant: AI works on canonical sources; only the build writes deliverables.
+  - id: report
+    kind: tool
+    does: Write findings.json and report.md, with a Deliverables table.
+edges:
+  - from: read_map
+    rel: LEADS_TO
+    to: check_ledger
+    condition: Always.
+    guidance: >
+      The map decides what counts as a deliverable and where its builds live;
+      every later step reads map.json, never the Makefile again.
+    pitfalls:
+      - Nine files once claimed to be the manuscript; trusting a file because of its name or its completeness instead of the map.
+      - The most complete draft was stale on every quantity and nothing on it said so; a look-alike without an ARCHIVE line is a competing canonical, however old.
+    source: project history; file protocol 1.0 (the map)
+  - from: read_map
+    rel: PROVIDES_INPUT_FOR
+    to: check_hardcoding
+    condition: Always.
+    guidance: Scan only the canonical files the map names, with the manifest and allowlist the map passes.
+    pitfalls:
+      - Numbers frozen into prose rotted through two data reruns; a numeral that equals today's manifest value is still a hard-coded result, because it will not move on the next rerun.
+      - The build fails on missing keys by design; report the missing key, never substitute a value or drop the placeholder to make the build pass.
+      - Years, list markers, citation years, code, and allowlisted literature constants are not results.
+    source: project history; MANUSCRIPT_WORKFLOW.md appendix (Manifest); ospipe lint contract
+  - from: read_map
+    rel: PROVIDES_INPUT_FOR
+    to: check_ai_touch
+    condition: Always.
+    guidance: >
+      Protected paths are every builds dir in the map plus ship/. An AI write
+      there is blocking even if the file was later restored: the claim is that
+      AI never touches the deliverable, not that the bytes came out the same.
+    pitfalls:
+      - Treating an AI write as fine because it went through a shell command (pandoc -o builds/...) rather than an editor; only the map's make rule is the build.
+      - Flagging AI writes to canonical sources; that is where AI is supposed to work.
+      - Flagging the author's saved Word return in builds/<d>/returns/; that is the review channel.
+    source: the authors' design notes of 2026-10-08; file protocol 1.0 (ship is never edited)
+  - from: check_ledger
+    rel: LEADS_TO
+    to: check_prefs
+    condition: Always.
+    guidance: >
+      Check the command first (blocking when a preference is missing), then the
+      latest build's output (a warning when the map carries it but the build does
+      not show it, which means the build predates the map).
+    pitfalls:
+      - A preference that lives in an application setting instead of the build files is invisible to the build; Word's remove-personal-information setting silently killed author attribution.
+      - Counting a preference as integrated because it is in build_prefs.yaml; it counts only when the map's command carries it.
+    source: project history; the authors' design notes of 2026-10-08
+  - from: check_ledger
+    rel: TRIGGERS
+    to: rebuild
+    condition: The ledger has at least one row.
+    check: "ledger.json:rows > 0"
+    guidance: >
+      Compare the rebuild with the ledger's sha256, not with the file on disk;
+      check_ledger already compares the file with the ledger. Together they cover
+      both forgeries: an edited file, and an edited file whose ledger hash was
+      rewritten to match.
+    pitfalls:
+      - Builds must never be edited in place; a rebuild that differs from the ledger with the same command and the same pandoc is a direct edit, not noise.
+      - citeproc re-renders the References section wholesale; a difference confined to References is expected only when refs.bib or the CSL changed since the build.
+      - pandoc drops revision marks lacking w:id; never "repair" a build by converting it through pandoc, and do not read a docx round trip as a neutral copy.
+      - A different pandoc version or a changed map command can change the bytes; say so as a warning instead of calling it a direct edit.
+    source: project history; MANUSCRIPT_WORKFLOW.md appendix (Builds)
+  - from: check_ledger
+    rel: TRIGGERS
+    to: no_rebuild
+    condition: The ledger is empty.
+    check: "ledger.json:rows == 0"
+    guidance: Nothing has been built, so there is nothing to reproduce; say so plainly.
+    pitfalls:
+      - Reporting a pass for a witness that never ran.
+    source: proposed
+  - from: rebuild
+    rel: CONVERGES_TO
+    to: report
+    condition: Always.
+    guidance: Show each build with its ledger result and its rebuild result side by side.
+    pitfalls:
+      - Hiding a rebuild failure under a passing ledger check; they witness different things.
+    source: proposed
+  - from: no_rebuild
+    rel: CONVERGES_TO
+    to: report
+    condition: Always.
+    guidance: Mark rebuild as not exercised in the Deliverables table.
+    pitfalls:
+      - None.
+    source: proposed
+  - from: check_prefs
+    rel: CONVERGES_TO
+    to: report
+    condition: Always.
+    guidance: One column per deliverable says whether every preference is carried.
+    pitfalls:
+      - None.
+    source: proposed
+  - from: check_hardcoding
+    rel: CONVERGES_TO
+    to: report
+    condition: Always.
+    guidance: Hard-coded results and missing keys are problems; unbound numerals are warnings until ship.
+    pitfalls:
+      - None.
+    source: file protocol 1.0 (binding is enforced at ship)
+  - from: check_ai_touch
+    rel: CONVERGES_TO
+    to: report
+    condition: Always.
+    guidance: List each AI write to a protected path with its session and tool.
+    pitfalls:
+      - None.
+    source: proposed

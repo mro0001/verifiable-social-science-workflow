@@ -1,0 +1,42 @@
+{
+  "created_at": "2026-10-08T13:10:07-07:00",
+  "stream": "citations",
+  "graph": {
+    "path": "graphs/citations.yaml",
+    "version": 0.1,
+    "sha256": "sha256:1ec59ef2fb0b7a9f6ea9bda1542922b1a8cd70463d18dfc07c2f02ebac870d6e"
+  },
+  "contracts": {
+    "path": "contracts/citations.yaml",
+    "sha256": "sha256:91ef8d652cead6a0bda838374d606505ba43d4d049ace6182ea0034b0ac1e99b"
+  },
+  "inputs_from": "/path/to/repository/verification_graphs/fixtures/citations/seeded",
+  "inputs": {
+    "author_draft.md": "sha256:70e2b34deb4711e12f261243102aa72bec5fd07249439a883b2f4cecd3d2239b",
+    "citation_log.yaml": "sha256:b34a6a450d4b2c8fa3038d97c0847872478ef545d5b47e7b6993cfa555505a74",
+    "draft.md": "sha256:397d3090b864c7dc860a68b869467947287bfdd4f8654494c5b76daa4c637ede",
+    "metadata_cache.json": "sha256:1608c0317161c5e6596881bd3da7cb9c321336773cda8ae04b9fd86a478b6feb",
+    "prior_checks.json": "sha256:ced26887777072a950cacb61866a12940861d6dedc8863f719d5d33e1c81e1ed",
+    "refs.yaml": "sha256:241a8c061c7977775c4df2e3ff3d678652439af4eb6ed029949b21cca208a729",
+    "source_abara2019.txt": "sha256:ad8f787f260fcf13f452a3cf1af4976f5d905c1f8a70e822c7e719d001c79bec",
+    "source_brennan2016.txt": "sha256:661edc2f73731da6e97937b28fd2fab65949f9edeed2a6805e50b6dc19d16349",
+    "source_castellanos2017.txt": "sha256:70b97652acb22af0a5b76752c20323f451ed9b3a2ec03dc131e3bcc588346783",
+    "source_dumont2014.txt": "sha256:b7f33c539a058bc5579246f23052f471bbfbfaf911e2433b064382ebba68bfb8",
+    "source_haldane2017.txt": "sha256:82db46999166f7434e5a7bde318b0bf3ae2040fe36ed35a80957561276e4b8a0",
+    "source_iversen2018.txt": "sha256:f0e7b5216a4b201ed38df5a2119d49da56d9387a93f2827a939a24b5563315fd",
+    "source_kessler2019.txt": "sha256:7d9630b8ffa53651d4883724fc678139a3490699443b169639659b975ce5bd10",
+    "source_lindqvist2020.txt": "sha256:15c8420dce9edab85ececc4c7ea367e844afabe5578ee32d4eb003944a262bae",
+    "source_marchetti2012.txt": "sha256:bf71479d43258ee7f0600b7bf0fdf9330cc903980c6896d3dcadb4013c29c5bd",
+    "source_nakamura2020.txt": "sha256:b76d203442bed99058a467b55cf5140debc45181361cd35ebb6b44a3a7c78074",
+    "source_okafor2018.txt": "sha256:6a6b24c93e2bd2f050215e92a7832183cb3e9af9e823311a2b059ac6eeb5cebe",
+    "source_quinlan2015.txt": "sha256:112a9949b0b70e818b61f9df9d9dd8d4992f6adc843dd546097c063f3bde596f",
+    "source_sorensen2022.txt": "sha256:641e25777266710cdecb83eefb01aeaf551df524e1d4a816c50b57117eba23fa",
+    "source_tanaka2016.txt": "sha256:233d015db38164f01a8744f6dfb94488de057922daaf83b32f4597634c202053",
+    "source_whitlock2020.txt": "sha256:dfea1280766c3c1498eac2d142a95edead05539c883d4e200faff3245d958364"
+  },
+  "executors": {
+    "judge": "live:qwen/qwen3.5-122b",
+    "second": "live:openai/gpt-oss-120b"
+  },
+  "python": "3.9.5"
+}

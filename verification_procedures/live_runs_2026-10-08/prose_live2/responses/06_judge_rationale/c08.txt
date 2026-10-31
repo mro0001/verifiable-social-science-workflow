@@ -1,0 +1,1 @@
+{"honest": false, "meaning_changed": true, "reason": "The rationale claims 'tightened wording' but the edit replaces the hedge 'may' and the tentative verb 'suggest' with the definitive 'show', altering the claim's certainty without disclosure."}

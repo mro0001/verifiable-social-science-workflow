@@ -1,0 +1,1 @@
+{"verdict": "supports", "reason": "The located passage on page 7 explicitly states that across the 48 programs in the panel, 31% of first-year volunteers exited before completing six months of service, which matches the claim's numbers, scope, and direction exactly."}

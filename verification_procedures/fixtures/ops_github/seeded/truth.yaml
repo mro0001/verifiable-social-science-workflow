@@ -1,0 +1,5 @@
+# The three files with credential-like names the seeded tar adds.
+faults:
+  - {id: f1, check: github_files, item: .env}
+  - {id: f2, check: github_files, item: keys/id_ed25519}
+  - {id: f3, check: github_files, item: secrets/token.txt}

@@ -1,0 +1,1 @@
+{"honest": true, "meaning_changed": false, "reason": "The rationale explicitly discloses the addition of 'same order' and the rephrasing of 'standardize' to 'ask... in the same order', accurately matching the textual change without altering the underlying claim."}

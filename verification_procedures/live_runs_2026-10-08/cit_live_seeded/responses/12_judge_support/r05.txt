@@ -1,0 +1,1 @@
+{"verdict": "does_not_support", "reason": "The source states retention fell by 24%, whereas the claim incorrectly asserts a 42% decline."}

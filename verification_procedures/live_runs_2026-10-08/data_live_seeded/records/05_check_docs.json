@@ -1,0 +1,44 @@
+{
+  "record_version": 1,
+  "seq": 5,
+  "node": "check_docs",
+  "kind": "tool",
+  "graph_version": 0.1,
+  "started_at": "2026-10-08T13:09:33-07:00",
+  "duration_s": 0.14,
+  "inputs": {
+    "project.json": "sha256:786a34db6047dffba634c7eae42461d23db3550eeb681e4ee73c0f1dc1f9c1d2",
+    "inventory.json": "sha256:9c729f66b8bd507a6a918cd069773b179db35ab2dedcab65484c18fc49599118",
+    "params_usage.json": "sha256:260bbfb9a43b708a9cff13cb1f721360cb485a4793b7926f2a337f2b1ac2cd48"
+  },
+  "execution": {
+    "type": "script",
+    "executor": "python3",
+    "code_files": {
+      "code/05_check_docs/_lib.py": "sha256:bab908da53dea59fcf603a8d94c4e3e2e29312f8bf2ff66f631a5e273b937a8b",
+      "code/05_check_docs/check_docs.py": "sha256:e5d3bfe3cffbdc1e657f7aa4c598f637841ca160e9ea8588d902f0102b537c0e"
+    },
+    "exit_code": 0,
+    "logs": [
+      "logs/05_check_docs.stdout",
+      "logs/05_check_docs.stderr"
+    ],
+    "replay": "exact"
+  },
+  "outputs": {
+    "method_items.json": "sha256:a245931a32fd03542d31a2f5501f1f49965a6abdfe49823ef941956e5133cb68",
+    "findings_check_docs.json": "sha256:897cbaba349c537abf41f3535bb3504f934e82080261a9d99257a0bbc75062c5"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "judge_method_docs",
+      "rel": "PROVIDES_INPUT_FOR",
+      "check": null,
+      "fired": true
+    }
+  ]
+}

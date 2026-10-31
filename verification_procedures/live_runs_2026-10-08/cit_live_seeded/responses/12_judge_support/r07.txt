@@ -1,0 +1,1 @@
+{"verdict": "does_not_support", "reason": "The source describes the records as 'administrative traces' but does not use the specific term 'civic paradata' attributed to Marchetti in the claim."}

@@ -1,0 +1,2 @@
+param,value,step,script
+income_cap,250000,clean,s1_clean.py

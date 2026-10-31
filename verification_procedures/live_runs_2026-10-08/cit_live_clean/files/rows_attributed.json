@@ -1,0 +1,91 @@
+[
+  {
+    "citekey": "abara2019",
+    "id": "r01",
+    "introduced_in": "v3",
+    "introduced_session": "s-0412",
+    "locator": "p. 7",
+    "moved": false,
+    "numbers": [
+      "48",
+      "31%"
+    ],
+    "origin": "ai_added",
+    "quoted": [],
+    "sentence": "In a panel of 48 city programs, 31% of first-year volunteers left before completing six months of service [@abara2019, p. 7].",
+    "sentence_hash": "sha256:6286ed035aa2ec9e000e01136a6632d6e50327a1c7990bb1f7ff1769a17af088",
+    "status": "needs_check"
+  },
+  {
+    "citekey": "castellanos2017",
+    "id": "r02",
+    "introduced_in": "v1",
+    "introduced_session": "",
+    "locator": "",
+    "moved": true,
+    "numbers": [],
+    "origin": "yours",
+    "quoted": [],
+    "sentence": "Castellanos and Ibe describe retention as a matter of fit between the volunteer's goals and the tasks offered [@castellanos2017].",
+    "sentence_hash": "sha256:2ae794290dcd87c698ca892f6d54bb58c0ccbad010373c5d04136792325ed225",
+    "status": "author"
+  },
+  {
+    "citekey": "moreno2018",
+    "id": "r03",
+    "introduced_in": "v1",
+    "introduced_session": "",
+    "locator": "p. 33",
+    "moved": false,
+    "numbers": [],
+    "origin": "ai_reworded",
+    "quoted": [
+      "role-match problem"
+    ],
+    "sentence": "Moreno calls this the \"role-match problem\" and argues that it is invisible in sign-up data [@moreno2018, p. 33].",
+    "sentence_hash": "sha256:e89ce90e60f7f962cef70bec3c363d5c2a6ed51b00f95b8f4618051a68fd91d1",
+    "status": "needs_check"
+  },
+  {
+    "citekey": "devries2021",
+    "id": "r04",
+    "introduced_in": "v3",
+    "introduced_session": "s-0412",
+    "locator": "",
+    "moved": false,
+    "numbers": [],
+    "origin": "ai_added",
+    "quoted": [],
+    "sentence": "Flexible scheduling was associated with more hours per volunteer but not with longer tenure [@devries2021].",
+    "sentence_hash": "sha256:a182ad28e165eef55b9e0057fbb48f90ce52b408199d1ca8ecab33b3c38e0d2d",
+    "status": "needs_check"
+  },
+  {
+    "citekey": "whitlock2020",
+    "id": "r05",
+    "introduced_in": "v1",
+    "introduced_session": "s-0301",
+    "locator": "p. 112",
+    "moved": true,
+    "numbers": [],
+    "origin": "ai_sourced_author_worded",
+    "quoted": [],
+    "sentence": "Whitlock found that assigning a named staff contact kept volunteers longer in two of the three cities studied [@whitlock2020, p. 112].",
+    "sentence_hash": "sha256:076042e62d40debc3eb48548f20a35ead024c614e48fee79a7838f4477671f1f",
+    "status": "needs_check"
+  },
+  {
+    "citekey": "tanaka2016",
+    "id": "r06",
+    "introduced_in": "v2",
+    "introduced_session": "s-0388",
+    "locator": "",
+    "moved": false,
+    "numbers": [],
+    "origin": "ai_added",
+    "quoted": [],
+    "sentence": "Training length alone did not predict retention [@tanaka2016].",
+    "sentence_hash": "sha256:30ec7adba66f9f679daa0258aa9544bae77b717d7d6f2466ddf7817c30c59d50",
+    "status": "needs_check"
+  }
+]

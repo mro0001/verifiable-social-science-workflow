@@ -1,0 +1,6 @@
+# Settings for adding the test story's project to GitHub. The folder and the
+# remote are synthetic, and apply is false, so a run only plans.
+project_dir: /scholar/test_story/project
+repo_name: test-story
+remote_url: git@github.example.invalid:scholar/test-story.git
+apply: false

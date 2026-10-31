@@ -1,0 +1,6 @@
+# The test story's word-count conditions (examples/test_story/project/next_word_counts.json).
+key: The condition's short name
+label: What the model was given beside the question
+n: How many answers the model gave in the condition
+distinct: How many different words the answers held
+top_share: The percent of answers that were the most common word

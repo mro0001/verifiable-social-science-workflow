@@ -1,0 +1,5 @@
+{
+  "agree": true,
+  "verdict": "partly",
+  "reason": "The source shows longer tenure only compared to volunteers given a verbal briefing, while the claim omits this specific condition."
+}

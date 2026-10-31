@@ -1,0 +1,30 @@
+[
+  {
+    "check": "content_handoff",
+    "evidence": "numbers: 48 -> 52",
+    "item": "c03",
+    "message": "content change: hand off to data stream",
+    "severity": "warning"
+  },
+  {
+    "check": "content_handoff",
+    "evidence": "citations: kim2018 -> park2020",
+    "item": "c04",
+    "message": "content change: hand off to citations stream",
+    "severity": "warning"
+  },
+  {
+    "check": "content_handoff",
+    "evidence": "quotes: felt like a real conversation about the job. -> felt like a genuine conversation about the work.",
+    "item": "c06",
+    "message": "content change: hand off to citations stream",
+    "severity": "warning"
+  },
+  {
+    "check": "content_handoff",
+    "evidence": "strength: may, suggest -> show",
+    "item": "c08",
+    "message": "content change: hand off to data stream",
+    "severity": "warning"
+  }
+]

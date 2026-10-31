@@ -1,0 +1,1 @@
+{"quote": "In two of the three cities, volunteers assigned a named staff contact stayed longer than those without one. In the third city the difference was small and not statistically significant.", "location": "p. 112", "found": true}

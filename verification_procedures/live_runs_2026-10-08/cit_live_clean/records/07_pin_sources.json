@@ -1,0 +1,47 @@
+{
+  "record_version": 1,
+  "seq": 7,
+  "node": "pin_sources",
+  "kind": "tool",
+  "graph_version": 0.1,
+  "started_at": "2026-10-08T13:10:38-07:00",
+  "duration_s": 0.1,
+  "inputs": {
+    "refs_index.json": "sha256:c12edaf56999a9543396ff99b0143c4fb98dbfcd26b97fc6526d2269f61520b9",
+    "source_abara2019.txt": "sha256:ad8f787f260fcf13f452a3cf1af4976f5d905c1f8a70e822c7e719d001c79bec",
+    "source_castellanos2017.txt": "sha256:70b97652acb22af0a5b76752c20323f451ed9b3a2ec03dc131e3bcc588346783",
+    "source_devries2021.txt": "sha256:c0368a8d7e002a7fc0f99637580650dbdddd959a51d2852935c677b260437464",
+    "source_moreno2018.txt": "sha256:77ce51d061bf0456cd5fdf900c0f63a3dfeb11fbb5146f9b9672b806a9b59268",
+    "source_tanaka2016.txt": "sha256:233d015db38164f01a8744f6dfb94488de057922daaf83b32f4597634c202053",
+    "source_whitlock2020.txt": "sha256:dfea1280766c3c1498eac2d142a95edead05539c883d4e200faff3245d958364"
+  },
+  "execution": {
+    "type": "script",
+    "executor": "python3",
+    "code_files": {
+      "code/07_pin_sources/_lib.py": "sha256:bab908da53dea59fcf603a8d94c4e3e2e29312f8bf2ff66f631a5e273b937a8b",
+      "code/07_pin_sources/pin_sources.py": "sha256:d56246f6ee9a7fa42d361ed22e91b9948b4d34c90b5d5745b4ad6f788436a3f6"
+    },
+    "exit_code": 0,
+    "logs": [
+      "logs/07_pin_sources.stdout",
+      "logs/07_pin_sources.stderr"
+    ],
+    "replay": "exact"
+  },
+  "outputs": {
+    "sources.json": "sha256:82295ae5efdc50314c360e8ae494dd6bc7f9812034b61bb949b9dc2edda55b86"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "reuse_prior",
+      "rel": "LEADS_TO",
+      "check": null,
+      "fired": true
+    }
+  ]
+}

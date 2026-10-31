@@ -1,0 +1,1 @@
+{"matches": false, "mismatches": [{"claim": "Keep respondents aged at least min_age", "code": "min_age = 21"}], "reason": "The documentation claims the function uses a parameter named 'min_age' (implying it is configurable), but the code hard-codes the value 21 instead of reading it from params.yaml or accepting it as an argument."}

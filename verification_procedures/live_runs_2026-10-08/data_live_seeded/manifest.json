@@ -1,0 +1,38 @@
+{
+  "created_at": "2026-10-08T13:09:32-07:00",
+  "stream": "data",
+  "graph": {
+    "path": "graphs/data.yaml",
+    "version": 0.1,
+    "sha256": "sha256:83c89d2633f1f0455f863d5dca834a350cd955536ebcd1ae7e3b02e45f79947a"
+  },
+  "contracts": {
+    "path": "contracts/data.yaml",
+    "sha256": "sha256:9979d55105d1ae5f941c92f5e70540c3ca45fd6e16098b5c9278f4a8080caeb4"
+  },
+  "inputs_from": "/path/to/repository/verification_graphs/fixtures/data/seeded",
+  "inputs": {
+    "acquisition.yaml": "sha256:81e0b52717b8040878aab9655e6c0a3909d4aee34910db7b47c95b7245c0665d",
+    "clean_survey.csv": "sha256:24d104ac49e0de7571d0022dee27854bfb30c65ac2392ddce594702e25441ff9",
+    "fig_income_by_region.svg": "sha256:7d3ee627ebb1fc0e8a4c6ca1d3bf2a2ccddfd5090355500e7cf120d70baf7d8b",
+    "model_record_model.json": "sha256:2fe1b2aac39b946c1b149f12fc0a60e43d5af211eb83fb6ef266dd0a3258d4b0",
+    "numbers.yml": "sha256:9cae3e28772326f7fa02a3f2d45c9ac0169972f19553f9a815802be555bfa37d",
+    "params.yaml": "sha256:0a5141ade02767b3bc4075e416ab782c0e31d33014ec1b18a62ad1d9ce2f4b10",
+    "params_io.py": "sha256:2c0af822eef3ddf1a1f1e6deff40bb22728bdb3d2c83309c5f1862f92222c4a9",
+    "params_record_clean.csv": "sha256:556283b054f2c48a415f98d9dda07d06aaf8e105877ce6a3e57a895e251d8a80",
+    "params_record_describe.csv": "sha256:046a2373db6545bd519efb54ef833b85fb7abb0457447cc1f710c963b89dcee4",
+    "params_record_model.csv": "sha256:b3a40731fdbadae9af2436bbf16d9ceb6325cc725186793065f8362d2da66ffc",
+    "pipeline.yaml": "sha256:5dacb35fd8c106652dee03d45153d91d9c7e55671cedd64c8ee910690593bd1e",
+    "raw_survey.csv": "sha256:6d2976a77b36aa47dcda673dab7fdffbe0f937a6e485db9b3fe184be8e4e42a4",
+    "s1_clean.py": "sha256:8602e0b986b8ff51859d6de08d7f9851175912964c44a179e52b36cb9e828d36",
+    "s2_describe.py": "sha256:58ac5b8b8a7f10c8499d63dce7156d407b54f575031e8967034d150917f3548b",
+    "s3_model.py": "sha256:c8933272d7b706934565435c82184feed0c3e3a5b14759f43a41ba87fa8bdeb5",
+    "table_descriptives.csv": "sha256:59a7a97d7934d9531793bce17b298db4780da3dd5ab3369eaa7571cfdd76aa69",
+    "table_model.csv": "sha256:26d4a8fd7df2a6c50a69baf19a3c47dd31365eb5c51e12e5d7e0dd0e921b2aa1"
+  },
+  "executors": {
+    "judge": "live:qwen/qwen3.5-122b",
+    "second": null
+  },
+  "python": "3.9.5"
+}

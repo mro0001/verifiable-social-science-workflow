@@ -1,0 +1,4 @@
+param,value,step,script
+fig_height,260,describe,s2_describe.py
+fig_width,520,describe,s2_describe.py
+round_digits,3,describe,s2_describe.py

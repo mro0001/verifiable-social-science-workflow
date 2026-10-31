@@ -1,0 +1,146 @@
+{
+  "10.5555/cp.2016.0007": {
+    "title": "The work is theirs",
+    "author": [
+      {
+        "family": "Brennan",
+        "given": "Siobhan"
+      }
+    ],
+    "issued": 2016,
+    "container-title": "Civic Press",
+    "type": "book"
+  },
+  "10.5555/jca.2019.0142": {
+    "title": "Ownership and exit in municipal volunteer programs",
+    "author": [
+      {
+        "family": "Abara",
+        "given": "Nkem"
+      },
+      {
+        "family": "Hollis",
+        "given": "Teresa"
+      }
+    ],
+    "issued": 2019,
+    "container-title": "Journal of Civic Administration",
+    "type": "journal-article"
+  },
+  "10.5555/jca.2019.0215": {
+    "title": "Orientation length and volunteer retention",
+    "author": [
+      {
+        "family": "Kessler",
+        "given": "Dana"
+      }
+    ],
+    "issued": 2019,
+    "container-title": "Journal of Civic Administration",
+    "type": "journal-article"
+  },
+  "10.5555/nmr.2020.0157": {
+    "title": "Supervisor feedback and seasonal return",
+    "author": [
+      {
+        "family": "Lindqvist",
+        "given": "Hanna"
+      },
+      {
+        "family": "Morales",
+        "given": "Julia"
+      }
+    ],
+    "issued": 2020,
+    "container-title": "Nonprofit Management Review",
+    "type": "journal-article"
+  },
+  "10.5555/psq.2017.0090": {
+    "title": "Program size and attachment to staff",
+    "author": [
+      {
+        "family": "Haldane",
+        "given": "P. J."
+      }
+    ],
+    "issued": 2017,
+    "container-title": "Public Service Quarterly",
+    "type": "journal-article"
+  },
+  "10.5555/psq.2019.0044": {
+    "title": "Written role descriptions and volunteer tenure",
+    "author": [
+      {
+        "family": "Okafor",
+        "given": "Adaeze"
+      }
+    ],
+    "issued": 2019,
+    "container-title": "Public Service Quarterly",
+    "type": "journal-article"
+  },
+  "10.5555/rs.2012.0109": {
+    "title": "Administrative traces of volunteer work",
+    "author": [
+      {
+        "family": "Marchetti",
+        "given": "Paolo"
+      }
+    ],
+    "issued": 2012,
+    "container-title": "Records and Society",
+    "type": "journal-article"
+  },
+  "10.5555/vss.2014.0048": {
+    "title": "Fixed-term assignments and volunteer re-enlistment",
+    "author": [
+      {
+        "family": "Dumont",
+        "given": "Claire"
+      }
+    ],
+    "issued": 2014,
+    "container-title": "Voluntary Sector Studies",
+    "type": "journal-article"
+  },
+  "10.5555/vss.2017.0021": {
+    "title": "Fit and retention in local volunteering",
+    "author": [
+      {
+        "family": "Castellanos",
+        "given": "Rosa"
+      },
+      {
+        "family": "Ibe",
+        "given": "Kelechi"
+      }
+    ],
+    "issued": 2017,
+    "container-title": "Voluntary Sector Studies",
+    "type": "journal-article"
+  },
+  "10.5555/vss.2020.0063": {
+    "title": "Recognition events and the long-serving volunteer",
+    "author": [
+      {
+        "family": "Nakamura",
+        "given": "Emi"
+      }
+    ],
+    "issued": 2020,
+    "container-title": "Voluntary Sector Studies",
+    "type": "journal-article"
+  },
+  "10.5555/ycl.2018.0012": {
+    "title": "Peer mentoring in youth volunteer programs",
+    "author": [
+      {
+        "family": "Iversen",
+        "given": "Tor"
+      }
+    ],
+    "issued": 2018,
+    "container-title": "Youth and Civic Life",
+    "type": "journal-article"
+  }
+}

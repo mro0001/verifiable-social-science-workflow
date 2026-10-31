@@ -1,0 +1,9 @@
+[
+  {
+    "check": "check_records",
+    "evidence": "record sha256:f2dd99589ab9..., current sha256:0a5141ade027...",
+    "item": "model_record_model.json",
+    "message": "stale model: record was made under a different params.yaml",
+    "severity": "blocking"
+  }
+]

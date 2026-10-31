@@ -1,0 +1,23 @@
+[
+  {
+    "check": "match_references",
+    "evidence": "refs.yaml",
+    "item": "osei2015",
+    "message": "@osei2015 is in the reference list and not cited in the final build, so it is not checked",
+    "severity": "info"
+  },
+  {
+    "check": "read_origin",
+    "evidence": "citation_provenance.yaml",
+    "item": "r02",
+    "message": "@castellanos2017 was first named by the scholar in the record, so it is not checked further",
+    "severity": "info"
+  },
+  {
+    "check": "read_origin",
+    "evidence": "citation_provenance.yaml",
+    "item": "r03",
+    "message": "@moreno2018 was first named by the scholar in the record, so it is not checked further",
+    "severity": "info"
+  }
+]

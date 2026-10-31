@@ -1,0 +1,1 @@
+{"fix": "Programs that cut orientation to a single session saw retention fall by 24% within a year [@kessler2019]."}

@@ -1,0 +1,1 @@
+{"fix": "The citation to Ferrante (2021) must be removed because the reference appears to be fabricated (DOI 10.5555/nmr.2021.0388 does not exist) and no source was retrieved to verify the claim that exit is steepest among volunteers recruited through online portals."}

@@ -1,0 +1,35 @@
+{
+  "params_io.py": {
+    "objects": [],
+    "reads": []
+  },
+  "s1_clean.py": {
+    "objects": [
+      "P"
+    ],
+    "reads": [
+      "income_cap",
+      "min_age"
+    ]
+  },
+  "s2_describe.py": {
+    "objects": [
+      "P"
+    ],
+    "reads": [
+      "fig_height",
+      "fig_width",
+      "round_digits"
+    ]
+  },
+  "s3_model.py": {
+    "objects": [
+      "P"
+    ],
+    "reads": [
+      "alpha",
+      "model_formula",
+      "round_digits"
+    ]
+  }
+}

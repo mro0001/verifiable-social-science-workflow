@@ -1,0 +1,5 @@
+{
+  "agree": true,
+  "verdict": "does_not_support",
+  "reason": "The source only refers to the records as “administrative traces” and does not use the term “civic paradata.”"
+}

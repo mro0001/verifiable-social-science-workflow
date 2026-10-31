@@ -1,0 +1,1 @@
+{"quote": "The quality of supervisors' feedback predicted whether volunteers returned for a second season, net of program size and volunteer age.", "location": "p. 6", "found": true}

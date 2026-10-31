@@ -1,0 +1,10 @@
+# A recorded proposal with an operation the organizer does not have.
+schema: organizer-proposal
+schema_version: 1
+proposed_by: "ai:claude_code:{{SESSION}}"
+inventory_id: "{{INVENTORY_ID}}"
+changes:
+  - id: c1
+    op: tidy
+    reason: The drafts folder looks untidy.
+    path: drafts/early.md

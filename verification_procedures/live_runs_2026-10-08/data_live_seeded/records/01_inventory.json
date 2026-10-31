@@ -1,0 +1,71 @@
+{
+  "record_version": 1,
+  "seq": 1,
+  "node": "inventory",
+  "kind": "tool",
+  "graph_version": 0.1,
+  "started_at": "2026-10-08T13:09:32-07:00",
+  "duration_s": 0.13,
+  "inputs": {
+    "pipeline.yaml": "sha256:5dacb35fd8c106652dee03d45153d91d9c7e55671cedd64c8ee910690593bd1e",
+    "acquisition.yaml": "sha256:81e0b52717b8040878aab9655e6c0a3909d4aee34910db7b47c95b7245c0665d",
+    "params.yaml": "sha256:0a5141ade02767b3bc4075e416ab782c0e31d33014ec1b18a62ad1d9ce2f4b10",
+    "numbers.yml": "sha256:9cae3e28772326f7fa02a3f2d45c9ac0169972f19553f9a815802be555bfa37d",
+    "raw_survey.csv": "sha256:6d2976a77b36aa47dcda673dab7fdffbe0f937a6e485db9b3fe184be8e4e42a4",
+    "params_io.py": "sha256:2c0af822eef3ddf1a1f1e6deff40bb22728bdb3d2c83309c5f1862f92222c4a9",
+    "s1_clean.py": "sha256:8602e0b986b8ff51859d6de08d7f9851175912964c44a179e52b36cb9e828d36",
+    "s2_describe.py": "sha256:58ac5b8b8a7f10c8499d63dce7156d407b54f575031e8967034d150917f3548b",
+    "s3_model.py": "sha256:c8933272d7b706934565435c82184feed0c3e3a5b14759f43a41ba87fa8bdeb5",
+    "clean_survey.csv": "sha256:24d104ac49e0de7571d0022dee27854bfb30c65ac2392ddce594702e25441ff9",
+    "params_record_clean.csv": "sha256:556283b054f2c48a415f98d9dda07d06aaf8e105877ce6a3e57a895e251d8a80",
+    "table_descriptives.csv": "sha256:59a7a97d7934d9531793bce17b298db4780da3dd5ab3369eaa7571cfdd76aa69",
+    "fig_income_by_region.svg": "sha256:7d3ee627ebb1fc0e8a4c6ca1d3bf2a2ccddfd5090355500e7cf120d70baf7d8b",
+    "params_record_describe.csv": "sha256:046a2373db6545bd519efb54ef833b85fb7abb0457447cc1f710c963b89dcee4",
+    "table_model.csv": "sha256:26d4a8fd7df2a6c50a69baf19a3c47dd31365eb5c51e12e5d7e0dd0e921b2aa1",
+    "model_record_model.json": "sha256:2fe1b2aac39b946c1b149f12fc0a60e43d5af211eb83fb6ef266dd0a3258d4b0",
+    "params_record_model.csv": "sha256:b3a40731fdbadae9af2436bbf16d9ceb6325cc725186793065f8362d2da66ffc"
+  },
+  "execution": {
+    "type": "script",
+    "executor": "python3",
+    "code_files": {
+      "code/01_inventory/_lib.py": "sha256:bab908da53dea59fcf603a8d94c4e3e2e29312f8bf2ff66f631a5e273b937a8b",
+      "code/01_inventory/inventory.py": "sha256:eb9b1945fca79073bc82e37e106a181784364cf2875169c1da2056e3e2bef173"
+    },
+    "exit_code": 0,
+    "logs": [
+      "logs/01_inventory.stdout",
+      "logs/01_inventory.stderr"
+    ],
+    "replay": "exact"
+  },
+  "outputs": {
+    "project.json": "sha256:786a34db6047dffba634c7eae42461d23db3550eeb681e4ee73c0f1dc1f9c1d2",
+    "inventory.json": "sha256:9c729f66b8bd507a6a918cd069773b179db35ab2dedcab65484c18fc49599118",
+    "findings_inventory.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "check_raw",
+      "rel": "LEADS_TO",
+      "check": null,
+      "fired": true
+    },
+    {
+      "to": "check_params",
+      "rel": "PROVIDES_INPUT_FOR",
+      "check": null,
+      "fired": true
+    },
+    {
+      "to": "replay_pipeline",
+      "rel": "PROVIDES_INPUT_FOR",
+      "check": null,
+      "fired": true
+    }
+  ]
+}

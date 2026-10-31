@@ -1,0 +1,19 @@
+# SYNTHETIC. Who introduced each citekey, in which draft and session.
+citations:
+  abara2019:       {introduced_by: ai,     draft: v3, session: s-0412}
+  ferrante2021:    {introduced_by: ai,     draft: v3, session: s-0412}
+  castellanos2017: {introduced_by: author, draft: v1, session: ""}
+  brennan2016:     {introduced_by: author, draft: v1, session: ""}
+  kessler2019:     {introduced_by: ai,     draft: v3, session: s-0412}
+  okafor2018:      {introduced_by: ai,     draft: v3, session: s-0412}
+  marchetti2012:   {introduced_by: ai,     draft: v3, session: s-0412}
+  nakamura2020:    {introduced_by: ai,     draft: v3, session: s-0413}
+  lindqvist2020:   {introduced_by: ai,     draft: v3, session: s-0413}
+  haldane2017:     {introduced_by: ai,     draft: v3, session: s-0413}
+  pruitt2022:      {introduced_by: ai,     draft: v3, session: s-0413}
+  iversen2018:     {introduced_by: ai,     draft: v3, session: s-0413}
+  whitlock2020:    {introduced_by: ai,     draft: v1, session: s-0301}
+  sorensen2022:    {introduced_by: ai,     draft: v3, session: s-0413}
+  tanaka2016:      {introduced_by: ai,     draft: v2, session: s-0388}
+  quinlan2015:     {introduced_by: author, draft: v1, session: ""}
+  # dumont2014 deliberately has no entry (origin unknown)

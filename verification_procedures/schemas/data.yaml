@@ -1,0 +1,414 @@
+# The data stream's schema. The report step's fill function (implementations/data/report.py)
+# fills these fields from the step outputs, and the one builder (implementations/_report.py)
+# writes fields.json, findings.json, and report.md from them. Raise the version by hand when a
+# field or the layout changes. Version 2 (Track V, step V2) is the final-numbers report, built
+# for the scholar's verification with no model's verdict in it.
+stream: data
+version: 2
+item: one manuscript number, one AI change to a script, one parameter the AI set, or one group of problems found on something else
+id: id
+# The item fields the results file carries for each item, in this order, the keys Track W gave
+# this stream's items.
+results: [id, kind, summary, findings, needs_decision]
+
+# The items the results file lists for the data stream. A number's, a change's, or a
+# parameter's own problems ride on its row, and every other group of blocking or warning
+# findings is an item of kind finding. The fields of one kind are not required, since an item
+# of another kind has none of them.
+fields:
+  id:
+    type: str
+    filled_by: [inventory, check_raw, check_params, check_docs, attribute_ai, replay_pipeline, check_records, check_numbers]
+  kind:
+    type: enum
+    values: [number, change, parameter, finding]
+    filled_by: [inventory, check_raw, check_params, check_docs, attribute_ai, replay_pipeline, check_records, check_numbers]
+  summary:
+    type: str
+    filled_by: [inventory, check_raw, check_params, check_docs, attribute_ai, replay_pipeline, check_records, check_numbers]
+  findings:
+    type: list
+    filled_by: [inventory, check_raw, check_params, check_docs, attribute_ai, replay_pipeline, check_records, check_numbers]
+  # True for a number from AI work, every number when no record was given, a number with a
+  # problem, each AI change, each parameter the AI set, and each item of kind finding.
+  needs_decision:
+    type: bool
+    filled_by: [inventory, check_raw, check_params, check_docs, attribute_ai, replay_pipeline, check_records, check_numbers]
+  key:
+    type: str
+    required: false
+    filled_by: [check_numbers]
+  # The value numbers.yml types, as text.
+  value:
+    type: str
+    required: false
+    filled_by: [check_numbers]
+  # The value the rerun gave, as text. Not run for a number the rerun gave no value for.
+  replayed:
+    type: str
+    required: false
+    filled_by: [check_numbers]
+    not_run_text: "None"
+  from:
+    type: str
+    required: false
+    filled_by: [check_numbers]
+  ok:
+    type: bool
+    required: false
+    filled_by: [check_numbers]
+  # The Agrees cell.
+  agrees:
+    type: str
+    required: false
+    filled_by: [check_numbers]
+  # The script of the step that writes the number's output, empty when no step does.
+  script:
+    type: str
+    required: false
+    filled_by: [attribute_ai]
+  # Whether the scripts or parameters behind the number carry AI work by the record.
+  from_ai:
+    type: bool
+    required: false
+    filled_by: [attribute_ai]
+  # The script cell and the AI work cell of the Numbers table.
+  script_cell:
+    type: str
+    required: false
+    filled_by: [attribute_ai]
+  ai_cell:
+    type: str
+    required: false
+    filled_by: [attribute_ai]
+  # An AI change, as the record of the AI's file edits gives it.
+  path:
+    type: str
+    required: false
+    filled_by: [attribute_ai]
+  change_kind:
+    type: enum
+    values: [edit, write]
+    required: false
+    filled_by: [attribute_ai]
+  before:
+    type: str
+    required: false
+    filled_by: [attribute_ai]
+  after:
+    type: str
+    required: false
+    filled_by: [attribute_ai]
+  # The reason the record gives, word for word. Left out when none is recorded.
+  rationale:
+    type: str
+    required: false
+    filled_by: [attribute_ai]
+  # A parameter the AI set.
+  param:
+    type: str
+    required: false
+    filled_by: [attribute_ai]
+  param_before:
+    type: str
+    required: false
+    filled_by: [attribute_ai]
+  ai_value:
+    type: str
+    required: false
+    filled_by: [attribute_ai]
+  params_now:
+    type: str
+    required: false
+    filled_by: [attribute_ai]
+  read_by:
+    type: str
+    required: false
+    filled_by: [attribute_ai, check_params]
+  # The record entries behind a parameter, joined by and.
+  record_id:
+    type: str
+    required: false
+    filled_by: [attribute_ai]
+  # The public ids of the sessions behind a change or a parameter, copied from the record's
+  # session_ref. Left out when the record gives none.
+  sessions:
+    type: list
+    required: false
+    filled_by: [attribute_ai]
+  # The text of sessions for a change's line, or a parameter's, in the report.
+  # A report template takes no list field, so the report prints this text, not sessions.
+  session_line:
+    type: str
+    required: false
+    filled_by: [attribute_ai]
+  param_session_line:
+    type: str
+    required: false
+    filled_by: [attribute_ai]
+  # The lines the report shows for an AI change or a parameter.
+  before_cell:
+    type: str
+    required: false
+    filled_by: [attribute_ai]
+  after_cell:
+    type: str
+    required: false
+    filled_by: [attribute_ai]
+  reason_cell:
+    type: str
+    required: false
+    filled_by: [attribute_ai]
+  in_file_cell:
+    type: str
+    required: false
+    filled_by: [attribute_ai]
+
+run:
+  n_steps:
+    type: int
+    filled_by: [inventory]
+  n_raw:
+    type: int
+    filled_by: [inventory]
+  n_numbers:
+    type: int
+    filled_by: [inventory]
+  # The sentence saying whether the record of the AI's file edits was given.
+  record_line:
+    type: str
+    filled_by: [attribute_ai]
+  n_numbers_ai:
+    type: int
+    filled_by: [attribute_ai]
+  n_changes:
+    type: int
+    filled_by: [attribute_ai]
+  n_no_reason:
+    type: int
+    filled_by: [attribute_ai]
+  n_ai_params:
+    type: int
+    filled_by: [attribute_ai]
+
+tables:
+  # One row for each step script, then each helper, with the cells the Scripts table shows.
+  - id: scripts
+    fields:
+      script:
+        type: str
+        filled_by: [inventory]
+      step:
+        type: str
+        filled_by: [inventory]
+      ai_changes:
+        type: str
+        filled_by: [attribute_ai]
+      docs_ok:
+        type: str
+        filled_by: [check_docs, check_params]
+  # One row for each pipeline step, with the cells the rerun's Pipeline table shows.
+  - id: steps
+    fields:
+      step:
+        type: str
+        filled_by: [inventory]
+      script:
+        type: str
+        filled_by: [inventory]
+      reproduces:
+        type: str
+        filled_by: [replay_pipeline]
+      records_ok:
+        type: str
+        filled_by: [check_records]
+      stderr:
+        type: str
+        filled_by: [replay_pipeline]
+  # One row for each raw file the acquisition record names, with its checksum then and now.
+  - id: raw
+    fields:
+      file:
+        type: str
+        filled_by: [check_raw]
+      recorded:
+        type: str
+        filled_by: [check_raw]
+      now:
+        type: str
+        filled_by: [check_raw]
+      agrees:
+        type: str
+        filled_by: [check_raw]
+  # One row for each value a step's replayed parameter record holds, then one for each
+  # parameter no step read, with the cells the Parameter record table shows.
+  - id: params
+    fields:
+      param:
+        type: str
+        filled_by: [replay_pipeline, inventory]
+      recorded:
+        type: str
+        filled_by: [replay_pipeline, inventory]
+      params_yaml:
+        type: str
+        filled_by: [inventory]
+      agrees:
+        type: str
+        filled_by: [replay_pipeline, inventory]
+      step:
+        type: str
+        filled_by: [replay_pipeline]
+      script:
+        type: str
+        filled_by: [replay_pipeline]
+  # One row for each committed model record, with the cells the Model records table shows.
+  - id: models
+    fields:
+      record:
+        type: str
+        filled_by: [inventory]
+      model:
+        type: str
+        filled_by: [inventory]
+      spec:
+        type: str
+        filled_by: [inventory]
+      n:
+        type: str
+        filled_by: [inventory]
+      current:
+        type: str
+        filled_by: [inventory]
+      reproduces:
+        type: str
+        filled_by: [replay_pipeline]
+
+report:
+  title: Data verification, the final numbers
+  intro: |-
+    This report lists each number in the final build with the output and the script that produce it, for the scholar to verify. A script or a parameter is the AI's when the record of the AI's file edits shows that an AI tool call changed it. Each AI change to a script is shown with its text before and after and the reason the record gives, and each parameter the AI set is listed. A number that comes from AI work waits for the scholar to approve or hold it. A program notes each AI change with no recorded reason. No model judges anything. The Reproducibility section reruns the pipeline from the raw data in an empty folder and gives each number's match or mismatch, which covers every number whoever wrote its code.
+
+    {run.record_line} Numbers {run.n_numbers} (from AI work {run.n_numbers_ai}). AI changes to scripts {run.n_changes} (with no recorded reason {run.n_no_reason}). Parameters the AI set {run.n_ai_params}. Steps {run.n_steps}, raw files {run.n_raw}.
+  sections:
+    - heading: Numbers
+      parts:
+        - kind: text
+          template: Each number names the output it is read from and the script of the step that writes that output. AI work lists the AI changes and the parameters the AI set in that script, the scripts of the earlier steps it reads from, and the helpers.
+        - kind: table
+          rows: items
+          where: kind in [number]
+          columns:
+            - {header: Key, value: "{key}"}
+            - {header: numbers.yml, value: "{value}"}
+            - {header: Output, value: "{from}"}
+            - {header: Script, value: "{script_cell}"}
+            - {header: AI work, value: "{ai_cell}"}
+          empty: None.
+    - heading: AI changes to scripts
+      parts:
+        - kind: text
+          template: Each change below is one an AI tool call made, as the record of the AI's file edits gives it. An AI change made through a shell command is not in the record and is not shown here.
+        - kind: blocks
+          rows: items
+          where: kind in [change]
+          heading: "{id} ({path}, {change_kind})"
+          lines:
+            - {label: Before, value: "{before_cell}"}
+            - {label: After, value: "{after_cell}"}
+            - {label: Stated reason, value: "{reason_cell}"}
+            - {label: In the script now, value: "{in_file_cell}"}
+          empty: None.
+        # Only the changes whose record entry names a session.
+        - kind: list
+          rows: items
+          where: session_line
+          line: "Change {id} came from session {session_line}."
+    - heading: Parameters the AI set
+      parts:
+        - kind: text
+          template: Each parameter below is one whose value an AI tool call set in params.yaml, as the record gives it, with the scripts that read it.
+        - kind: table
+          rows: items
+          where: kind in [parameter]
+          columns:
+            - {header: Param, value: "{param}"}
+            - {header: Before, value: "{param_before}"}
+            - {header: AI set, value: "{ai_value}"}
+            - {header: params.yaml now, value: "{params_now}"}
+            - {header: Read by, value: "{read_by}"}
+            - {header: Record, value: "{record_id}"}
+            - {header: Stated reason, value: "{reason_cell}"}
+          empty: None.
+        # Only the parameters whose record entries name a session.
+        - kind: list
+          rows: items
+          where: param_session_line
+          line: "Parameter {param} came from session {param_session_line}."
+    - heading: Scripts
+      parts:
+        - kind: text
+          template: Each step script and helper, with the AI changes the record gives for it. Docs ok covers the docstring sections and the parameter scan of the script.
+        - kind: table
+          rows: scripts
+          columns:
+            - {header: Script, value: "{script}"}
+            - {header: Step, value: "{step}"}
+            - {header: AI changes, value: "{ai_changes}"}
+            - {header: Docs ok, value: "{docs_ok}"}
+    - heading: Reproducibility
+      parts:
+        - kind: text
+          template: The pipeline was rerun from the raw data in an empty folder. This covers every number, whoever wrote its code, and a number that does not reproduce is a problem to fix. The steps of the rerun follow.
+        - kind: table
+          rows: steps
+          columns:
+            - {header: Step, value: "{step}"}
+            - {header: Script, value: "{script}"}
+            - {header: Reproduces, value: "{reproduces}"}
+            - {header: Records ok, value: "{records_ok}"}
+            - {header: Stderr, value: "{stderr}"}
+        - kind: text
+          template: Each number against the rerun follows.
+        - kind: table
+          rows: items
+          where: kind in [number]
+          columns:
+            - {header: Key, value: "{key}"}
+            - {header: numbers.yml, value: "{value}"}
+            - {header: Rerun, value: "{replayed}"}
+            - {header: Agrees, value: "{agrees}"}
+          empty: None.
+        - kind: text
+          template: Each raw file's checksum, recorded at collection and as it is now, follows.
+        - kind: table
+          rows: raw
+          columns:
+            - {header: File, value: "{file}"}
+            - {header: At collection, value: "{recorded}"}
+            - {header: Now, value: "{now}"}
+            - {header: Agrees, value: "{agrees}"}
+          empty: None.
+        - kind: text
+          template: The parameter record follows, assembled from the records the rerun wrote and not from the committed copies.
+        - kind: table
+          rows: params
+          columns:
+            - {header: Param, value: "{param}"}
+            - {header: Value recorded, value: "{recorded}"}
+            - {header: params.yaml, value: "{params_yaml}"}
+            - {header: Agrees, value: "{agrees}"}
+            - {header: Step, value: "{step}"}
+            - {header: Script, value: "{script}"}
+        - kind: text
+          template: The model records follow.
+        - kind: table
+          rows: models
+          columns:
+            - {header: Record, value: "{record}"}
+            - {header: Model, value: "{model}"}
+            - {header: Spec, value: "{spec}"}
+            - {header: n, value: "{n}"}
+            - {header: Made under current params.yaml, value: "{current}"}
+            - {header: Reproduces, value: "{reproduces}"}
+          empty: None.

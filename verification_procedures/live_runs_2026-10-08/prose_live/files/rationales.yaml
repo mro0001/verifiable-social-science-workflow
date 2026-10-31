@@ -1,0 +1,33 @@
+# The AI's comment per change (synthetic). Planted faults are listed in truth.yaml.
+- id: r01
+  anchor: Prior work has focused mainly on private firms.
+  kind: move
+  rationale: Moved the gap statement ahead of the study aim so the aim answers it.
+- id: r02
+  anchor: This study examines whether structured interviews are associated with lower first-year turnover in municipal agencies.
+  kind: edit
+  rationale: Rewrote "In this study we examine" as "This study examines" for a more direct opening; the aim is unchanged.
+- id: r03
+  anchor: We draw on personnel records from 52 agencies in three states [@alvarez2019].
+  kind: edit
+  rationale: Updated the agency count from 48 to 52 to match the sample table.
+- id: r04
+  anchor: First-year turnover is especially costly for small agencies [@park2020].
+  kind: edit
+  rationale: Style. Smoothed the sentence so it reads more naturally.
+- id: r05
+  anchor: One clerk said the process "felt like a genuine conversation about the work."
+  kind: edit
+  rationale: Fixed punctuation in the quotation.
+- id: r06
+  anchor: The results show that structured interviews reduce early exits by 9 percentage points.
+  kind: edit
+  rationale: Tightened wording.
+- id: r07
+  anchor: The next section turns to the interview protocol itself.
+  kind: edit
+  rationale: Added a signpost sentence pointing to the next section.
+- id: r08
+  anchor: This pattern held across agencies of different sizes.
+  kind: edit
+  rationale: Clarified that the pattern holds across agency sizes.

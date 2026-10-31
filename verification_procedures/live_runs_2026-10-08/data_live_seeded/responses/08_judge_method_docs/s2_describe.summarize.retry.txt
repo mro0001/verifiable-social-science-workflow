@@ -1,0 +1,1 @@
+{"matches": true, "mismatches": [], "reason": "The code correctly implements the documented behavior by filtering out blank income_k values before calculating the mean while counting them in n_missing."}

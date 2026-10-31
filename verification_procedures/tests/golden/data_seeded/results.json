@@ -1,0 +1,211 @@
+{
+  "schema": "verification-results",
+  "schema_version": 1,
+  "stream": "data",
+  "run_id": "data_seeded",
+  "procedure_version": 0.2,
+  "inputs": {
+    "acquisition.yaml": "sha256:81e0b52717b8040878aab9655e6c0a3909d4aee34910db7b47c95b7245c0665d",
+    "clean_survey.csv": "sha256:24d104ac49e0de7571d0022dee27854bfb30c65ac2392ddce594702e25441ff9",
+    "fig_income_by_region.svg": "sha256:cd38dc44d626a94739b272db28c6e5fc1617b6e249bb7c47d4b6b92454e1e245",
+    "file_edits.yaml": "sha256:9ead66ed840260d3a62e15ec72d77b8b9d2c2e290affad95f265c1117a84d200",
+    "model_record_model.json": "sha256:1bf9e477930df359a5cd3c4e100079bfc6eaf0dfce0a418bcea585471b775fbe",
+    "numbers.yml": "sha256:9cae3e28772326f7fa02a3f2d45c9ac0169972f19553f9a815802be555bfa37d",
+    "params.yaml": "sha256:755c8cef6263a1ca74024255e53d10982222d73040076e313b0288ffeae68125",
+    "params_io.py": "sha256:2c0af822eef3ddf1a1f1e6deff40bb22728bdb3d2c83309c5f1862f92222c4a9",
+    "params_record_clean.csv": "sha256:556283b054f2c48a415f98d9dda07d06aaf8e105877ce6a3e57a895e251d8a80",
+    "params_record_describe.csv": "sha256:81df6938e23ac3b9fc421590cf02d703e514bd9644f68b42cba490e66e7a2d3e",
+    "params_record_model.csv": "sha256:b3a40731fdbadae9af2436bbf16d9ceb6325cc725186793065f8362d2da66ffc",
+    "pipeline.yaml": "sha256:5dacb35fd8c106652dee03d45153d91d9c7e55671cedd64c8ee910690593bd1e",
+    "raw_survey.csv": "sha256:6d2976a77b36aa47dcda673dab7fdffbe0f937a6e485db9b3fe184be8e4e42a4",
+    "s1_clean.py": "sha256:8602e0b986b8ff51859d6de08d7f9851175912964c44a179e52b36cb9e828d36",
+    "s2_describe.py": "sha256:58ac5b8b8a7f10c8499d63dce7156d407b54f575031e8967034d150917f3548b",
+    "s3_model.py": "sha256:c8933272d7b706934565435c82184feed0c3e3a5b14759f43a41ba87fa8bdeb5",
+    "table_descriptives.csv": "sha256:59a7a97d7934d9531793bce17b298db4780da3dd5ab3369eaa7571cfdd76aa69",
+    "table_model.csv": "sha256:26d4a8fd7df2a6c50a69baf19a3c47dd31365eb5c51e12e5d7e0dd0e921b2aa1"
+  },
+  "items": [
+    {
+      "id": "alpha",
+      "kind": "number",
+      "summary": "alpha = 0.05, rerun 0.05, from params_record_model.csv",
+      "findings": [],
+      "needs_decision": true
+    },
+    {
+      "id": "mean_income_k_north",
+      "kind": "number",
+      "summary": "mean_income_k_north = 63.487, rerun 63.487, from table_descriptives.csv",
+      "findings": [],
+      "needs_decision": true
+    },
+    {
+      "id": "n_analytic",
+      "kind": "number",
+      "summary": "n_analytic = 40, rerun 40, from model_record_model.json",
+      "findings": [],
+      "needs_decision": true
+    },
+    {
+      "id": "p_income_k",
+      "kind": "number",
+      "summary": "p_income_k = 0.000, rerun 0.000, from table_model.csv",
+      "findings": [],
+      "needs_decision": true
+    },
+    {
+      "id": "slope_income_k",
+      "kind": "number",
+      "summary": "slope_income_k = 0.015, rerun 0.011, from table_model.csv",
+      "findings": [
+        {
+          "check": "check_numbers",
+          "severity": "blocking",
+          "message": "manuscript number does not come from the process",
+          "evidence": "numbers.yml '0.015'; replayed table_model.csv estimate = '0.011'"
+        }
+      ],
+      "needs_decision": true
+    },
+    {
+      "id": "e01",
+      "kind": "change",
+      "summary": "AI edit to s2_describe.py, reason recorded",
+      "findings": [],
+      "needs_decision": true
+    },
+    {
+      "id": "e02",
+      "kind": "change",
+      "summary": "AI edit to s1_clean.py, no recorded reason",
+      "findings": [
+        {
+          "check": "attribute_ai",
+          "severity": "blocking",
+          "message": "an AI change to s1_clean.py with no recorded reason",
+          "evidence": "return [r for r in rows if r[\"age\"].strip() != \"\"]"
+        }
+      ],
+      "needs_decision": true
+    },
+    {
+      "id": "params.yaml:fig_width",
+      "kind": "parameter",
+      "summary": "fig_width set by the AI to 520, was 480",
+      "findings": [
+        {
+          "check": "attribute_ai",
+          "severity": "warning",
+          "message": "a parameter the AI set, for the scholar to check",
+          "evidence": "fig_width 480 -> 520 (record e03), params.yaml now 520"
+        }
+      ],
+      "needs_decision": true
+    },
+    {
+      "id": "s2_describe.py",
+      "kind": "finding",
+      "summary": "1 problem. module docstring lacks sections: Inputs, Outputs, Parameters, Assumptions",
+      "findings": [
+        {
+          "check": "check_docs",
+          "severity": "blocking",
+          "message": "module docstring lacks sections: Inputs, Outputs, Parameters, Assumptions",
+          "evidence": "present: Purpose"
+        }
+      ],
+      "needs_decision": true
+    },
+    {
+      "id": "s1_clean.py:L42",
+      "kind": "finding",
+      "summary": "1 problem. hard-coded parameter: min_age = 21 here, params.yaml sets min_age: 18",
+      "findings": [
+        {
+          "check": "check_params",
+          "severity": "blocking",
+          "message": "hard-coded parameter: min_age = 21 here, params.yaml sets min_age: 18",
+          "evidence": "min_age = 21"
+        }
+      ],
+      "needs_decision": true
+    },
+    {
+      "id": "raw_survey.csv",
+      "kind": "finding",
+      "summary": "1 problem. raw data changed after acquisition",
+      "findings": [
+        {
+          "check": "check_raw",
+          "severity": "blocking",
+          "message": "raw data changed after acquisition",
+          "evidence": "recorded sha256:2ce927e550d1..., now sha256:6d2976a77b36..."
+        }
+      ],
+      "needs_decision": true
+    },
+    {
+      "id": "model_record_model.json",
+      "kind": "finding",
+      "summary": "2 problems. stale model: record was made under a different params.yaml",
+      "findings": [
+        {
+          "check": "check_records",
+          "severity": "blocking",
+          "message": "stale model: record was made under a different params.yaml",
+          "evidence": "record sha256:2546b1af7ea1..., current sha256:755c8cef6263..."
+        },
+        {
+          "check": "replay_pipeline",
+          "severity": "blocking",
+          "message": "output does not reproduce: hand-edited or stale",
+          "evidence": "line 16: committed '  \"params_sha256\": \"sha256:2546b1af7ea194f3e4e4ae377f285c21a9e90a2e73d' / replayed '  \"params_sha256\": \"sha256:755c8cef6263a1ca74024255e53d10982222d730400'"
+        }
+      ],
+      "needs_decision": true
+    },
+    {
+      "id": "table_descriptives.csv",
+      "kind": "finding",
+      "summary": "1 problem. output does not reproduce: hand-edited or stale",
+      "findings": [
+        {
+          "check": "replay_pipeline",
+          "severity": "blocking",
+          "message": "output does not reproduce: hand-edited or stale",
+          "evidence": "line 4: committed 'South,10,0,91.320,3.200' / replayed 'South,10,0,86.820,3.200'"
+        }
+      ],
+      "needs_decision": true
+    },
+    {
+      "id": "s1_clean.py",
+      "kind": "finding",
+      "summary": "1 problem. Parameters section names min_age, but the script never reads it from params.yaml",
+      "findings": [
+        {
+          "check": "check_docs",
+          "severity": "warning",
+          "message": "Parameters section names min_age, but the script never reads it from params.yaml",
+          "evidence": "min_age - respondents younger than this are excluded."
+        }
+      ],
+      "needs_decision": true
+    },
+    {
+      "id": "s3_model.py",
+      "kind": "finding",
+      "summary": "1 problem. step wrote warnings to stderr while exiting 0",
+      "findings": [
+        {
+          "check": "replay_pipeline",
+          "severity": "warning",
+          "message": "step wrote warnings to stderr while exiting 0",
+          "evidence": "<replay>/s3_model.py:50: UserWarning: 3 rows dropped: blank satisfaction or income_k   warnings.warn(\"%d rows dropped: blank %s or %s\" % (dropped, outcome, predictor))"
+        }
+      ],
+      "needs_decision": true
+    }
+  ],
+  "decisions": []
+}

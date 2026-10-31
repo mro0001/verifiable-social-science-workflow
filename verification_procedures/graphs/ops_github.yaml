@@ -1,0 +1,82 @@
+# Adding a project to GitHub, written as a procedural graph (proposal Overview,
+# operational tasks; appendix A2.4, "Procedural graphs", "Operational tasks").
+# The run reads the scholar's settings (github.yaml) and a snapshot of the
+# project folder (project.tar), the way the build procedure reads its project.
+# Code lives in implementations/ops/, which the cluster procedure shares.
+stream: ops
+version: 0.2
+title: Add a project to version control on GitHub
+goal: >
+  Put a project folder under version control and on GitHub, committing only
+  files that are safe to publish, by explicit path, to a private repository
+  unless the scholar chooses public. Run commands only when the settings file
+  says so, and only on the folder the check saw.
+triggers:
+  - The scholar asks to put a project under version control on GitHub.
+  - A project folder that holds research work has no repository yet.
+contracts: contracts/ops_github.yaml
+entry: github_settings
+exit: report
+nodes:
+  - {id: github_settings, kind: tool, does: "Read the settings file, fill each missing field with its default, and block on a missing folder, a bad repository name, or a missing remote or owner."}
+  - {id: github_files, kind: tool, does: "List the files in the project snapshot, block on a repository already there, a credential-like name, or a file too large, warn on data in a public repository, and record each file's checksum."}
+  - {id: github_plan, kind: tool, does: "Plan the commands that start the repository, stage the checked files by path, commit, name the remote, and push, and the .gitignore to write first."}
+  - {id: run_commands, kind: tool, replay: network, does: "Run the planned commands in order when the settings file sets apply to true, after checking that the folder still matches its snapshot, and stop at the first failure. Otherwise list them as planned."}
+  - {id: report, kind: tool, does: "Write a report with the settings, the file counts, and each command with its result."}
+edges:
+  - from: github_settings
+    rel: LEADS_TO
+    to: github_files
+    check: "settings.json:valid == true"
+    condition: The settings file names a project folder and a repository, and nothing in it is blocking.
+    guidance: Check every file in the snapshot against the settings before anything is planned.
+    pitfalls:
+      - Choosing public for unpublished work, when a private repository is the default until the scholar says otherwise.
+    source: proposal Overview (operational tasks); appendix A2.4 (Procedural graphs, Operational tasks)
+  - from: github_settings
+    rel: CONVERGES_TO
+    to: report
+    check: "settings.json:valid == false"
+    condition: The settings file has a blocking problem.
+    guidance: Report each problem with the field it names, and check no files.
+    pitfalls:
+      - Guessing a folder or a repository name the settings file does not give.
+    source: appendix A2.4 (Procedural graphs, Operational tasks)
+  - from: github_files
+    rel: TRIGGERS
+    to: github_plan
+    check: "files.json:blocked == 0"
+    condition: No file in the snapshot is blocking.
+    guidance: Plan commands for exactly the files the check passed, each staged by its path.
+    pitfalls:
+      - Staging with git add -A, when only the files this check passed may be staged, each by its path.
+      - Putting data that holds personal information, such as student records, in any repository.
+    source: proposal Overview (operational tasks); appendix A2.4 (Procedural graphs, Operational tasks)
+  - from: github_files
+    rel: CONVERGES_TO
+    to: report
+    check: "files.json:blocked > 0"
+    condition: A file in the snapshot is blocking.
+    guidance: Report every blocked file by its path, and plan no command.
+    pitfalls:
+      - Committing a credential, key, or token, when once pushed it counts as leaked even after it is deleted.
+      - Planning around a blocked file, when the scholar decides whether to exclude it or move it out.
+    source: proposal Overview (operational tasks); appendix A2.4 (Procedural graphs, Operational tasks)
+  - from: github_plan
+    rel: LEADS_TO
+    to: run_commands
+    condition: Always, once the commands are planned.
+    guidance: Run the commands only when the settings file sets apply to true, and only on the folder the check saw.
+    pitfalls:
+      - Running anything when apply is false, when a first run only plans.
+      - Acting on a folder that changed since its snapshot was checked, when the files staged must be the files checked.
+      - Setting the commit author in the procedure, when the identity is the scholar's git settings.
+    source: proposal Overview (operational tasks); appendix A2.4 (Procedural graphs, Operational tasks)
+  - from: run_commands
+    rel: CONVERGES_TO
+    to: report
+    condition: Always, once the commands ran, were refused, or were listed as planned.
+    guidance: Report each command with its result, and name the one that failed and its last error line.
+    pitfalls:
+      - Going on after a failed command, when each later command depends on the ones before it.
+    source: appendix A2.4 (Procedural graphs, Operational tasks)

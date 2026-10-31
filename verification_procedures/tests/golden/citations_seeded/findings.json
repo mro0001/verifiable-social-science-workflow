@@ -1,0 +1,114 @@
+[
+  {
+    "check": "check_existence",
+    "evidence": "10.5555/nmr.2021.0388",
+    "item": "ferrante2021",
+    "message": "@ferrante2021 was not found, since DOI 10.5555/nmr.2021.0388 is not in the metadata cache and live lookup was off",
+    "severity": "info"
+  },
+  {
+    "check": "check_existence",
+    "evidence": "10.5555/jca.2022.0301",
+    "item": "sorensen2022",
+    "message": "@sorensen2022 was not found, since DOI 10.5555/jca.2022.0301 is not in the metadata cache and live lookup was off",
+    "severity": "info"
+  },
+  {
+    "check": "gather_reason_and_quote",
+    "evidence": "citation_provenance.yaml",
+    "item": "r06",
+    "message": "no reason is recorded for @okafor2018, since the record holds no AI words around its first AI appearance",
+    "severity": "info"
+  },
+  {
+    "check": "gather_reason_and_quote",
+    "evidence": "citation_provenance.yaml",
+    "item": "r09",
+    "message": "no reason is recorded for @lindqvist2020, since the record holds no AI words around its first AI appearance",
+    "severity": "info"
+  },
+  {
+    "check": "gather_reason_and_quote",
+    "evidence": "no source_haldane2017.txt",
+    "item": "r10",
+    "message": "there is no source text for @haldane2017, so no quote was located or checked",
+    "severity": "info"
+  },
+  {
+    "check": "match_references",
+    "evidence": "refs.yaml",
+    "item": "osei2015",
+    "message": "@osei2015 is in the reference list and not cited in the final build, so it is not checked",
+    "severity": "info"
+  },
+  {
+    "check": "match_references",
+    "evidence": "refs.yaml",
+    "item": "pruitt2022",
+    "message": "@pruitt2022 is cited in the final build and has no entry in the reference list",
+    "severity": "info"
+  },
+  {
+    "check": "match_references",
+    "evidence": "refs.yaml",
+    "item": "quinlan2015",
+    "message": "@quinlan2015 is in the reference list and not cited in the final build, so it is not checked",
+    "severity": "info"
+  },
+  {
+    "check": "match_references",
+    "evidence": "refs.yaml",
+    "item": "whitlock2020",
+    "message": "@whitlock2020 is in the reference list and not cited in the final build, so it is not checked",
+    "severity": "info"
+  },
+  {
+    "check": "read_origin",
+    "evidence": "citation_provenance.yaml",
+    "item": "r03",
+    "message": "@castellanos2017 was first named by the scholar in the record, so it is not checked further",
+    "severity": "info"
+  },
+  {
+    "check": "read_origin",
+    "evidence": "citation_provenance.yaml",
+    "item": "r11",
+    "message": "the provenance record has no entry for @pruitt2022, so its origin is unknown and it is not checked",
+    "severity": "info"
+  },
+  {
+    "check": "read_origin",
+    "evidence": "citation_provenance.yaml",
+    "item": "r14",
+    "message": "the record never names @dumont2014, so its origin is unknown and it is not checked",
+    "severity": "info"
+  },
+  {
+    "check": "read_origin",
+    "evidence": "citation_provenance.yaml",
+    "item": "r15",
+    "message": "@tanaka2016 was first named by the scholar in the record, so it is not checked further",
+    "severity": "info"
+  },
+  {
+    "check": "verify_quote",
+    "evidence": "volunteers leave when the work stops feeling like their own",
+    "item": "r04",
+    "message": "the quote given for @brennan2016 is not in its source text source_brennan2016.txt",
+    "severity": "info"
+  },
+  {
+    "check": "verify_quote",
+    "evidence": "Programs that cut orientation to a single session saw retention fall by 42% within a year.",
+    "item": "r05",
+    "message": "the quote given for @kessler2019 is not in its source text source_kessler2019.txt",
+    "severity": "info"
+  },
+  {
+    "check": "verify_quote",
+    "evidence": "p. 3, on the administrative traces of volunteer activity",
+    "item": "r07",
+    "message": "no exact quote was given for @marchetti2012, since the passage step gave a section pointer, which is not checked word for word",
+    "severity": "info"
+  }
+]

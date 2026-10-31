@@ -1,0 +1,119 @@
+Goal: Show that every table, figure, model record, and manuscript number is the product of the declared pipeline run from unchanged raw data with parameters set once in params.yaml, that the parameter and model records were written by that run, and that each method step's documentation says what its code does.
+
+Know this before acting:
+- check_docs -> judge_method_docs: Judge only whether each documented claim is true of the code shown (column, threshold, order, rule, where a value comes from). Quote the claim and the line that contradicts it.
+    avoid: Reading the comment instead of the code: a comment naming the column or condition a filter uses reads as correct unless the column and condition in the code line are checked.
+    avoid: Judging style or completeness; a terse true docstring matches, an eloquent false one does not.
+    avoid: A documented parameter the code hard-codes instead of reading from params.yaml is a false claim, not a style issue.
+- judge_method_docs -> report: A judged mismatch is a warning to confirm; an unparseable or missing answer is a warning, never silently dropped.
+    avoid: Dropping items the judge failed on; every item must end as an answer or a finding.
+
+You are checking one piece of a data-analysis pipeline: `s2_describe` (step) in `s2_describe.py`.
+Its method documentation is the docstring and the comments. The documentation is a set of claims about what the code does. Check each claim against the code. Do not judge style, completeness, or whether the method is a good one; judge only whether what is written is TRUE of the code shown.
+
+Docstring:
+```
+Describe income and satisfaction by region.
+
+Purpose:
+    Summarize the analytic file by region.
+```
+
+Comments (line: text):
+["L34: # A blank income_k is skipped in the mean and counted, never dropped silently.", "L58: # not-a-param: layout margin in pixels, not an analytic choice", "L63: # Bar height is proportional to mean income_k; the tallest bar fills the plot area."]
+
+Code:
+```python
+"""Describe income and satisfaction by region.
+
+Purpose:
+    Summarize the analytic file by region.
+"""
+import csv
+import statistics
+
+import params_io
+
+P = params_io.Params(step="describe", script="s2_describe.py")
+
+
+def read_rows(name):
+    """Read a CSV file into a list of dicts, one per row, every value as text."""
+    with open(name, newline="") as f:
+        return list(csv.DictReader(f))
+
+
+def by_region(rows):
+    """Group rows by region; regions sorted alphabetically for a stable order."""
+    groups = {}
+    for r in rows:
+        groups.setdefault(r["region"], []).append(r)
+    return [(region, groups[region]) for region in sorted(groups)]
+
+
+def summarize(rows):
+    """Compute n, n_missing, mean income_k, and mean satisfaction for each region."""
+    digits = P["round_digits"]
+    table = []
+    for region, group in by_region(rows):
+        incomes = [float(r["income_k"]) for r in group if r["income_k"].strip() != ""]
+        # A blank income_k is skipped in the mean and counted, never dropped silently.
+        n_missing = len(group) - len(incomes)
+        table.append({
+            "region": region,
+            "n": len(group),
+            "n_missing": n_missing,
+            "mean_income_k": "%.*f" % (digits, statistics.mean(incomes)),
+            "mean_satisfaction": "%.*f" % (digits, statistics.mean(float(r["satisfaction"]) for r in group)),
+        })
+    return table
+
+
+def write_table(name, table):
+    """Write the descriptive table with a fixed column order and line ending."""
+    cols = ["region", "n", "n_missing", "mean_income_k", "mean_satisfaction"]
+    with open(name, "w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=cols, lineterminator="\n")
+        writer.writeheader()
+        writer.writerows(table)
+
+
+def svg_bars(table):
+    """Draw mean income_k by region as an SVG bar chart sized by fig_width and fig_height."""
+    width, height = P["fig_width"], P["fig_height"]
+    margin = 40  # not-a-param: layout margin in pixels, not an analytic choice
+    top = max(float(t["mean_income_k"]) for t in table)
+    slot = (width - 2 * margin) / len(table)
+    parts = ['<svg xmlns="http://www.w3.org/2000/svg" width="%d" height="%d">' % (width, height)]
+    for i, t in enumerate(table):
+        # Bar height is proportional to mean income_k; the tallest bar fills the plot area.
+        h = (height - 2 * margin) * float(t["mean_income_k"]) / top
+        x = margin + i * slot
+        y = height - margin - h
+        parts.append('<rect x="%.1f" y="%.1f" width="%.1f" height="%.1f" fill="#4a6fa5"/>'
+                     % (x + slot * 0.1, y, slot * 0.8, h))
+        parts.append('<text x="%.1f" y="%.1f" text-anchor="middle" font-size="12">%s</text>'
+                     % (x + slot / 2, height - margin / 2, t["region"]))
+    parts.append("</svg>")
+    return "\n".join(parts) + "\n"
+
+
+def main():
+    """Summarize, write the table and the figure, then write the parameter record."""
+    table = summarize(read_rows("clean_survey.csv"))
+    write_table("table_descriptives.csv", table)
+    with open("fig_income_by_region.svg", "w") as f:
+        f.write(svg_bars(table))
+    P.write_record()
+
+
+if __name__ == "__main__":
+    main()
+
+```
+
+A claim is false when the code does something different (a different column, threshold, order, or rule), when the code reads a value from somewhere other than where the documentation says (for example a documented parameter that the code hard-codes instead of reading from params.yaml), or when an assumption stated in the documentation is contradicted by the code. A claim about another function or file that this code does not show is not false; ignore it.
+
+Answer with one JSON object and nothing else:
+{"matches": true or false, "mismatches": [{"claim": "<the documentation's words>", "code": "<what the code actually does, quoting the line>"}], "reason": "<one sentence>"}
+Use "mismatches": [] when matches is true.

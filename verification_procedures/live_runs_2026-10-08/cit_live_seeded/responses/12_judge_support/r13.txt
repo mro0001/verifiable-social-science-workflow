@@ -1,0 +1,1 @@
+{"verdict": "does_not_support", "reason": "The source states the effect held in only two of the three cities with a non-significant difference in the third, directly contradicting the claim that it occurred in all three cities."}

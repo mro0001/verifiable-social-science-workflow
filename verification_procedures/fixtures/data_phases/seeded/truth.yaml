@@ -1,0 +1,8 @@
+# The planted faults of the seeded test files, for the data cleaning report
+# (graphs/data_cleaning.yaml). The collection and analysis reports of these files
+# have no planted fault. The final build's text describes a weighting step that no
+# script carries out, and the recorded finding step quotes a sentence that is not
+# in the text.
+faults:
+  - {id: description_with_no_code, check: check_descriptions, item: d04}
+  - {id: quote_not_in_the_text, check: check_descriptions, item: d02}

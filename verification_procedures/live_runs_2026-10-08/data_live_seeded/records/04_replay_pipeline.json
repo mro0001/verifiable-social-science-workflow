@@ -1,0 +1,49 @@
+{
+  "record_version": 1,
+  "seq": 4,
+  "node": "replay_pipeline",
+  "kind": "tool",
+  "graph_version": 0.1,
+  "started_at": "2026-10-08T13:09:33-07:00",
+  "duration_s": 0.63,
+  "inputs": {
+    "project.json": "sha256:786a34db6047dffba634c7eae42461d23db3550eeb681e4ee73c0f1dc1f9c1d2",
+    "inventory.json": "sha256:9c729f66b8bd507a6a918cd069773b179db35ab2dedcab65484c18fc49599118"
+  },
+  "execution": {
+    "type": "script",
+    "executor": "python3",
+    "code_files": {
+      "code/04_replay_pipeline/_lib.py": "sha256:bab908da53dea59fcf603a8d94c4e3e2e29312f8bf2ff66f631a5e273b937a8b",
+      "code/04_replay_pipeline/replay_pipeline.py": "sha256:7ebb1b62e3785ad52f5b2e19312afdb7d935c395ebc7065ad870425f72fb3d0f"
+    },
+    "exit_code": 0,
+    "logs": [
+      "logs/04_replay_pipeline.stdout",
+      "logs/04_replay_pipeline.stderr"
+    ],
+    "replay": "exact"
+  },
+  "outputs": {
+    "replay.json": "sha256:a172b528001b8b556174d87d284411a4ba52484880e8bc9534c33b2f7a447a28",
+    "findings_replay_pipeline.json": "sha256:6b3710be9ddf5caa00472247afa382c0ec2bf5a36865f72a53b6cccd55408320"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "check_records",
+      "rel": "PROVIDES_INPUT_FOR",
+      "check": null,
+      "fired": true
+    },
+    {
+      "to": "check_numbers",
+      "rel": "PROVIDES_INPUT_FOR",
+      "check": null,
+      "fired": true
+    }
+  ]
+}

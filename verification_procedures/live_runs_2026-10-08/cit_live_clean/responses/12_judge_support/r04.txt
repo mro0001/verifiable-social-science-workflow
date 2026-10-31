@@ -1,0 +1,1 @@
+{"verdict": "supports", "reason": "The located passage explicitly states that volunteers with flexible schedules contributed more hours but had no difference in tenure, which directly matches the claim's assertion of an association with more hours but not longer tenure."}

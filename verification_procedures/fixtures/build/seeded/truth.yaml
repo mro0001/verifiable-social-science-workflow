@@ -1,0 +1,9 @@
+# Faults planted by make_fixtures.py AFTER the builds were cut. item matches the finding's item field.
+faults:
+  - {id: B1, check: check_ledger, item: builds/paper/v001.html}            # build edited after build; ledger untouched
+  - {id: B2, check: rebuild, item: builds/paper/v002.html}                 # text injected into a build, ledger hash rewritten to hide it
+  - {id: B3, check: check_hardcoding, item: "paper/paper.md:0.31"}         # result typed into canonical prose
+  - {id: B4, check: check_prefs, item: "slides:number_sections"}           # preference declared, not in the Makefile
+  - {id: B5, check: check_ai_touch, item: builds/slides/v001.html}         # AI wrote into builds/ (session record)
+  - {id: B6, check: read_map, item: drafts/paper_full.md}                  # competing canonical, no ARCHIVE line
+  - {id: B7, check: check_hardcoding, item: "{{num:n_teams}}"}             # placeholder with no value in numbers.yml

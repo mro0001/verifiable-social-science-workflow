@@ -1,0 +1,46 @@
+{
+  "record_version": 1,
+  "seq": 1,
+  "node": "pin_document",
+  "kind": "tool",
+  "graph_version": 0.1,
+  "started_at": "2026-10-08T13:10:37-07:00",
+  "duration_s": 0.12,
+  "inputs": {
+    "draft.md": "sha256:ff7b50f02cfb3322979fc44dd2cdd26895c05699906b14005162534e89254373",
+    "author_draft.md": "sha256:0b1b1a389429dbf5340a9ae1d539b2bf66b9a49acec39d1789b9fd81c9544def",
+    "citation_log.yaml": "sha256:d85b9a7d801178acc97cb810853f7df3966740de78a7abfad0434bc7897c91d0",
+    "refs.yaml": "sha256:dd2c0a09720c52315e93bf54058c91cbb4b1320b8d7cb4eee8dd0962161122cc",
+    "metadata_cache.json": "sha256:7a63236ec231a4d923eb55e0a79aa1e40fb0598c47597427172a29165f3c753e",
+    "prior_checks.json": "sha256:ced26887777072a950cacb61866a12940861d6dedc8863f719d5d33e1c81e1ed"
+  },
+  "execution": {
+    "type": "script",
+    "executor": "python3",
+    "code_files": {
+      "code/01_pin_document/_lib.py": "sha256:bab908da53dea59fcf603a8d94c4e3e2e29312f8bf2ff66f631a5e273b937a8b",
+      "code/01_pin_document/pin_document.py": "sha256:344b5c3dd6e6d5396224daa5a3768c73b42b4f13e9df24f016d40665bf157404"
+    },
+    "exit_code": 0,
+    "logs": [
+      "logs/01_pin_document.stdout",
+      "logs/01_pin_document.stderr"
+    ],
+    "replay": "exact"
+  },
+  "outputs": {
+    "doc_pin.json": "sha256:786adaa5039967a50a739b325f203b27e75cedb9da75797debb74c3aeef2600e"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "extract_citations",
+      "rel": "LEADS_TO",
+      "check": null,
+      "fired": true
+    }
+  ]
+}

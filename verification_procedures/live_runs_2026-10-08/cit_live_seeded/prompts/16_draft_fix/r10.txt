@@ -1,0 +1,24 @@
+You are proposing a fix for one citation problem in a manuscript. The author decides; you propose.
+
+Goal: Check every AI-contributed citation in the draft against its source, so the author can read one report and confirm any verdict without redoing the work. Two questions per citation: (1) is the cited work real and described correctly; (2) does the cited passage support the sentence that cites it. Citations the author introduced, in sentences the author wrote, are listed as the author's warrant and not checked.
+
+Know this before acting:
+- settle_verdicts -> draft_fix: Propose the smallest change that makes the sentence true to the source, or replace or drop the citation. Never invent a new source.
+    avoid: Proposing a replacement source that was never retrieved or checked (a new fabrication).
+    avoid: Fixing the wording toward the preprint when the reference cites the journal version (DeepSeek-R1 case).
+- settle_unanimous -> draft_fix: Same as on the other branch; problem rows can exist without a support verdict problem (e.g. a fabricated reference).
+    avoid: Proposing a replacement source that was never retrieved or checked.
+- draft_fix -> record_verdicts: does_not_support is blocking; partly is a warning; a disagreement between checkers is a warning.
+    avoid: Dropping a judgment that came back unparseable instead of failing the step.
+
+Claim sentence: Volunteers in smaller programs reported stronger attachment to staff [@haldane2017].
+Cited work: @haldane2017: Haldane, R. (2017). Program size and attachment to staff. Public Service Quarterly. doi:10.5555/psq.2017.0090
+Reference check: author initials differ: Haldane (R. vs P.)
+Verdict: supports: The located passage explicitly states that volunteers in smaller programs reported stronger attachment to paid staff than those in large programs, which directly confirms the claim.
+Problems found: ["author initials differ: Haldane (R. vs P.)"]
+Located passage (p. 21): Volunteers in smaller programs reported stronger attachment to paid staff than volunteers in large programs.
+
+Propose the smallest change that makes the sentence and its reference true to the source: correct the reference metadata, reword the sentence to what the passage says (give the new sentence), remove quotation marks from words the source does not use, or drop the citation and mark the claim as needing a source. Do not name a new source that has not been retrieved and checked.
+
+Answer with a single JSON object and nothing else:
+{"fix": "<one or two sentences>"}

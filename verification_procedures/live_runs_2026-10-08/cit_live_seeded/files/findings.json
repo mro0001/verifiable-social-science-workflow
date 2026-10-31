@@ -1,0 +1,177 @@
+[
+  {
+    "check": "check_existence",
+    "evidence": "10.5555/nmr.2021.0388",
+    "item": "ferrante2021",
+    "message": "citation may not exist: no record for DOI 10.5555/nmr.2021.0388 (not in the metadata cache, and live lookup was off)",
+    "severity": "blocking"
+  },
+  {
+    "check": "check_existence",
+    "evidence": "10.5555/nmr.2020.0157",
+    "item": "lindqvist2020",
+    "message": "author mismatch: reference lists Lindqvist H., Moreau J.; record lists Lindqvist H., Morales J.",
+    "severity": "blocking"
+  },
+  {
+    "check": "check_existence",
+    "evidence": "10.5555/psq.2019.0044",
+    "item": "okafor2018",
+    "message": "year mismatch: reference says 2018; record says 2019",
+    "severity": "blocking"
+  },
+  {
+    "check": "judge_support",
+    "evidence": "Programs that reduced orientation to a single session saw twelve-month retention fall by 24% relative to programs that …",
+    "item": "r05",
+    "message": "source does not support the claim: The source states retention fell by 24%, whereas the claim incorrectly asserts a 42% decline.",
+    "severity": "blocking"
+  },
+  {
+    "check": "judge_support",
+    "evidence": "This article studies the administrative traces of volunteer activity: sign-in sheets, shift logs, and incident forms. T…",
+    "item": "r07",
+    "message": "source does not support the claim: The source describes the records as 'administrative traces' but does not use the specific term 'civic paradata' attributed to Marchetti in the claim.",
+    "severity": "blocking"
+  },
+  {
+    "check": "judge_support",
+    "evidence": "Recognition events had no measurable effect on exit among long-serving volunteers. If anything, exit rose slightly in t…",
+    "item": "r08",
+    "message": "source does not support the claim: The source explicitly states that recognition events had no measurable effect on exit and that exit actually rose slightly, which directly contradicts the claim that they reduced exit.",
+    "severity": "blocking"
+  },
+  {
+    "check": "judge_support",
+    "evidence": "In two of the three cities, volunteers assigned a named staff contact stayed longer than those without one. In the thir…",
+    "item": "r13",
+    "message": "source does not support the claim: The source states the effect held in only two of the three cities with a non-significant difference in the third, directly contradicting the claim that it occurred in all three cities.",
+    "severity": "blocking"
+  },
+  {
+    "check": "match_references",
+    "evidence": "refs.yaml",
+    "item": "pruitt2022",
+    "message": "cited key @pruitt2022 has no entry in the reference list",
+    "severity": "blocking"
+  },
+  {
+    "check": "verify_quote",
+    "evidence": "source_brennan2016.txt",
+    "item": "r04",
+    "message": "quoted words are not in the source (a paraphrase presented as a direct quote): \"volunteers leave when the work stops feeling like their own\"",
+    "severity": "blocking"
+  },
+  {
+    "check": "verify_quote",
+    "evidence": "source_kessler2019.txt",
+    "item": "r05",
+    "message": "number 42% in the claim does not appear in the source",
+    "severity": "blocking"
+  },
+  {
+    "check": "verify_quote",
+    "evidence": "source_marchetti2012.txt",
+    "item": "r07",
+    "message": "the source never uses the quoted term \"civic paradata\"",
+    "severity": "blocking"
+  },
+  {
+    "check": "attribute_origin",
+    "evidence": "dumont2014",
+    "item": "r15",
+    "message": "origin unknown (no citation-log entry for @dumont2014); checked as if AI-contributed",
+    "severity": "warning"
+  },
+  {
+    "check": "check_access",
+    "evidence": "no source_ferrante2021.txt",
+    "item": "r02",
+    "message": "not checked: no usable retrieved copy of @ferrante2021",
+    "severity": "warning"
+  },
+  {
+    "check": "check_access",
+    "evidence": "no source_pruitt2022.txt",
+    "item": "r11",
+    "message": "not checked: no usable retrieved copy of @pruitt2022",
+    "severity": "warning"
+  },
+  {
+    "check": "check_access",
+    "evidence": "source_iversen2018.txt",
+    "item": "r12",
+    "message": "abstract only: the verdict covers the abstract, not the full text",
+    "severity": "warning"
+  },
+  {
+    "check": "check_existence",
+    "evidence": "10.5555/psq.2017.0090",
+    "item": "haldane2017",
+    "message": "author initials differ: Haldane (R. vs P.)",
+    "severity": "warning"
+  },
+  {
+    "check": "check_existence",
+    "evidence": "10.5555/jca.2022.0301",
+    "item": "sorensen2022",
+    "message": "stage mismatch: reference describes a published article-journal; the DOI resolves to a posted-content",
+    "severity": "warning"
+  },
+  {
+    "check": "check_existence",
+    "evidence": "10.5555/jca.2022.0301",
+    "item": "sorensen2022",
+    "message": "venue differs: reference says Journal of Civic Administration; record says CivicArXiv",
+    "severity": "warning"
+  },
+  {
+    "check": "judge_support",
+    "evidence": "Volunteers who received a written description of their role remained active longer than volunteers who received only a …",
+    "item": "r06",
+    "message": "source only partly supports the claim: The source specifies that the comparison was against volunteers receiving only a verbal briefing, whereas the claim broadly states 'those who did not' receive written descriptions, omitting this specific condition.",
+    "severity": "warning"
+  },
+  {
+    "check": "attribute_origin",
+    "evidence": "castellanos2017",
+    "item": "r03",
+    "message": "not checked, author's warrant (sentence moved, text unchanged)",
+    "severity": "info"
+  },
+  {
+    "check": "attribute_origin",
+    "evidence": "quinlan2015",
+    "item": "r17",
+    "message": "not checked, author's warrant (sentence moved, text unchanged)",
+    "severity": "info"
+  },
+  {
+    "check": "match_references",
+    "evidence": "refs.yaml",
+    "item": "castellanos2017",
+    "message": "cited only in the author's own sentences; reference not checked",
+    "severity": "info"
+  },
+  {
+    "check": "match_references",
+    "evidence": "refs.yaml",
+    "item": "osei2015",
+    "message": "in the reference list but not cited in the draft",
+    "severity": "info"
+  },
+  {
+    "check": "match_references",
+    "evidence": "refs.yaml",
+    "item": "quinlan2015",
+    "message": "cited only in the author's own sentences; reference not checked",
+    "severity": "info"
+  },
+  {
+    "check": "reuse_prior",
+    "evidence": "sha256:30ec7adba66f",
+    "item": "r16",
+    "message": "verdict carried over from the check of 2026-09-30 (sentence and retrieved copy unchanged)",
+    "severity": "info"
+  }
+]

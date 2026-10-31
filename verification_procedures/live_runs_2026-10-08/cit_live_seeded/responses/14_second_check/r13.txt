@@ -1,0 +1,5 @@
+{
+  "agree": true,
+  "verdict": "does_not_support",
+  "reason": "The source reports the effect in only two of the three cities, with a non‑significant difference in the third, contradicting the claim of an effect in all three cities."
+}

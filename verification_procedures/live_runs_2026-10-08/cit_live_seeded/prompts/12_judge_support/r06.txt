@@ -1,0 +1,35 @@
+You are judging whether one cited passage supports the sentence that cites it.
+
+Goal: Check every AI-contributed citation in the draft against its source, so the author can read one report and confirm any verdict without redoing the work. Two questions per citation: (1) is the cited work real and described correctly; (2) does the cited passage support the sentence that cites it. Citations the author introduced, in sentences the author wrote, are listed as the author's warrant and not checked.
+
+Know this before acting:
+- verify_quote -> judge_support: Judge the claim as worded now against the located passage and its context. supports = the passage says what the sentence says; partly = it says less, or with conditions the sentence drops; does_not_support = it says something else or the opposite.
+    avoid: A source that says the opposite (Burge inverted).
+    avoid: Real citations do not mean correct use (Linardon 2026, 19.8% claim-citation errors with 100% real citations).
+    avoid: Anachronism, citing a standard dated after the event the sentence describes (ICMJE 2013 case).
+    avoid: A number that appears in the source but in a different table or population than the claim says (Kapoor case).
+    avoid: Abstract-only checks overstated as full verification.
+- judge_support -> collect_verdicts: A row is a problem when any blocking finding touches it or its key, when the reference metadata is wrong, or when the verdict is not supports.
+    avoid: Letting a supports verdict hide a mechanical failure on the same row.
+
+Claim sentence (judge it as worded now): Volunteers who received written role descriptions stayed longer than those who did not [@okafor2018, p. 4].
+Cited work: @okafor2018: Okafor, A. (2018). Written role descriptions and volunteer tenure. Public Service Quarterly. doi:10.5555/psq.2019.0044
+Access: fulltext (if "abstract", say only what the abstract supports)
+Located passage (p. 4): Volunteers who received a written description of their role remained active longer than volunteers who received only a verbal briefing.
+
+Full retrieved copy, for context:
+<<<
+Written role descriptions and volunteer tenure
+Adaeze Okafor (SYNTHETIC)
+
+[p. 4]
+Volunteers who received a written description of their role remained active longer than volunteers who received only a verbal briefing.
+>>>
+
+Verdicts:
+- supports: the source says what the sentence says, including its numbers, scope, and direction.
+- partly: the source says less than the sentence, or with conditions, scope, or hedges the sentence drops.
+- does_not_support: the source says something else, the opposite, or nothing on the point.
+
+Answer with a single JSON object and nothing else, the reason in one sentence:
+{"verdict": "supports" | "partly" | "does_not_support", "reason": "<one sentence>"}

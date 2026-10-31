@@ -1,0 +1,120 @@
+# SYNTHETIC citation provenance record, in the form python3 -m audit_layer write-out
+# citation-provenance writes. Sessions, times, and excerpts are invented.
+works:
+  abara2019:
+    origin: ai
+    appearances:
+    - time: '2026-10-12T09:00:05Z'
+      by: ai
+      session_ref: S3a41c0d2e9f7
+      excerpt: Abara and Hollis (2019) report that 31% of first-year volunteers left within six months.
+    first_ai:
+      time: '2026-10-12T09:00:05Z'
+      by: ai
+      session_ref: S3a41c0d2e9f7
+      excerpt: Abara and Hollis (2019) report that 31% of first-year volunteers left within six months.
+    first_scholar: null
+    reason:
+      time: '2026-10-12T09:00:05Z'
+      text: Abara and Hollis (2019) report that 31% of first-year volunteers left within six months. Their panel paper gives the figure directly, "Across the 48 programs in our panel, 31% of first-year volunteers exited before completing six months of service."
+      session_ref: S3a41c0d2e9f7
+    quotes:
+    - text: Across the 48 programs in our panel, 31% of first-year volunteers exited before completing six months of service.
+      time: '2026-10-12T09:00:05Z'
+      session_ref: S3a41c0d2e9f7
+  castellanos2017:
+    origin: scholar
+    appearances:
+    - time: '2026-10-12T08:58:00Z'
+      by: scholar
+      session_ref: S3a41c0d2e9f7
+      excerpt: Keep my sentence on Castellanos and Ibe (2017) about fit.
+    first_ai: null
+    first_scholar:
+      time: '2026-10-12T08:58:00Z'
+      by: scholar
+      session_ref: S3a41c0d2e9f7
+      excerpt: Keep my sentence on Castellanos and Ibe (2017) about fit.
+    reason: null
+    quotes: []
+  moreno2018:
+    origin: scholar
+    appearances:
+    - time: '2026-10-12T08:55:00Z'
+      by: scholar
+      session_ref: S3a41c0d2e9f7
+      artifact: drafts/author_notes.md
+      excerpt: Moreno names this the role-match problem (Moreno 2018, p. 33).
+    first_ai: null
+    first_scholar:
+      time: '2026-10-12T08:55:00Z'
+      by: scholar
+      session_ref: S3a41c0d2e9f7
+      artifact: drafts/author_notes.md
+      excerpt: Moreno names this the role-match problem (Moreno 2018, p. 33).
+    reason: null
+    quotes: []
+  devries2021:
+    origin: ai
+    appearances:
+    - time: '2026-10-12T09:03:00Z'
+      by: ai
+      session_ref: S3a41c0d2e9f7
+      excerpt: De Vries (2021) separates hours from tenure.
+    first_ai:
+      time: '2026-10-12T09:03:00Z'
+      by: ai
+      session_ref: S3a41c0d2e9f7
+      excerpt: De Vries (2021) separates hours from tenure.
+    first_scholar: null
+    reason:
+      time: '2026-10-12T09:03:00Z'
+      text: De Vries (2021) separates hours from tenure, which keeps the scheduling sentence careful.
+      session_ref: S3a41c0d2e9f7
+    quotes: []
+  whitlock2020:
+    origin: ai
+    appearances:
+    - time: '2026-10-12T09:04:10Z'
+      by: ai
+      session_ref: S3a41c0d2e9f7
+      excerpt: Whitlock (2020) studied named staff contacts in three cities.
+    first_ai:
+      time: '2026-10-12T09:04:10Z'
+      by: ai
+      session_ref: S3a41c0d2e9f7
+      excerpt: Whitlock (2020) studied named staff contacts in three cities.
+    first_scholar: null
+    reason:
+      time: '2026-10-12T09:04:10Z'
+      text: Whitlock (2020) studied named staff contacts in three cities, "In two of the three cities, volunteers assigned a named staff contact stayed longer than those without one."
+      session_ref: S3a41c0d2e9f7
+    quotes:
+    - text: In two of the three cities, volunteers assigned a named staff contact stayed longer than those without one.
+      time: '2026-10-12T09:04:10Z'
+      session_ref: S3a41c0d2e9f7
+  tanaka2016:
+    origin: ai
+    appearances:
+    - time: '2026-10-12T09:05:20Z'
+      by: ai
+      session_ref: S3a41c0d2e9f7
+      excerpt: Tanaka (2016) tested training length against retention.
+    first_ai:
+      time: '2026-10-12T09:05:20Z'
+      by: ai
+      session_ref: S3a41c0d2e9f7
+      excerpt: Tanaka (2016) tested training length against retention.
+    first_scholar: null
+    reason:
+      time: '2026-10-12T09:05:20Z'
+      text: Tanaka (2016) tested training length against retention, and the null result fits the closing sentence.
+      session_ref: S3a41c0d2e9f7
+    quotes: []
+  osei2015:
+    origin: unknown
+    appearances: []
+    first_ai: null
+    first_scholar: null
+    reason: null
+    quotes: []

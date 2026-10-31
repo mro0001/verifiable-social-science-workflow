@@ -1,0 +1,32 @@
+{
+  "locate_passage:r04": {
+    "kind": "quote",
+    "text": "Volunteers tend to exit once they no longer experience the work as theirs.",
+    "location": "p. 12"
+  },
+  "locate_passage:r05": {
+    "kind": "quote",
+    "text": "Programs that cut orientation to a single session saw retention fall by 42% within a year.",
+    "location": "p. 9"
+  },
+  "locate_passage:r06": {
+    "kind": "quote",
+    "text": "Volunteers who received a written description of their role remained active longer than volunteers who received only a verbal briefing.",
+    "location": "p. 4"
+  },
+  "locate_passage:r07": {
+    "kind": "section",
+    "text": "",
+    "location": "p. 3, on the administrative traces of volunteer activity"
+  },
+  "locate_passage:r08": {
+    "kind": "quote",
+    "text": "Recognition events had no measurable effect on exit among long-serving volunteers.",
+    "location": "p. 15"
+  },
+  "locate_passage:r09": {
+    "kind": "quote",
+    "text": "The quality of supervisors' feedback predicted whether volunteers returned for a second season, net of program size and volunteer age.",
+    "location": "p. 6"
+  }
+}

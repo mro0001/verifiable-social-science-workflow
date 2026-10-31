@@ -1,0 +1,37 @@
+[
+  {
+    "from": "params_record_model.csv",
+    "key": "alpha",
+    "ok": true,
+    "replayed": "0.05",
+    "value": "0.05"
+  },
+  {
+    "from": "table_descriptives.csv",
+    "key": "mean_income_k_north",
+    "ok": true,
+    "replayed": "59.311",
+    "value": "59.311"
+  },
+  {
+    "from": "model_record_model.json",
+    "key": "n_analytic",
+    "ok": true,
+    "replayed": "41",
+    "value": "41"
+  },
+  {
+    "from": "table_model.csv",
+    "key": "p_income_k",
+    "ok": true,
+    "replayed": "0.000",
+    "value": "0.000"
+  },
+  {
+    "from": "table_model.csv",
+    "key": "slope_income_k",
+    "ok": true,
+    "replayed": "0.011",
+    "value": "0.011"
+  }
+]

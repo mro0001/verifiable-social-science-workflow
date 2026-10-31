@@ -1,0 +1,40 @@
+# Contracts for the three data phase reports (graphs/data_collection.yaml,
+# graphs/data_cleaning.yaml, and graphs/data_analysis.yaml). Each graph's entry step names
+# its phase, and the other steps are the same in all three. outline_steps is the only step
+# that reads the project's scripts. It needs pipeline.yaml and the final build's text, and
+# every other input file is recorded through reads_optional, so verify can replay the step
+# and any project that follows the conventions runs without editing this file.
+phase_collection:
+  produces:
+    phase.json: {phase: [collection, cleaning, analysis], name: str, title: str}
+phase_cleaning:
+  produces:
+    phase.json: {phase: [collection, cleaning, analysis], name: str, title: str}
+phase_analysis:
+  produces:
+    phase.json: {phase: [collection, cleaning, analysis], name: str, title: str}
+outline_steps:
+  reads: [phase.json, pipeline.yaml, final_text.md]
+  reads_optional: ["*"]
+  produces:
+    outline.json: {phase: str, pipeline_steps: list, steps: list, scripts: list, files: list}
+    find_items.json: {items: {id: str, phase: str, phase_name: str, text: str, code: str}}
+    findings_outline_steps.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+find_descriptions:
+  reads: [find_items.json]
+  produces:
+    find_descriptions.json: {items: {item_id: str}}
+check_descriptions:
+  reads: [phase.json, outline.json, find_descriptions.json, final_text.md]
+  produces:
+    descriptions.json: {items: {id: str, quote: str, quote_found: bool, where: list, location_status: [confirmed, missing, not found]}}
+    findings_check_descriptions.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+report:
+  reads_optional: ["findings_*.json"]  # any upstream findings, including findings_unjudged_find_descriptions.json
+  # steps.json is written by the runtime before this step (which steps ran, and why a skipped one did not)
+  reads: [phase.json, outline.json, descriptions.json, steps.json]
+  produces:
+    fields.json: {schema: dict, run: dict, tables: dict}  # and items; the builder checks every field against the schema
+    findings_completeness.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+    findings.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+    report.md: {headings: [Summary, Problems, Outline, Code, Descriptions, Files read]}

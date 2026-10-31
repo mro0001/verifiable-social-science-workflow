@@ -1,0 +1,1 @@
+{"verdict": "partly", "reason": "The source specifies that the comparison was against volunteers receiving only a verbal briefing, whereas the claim broadly states 'those who did not' receive written descriptions, omitting this specific condition."}

@@ -1,0 +1,180 @@
+# The build stream's schema. The report step's fill function (implementations/build/report.py)
+# fills these fields from the step outputs, and the one builder (implementations/_report.py)
+# writes fields.json, findings.json, and report.md from them. Raise the version by hand when a
+# field or the layout changes.
+stream: build
+version: 2
+item: one deliverable of the map, or one group of problems found on something other than a deliverable
+id: id
+# The item fields the results file carries for each item, in this order, the keys Track W gave
+# this stream's items.
+results: [id, kind, summary, findings, needs_decision, sessions]
+
+# The items the results file lists for the build stream. A deliverable's own problems ride on
+# its row, and every other group of blocking or warning findings is an item of kind finding.
+fields:
+  id:
+    type: str
+    filled_by: [read_map, check_ledger, check_prefs, rebuild, no_rebuild, check_hardcoding, check_ai_touch]
+  kind:
+    type: enum
+    values: [deliverable, finding]
+    filled_by: [read_map, check_ledger, check_prefs, rebuild, no_rebuild, check_hardcoding, check_ai_touch]
+  summary:
+    type: str
+    filled_by: [read_map, check_ledger, check_prefs, rebuild, no_rebuild, check_hardcoding, check_ai_touch]
+  findings:
+    type: list
+    filled_by: [read_map, check_ledger, check_prefs, rebuild, no_rebuild, check_hardcoding, check_ai_touch]
+  needs_decision:
+    type: bool
+    filled_by: [read_map, check_ledger, check_prefs, rebuild, no_rebuild, check_hardcoding, check_ai_touch]
+  # The public ids of the sessions behind the item's AI writes, copied from the session
+  # record's session_ref. Left out when the record gives none.
+  sessions:
+    type: list
+    required: false
+    filled_by: [check_ai_touch]
+  # The text of sessions for the item's line in the report.
+  # A report template takes no list field, so the report prints this text, not sessions.
+  session_line:
+    type: str
+    required: false
+    filled_by: [check_ai_touch]
+
+run:
+  n_look_alikes:
+    type: int
+    filled_by: [read_map]
+  n_competing:
+    type: int
+    filled_by: [read_map]
+  # As the report shows it, "pandoc <version>".
+  pandoc:
+    type: str
+    required: false
+    filled_by: [rebuild]
+    not_run_text: pandoc not run
+
+tables:
+  # One row for each deliverable in the map, with the cells the Deliverables table shows.
+  - id: deliverables
+    fields:
+      name:
+        type: str
+        filled_by: [read_map]
+      source:
+        type: str
+        filled_by: [read_map]
+      builds:
+        type: str
+        filled_by: [check_ledger]
+      ledger_ok:
+        type: str
+        filled_by: [check_ledger]
+      rebuild:
+        type: str
+        required: false
+        filled_by: [rebuild]
+        not_run_text: not exercised
+      prefs:
+        type: str
+        filled_by: [check_prefs]
+  # One row for each ledgered build, with its ledger and rebuild results and the cells the
+  # Builds table shows.
+  - id: builds
+    fields:
+      path:
+        type: str
+        filled_by: [check_ledger]
+      deliverable:
+        type: str
+        filled_by: [check_ledger]
+      version:
+        type: str
+        filled_by: [check_ledger]
+      date:
+        type: str
+        filled_by: [check_ledger]
+      purpose:
+        type: str
+        filled_by: [check_ledger]
+      file_ok:
+        type: bool
+        filled_by: [check_ledger]
+      snapshot_ok:
+        type: bool
+        filled_by: [check_ledger]
+      rebuild_matches:
+        type: bool
+        required: false
+        filled_by: [rebuild]
+      snapshot_witnessed:
+        type: bool
+        required: false
+        filled_by: [rebuild]
+      purpose_cell:
+        type: str
+        filled_by: [check_ledger]
+      file_cell:
+        type: str
+        filled_by: [check_ledger]
+      snapshot_cell:
+        type: str
+        filled_by: [check_ledger]
+      rebuild_cell:
+        type: str
+        required: false
+        filled_by: [rebuild]
+      witnessed_cell:
+        type: str
+        required: false
+        filled_by: [rebuild]
+
+report:
+  title: Build verification
+  intro: "Build verification asks one question: is every deliverable a product of the build, and only of the build? It is the deliverable-side form of \"results come from a process, not typed in\". Five witnesses, all mechanical: the map (Makefile) names one canonical file per deliverable and nothing else claims to be it; every preference in build_prefs.yaml is carried by the map's command and shows in the build; every build on disk matches its ledger row; rebuilding from the frozen snapshot with the map's command reproduces the ledgered bytes; and results enter through {{num:key}} placeholders while the session record shows no AI write to a build. No model judges anything here."
+  sections:
+    - heading: Deliverables
+      parts:
+        - kind: table
+          rows: deliverables
+          columns:
+            - {header: Deliverable, value: "{name}"}
+            - {header: Canonical source, value: "{source}"}
+            - {header: Builds, value: "{builds}"}
+            - {header: Ledger ok, value: "{ledger_ok}"}
+            - {header: Rebuild matches, value: "{rebuild}"}
+            - {header: Prefs integrated, value: "{prefs}"}
+        - kind: text
+          template: "Look-alikes: {run.n_look_alikes} found, {run.n_competing} without an ARCHIVE line."
+    - heading: Builds
+      parts:
+        - kind: table
+          rows: builds
+          columns:
+            - {header: Build, value: "{path}"}
+            - {header: Date, value: "{date}"}
+            - {header: Purpose, value: "{purpose_cell}"}
+            - {header: File matches ledger, value: "{file_cell}"}
+            - {header: Snapshot matches ledger, value: "{snapshot_cell}"}
+            - {header: Rebuild matches ledger, value: "{rebuild_cell}"}
+            - {header: Snapshot re-resolved from canonical, value: "{witnessed_cell}"}
+          empty: No ledgered builds.
+        - kind: text
+          template: "Rebuilt with {run.pandoc}."
+        # Only the AI writes whose session the record names.
+        - kind: list
+          rows: items
+          where: session_line
+          line: "The AI write to {id} came from session {session_line}."
+    - heading: What was checked
+      parts:
+        - kind: text
+          template: |-
+            - **read_map**: the Makefile map; one canonical per deliverable; look-alikes need an ARCHIVE line.
+            - **check_ledger**: every file in each builds dir against BUILDS.md (sha256 of build and snapshot).
+            - **check_prefs**: build_prefs.yaml against each deliverable's pandoc command, then against its latest build.
+            - **rebuild**: the map's command re-run on each frozen snapshot; the bytes must equal the ledger's sha256. The snapshot is re-resolved from the canonical when neither has moved on.
+            - **check_hardcoding**: canonical sources for bare numerals and unresolved placeholders.
+            - **check_ai_touch**: session_writes.jsonl for AI writes into builds dirs or ship/.

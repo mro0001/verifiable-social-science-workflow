@@ -1,0 +1,96 @@
+# Prose verification stream.
+# The authors' design notes (2026-10-08): "Prose: text editor. verification: versioned drafts with
+# rationalized comments from AI changes."
+# the authors (2026-10-30): "The report is meant to be a verification step for the human."
+# No AI makes a decision in the report. Programs check what can be checked
+# mechanically, the record supplies the evidence, and the scholar decides every item.
+# Spec rule (MANUSCRIPT_WORKFLOW.md, Goal 3): prose carries no truth check of its
+# own; its claims decompose into what was read (citations) and what was run (data).
+# So this stream lists each change between the scholar's last draft and the final
+# build's text, marks the AI's changes by the record, shows each with the reason
+# the record gives, and hands any change touching content to the citations or data
+# stream. The scholar's own changes are listed, not checked.
+stream: prose
+version: 0.3
+goal: >
+  The scholar verifies each AI change between their last draft and the final build's
+  text, which the record of the AI's changes names, from its sentence before and after
+  and the reason the record gives, while their own changes are listed and not checked.
+  A program notes each AI change with no recorded reason and points out each one that
+  alters a number, a citation, a quotation, a negation, or a claim's strength. No model
+  gives a verdict, and the scholar approves or holds each AI change.
+contracts: contracts/prose.yaml
+schema: schemas/prose.yaml
+entry: pin_versions
+exit: report
+nodes:
+  - id: pin_versions
+    kind: tool
+    does: Hash the scholar's last draft (baseline) and the final build's text (revised); the baseline must match a ledgered version in versions.yaml.
+    invariant: A diff is only meaningful against a pinned baseline.
+  - id: diff_changes
+    kind: tool
+    does: Align sentences of baseline and revised; emit edits, inserts, deletes, and moves with deterministic ids.
+    invariant: A sentence whose normalized text appears on both sides is a move, never an insert plus a delete.
+  - id: exclude_author
+    kind: tool
+    does: Mark each change the record of the AI's changes (rationales.yaml) names as the AI's, with the entry's stated reason; every other change is the scholar's own, listed not checked. A record entry for an AI tool call that wrote the whole file is a blocking finding, since the record cannot tell its changes from the scholar's.
+  - id: content_handoff
+    kind: tool
+    does: Point out AI changes that alter numbers, citation keys, quoted passages, negation, or hedge/booster strength; write handoff.json for the other streams.
+  - id: rationale_coverage
+    kind: tool
+    does: Note each AI change with no recorded reason, each record entry that matches no change, and each kind the record and the diff give differently.
+  - id: report
+    kind: tool
+    does: Write findings.json and report.md with each AI change's sentence before and after, its stated reason, and the content it alters, the scholar's own changes in a table, and a Trail line per change.
+edges:
+  - from: pin_versions
+    rel: LEADS_TO
+    to: diff_changes
+    condition: Always; an unpinned baseline is already a blocking finding and the diff is reported as unanchored.
+    guidance: Diff the pinned snapshot text, not tracked-change marks; the text diff sees every change whoever made it.
+    pitfalls:
+      - Diffing against an unpinned baseline; the changes cannot be attributed to a known version.
+      - Trusting tracked-change marks alone. Author edits made in Word without Track Changes were invisible to tracked-change extraction and were recovered only by a word diff against the frozen snapshot (2026-07-23).
+    source: project history
+  - from: diff_changes
+    rel: LEADS_TO
+    to: exclude_author
+    condition: Always.
+    guidance: Pair sentences by normalized text first (moves), then by similarity (edits); only leftovers are inserts or deletes.
+    pitfalls:
+      - A moved sentence mistaken for new text (one insert plus one delete), which invents an AI change and hides that nothing was rewritten.
+      - Relying on pandoc's tracked-change rendering; pandoc drops revision marks lacking w:id, so a mark-based change list can be silently short.
+    source: project history
+  - from: exclude_author
+    rel: LEADS_TO
+    to: content_handoff
+    condition: Always.
+    guidance: Verification follows AI contribution. A change is the AI's when the record shows an AI tool call made it; every other change is the scholar's own, listed and never checked.
+    pitfalls:
+      - Checking the scholar's own edits as if they were AI changes.
+      - Asking the scholar to list their own edits; the record names the AI's changes, so nothing is put on the scholar.
+      - An AI change made through a shell command is not in the record and is listed as the scholar's; this is a known gap of the record, and the report says so.
+      - Taking an AI move or rewrite made by two edits (a delete entry and an insert entry) as two changes; both entries name the one change.
+    source: the ruling of 2026-10-30
+  - from: content_handoff
+    rel: LEADS_TO
+    to: rationale_coverage
+    condition: Always.
+    guidance: Any change to a number, citation key, quoted passage, negation, or hedge strength is content, whatever its reason says; point it out and hand it to the stream that owns the evidence.
+    pitfalls:
+      - A number changed in prose instead of in the manifest (hard-coding drift); the data stream must confirm it.
+      - A citation key swapped while the reason says "style".
+      - '"Tightened wording" that quietly strengthens a claim by removing a hedge (may, suggests -> does, shows).'
+    source: project history
+  - from: rationale_coverage
+    rel: CONVERGES_TO
+    to: report
+    condition: Always.
+    guidance: Show each AI change with the reason the record gives, word for word, and say plainly when none is recorded. The scholar judges whether a reason fits its change; no model does.
+    pitfalls:
+      - Writing or judging a reason for the AI; a reason comes only from the record.
+      - Treating a record entry for an unchanged sentence as coverage; it describes a change that is not between the two texts.
+      - Margin comments cannot anchor inside pending tracked insertions, so an AI comment may sit on adjacent text; anchor reasons on sentence text, not on Word comment positions.
+    source: the ruling of 2026-10-30

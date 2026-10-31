@@ -1,0 +1,8 @@
+# SYNTHETIC. Who introduced each citekey, in which draft and session.
+citations:
+  abara2019:       {introduced_by: ai,     draft: v3, session: s-0412}
+  castellanos2017: {introduced_by: author, draft: v1, session: ""}
+  moreno2018:      {introduced_by: author, draft: v1, session: ""}
+  devries2021:     {introduced_by: ai,     draft: v3, session: s-0412}
+  whitlock2020:    {introduced_by: ai,     draft: v1, session: s-0301}
+  tanaka2016:      {introduced_by: ai,     draft: v2, session: s-0388}

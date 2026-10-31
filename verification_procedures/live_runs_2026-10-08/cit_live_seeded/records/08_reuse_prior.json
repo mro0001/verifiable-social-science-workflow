@@ -1,0 +1,44 @@
+{
+  "record_version": 1,
+  "seq": 8,
+  "node": "reuse_prior",
+  "kind": "tool",
+  "graph_version": 0.1,
+  "started_at": "2026-10-08T13:10:08-07:00",
+  "duration_s": 0.12,
+  "inputs": {
+    "rows_attributed.json": "sha256:a51fa7e03b7de5470fbc2dfd81eecdfe6b6e9d43a15be05a886789cf7b79afec",
+    "prior_checks.json": "sha256:ced26887777072a950cacb61866a12940861d6dedc8863f719d5d33e1c81e1ed",
+    "sources.json": "sha256:9dae14e94d8d162d41adaf259b3aa2d8b566451654328a72dfb1bf17f2810ac8"
+  },
+  "execution": {
+    "type": "script",
+    "executor": "python3",
+    "code_files": {
+      "code/08_reuse_prior/_lib.py": "sha256:bab908da53dea59fcf603a8d94c4e3e2e29312f8bf2ff66f631a5e273b937a8b",
+      "code/08_reuse_prior/reuse_prior.py": "sha256:f25b155b89a468c5c4b548eab18c715d8fc67d9a67065135b8e5fb18885d21c7"
+    },
+    "exit_code": 0,
+    "logs": [
+      "logs/08_reuse_prior.stdout",
+      "logs/08_reuse_prior.stderr"
+    ],
+    "replay": "exact"
+  },
+  "outputs": {
+    "rows_reused.json": "sha256:f11cf3ca21cb60e8cbf29d32124859088f963b9fd5514af1cb1cae33b7f8ae13",
+    "findings_reuse_prior.json": "sha256:5e64d2c1f1e9458cda2427f251c7f2b9a1baa25132c0624ff3f713e78d4a34e0"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "check_access",
+      "rel": "LEADS_TO",
+      "check": null,
+      "fired": true
+    }
+  ]
+}

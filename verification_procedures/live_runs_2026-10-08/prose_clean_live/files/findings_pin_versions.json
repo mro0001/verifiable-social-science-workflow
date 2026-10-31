@@ -1,0 +1,16 @@
+[
+  {
+    "check": "pin_versions",
+    "evidence": "sha256:9ad819dfea4749532771aa6951edcc632e46d51d13be26a8fa12b6781c63d2c2",
+    "item": "baseline.md",
+    "message": "baseline is pinned version v001",
+    "severity": "info"
+  },
+  {
+    "check": "pin_versions",
+    "evidence": "sha256:1911caaa40c99550d07077b5191aff6e7c50f7a1d4112ac37d3877f4ed476426",
+    "item": "revised.md",
+    "message": "revised hashed for the record (not yet ledgered)",
+    "severity": "info"
+  }
+]

@@ -1,0 +1,9 @@
+# The pipeline from raw data to the results the manuscript cites.
+helpers: []
+steps:
+  - id: s1
+    kind: table
+    runner: python3
+    script: s1.py
+    inputs: [raw.csv]
+    outputs: [results.json]

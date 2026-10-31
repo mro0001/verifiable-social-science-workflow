@@ -1,0 +1,37 @@
+{
+  "record_version": 1,
+  "seq": 8,
+  "node": "judge_method_docs",
+  "kind": "judgment",
+  "graph_version": 0.1,
+  "started_at": "2026-10-08T13:04:31-07:00",
+  "duration_s": 18.15,
+  "inputs": {
+    "method_items.json": "sha256:0d9e07d29e99dc41feec457f385943a374cb6e61240cc379c3bfe371a3fb71bc"
+  },
+  "execution": {
+    "type": "judgment",
+    "role": "judge",
+    "executor": [
+      "live:qwen/qwen3.5-122b"
+    ],
+    "items": 30,
+    "prompts": "prompts/08_judge_method_docs",
+    "responses": "responses/08_judge_method_docs"
+  },
+  "outputs": {
+    "judge_method_docs.json": "sha256:5f0dcfd8e0eb06bd2958486cf388c47f891a28bac3bfbbe375bb966792cfd203"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "report",
+      "rel": "CONVERGES_TO",
+      "check": null,
+      "fired": true
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+Goal: Show that every table, figure, model record, and manuscript number is the product of the declared pipeline run from unchanged raw data with parameters set once in params.yaml, that the parameter and model records were written by that run, and that each method step's documentation says what its code does.
+
+Know this before acting:
+- check_docs -> judge_method_docs: Judge only whether each documented claim is true of the code shown (column, threshold, order, rule, where a value comes from). Quote the claim and the line that contradicts it.
+    avoid: Reading the comment instead of the code: a comment naming the column or condition a filter uses reads as correct unless the column and condition in the code line are checked.
+    avoid: Judging style or completeness; a terse true docstring matches, an eloquent false one does not.
+    avoid: A documented parameter the code hard-codes instead of reading from params.yaml is a false claim, not a style issue.
+- judge_method_docs -> report: A judged mismatch is a warning to confirm; an unparseable or missing answer is a warning, never silently dropped.
+    avoid: Dropping items the judge failed on; every item must end as an answer or a finding.
+
+You are checking one piece of a data-analysis pipeline: `parse_value` (function) in `params_io.py`.
+Its method documentation is the docstring and the comments. The documentation is a set of claims about what the code does. Check each claim against the code. Do not judge style, completeness, or whether the method is a good one; judge only whether what is written is TRUE of the code shown.
+
+Docstring:
+```
+Turn the text after `name:` into an int, a float, or a string.
+```
+
+Comments (line: text):
+["L36: # A quoted value is a string: strip the matching quotes and keep the rest as is.", "L39: # Otherwise try int, then float; anything else stays text."]
+
+Code:
+```python
+def parse_value(text):
+    """Turn the text after `name:` into an int, a float, or a string."""
+    text = text.strip()
+    # A quoted value is a string: strip the matching quotes and keep the rest as is.
+    if text[:1] in ("'", '"') and text[-1:] == text[:1]:
+        return text[1:-1]
+    # Otherwise try int, then float; anything else stays text.
+    for cast in (int, float):
+        try:
+            return cast(text)
+        except ValueError:
+            pass
+    return text
+```
+
+A claim is false when the code does something different (a different column, threshold, order, or rule), when the code reads a value from somewhere other than where the documentation says (for example a documented parameter that the code hard-codes instead of reading from params.yaml), or when an assumption stated in the documentation is contradicted by the code. A claim about another function or file that this code does not show is not false; ignore it.
+
+Answer with one JSON object and nothing else:
+{"matches": true or false, "mismatches": [{"claim": "<the documentation's words>", "code": "<what the code actually does, quoting the line>"}], "reason": "<one sentence>"}
+Use "mismatches": [] when matches is true.

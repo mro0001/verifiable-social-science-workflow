@@ -1,0 +1,79 @@
+[
+  {
+    "after": "Prior work has focused mainly on private firms.",
+    "before": "Prior work has focused mainly on private firms.",
+    "id": "c01",
+    "kind": "move",
+    "mechanical_token_diff": "none",
+    "moved": true,
+    "rationale": "Moved the gap statement ahead of the study aim so the aim answers it.",
+    "rationale_id": "r01",
+    "rationale_kind": "move"
+  },
+  {
+    "after": "This study examines whether structured interviews are associated with lower first-year turnover in municipal agencies.",
+    "before": "In this study we examine whether structured interviews are associated with lower first-year turnover in municipal agencies.",
+    "id": "c02",
+    "kind": "edit",
+    "mechanical_token_diff": "none",
+    "moved": false,
+    "rationale": "Rewrote \"In this study we examine\" as \"This study examines\" for a more direct opening; the aim is unchanged.",
+    "rationale_id": "r02",
+    "rationale_kind": "edit"
+  },
+  {
+    "after": "We draw on personnel records from 52 agencies in three states [@alvarez2019].",
+    "before": "We draw on personnel records from 48 agencies in three states [@alvarez2019].",
+    "id": "c03",
+    "kind": "edit",
+    "mechanical_token_diff": "numbers: 48 -> 52",
+    "moved": false,
+    "rationale": "Updated the agency count from 48 to 52 to match the sample table.",
+    "rationale_id": "r03",
+    "rationale_kind": "edit"
+  },
+  {
+    "after": "First-year turnover is especially costly for small agencies [@park2020].",
+    "before": "Turnover in the first year is costly for small agencies [@kim2018].",
+    "id": "c04",
+    "kind": "edit",
+    "mechanical_token_diff": "citations: kim2018 -> park2020",
+    "moved": false,
+    "rationale": "Style. Smoothed the sentence so it reads more naturally.",
+    "rationale_id": "r04",
+    "rationale_kind": "edit"
+  },
+  {
+    "after": "One clerk said the process \"felt like a genuine conversation about the work.\"",
+    "before": "One clerk said the process \"felt like a real conversation about the job.\"",
+    "id": "c06",
+    "kind": "edit",
+    "mechanical_token_diff": "quotes: felt like a real conversation about the job. -> felt like a genuine conversation about the work.",
+    "moved": false,
+    "rationale": "Fixed punctuation in the quotation.",
+    "rationale_id": "r05",
+    "rationale_kind": "edit"
+  },
+  {
+    "after": "The results show that structured interviews reduce early exits by 9 percentage points.",
+    "before": "The results suggest that structured interviews may reduce early exits by 9 percentage points.",
+    "id": "c08",
+    "kind": "edit",
+    "mechanical_token_diff": "strength: may, suggest -> show",
+    "moved": false,
+    "rationale": "Tightened wording.",
+    "rationale_id": "r06",
+    "rationale_kind": "edit"
+  },
+  {
+    "after": "The next section turns to the interview protocol itself.",
+    "before": "",
+    "id": "c09",
+    "kind": "insert",
+    "mechanical_token_diff": "none",
+    "moved": false,
+    "rationale": "Added a signpost sentence pointing to the next section.",
+    "rationale_id": "r07",
+    "rationale_kind": "edit"
+  }
+]

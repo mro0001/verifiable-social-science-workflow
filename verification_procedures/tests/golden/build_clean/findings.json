@@ -1,0 +1,23 @@
+[
+  {
+    "check": "check_ai_touch",
+    "evidence": "",
+    "item": "canonical sources",
+    "message": "3 AI write(s) to canonical sources; that is where AI works.",
+    "severity": "info"
+  },
+  {
+    "check": "read_map",
+    "evidence": "> ARCHIVE 2026-09-30: superseded by paper/paper.md",
+    "item": "drafts/paper_2026-09.md",
+    "message": "Archived look-alike, correctly bannered.",
+    "severity": "info"
+  },
+  {
+    "check": "rebuild",
+    "evidence": "recorded source 302823ae30f7...",
+    "item": "builds/paper/v001.html",
+    "message": "Canonical or numbers changed since this build; the rebuild starts from the frozen snapshot.",
+    "severity": "info"
+  }
+]

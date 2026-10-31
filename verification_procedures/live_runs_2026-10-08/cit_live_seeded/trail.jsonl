@@ -1,0 +1,80 @@
+{"at": "2026-10-08T13:10:07-07:00", "event": "run_initialized", "stream": "citations", "graph_version": 0.1}
+{"at": "2026-10-08T13:10:07-07:00", "event": "step_started", "node": "pin_document", "seq": 1, "kind": "tool"}
+{"at": "2026-10-08T13:10:07-07:00", "event": "step_finished", "node": "pin_document", "seq": 1, "contract": "pass", "fired": ["extract_citations"]}
+{"at": "2026-10-08T13:10:07-07:00", "event": "step_started", "node": "extract_citations", "seq": 2, "kind": "tool"}
+{"at": "2026-10-08T13:10:07-07:00", "event": "step_finished", "node": "extract_citations", "seq": 2, "contract": "pass", "fired": ["attribute_origin"]}
+{"at": "2026-10-08T13:10:07-07:00", "event": "step_started", "node": "attribute_origin", "seq": 3, "kind": "tool"}
+{"at": "2026-10-08T13:10:07-07:00", "event": "step_finished", "node": "attribute_origin", "seq": 3, "contract": "pass", "fired": ["match_references"]}
+{"at": "2026-10-08T13:10:07-07:00", "event": "step_started", "node": "match_references", "seq": 4, "kind": "tool"}
+{"at": "2026-10-08T13:10:08-07:00", "event": "step_finished", "node": "match_references", "seq": 4, "contract": "pass", "fired": ["fetch_metadata"]}
+{"at": "2026-10-08T13:10:08-07:00", "event": "step_started", "node": "fetch_metadata", "seq": 5, "kind": "tool"}
+{"at": "2026-10-08T13:10:08-07:00", "event": "step_finished", "node": "fetch_metadata", "seq": 5, "contract": "pass", "fired": ["check_existence"]}
+{"at": "2026-10-08T13:10:08-07:00", "event": "step_started", "node": "check_existence", "seq": 6, "kind": "tool"}
+{"at": "2026-10-08T13:10:08-07:00", "event": "step_finished", "node": "check_existence", "seq": 6, "contract": "pass", "fired": ["pin_sources"]}
+{"at": "2026-10-08T13:10:08-07:00", "event": "step_started", "node": "pin_sources", "seq": 7, "kind": "tool"}
+{"at": "2026-10-08T13:10:08-07:00", "event": "step_finished", "node": "pin_sources", "seq": 7, "contract": "pass", "fired": ["reuse_prior"]}
+{"at": "2026-10-08T13:10:08-07:00", "event": "step_started", "node": "reuse_prior", "seq": 8, "kind": "tool"}
+{"at": "2026-10-08T13:10:08-07:00", "event": "step_finished", "node": "reuse_prior", "seq": 8, "contract": "pass", "fired": ["check_access"]}
+{"at": "2026-10-08T13:10:08-07:00", "event": "step_started", "node": "check_access", "seq": 9, "kind": "tool"}
+{"at": "2026-10-08T13:10:08-07:00", "event": "step_finished", "node": "check_access", "seq": 9, "contract": "pass", "fired": ["locate_passage"]}
+{"at": "2026-10-08T13:10:08-07:00", "event": "step_started", "node": "locate_passage", "seq": 10, "kind": "judgment"}
+{"at": "2026-10-08T13:10:09-07:00", "event": "judgment_item", "node": "locate_passage", "item": "r01", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:09-07:00", "event": "judgment_item", "node": "locate_passage", "item": "r04", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:10-07:00", "event": "judgment_item", "node": "locate_passage", "item": "r05", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:11-07:00", "event": "judgment_item", "node": "locate_passage", "item": "r06", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:11-07:00", "event": "judgment_item", "node": "locate_passage", "item": "r07", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:12-07:00", "event": "judgment_item", "node": "locate_passage", "item": "r08", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:13-07:00", "event": "judgment_item", "node": "locate_passage", "item": "r09", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:13-07:00", "event": "judgment_item", "node": "locate_passage", "item": "r10", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:14-07:00", "event": "judgment_item", "node": "locate_passage", "item": "r12", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:14-07:00", "event": "judgment_item", "node": "locate_passage", "item": "r13", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:15-07:00", "event": "judgment_item", "node": "locate_passage", "item": "r14", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:15-07:00", "event": "judgment_item", "node": "locate_passage", "item": "r15", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:16-07:00", "event": "step_finished", "node": "locate_passage", "seq": 10, "contract": "pass", "fired": ["verify_quote"]}
+{"at": "2026-10-08T13:10:16-07:00", "event": "step_started", "node": "verify_quote", "seq": 11, "kind": "tool"}
+{"at": "2026-10-08T13:10:16-07:00", "event": "step_finished", "node": "verify_quote", "seq": 11, "contract": "pass", "fired": ["judge_support"]}
+{"at": "2026-10-08T13:10:16-07:00", "event": "step_started", "node": "judge_support", "seq": 12, "kind": "judgment"}
+{"at": "2026-10-08T13:10:16-07:00", "event": "judgment_item", "node": "judge_support", "item": "r01", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:17-07:00", "event": "judgment_item", "node": "judge_support", "item": "r04", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:17-07:00", "event": "judgment_item", "node": "judge_support", "item": "r05", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:18-07:00", "event": "judgment_item", "node": "judge_support", "item": "r06", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:18-07:00", "event": "judgment_item", "node": "judge_support", "item": "r07", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:19-07:00", "event": "judgment_item", "node": "judge_support", "item": "r08", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:20-07:00", "event": "judgment_item", "node": "judge_support", "item": "r09", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:21-07:00", "event": "judgment_item", "node": "judge_support", "item": "r10", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:21-07:00", "event": "judgment_item", "node": "judge_support", "item": "r12", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:22-07:00", "event": "judgment_item", "node": "judge_support", "item": "r13", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:22-07:00", "event": "judgment_item", "node": "judge_support", "item": "r14", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:23-07:00", "event": "judgment_item", "node": "judge_support", "item": "r15", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:23-07:00", "event": "step_finished", "node": "judge_support", "seq": 12, "contract": "pass", "fired": ["collect_verdicts"]}
+{"at": "2026-10-08T13:10:23-07:00", "event": "step_started", "node": "collect_verdicts", "seq": 13, "kind": "tool"}
+{"at": "2026-10-08T13:10:23-07:00", "event": "step_finished", "node": "collect_verdicts", "seq": 13, "contract": "pass", "fired": ["second_check"]}
+{"at": "2026-10-08T13:10:23-07:00", "event": "step_started", "node": "second_check", "seq": 14, "kind": "judgment"}
+{"at": "2026-10-08T13:10:24-07:00", "event": "judgment_item", "node": "second_check", "item": "r05", "executor": "live:openai/gpt-oss-120b"}
+{"at": "2026-10-08T13:10:25-07:00", "event": "judgment_item", "node": "second_check", "item": "r06", "executor": "live:openai/gpt-oss-120b"}
+{"at": "2026-10-08T13:10:26-07:00", "event": "judgment_item", "node": "second_check", "item": "r07", "executor": "live:openai/gpt-oss-120b"}
+{"at": "2026-10-08T13:10:27-07:00", "event": "judgment_item", "node": "second_check", "item": "r08", "executor": "live:openai/gpt-oss-120b"}
+{"at": "2026-10-08T13:10:28-07:00", "event": "judgment_item", "node": "second_check", "item": "r13", "executor": "live:openai/gpt-oss-120b"}
+{"at": "2026-10-08T13:10:28-07:00", "event": "step_finished", "node": "second_check", "seq": 14, "contract": "pass", "fired": ["settle_verdicts"]}
+{"at": "2026-10-08T13:10:28-07:00", "event": "step_skipped", "node": "settle_unanimous", "reason": "no incoming edge fired"}
+{"at": "2026-10-08T13:10:28-07:00", "event": "step_started", "node": "settle_verdicts", "seq": 15, "kind": "tool"}
+{"at": "2026-10-08T13:10:29-07:00", "event": "step_finished", "node": "settle_verdicts", "seq": 15, "contract": "pass", "fired": ["draft_fix"]}
+{"at": "2026-10-08T13:10:29-07:00", "event": "step_started", "node": "draft_fix", "seq": 16, "kind": "judgment"}
+{"at": "2026-10-08T13:10:30-07:00", "event": "judgment_item", "node": "draft_fix", "item": "r02", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:30-07:00", "event": "judgment_item", "node": "draft_fix", "item": "r04", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:31-07:00", "event": "judgment_item", "node": "draft_fix", "item": "r05", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:31-07:00", "event": "judgment_item", "node": "draft_fix", "item": "r06", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:31-07:00", "event": "judgment_item", "node": "draft_fix", "item": "r07", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:33-07:00", "event": "judgment_item", "node": "draft_fix", "item": "r08", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:34-07:00", "event": "judgment_item", "node": "draft_fix", "item": "r09", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:34-07:00", "event": "judgment_item", "node": "draft_fix", "item": "r10", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:35-07:00", "event": "judgment_item", "node": "draft_fix", "item": "r11", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:35-07:00", "event": "judgment_item", "node": "draft_fix", "item": "r13", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:36-07:00", "event": "judgment_item", "node": "draft_fix", "item": "r14", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:10:36-07:00", "event": "step_finished", "node": "draft_fix", "seq": 16, "contract": "pass", "fired": ["record_verdicts"]}
+{"at": "2026-10-08T13:10:36-07:00", "event": "step_started", "node": "record_verdicts", "seq": 17, "kind": "tool"}
+{"at": "2026-10-08T13:10:36-07:00", "event": "step_finished", "node": "record_verdicts", "seq": 17, "contract": "pass", "fired": ["report"]}
+{"at": "2026-10-08T13:10:36-07:00", "event": "step_started", "node": "report", "seq": 18, "kind": "tool"}
+{"at": "2026-10-08T13:10:36-07:00", "event": "step_finished", "node": "report", "seq": 18, "contract": "pass", "fired": []}
+{"at": "2026-10-08T13:10:36-07:00", "event": "run_finished"}
+{"at": "2026-10-08T13:10:53-07:00", "event": "verified", "failures": 0}

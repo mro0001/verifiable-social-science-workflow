@@ -1,0 +1,38 @@
+{
+  "record_version": 1,
+  "seq": 14,
+  "node": "second_check",
+  "kind": "judgment",
+  "graph_version": 0.1,
+  "started_at": "2026-10-08T13:10:23-07:00",
+  "duration_s": 5.28,
+  "inputs": {
+    "rows_judged.json": "sha256:7847342b57d80dbdbc93f2967c7108604643e1cc2dee5a0e4e1b05dc598c95cc"
+  },
+  "execution": {
+    "type": "judgment",
+    "role": "second",
+    "executor": [
+      "live:openai/gpt-oss-120b"
+    ],
+    "items": 5,
+    "unjudged": [],
+    "prompts": "prompts/14_second_check",
+    "responses": "responses/14_second_check"
+  },
+  "outputs": {
+    "second_check.json": "sha256:57097b2a747ff2e2301237dd396a0441da2fbd4a66f2c384911efd7fcaa0b191"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "settle_verdicts",
+      "rel": "LEADS_TO",
+      "check": null,
+      "fired": true
+    }
+  ]
+}

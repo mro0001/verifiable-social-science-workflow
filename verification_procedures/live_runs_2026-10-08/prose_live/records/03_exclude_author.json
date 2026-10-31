@@ -1,0 +1,44 @@
+{
+  "record_version": 1,
+  "seq": 3,
+  "node": "exclude_author",
+  "kind": "tool",
+  "graph_version": 0.1,
+  "started_at": "2026-10-08T12:59:06-07:00",
+  "duration_s": 0.12,
+  "inputs": {
+    "changes.json": "sha256:4c625ba54894b94060859a7c1d5976e785ac3cb36771c697f6d618b389e8e9b7",
+    "author_edits.yaml": "sha256:b65389e1fb881c27677149fe77e9bc72a07a4a4d3fd9ffa018cfbad5df16696e"
+  },
+  "execution": {
+    "type": "script",
+    "executor": "python3",
+    "code_files": {
+      "code/03_exclude_author/_lib.py": "sha256:bab908da53dea59fcf603a8d94c4e3e2e29312f8bf2ff66f631a5e273b937a8b",
+      "code/03_exclude_author/exclude_author.py": "sha256:b7d94cdff7bf7859206345d41f6dc4a5e764d4548fec2dbe6654d1d5d0a466a9"
+    },
+    "exit_code": 0,
+    "logs": [
+      "logs/03_exclude_author.stdout",
+      "logs/03_exclude_author.stderr"
+    ],
+    "replay": "exact"
+  },
+  "outputs": {
+    "ai_changes.json": "sha256:156fe74bb7f14da151e763195f616f5e98173222c8975ba0c5a22c24af004a69",
+    "author_changes.json": "sha256:4e34e0a35752d82dd97e544362602654d057aecc6396156d0bad1239429bc995",
+    "findings_exclude_author.json": "sha256:3fd0ec91ce67f5d96d31b6e8a7d1eb4977d39f96b52a96f60709dd2112f8901e"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "content_handoff",
+      "rel": "LEADS_TO",
+      "check": null,
+      "fired": true
+    }
+  ]
+}

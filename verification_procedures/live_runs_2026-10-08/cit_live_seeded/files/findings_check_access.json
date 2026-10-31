@@ -1,0 +1,23 @@
+[
+  {
+    "check": "check_access",
+    "evidence": "no source_ferrante2021.txt",
+    "item": "r02",
+    "message": "not checked: no usable retrieved copy of @ferrante2021",
+    "severity": "warning"
+  },
+  {
+    "check": "check_access",
+    "evidence": "no source_pruitt2022.txt",
+    "item": "r11",
+    "message": "not checked: no usable retrieved copy of @pruitt2022",
+    "severity": "warning"
+  },
+  {
+    "check": "check_access",
+    "evidence": "source_iversen2018.txt",
+    "item": "r12",
+    "message": "abstract only: the verdict covers the abstract, not the full text",
+    "severity": "warning"
+  }
+]

@@ -1,0 +1,58 @@
+{
+  "record_version": 1,
+  "seq": 13,
+  "node": "collect_verdicts",
+  "kind": "tool",
+  "graph_version": 0.1,
+  "started_at": "2026-10-08T13:10:23-07:00",
+  "duration_s": 0.18,
+  "inputs": {
+    "rows_quoted.json": "sha256:9c5e23dcdb4d56ebeafbf5de6d45aca80e65fae951ed6692a31f7f09ca8e6d31",
+    "judge_support.json": "sha256:37231b5b50e3b9bb36ecc560e023ec1fc5c3c70e97e651270b7afe846aaf0d7d",
+    "refs_verified.json": "sha256:7e4fe6305669316a19f3e978510788b3dacedee4347f949c86311b80ca3ed107",
+    "findings_attribute_origin.json": "sha256:2eb79ad1f6db505e8e2c101d70316cd8d9dae3d459065ebe68ea8ba3849061a0",
+    "findings_match_references.json": "sha256:afa56a4136bd94735da4f2472a235166d68aae68bbc3f3dafbbcce9aa74ede3f",
+    "findings_check_existence.json": "sha256:5c98eb787f745d86343b014994684d223fbf21170983e50d5f4f8c6ce2dd1dee",
+    "findings_reuse_prior.json": "sha256:5e64d2c1f1e9458cda2427f251c7f2b9a1baa25132c0624ff3f713e78d4a34e0",
+    "findings_check_access.json": "sha256:010c3bce9915b29dc7672ea4de33ff3609369a4548f17e07a6b8f45bcf0877d6",
+    "findings_verify_quote.json": "sha256:53826bdfcb7828a7801247941fa15366ce42cb1477219a6775296e15b039220a"
+  },
+  "execution": {
+    "type": "script",
+    "executor": "python3",
+    "code_files": {
+      "code/13_collect_verdicts/_lib.py": "sha256:bab908da53dea59fcf603a8d94c4e3e2e29312f8bf2ff66f631a5e273b937a8b",
+      "code/13_collect_verdicts/collect_verdicts.py": "sha256:6434a91896360318e9a80f2cf58edcd60418712dfcc163380945f7fcd2d963e9"
+    },
+    "exit_code": 0,
+    "logs": [
+      "logs/13_collect_verdicts.stdout",
+      "logs/13_collect_verdicts.stderr"
+    ],
+    "replay": "exact"
+  },
+  "outputs": {
+    "rows_judged.json": "sha256:7847342b57d80dbdbc93f2967c7108604643e1cc2dee5a0e4e1b05dc598c95cc",
+    "verdict_tally.json": "sha256:1b3726f9af019ae2d9f020758d89d4acb690696fc1e5641c53e3d0a28d1207d9"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "second_check",
+      "rel": "TRIGGERS",
+      "check": "verdict_tally.json:to_recheck > 0",
+      "actual": 5,
+      "fired": true
+    },
+    {
+      "to": "settle_unanimous",
+      "rel": "TRIGGERS",
+      "check": "verdict_tally.json:to_recheck == 0",
+      "actual": 5,
+      "fired": false
+    }
+  ]
+}

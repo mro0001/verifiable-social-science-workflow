@@ -1,0 +1,135 @@
+{
+  "schema": "verification-results",
+  "schema_version": 1,
+  "stream": "prose",
+  "run_id": "prose_seeded",
+  "procedure_version": 0.3,
+  "inputs": {
+    "baseline.md": "sha256:6120b6a078e5bff2b9acf9b206ea64ebec3ca04646845d15c34c75216348b840",
+    "rationales.yaml": "sha256:8d4e472c6e82d7987b8553faee16dea8e96a57f2e0d9c77fd8cd9e75a617fa8e",
+    "revised.md": "sha256:916d5056cdb13387154b57442156ed12c0dfd67503f8e7644c2b8b4411c307eb",
+    "versions.yaml": "sha256:af31b4ae75ffd48d5fe5c4e15dd2fbcd06e98acfe9be9b148a0e633113429929"
+  },
+  "items": [
+    {
+      "id": "c01",
+      "kind": "change",
+      "summary": "move: Prior work has focused mainly on private firms.",
+      "findings": [],
+      "needs_decision": true
+    },
+    {
+      "id": "c02",
+      "kind": "change",
+      "summary": "edit: This study examines whether structured interviews are associated with lower first-year turnover in municipal agencies.",
+      "findings": [],
+      "needs_decision": true
+    },
+    {
+      "id": "c03",
+      "kind": "change",
+      "summary": "edit: We draw on personnel records from 52 agencies in three states [@alvarez2019].",
+      "findings": [
+        {
+          "check": "content_handoff",
+          "severity": "warning",
+          "message": "content change, hand off to data stream",
+          "evidence": "numbers 48 -> 52"
+        }
+      ],
+      "needs_decision": true
+    },
+    {
+      "id": "c04",
+      "kind": "change",
+      "summary": "edit: First-year turnover is especially costly for small agencies [@park2020].",
+      "findings": [
+        {
+          "check": "content_handoff",
+          "severity": "warning",
+          "message": "content change, hand off to citations stream",
+          "evidence": "citations kim2018 -> park2020"
+        }
+      ],
+      "needs_decision": true
+    },
+    {
+      "id": "c05",
+      "kind": "change",
+      "summary": "edit: Managers in our sample called the format slow but fair.",
+      "findings": [
+        {
+          "check": "rationale_coverage",
+          "severity": "blocking",
+          "message": "AI change with no recorded reason",
+          "evidence": "record r09 names it with no reason, Managers in our sample described the format as slow but fair. -> Managers in our sample called the format slow but fair."
+        }
+      ],
+      "needs_decision": true
+    },
+    {
+      "id": "c06",
+      "kind": "change",
+      "summary": "edit: One clerk said the process \"felt like a genuine conversation about the work.\"",
+      "findings": [
+        {
+          "check": "content_handoff",
+          "severity": "warning",
+          "message": "content change, hand off to citations stream",
+          "evidence": "quotes felt like a real conversation about the job. -> felt like a genuine conversation about the work."
+        }
+      ],
+      "needs_decision": true
+    },
+    {
+      "id": "c07",
+      "kind": "change",
+      "summary": "edit: Agencies adopted the format for many different reasons.",
+      "findings": [],
+      "needs_decision": false
+    },
+    {
+      "id": "c08",
+      "kind": "change",
+      "summary": "edit: The results show that structured interviews reduce early exits by 9 percentage points.",
+      "findings": [
+        {
+          "check": "content_handoff",
+          "severity": "warning",
+          "message": "content change, hand off to data stream",
+          "evidence": "strength may, suggest -> show"
+        }
+      ],
+      "needs_decision": true
+    },
+    {
+      "id": "c09",
+      "kind": "change",
+      "summary": "insert: The next section turns to the interview protocol itself.",
+      "findings": [
+        {
+          "check": "rationale_coverage",
+          "severity": "warning",
+          "message": "kind mismatch, record entry r07 says edit and the diff says insert",
+          "evidence": "The next section turns to the interview protocol itself."
+        }
+      ],
+      "needs_decision": true
+    },
+    {
+      "id": "r08",
+      "kind": "finding",
+      "summary": "1 problem. recorded AI change matches no change between the two texts",
+      "findings": [
+        {
+          "check": "rationale_coverage",
+          "severity": "warning",
+          "message": "recorded AI change matches no change between the two texts",
+          "evidence": "anchor text is present unchanged in revised.md, This pattern held across agencies of different sizes."
+        }
+      ],
+      "needs_decision": true
+    }
+  ],
+  "decisions": []
+}

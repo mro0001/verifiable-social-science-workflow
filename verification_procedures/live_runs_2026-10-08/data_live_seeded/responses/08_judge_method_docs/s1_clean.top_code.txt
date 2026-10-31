@@ -1,0 +1,5 @@
+{
+  "matches": true,
+  "mismatches": [],
+  "reason": "The code correctly implements the documented claims: it reads the cap from P['income_cap'], caps values using min(), and calculates income_k by dividing by 1000."
+}

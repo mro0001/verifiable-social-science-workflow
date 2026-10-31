@@ -1,0 +1,1 @@
+{"matches": true, "mismatches": [], "reason": "The code retrieves the value for the key from self.values and records it in self.used, which exactly matches the documentation's claim."}

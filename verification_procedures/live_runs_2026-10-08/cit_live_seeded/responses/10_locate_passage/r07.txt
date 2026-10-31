@@ -1,0 +1,1 @@
+{"quote": "This article studies the administrative traces of volunteer activity: sign-in sheets, shift logs, and incident forms. These records are kept for operational reasons and are rarely analyzed.", "location": "p. 3", "found": true}

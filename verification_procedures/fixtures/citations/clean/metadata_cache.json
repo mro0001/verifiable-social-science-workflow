@@ -1,0 +1,94 @@
+{
+  "10.5555/cp.2018.0011": {
+    "title": "Matching volunteers to roles",
+    "author": [
+      {
+        "family": "Moreno",
+        "given": "Lucia"
+      }
+    ],
+    "issued": 2018,
+    "container-title": "Civic Press",
+    "type": "book"
+  },
+  "10.5555/jca.2019.0142": {
+    "title": "Ownership and exit in municipal volunteer programs",
+    "author": [
+      {
+        "family": "Abara",
+        "given": "Nkem"
+      },
+      {
+        "family": "Hollis",
+        "given": "Teresa"
+      }
+    ],
+    "issued": 2019,
+    "container-title": "Journal of Civic Administration",
+    "type": "journal-article"
+  },
+  "10.5555/nmr.2021.0120": {
+    "title": "Scheduling flexibility and volunteer hours",
+    "author": [
+      {
+        "family": "de Vries",
+        "given": "Maarten"
+      }
+    ],
+    "issued": 2021,
+    "container-title": "Nonprofit Management Review",
+    "type": "journal-article"
+  },
+  "10.5555/psq.2016.0071": {
+    "title": "Training length and volunteer retention",
+    "author": [
+      {
+        "family": "Tanaka",
+        "given": "Hiroshi"
+      }
+    ],
+    "issued": 2016,
+    "container-title": "Public Service Quarterly",
+    "type": "journal-article"
+  },
+  "10.5555/uan.2015.0102": {
+    "title": "Volunteer motives across city sizes",
+    "author": [
+      {
+        "family": "Osei",
+        "given": "Kwame"
+      }
+    ],
+    "issued": 2015,
+    "container-title": "Urban Affairs Notes",
+    "type": "journal-article"
+  },
+  "10.5555/uan.2020.0230": {
+    "title": "Named contacts and volunteer tenure in three cities",
+    "author": [
+      {
+        "family": "Whitlock",
+        "given": "Grace"
+      }
+    ],
+    "issued": 2020,
+    "container-title": "Urban Affairs Notes",
+    "type": "journal-article"
+  },
+  "10.5555/vss.2017.0021": {
+    "title": "Fit and retention in local volunteering",
+    "author": [
+      {
+        "family": "Castellanos",
+        "given": "Rosa"
+      },
+      {
+        "family": "Ibe",
+        "given": "Kelechi"
+      }
+    ],
+    "issued": 2017,
+    "container-title": "Voluntary Sector Studies",
+    "type": "journal-article"
+  }
+}

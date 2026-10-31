@@ -1,0 +1,1 @@
+{"matches": true, "mismatches": [], "reason": "The code correctly implements the documented claim by splitting the input string at the '~' character and returning the stripped outcome and predictor parts."}

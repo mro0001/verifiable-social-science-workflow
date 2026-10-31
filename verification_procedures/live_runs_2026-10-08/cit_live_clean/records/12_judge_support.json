@@ -1,0 +1,38 @@
+{
+  "record_version": 1,
+  "seq": 12,
+  "node": "judge_support",
+  "kind": "judgment",
+  "graph_version": 0.1,
+  "started_at": "2026-10-08T13:10:40-07:00",
+  "duration_s": 2.55,
+  "inputs": {
+    "rows_quoted.json": "sha256:2555ad3216fa622e37102d6cc68b6236f21a623741e7b936733ca2b75ba8f1f2"
+  },
+  "execution": {
+    "type": "judgment",
+    "role": "judge",
+    "executor": [
+      "live:qwen/qwen3.5-122b"
+    ],
+    "items": 4,
+    "unjudged": [],
+    "prompts": "prompts/12_judge_support",
+    "responses": "responses/12_judge_support"
+  },
+  "outputs": {
+    "judge_support.json": "sha256:c35bb1145e627884bea9d37b31e919fd43f608d76c2342d44ad0615e82367d6d"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "collect_verdicts",
+      "rel": "LEADS_TO",
+      "check": null,
+      "fired": true
+    }
+  ]
+}

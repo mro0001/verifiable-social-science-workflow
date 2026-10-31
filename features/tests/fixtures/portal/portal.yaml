@@ -1,0 +1,13 @@
+# The portal's sources for the portal tests, with paths from this folder.
+title: A fixture portal
+kb_corpus: kb
+graphs: procedures/graphs
+docs:
+  - path: docs/guide.md
+    title: The fixture guide
+    section: implement
+    optional: false
+  - path: docs/more.md
+    title: The second doc
+    section: learn
+    optional: false

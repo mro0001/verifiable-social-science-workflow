@@ -1,0 +1,49 @@
+{
+  "record_version": 1,
+  "seq": 18,
+  "node": "report",
+  "kind": "tool",
+  "graph_version": 0.1,
+  "started_at": "2026-10-08T13:10:36-07:00",
+  "duration_s": 0.12,
+  "inputs": {
+    "rows_final.json": "sha256:a0b43cb9e88fac8110ca0c723aafe318981596606d06ad93f1acbc312878bb53",
+    "verdict_tally.json": "sha256:1b3726f9af019ae2d9f020758d89d4acb690696fc1e5641c53e3d0a28d1207d9",
+    "doc_pin.json": "sha256:57547ef996944f7f7693bc3df4b5f704971f759c39d695ed239a256e42f76536",
+    "findings_attribute_origin.json": "sha256:2eb79ad1f6db505e8e2c101d70316cd8d9dae3d459065ebe68ea8ba3849061a0",
+    "findings_match_references.json": "sha256:afa56a4136bd94735da4f2472a235166d68aae68bbc3f3dafbbcce9aa74ede3f",
+    "findings_check_existence.json": "sha256:5c98eb787f745d86343b014994684d223fbf21170983e50d5f4f8c6ce2dd1dee",
+    "findings_reuse_prior.json": "sha256:5e64d2c1f1e9458cda2427f251c7f2b9a1baa25132c0624ff3f713e78d4a34e0",
+    "findings_check_access.json": "sha256:010c3bce9915b29dc7672ea4de33ff3609369a4548f17e07a6b8f45bcf0877d6",
+    "findings_verify_quote.json": "sha256:53826bdfcb7828a7801247941fa15366ce42cb1477219a6775296e15b039220a",
+    "findings_judge_support.json": "sha256:4aff3867f9ad42958817e985528edf1f8ae923502d6d3823bc6d3b96bd342c50",
+    "findings_second_check.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "findings_unjudged_draft_fix.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "findings_unjudged_judge_support.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "findings_unjudged_locate_passage.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "findings_unjudged_second_check.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+  },
+  "execution": {
+    "type": "script",
+    "executor": "python3",
+    "code_files": {
+      "code/18_report/_lib.py": "sha256:bab908da53dea59fcf603a8d94c4e3e2e29312f8bf2ff66f631a5e273b937a8b",
+      "code/18_report/report.py": "sha256:1f46a507cf70120c1197ca4006e9d57e5de19443bfd233871666b96f5f89c8b0"
+    },
+    "exit_code": 0,
+    "logs": [
+      "logs/18_report.stdout",
+      "logs/18_report.stderr"
+    ],
+    "replay": "exact"
+  },
+  "outputs": {
+    "findings.json": "sha256:d2683f46be268fd1aeb54e87c9a8aef681b84eb97e3c4419a6001bfbc079a2f9",
+    "report.md": "sha256:d05571c674a00728faca703a2de81a787c0b652255c42d43c8b88b16a04af858"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": []
+}

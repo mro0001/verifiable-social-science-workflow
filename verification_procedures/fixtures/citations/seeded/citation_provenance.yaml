@@ -1,0 +1,293 @@
+# SYNTHETIC citation provenance record, in the form python3 -m audit_layer write-out
+# citation-provenance writes. Sessions, times, and excerpts are invented.
+works:
+  abara2019:
+    origin: ai
+    appearances:
+    - time: '2026-10-12T09:00:05Z'
+      by: ai
+      session_ref: S3a41c0d2e9f7
+      excerpt: Abara and Hollis (2019) report that 31% of first-year volunteers left within six months.
+    first_ai:
+      time: '2026-10-12T09:00:05Z'
+      by: ai
+      session_ref: S3a41c0d2e9f7
+      excerpt: Abara and Hollis (2019) report that 31% of first-year volunteers left within six months.
+    first_scholar: null
+    reason:
+      time: '2026-10-12T09:00:05Z'
+      text: Abara and Hollis (2019) report that 31% of first-year volunteers left within six months. Their panel paper gives the figure directly, "Across the 48 programs in our panel, 31% of first-year volunteers exited before completing six months of service." It fits the opening claim about first-year loss.
+      session_ref: S3a41c0d2e9f7
+    quotes:
+    - text: Across the 48 programs in our panel, 31% of first-year volunteers exited before completing six months of service.
+      time: '2026-10-12T09:00:05Z'
+      session_ref: S3a41c0d2e9f7
+  ferrante2021:
+    origin: ai
+    appearances:
+    - time: '2026-10-12T09:02:11Z'
+      by: ai
+      session_ref: S3a41c0d2e9f7
+      excerpt: Ferrante, L. (2021). Digital recruitment and early exit among civic volunteers. Nonprofit Management Review.
+    - time: '2026-10-12T09:02:40Z'
+      by: ai
+      session_ref: S3a41c0d2e9f7
+      excerpt: Ferrante (2021) found that exit is steepest for volunteers recruited online.
+    first_ai:
+      time: '2026-10-12T09:02:11Z'
+      by: ai
+      session_ref: S3a41c0d2e9f7
+      excerpt: Ferrante, L. (2021). Digital recruitment and early exit among civic volunteers. Nonprofit Management Review.
+    first_scholar: null
+    reason:
+      time: '2026-10-12T09:02:11Z'
+      text: Ferrante (2021) found that exit is steepest for volunteers recruited online, which fits the sentence on portals.
+      session_ref: S3a41c0d2e9f7
+    quotes: []
+  castellanos2017:
+    origin: scholar
+    appearances:
+    - time: '2026-10-12T08:58:00Z'
+      by: scholar
+      session_ref: S3a41c0d2e9f7
+      excerpt: Keep my sentence on Castellanos and Ibe (2017) about fit.
+    first_ai: null
+    first_scholar:
+      time: '2026-10-12T08:58:00Z'
+      by: scholar
+      session_ref: S3a41c0d2e9f7
+      excerpt: Keep my sentence on Castellanos and Ibe (2017) about fit.
+    reason: null
+    quotes: []
+  brennan2016:
+    origin: ai
+    appearances:
+    - time: '2026-10-12T09:05:30Z'
+      by: ai
+      session_ref: S3a41c0d2e9f7
+      excerpt: Brennan (2016) makes the point in plain words.
+    first_ai:
+      time: '2026-10-12T09:05:30Z'
+      by: ai
+      session_ref: S3a41c0d2e9f7
+      excerpt: Brennan (2016) makes the point in plain words.
+    first_scholar: null
+    reason:
+      time: '2026-10-12T09:05:30Z'
+      text: Brennan (2016) makes the point in plain words, "volunteers leave when the work stops feeling like their own", which suits the second section.
+      session_ref: S3a41c0d2e9f7
+    quotes:
+    - text: volunteers leave when the work stops feeling like their own
+      time: '2026-10-12T09:05:30Z'
+      session_ref: S3a41c0d2e9f7
+  kessler2019:
+    origin: ai
+    appearances:
+    - time: '2026-10-12T09:07:02Z'
+      by: ai
+      session_ref: S3a41c0d2e9f7
+      excerpt: Kessler (2019) compared single-session orientation with longer ones and found that retention fell.
+    first_ai:
+      time: '2026-10-12T09:07:02Z'
+      by: ai
+      session_ref: S3a41c0d2e9f7
+      excerpt: Kessler (2019) compared single-session orientation with longer ones and found that retention fell.
+    first_scholar: null
+    reason:
+      time: '2026-10-12T09:07:02Z'
+      text: Kessler (2019) compared single-session orientation with longer ones and found that retention fell. That supports the orientation sentence.
+      session_ref: S3a41c0d2e9f7
+    quotes: []
+  okafor2018:
+    origin: ai
+    appearances:
+    - time: '2026-10-12T09:08:15Z'
+      by: ai
+      session_ref: S3a41c0d2e9f7
+      excerpt: Okafor, A. (2018). Written role descriptions and volunteer tenure. Public Service Quarterly.
+    first_ai:
+      time: '2026-10-12T09:08:15Z'
+      by: ai
+      session_ref: S3a41c0d2e9f7
+      excerpt: Okafor, A. (2018). Written role descriptions and volunteer tenure. Public Service Quarterly.
+    first_scholar: null
+    reason: null
+    quotes: []
+  marchetti2012:
+    origin: ai
+    appearances:
+    - time: '2026-10-13T10:01:00Z'
+      by: ai
+      session_ref: S7be25f19c0a4
+      artifact: notes/sources.md
+      excerpt: Marchetti (2012) studies the records volunteers leave behind.
+    first_ai:
+      time: '2026-10-13T10:01:00Z'
+      by: ai
+      session_ref: S7be25f19c0a4
+      artifact: notes/sources.md
+      excerpt: Marchetti (2012) studies the records volunteers leave behind.
+    first_scholar: null
+    reason:
+      time: '2026-10-13T10:01:00Z'
+      text: Marchetti (2012) studies the records volunteers leave behind, sign-in sheets and shift logs, and is a good anchor for the records sentence.
+      session_ref: S7be25f19c0a4
+      artifact: notes/sources.md
+    quotes: []
+  nakamura2020:
+    origin: ai
+    appearances:
+    - time: '2026-10-13T10:03:20Z'
+      by: ai
+      session_ref: S7be25f19c0a4
+      excerpt: Nakamura (2020) looked at recognition events among long-serving volunteers.
+    first_ai:
+      time: '2026-10-13T10:03:20Z'
+      by: ai
+      session_ref: S7be25f19c0a4
+      excerpt: Nakamura (2020) looked at recognition events among long-serving volunteers.
+    first_scholar: null
+    reason:
+      time: '2026-10-13T10:03:20Z'
+      text: Nakamura (2020) looked at recognition events among long-serving volunteers. Their result belongs beside the feedback finding.
+      session_ref: S7be25f19c0a4
+    quotes: []
+  lindqvist2020:
+    origin: ai
+    appearances:
+    - time: '2026-10-13T10:04:44Z'
+      by: ai
+      session_ref: S7be25f19c0a4
+      excerpt: Lindqvist, H., & Moreau, J. (2020). Supervisor feedback and seasonal return.
+    first_ai:
+      time: '2026-10-13T10:04:44Z'
+      by: ai
+      session_ref: S7be25f19c0a4
+      excerpt: Lindqvist, H., & Moreau, J. (2020). Supervisor feedback and seasonal return.
+    first_scholar: null
+    reason: null
+    quotes: []
+  haldane2017:
+    origin: ai
+    appearances:
+    - time: '2026-10-13T10:06:10Z'
+      by: ai
+      session_ref: S7be25f19c0a4
+      excerpt: Haldane (2017) compared attachment to staff across program sizes.
+    first_ai:
+      time: '2026-10-13T10:06:10Z'
+      by: ai
+      session_ref: S7be25f19c0a4
+      excerpt: Haldane (2017) compared attachment to staff across program sizes.
+    first_scholar: null
+    reason:
+      time: '2026-10-13T10:06:10Z'
+      text: Haldane (2017) compared attachment to staff across program sizes, so it fits the sentence on smaller programs.
+      session_ref: S7be25f19c0a4
+    quotes: []
+  iversen2018:
+    origin: ai
+    appearances:
+    - time: '2026-10-13T10:08:00Z'
+      by: ai
+      session_ref: S7be25f19c0a4
+      excerpt: Iversen (2018) studied peer mentoring in youth programs.
+    first_ai:
+      time: '2026-10-13T10:08:00Z'
+      by: ai
+      session_ref: S7be25f19c0a4
+      excerpt: Iversen (2018) studied peer mentoring in youth programs.
+    first_scholar: null
+    reason:
+      time: '2026-10-13T10:08:00Z'
+      text: Iversen (2018) studied peer mentoring in youth programs. The abstract says "Youth volunteer programs that paired new volunteers with a peer mentor had higher retention at six months than programs without mentoring."
+      session_ref: S7be25f19c0a4
+    quotes:
+    - text: Youth volunteer programs that paired new volunteers with a peer mentor had higher retention at six months than programs without mentoring.
+      time: '2026-10-13T10:08:00Z'
+      session_ref: S7be25f19c0a4
+  whitlock2020:
+    origin: ai
+    appearances:
+    - time: '2026-10-13T10:09:30Z'
+      by: ai
+      session_ref: S7be25f19c0a4
+      excerpt: Whitlock (2020) found that a named staff contact kept volunteers longer.
+    first_ai:
+      time: '2026-10-13T10:09:30Z'
+      by: ai
+      session_ref: S7be25f19c0a4
+      excerpt: Whitlock (2020) found that a named staff contact kept volunteers longer.
+    first_scholar: null
+    reason:
+      time: '2026-10-13T10:09:30Z'
+      text: Whitlock (2020) found that a named staff contact kept volunteers longer.
+      session_ref: S7be25f19c0a4
+    quotes: []
+  sorensen2022:
+    origin: ai
+    appearances:
+    - time: '2026-10-13T10:11:00Z'
+      by: ai
+      session_ref: S7be25f19c0a4
+      excerpt: Sorensen (2022) reports that coordinator turnover comes before spikes in exit.
+    first_ai:
+      time: '2026-10-13T10:11:00Z'
+      by: ai
+      session_ref: S7be25f19c0a4
+      excerpt: Sorensen (2022) reports that coordinator turnover comes before spikes in exit.
+    first_scholar: null
+    reason:
+      time: '2026-10-13T10:11:00Z'
+      text: Sorensen (2022) reports that coordinator turnover comes before spikes in exit.
+      session_ref: S7be25f19c0a4
+    quotes: []
+  dumont2014:
+    origin: unknown
+    appearances: []
+    first_ai: null
+    first_scholar: null
+    reason: null
+    quotes: []
+  tanaka2016:
+    origin: scholar
+    appearances:
+    - time: '2026-10-12T08:55:00Z'
+      by: scholar
+      session_ref: S3a41c0d2e9f7
+      artifact: drafts/author_notes.md
+      excerpt: Training length alone did not predict retention (Tanaka 2016).
+    first_ai: null
+    first_scholar:
+      time: '2026-10-12T08:55:00Z'
+      by: scholar
+      session_ref: S3a41c0d2e9f7
+      artifact: drafts/author_notes.md
+      excerpt: Training length alone did not predict retention (Tanaka 2016).
+    reason: null
+    quotes: []
+  quinlan2015:
+    origin: ai
+    appearances:
+    - time: '2026-10-13T10:12:30Z'
+      by: ai
+      session_ref: S7be25f19c0a4
+      excerpt: Quinlan (2015) asked volunteers why they left.
+    first_ai:
+      time: '2026-10-13T10:12:30Z'
+      by: ai
+      session_ref: S7be25f19c0a4
+      excerpt: Quinlan (2015) asked volunteers why they left.
+    first_scholar: null
+    reason:
+      time: '2026-10-13T10:12:30Z'
+      text: Quinlan (2015) asked volunteers why they left, which could open the last section.
+      session_ref: S7be25f19c0a4
+    quotes: []
+  osei2015:
+    origin: unknown
+    appearances: []
+    first_ai: null
+    first_scholar: null
+    reason: null
+    quotes: []

@@ -1,0 +1,39 @@
+pin_versions:
+  reads: [baseline.md, revised.md, versions.yaml]
+  produces:
+    pins.json: {pinned: bool, baseline: dict, revised: dict}
+    findings_pin_versions.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+diff_changes:
+  reads: [baseline.md, revised.md]
+  produces:
+    changes.json: {items: {id: str, kind: [edit, insert, delete, move], before: str, after: str, moved: bool}}
+exclude_author:
+  # rationales.yaml is the record of the AI's changes; write [] when the record names none
+  # record_id and record_kind join two entries by "and" for a move given as a delete and an insert
+  reads: [changes.json, rationales.yaml]
+  produces:
+    ai_changes.json: {items: {id: str, kind: [edit, insert, delete, move], before: str, after: str, record_id: str, record_kind: str, rationale: str}}
+    author_changes.json: {items: {id: str, kind: [edit, insert, delete, move], before: str, after: str}}
+    findings_exclude_author.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+content_handoff:
+  reads: [ai_changes.json]
+  produces:
+    content_tokens.json: {items: {id: str, token_diff: dict, summary: str}}
+    handoff.json: {items: {change_id: str, streams: list, token_diff: dict}}
+    findings_content_handoff.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+rationale_coverage:
+  reads: [ai_changes.json, rationales.yaml, revised.md]
+  produces:
+    findings_rationale_coverage.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+report:
+  reads_optional: ["findings_*.json"]  # any upstream findings
+  # every upstream findings file is listed so `verify` replays collect_findings() on the same inputs
+  # steps.json is written by the runtime before this step (which steps ran, and why a skipped one did not)
+  reads: [pins.json, changes.json, ai_changes.json, author_changes.json, handoff.json,
+          findings_pin_versions.json, findings_exclude_author.json, findings_content_handoff.json,
+          findings_rationale_coverage.json, steps.json]
+  produces:
+    fields.json: {schema: dict, run: dict, tables: dict}  # and items; the builder checks every field against the schema
+    findings_completeness.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+    findings.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+    report.md: {headings: [Summary, Problems, Versions, AI changes, "The scholar's own changes", Hand-off, Trail]}

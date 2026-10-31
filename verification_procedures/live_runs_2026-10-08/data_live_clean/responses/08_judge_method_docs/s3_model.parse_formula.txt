@@ -1,0 +1,1 @@
+{"matches": true, "mismatches": [], "reason": "The docstring accurately claims the function splits the formula string into two column names, which is exactly what the code does using partition and strip."}

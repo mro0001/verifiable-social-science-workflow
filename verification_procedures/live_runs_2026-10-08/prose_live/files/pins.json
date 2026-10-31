@@ -1,0 +1,13 @@
+{
+  "baseline": {
+    "file": "baseline.md",
+    "sha256": "sha256:6120b6a078e5bff2b9acf9b206ea64ebec3ca04646845d15c34c75216348b840",
+    "version": "v001"
+  },
+  "pinned": true,
+  "revised": {
+    "file": "revised.md",
+    "sha256": "sha256:916d5056cdb13387154b57442156ed12c0dfd67503f8e7644c2b8b4411c307eb",
+    "version": null
+  }
+}

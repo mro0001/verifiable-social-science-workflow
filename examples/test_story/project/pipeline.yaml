@@ -1,0 +1,13 @@
+# The pipeline from raw data to the results the manuscript and slides cite.
+# Each step runs as `<runner> <script>` in this folder. Each step declares its
+# phase, collection, cleaning, or analysis, for the data phase reports, and its
+# script marks its steps with comment lines `# step: <title>`.
+helpers: [params_io.py]
+steps:
+  - id: results
+    phase: analysis
+    kind: table
+    runner: python3
+    script: s1_results.py
+    inputs: [next_word_counts.json]
+    outputs: [next_word_results.json, top_words.md, params_record_results.csv]

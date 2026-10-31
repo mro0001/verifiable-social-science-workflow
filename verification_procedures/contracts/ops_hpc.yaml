@@ -1,0 +1,29 @@
+# Contracts for connecting a project to a computing cluster. A run's inputs are the
+# settings file hpc.yaml and, when given, a copy of the scholar's ssh config,
+# ssh_config. run_commands and report are the steps the GitHub procedure shares.
+hpc_settings:
+  reads: [hpc.yaml]
+  produces:
+    settings.json: {task: str, valid: bool, apply: bool, alias: str, host: str, user: str, identity_file: str, scheduler: [slurm, none], modules: list, remote_dir: str}
+    findings_hpc_settings.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+hpc_ssh_entry:
+  reads: [settings.json]
+  reads_optional: [ssh_config]
+  produces:
+    ssh_entry.json: {given: bool, present: bool, matches: bool, block: str}
+    findings_hpc_ssh_entry.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+hpc_plan:
+  reads: [settings.json, ssh_entry.json]
+  produces:
+    commands.json: {cwd: str, snapshot: dict, writes: list, commands: list}
+run_commands:
+  reads: [settings.json, commands.json]
+  produces:
+    applied.json: {applied: bool, refused: str, results: list}
+    findings_run_commands.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+report:
+  reads: [settings.json]
+  reads_optional: ["findings_*.json", ssh_entry.json, commands.json, applied.json]
+  produces:
+    findings.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+    report.md: {headings: [Summary, Problems, Settings, Commands]}

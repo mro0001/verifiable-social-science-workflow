@@ -1,0 +1,9 @@
+Goal: Prove the runtime walks, branches, judges per item, and replays.
+
+Know this before acting:
+- list_items -> judge_items: One ask per word.
+    avoid: Judging all words in one ask.
+- judge_items -> report: Report non-colors as warnings.
+    avoid: Dropping unparseable answers silently.
+
+Is the word "table" a color? Answer only JSON: {"is_color": true or false}

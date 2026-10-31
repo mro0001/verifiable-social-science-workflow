@@ -1,0 +1,28 @@
+{
+  "schema": "verification-results",
+  "schema_version": 1,
+  "stream": "build",
+  "run_id": "build_clean",
+  "procedure_version": 0.1,
+  "inputs": {
+    "project.tar": "sha256:32e610fba73b01ae072fdf4a1e65d038e7da91480c456e8b128a085922d02971",
+    "session_writes.jsonl": "sha256:bb867579fea84bebd4f13a8c55e3e53c57a109e31a56151aaeeab49ebe5222d0"
+  },
+  "items": [
+    {
+      "id": "paper",
+      "kind": "deliverable",
+      "summary": "source paper/paper.md, builds folder builds/paper, ledgered versions v001, v002",
+      "findings": [],
+      "needs_decision": true
+    },
+    {
+      "id": "slides",
+      "kind": "deliverable",
+      "summary": "source slides/slides.md, builds folder builds/slides, ledgered versions v001",
+      "findings": [],
+      "needs_decision": true
+    }
+  ],
+  "decisions": []
+}

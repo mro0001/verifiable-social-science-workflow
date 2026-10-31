@@ -1,0 +1,17 @@
+{
+  "find_descriptions:analysis": {
+    "descriptions": [
+      {"quote": "The table lists the three most common words in each condition.",
+       "where": [{"file": "s1_results.py", "start": 51, "end": 52}, {"file": "s1_results.py", "start": 63, "end": 71}]}
+    ]
+  },
+  "find_descriptions:cleaning": {
+    "descriptions": []
+  },
+  "find_descriptions:collection": {
+    "descriptions": [
+      {"quote": "It answered 60 times in each of three conditions, at temperature 1.0.",
+       "where": []}
+    ]
+  }
+}

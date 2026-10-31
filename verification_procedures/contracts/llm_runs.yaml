@@ -1,0 +1,41 @@
+# Contracts for evaluating LLM runs. A run's input is run.tar, a finished run
+# folder of another procedure packed whole, names relative to the run folder.
+read_run:
+  reads: [run.tar]
+  # a reference answer book, given when the run's answers are to be compared
+  reads_optional: [reference.json]
+  produces:
+    run_index.json: {is_run: bool, graph: str, graph_version: str, stream: str, judge: str, second: str, finished: bool, stopped_at: str, judgment_steps: list, tool_steps: int, has_verify: bool, has_score: bool, has_reference: bool, provider: dict}
+    answer_book.json: {}
+    findings_read_run.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+check_record:
+  reads: [run.tar, run_index.json]
+  produces:
+    record_check.json: {items: {node: str, items: int, answered: int, unjudged: int, retries: int, prompt_mismatches: int, missing_responses: int}}
+    findings_check_record.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+check_models:
+  reads: [run_index.json]
+  produces:
+    findings_check_models.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+compare_reference:
+  reads: [answer_book.json, reference.json]
+  produces:
+    agreement.json: {compared: bool, total: int, agreed: int, steps: list}
+    findings_compare_reference.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+skip_reference:
+  reads: [run_index.json]
+  produces:
+    agreement.json: {compared: bool, total: int, agreed: int, steps: list}
+    findings_skip_reference.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+check_replay:
+  reads: [run.tar, run_index.json]
+  produces:
+    findings_check_replay.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+report:
+  reads: [run_index.json]
+  # every check's findings, so the report carries them, and record_check.json
+  # and agreement.json, which an archive holding no run never gets
+  reads_optional: ["findings_*.json", record_check.json, agreement.json]
+  produces:
+    findings.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+    report.md: {headings: [Summary, Problems, Models and settings, Judgment steps, Agreement, Replay and score]}

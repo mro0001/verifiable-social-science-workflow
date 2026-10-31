@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI sessions of {{project}}</title>
+<style>
+:root {
+  --page: #ffffff;
+  --text: #1b1f24;
+  --muted: #57606a;
+  --line: #d0d7de;
+  --band: #f6f8fa;
+  --accent: #0b5cad;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page: #0d1117;
+    --text: #e6edf3;
+    --muted: #9aa4ae;
+    --line: #30363d;
+    --band: #161b22;
+    --accent: #6cb6ff;
+  }
+}
+body {
+  margin: 0;
+  padding: 24px 16px;
+  background: var(--page);
+  color: var(--text);
+  font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+main { max-width: 1100px; margin: 0 auto; }
+h1 { font-size: 1.5rem; margin: 0 0 8px; }
+p { color: var(--muted); margin: 0 0 16px; }
+.controls { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; margin-bottom: 12px; }
+input[type="search"] {
+  flex: 1 1 260px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--page);
+  color: var(--text);
+  font: inherit;
+}
+label { cursor: pointer; }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+th { background: var(--band); font-weight: 600; white-space: nowrap; }
+td.id { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; white-space: nowrap; }
+td.number { text-align: right; }
+details summary { cursor: pointer; color: var(--accent); }
+dl { margin: 8px 0 0; display: grid; grid-template-columns: max-content 1fr; gap: 4px 12px; }
+dt { color: var(--muted); }
+dd { margin: 0; overflow-wrap: anywhere; }
+#shown { margin-top: 8px; }
+</style>
+</head>
+<body>
+<main>
+<h1>AI sessions of {{project}}</h1>
+<p>Every AI session that touched the project, with the AI contributions each made that reached the final verification reports. No transcript text is shown. A model wrote each title, gist, summary, and keywords, as each session marks.</p>
+<div class="controls">
+<input type="search" id="search" placeholder="Search the sessions" aria-label="Search the sessions">
+<label><input type="checkbox" id="only-contributions"> Only sessions with an AI contribution in the final reports</label>
+</div>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>Session</th><th>Started</th><th>Minutes</th><th>Harness</th><th>Title</th><th>AI contributions</th><th>More</th></tr>
+</thead>
+<tbody id="session-rows"></tbody>
+</table>
+</div>
+<p id="shown"></p>
+</main>
+<script id="session-data" type="application/json">{{data}}</script>
+<script>
+(function () {
+  "use strict";
+  var rows = JSON.parse(document.getElementById("session-data").textContent);
+  var search = document.getElementById("search");
+  var only = document.getElementById("only-contributions");
+  var body = document.getElementById("session-rows");
+  var shown = document.getElementById("shown");
+
+  function listed(items) {
+    return items.join("; ");
+  }
+
+  function toolCalls(row) {
+    return Object.keys(row.tool_calls).map(function (verb) {
+      return verb + " " + row.tool_calls[verb];
+    }).join("; ");
+  }
+
+  function references(row) {
+    return row.references.map(function (item) {
+      return item.reference + " (" + item.decision + ", run " + item.run + ")";
+    }).join("; ");
+  }
+
+  function searchText(row) {
+    var parts = [row.public_id, row.started_at, row.harness, row.harness_version, row.parent,
+      row.title, row.gist, row.summary, row.model_fields, row.transcript_sha256,
+      toolCalls(row), references(row)];
+    parts = parts.concat(row.models, row.keywords, row.files_read, row.files_edited, row.files_written);
+    return parts.join(" ").toLowerCase();
+  }
+
+  function keep(row, words, onlyContributions) {
+    if (onlyContributions && row.contributions === 0) { return false; }
+    var text = searchText(row);
+    return words.every(function (word) { return text.indexOf(word) !== -1; });
+  }
+
+  function cell(tr, text, kind) {
+    var td = document.createElement("td");
+    td.textContent = text;
+    if (kind) { td.className = kind; }
+    tr.appendChild(td);
+    return td;
+  }
+
+  function more(row) {
+    var details = document.createElement("details");
+    var summary = document.createElement("summary");
+    summary.textContent = "Details";
+    details.appendChild(summary);
+    var list = document.createElement("dl");
+    [
+      ["Gist", row.gist],
+      ["Summary", row.summary],
+      ["Keywords", listed(row.keywords)],
+      ["Written by a model", row.model_fields],
+      ["Harness version", row.harness_version],
+      ["Models", listed(row.models)],
+      ["Started by session", row.parent],
+      ["Tool calls by verb", toolCalls(row)],
+      ["Project files read", listed(row.files_read)],
+      ["Project files edited", listed(row.files_edited)],
+      ["Project files written", listed(row.files_written)],
+      ["Other files, counted only", String(row.other_files)],
+      ["Transcript sha256", row.transcript_sha256],
+      ["Transcript bytes", row.transcript_bytes === null ? "" : String(row.transcript_bytes)],
+      ["Contributions", references(row)]
+    ].forEach(function (pair) {
+      if (!pair[1]) { return; }
+      var term = document.createElement("dt");
+      term.textContent = pair[0];
+      var value = document.createElement("dd");
+      value.textContent = pair[1];
+      list.appendChild(term);
+      list.appendChild(value);
+    });
+    details.appendChild(list);
+    return details;
+  }
+
+  function show() {
+    var words = search.value.toLowerCase().split(/\s+/).filter(Boolean);
+    while (body.firstChild) { body.removeChild(body.firstChild); }
+    var count = 0;
+    rows.forEach(function (row) {
+      if (!keep(row, words, only.checked)) { return; }
+      count += 1;
+      var tr = document.createElement("tr");
+      cell(tr, row.public_id, "id");
+      cell(tr, row.started_at);
+      cell(tr, row.minutes === null ? "" : String(row.minutes), "number");
+      cell(tr, row.harness);
+      cell(tr, row.title);
+      cell(tr, String(row.contributions), "number");
+      cell(tr, "").appendChild(more(row));
+      body.appendChild(tr);
+    });
+    shown.textContent = count + " of " + rows.length + " sessions shown";
+  }
+
+  search.addEventListener("input", show);
+  only.addEventListener("change", show);
+  show();
+})();
+</script>
+</body>
+</html>

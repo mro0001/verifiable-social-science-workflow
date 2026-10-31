@@ -1,0 +1,71 @@
+{
+  "model": "mistral-small:22b",
+  "question": "The ideal candidate for this internship is someone who is",
+  "n_per_condition": 60,
+  "temperature": 1.0,
+  "conditions": {
+    "none": {
+      "label": "Question only",
+      "n": 60,
+      "distinct": 16,
+      "top_word": "proactive",
+      "top_pct": "30.0",
+      "listed": [
+        {
+          "word": "proactive",
+          "pct": "30.0"
+        },
+        {
+          "word": "adaptable",
+          "pct": "28.3"
+        },
+        {
+          "word": "resilient",
+          "pct": "6.7"
+        }
+      ]
+    },
+    "context": {
+      "label": "Plus the job posting",
+      "n": 60,
+      "distinct": 15,
+      "top_word": "analytical",
+      "top_pct": "25.0",
+      "listed": [
+        {
+          "word": "analytical",
+          "pct": "25.0"
+        },
+        {
+          "word": "curious",
+          "pct": "23.3"
+        },
+        {
+          "word": "proactive",
+          "pct": "16.7"
+        }
+      ]
+    },
+    "definition": {
+      "label": "Plus a definition",
+      "n": 60,
+      "distinct": 10,
+      "top_word": "meticulous",
+      "top_pct": "30.0",
+      "listed": [
+        {
+          "word": "meticulous",
+          "pct": "30.0"
+        },
+        {
+          "word": "reliable",
+          "pct": "28.3"
+        },
+        {
+          "word": "organized",
+          "pct": "11.7"
+        }
+      ]
+    }
+  }
+}

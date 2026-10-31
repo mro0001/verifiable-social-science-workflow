@@ -1,0 +1,20 @@
+{
+  "estimates": {
+    "income_k": "0.011",
+    "intercept": "2.448"
+  },
+  "model": "OLS",
+  "n": 40,
+  "outputs": [
+    "table_model.csv"
+  ],
+  "params": {
+    "alpha": 0.05,
+    "model_formula": "satisfaction ~ income_k",
+    "round_digits": 3
+  },
+  "params_sha256": "sha256:f2dd99589ab9088ba40d9eacf1ca176fd2f2ef4a829a07a0c9850fb817ecb6b4",
+  "script": "s3_model.py",
+  "spec": "satisfaction ~ income_k",
+  "step": "model"
+}

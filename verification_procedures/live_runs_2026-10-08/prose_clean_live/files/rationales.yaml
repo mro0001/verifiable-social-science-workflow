@@ -1,0 +1,21 @@
+# The AI's comment per change (synthetic). anchor = the revised sentence, or the deleted one.
+- id: r01
+  anchor: Prior work has focused mainly on private firms.
+  kind: move
+  rationale: Moved the gap statement ahead of the study aim so the aim answers it.
+- id: r02
+  anchor: This study examines whether structured interviews are associated with lower first-year turnover in municipal agencies.
+  kind: edit
+  rationale: Rewrote "In this study we examine" as "This study examines" for a more direct opening; the aim is unchanged.
+- id: r03
+  anchor: Structured interviews ask every candidate the same questions in the same order.
+  kind: edit
+  rationale: Rephrased the definition in plainer words and made explicit that the order of questions is also fixed, which "standardize" implied.
+- id: r04
+  anchor: Agencies that adopted the format did so for a variety of different reasons, and those reasons varied a great deal.
+  kind: delete
+  rationale: Deleted a redundant sentence that repeated itself and carried no evidence.
+- id: r05
+  anchor: The next section turns to the interview protocol itself.
+  kind: insert
+  rationale: Added a signpost sentence pointing to the next section.

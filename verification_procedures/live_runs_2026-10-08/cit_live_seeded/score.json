@@ -1,0 +1,47 @@
+{
+  "faults": 13,
+  "caught": [
+    "F01_fabricated_doi",
+    "F02_wrong_year",
+    "F03_wrong_author",
+    "F04_wrong_initials",
+    "F05_preprint_as_published",
+    "F06_key_missing_from_refs",
+    "F07_paraphrase_as_quote",
+    "F08_number_not_in_source",
+    "F09_term_not_in_source",
+    "F10_source_contradicts",
+    "F11_abstract_only",
+    "F12_ai_sourced_author_worded_overclaims",
+    "F13_unknown_origin"
+  ],
+  "missed": [],
+  "recall": 1.0,
+  "extra_findings": [
+    {
+      "check": "judge_support",
+      "item": "r05",
+      "message": "source does not support the claim: The source states retention fell by 24%, whereas the claim incorrectly asserts a 42% decline."
+    },
+    {
+      "check": "judge_support",
+      "item": "r07",
+      "message": "source does not support the claim: The source describes the records as 'administrative traces' but does not use the specific term 'civic paradata' attributed to Marchetti in the claim."
+    },
+    {
+      "check": "check_access",
+      "item": "r02",
+      "message": "not checked: no usable retrieved copy of @ferrante2021"
+    },
+    {
+      "check": "check_access",
+      "item": "r11",
+      "message": "not checked: no usable retrieved copy of @pruitt2022"
+    },
+    {
+      "check": "judge_support",
+      "item": "r06",
+      "message": "source only partly supports the claim: The source specifies that the comparison was against volunteers receiving only a verbal briefing, whereas the claim broadly states 'those who did not' receive written descriptions, omitting this specific condition."
+    }
+  ]
+}

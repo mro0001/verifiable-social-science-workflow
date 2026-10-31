@@ -1,0 +1,1 @@
+{"verdict": "does_not_support", "reason": "The source explicitly states that recognition events had no measurable effect on exit and that exit actually rose slightly, which directly contradicts the claim that they reduced exit."}

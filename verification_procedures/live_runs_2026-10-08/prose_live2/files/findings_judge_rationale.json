@@ -1,0 +1,23 @@
+[
+  {
+    "check": "judge_rationale",
+    "evidence": "The rationale claims 'Style' but the edit swaps the citation from '@kim2018' to '@park2020', which alters the evidence … (live:qwen/qwen3.5-122b)",
+    "item": "c04",
+    "message": "rationale misdescribes the change, and the change alters meaning",
+    "severity": "warning"
+  },
+  {
+    "check": "judge_rationale",
+    "evidence": "The rationale falsely claims only punctuation was fixed while the quoted text changed from 'real conversation about the… (live:qwen/qwen3.5-122b)",
+    "item": "c06",
+    "message": "rationale misdescribes the change, and the change alters meaning",
+    "severity": "warning"
+  },
+  {
+    "check": "judge_rationale",
+    "evidence": "The rationale claims 'tightened wording' but the edit replaces the hedge 'may' and the tentative verb 'suggest' with th… (live:qwen/qwen3.5-122b)",
+    "item": "c08",
+    "message": "rationale misdescribes the change, and the change alters meaning",
+    "severity": "warning"
+  }
+]

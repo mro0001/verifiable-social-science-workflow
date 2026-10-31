@@ -1,0 +1,5 @@
+{
+  "matches": true,
+  "mismatches": [],
+  "reason": "The code explicitly sets `lineterminator=\"\\n\"` and uses a fixed `fieldnames=COLUMNS` list, which directly implements the documented claims of fixed column order and line ending for byte-identical reruns."
+}

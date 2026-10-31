@@ -1,0 +1,79 @@
+[
+  {
+    "id": "c01",
+    "summary": "",
+    "token_diff": {}
+  },
+  {
+    "id": "c02",
+    "summary": "",
+    "token_diff": {}
+  },
+  {
+    "id": "c03",
+    "summary": "numbers: 48 -> 52",
+    "token_diff": {
+      "numbers": {
+        "added": [
+          "52"
+        ],
+        "removed": [
+          "48"
+        ]
+      }
+    }
+  },
+  {
+    "id": "c04",
+    "summary": "citations: kim2018 -> park2020",
+    "token_diff": {
+      "citations": {
+        "added": [
+          "park2020"
+        ],
+        "removed": [
+          "kim2018"
+        ]
+      }
+    }
+  },
+  {
+    "id": "c05",
+    "summary": "",
+    "token_diff": {}
+  },
+  {
+    "id": "c06",
+    "summary": "quotes: felt like a real conversation about the job. -> felt like a genuine conversation about the work.",
+    "token_diff": {
+      "quotes": {
+        "added": [
+          "felt like a genuine conversation about the work."
+        ],
+        "removed": [
+          "felt like a real conversation about the job."
+        ]
+      }
+    }
+  },
+  {
+    "id": "c08",
+    "summary": "strength: may, suggest -> show",
+    "token_diff": {
+      "strength": {
+        "added": [
+          "show"
+        ],
+        "removed": [
+          "may",
+          "suggest"
+        ]
+      }
+    }
+  },
+  {
+    "id": "c09",
+    "summary": "",
+    "token_diff": {}
+  }
+]

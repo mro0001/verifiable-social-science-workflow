@@ -1,0 +1,102 @@
+# The data collection report, one of the three data phase reports.
+# the authors (2026-10-30): "Each of the reports should provide a bullet point outline (with
+# 1-2 word titles) listing each step of the analysis. Then under the outline should be
+# the 1-2 word title followed by the code that executes it. Any description of the data
+# collection/cleaning/analysis processes from the manuscript or appendix, should be
+# listed in a table or bullet points, referencing where in the data scripts this is
+# executed or if it is missing."
+# The report is a verification step for the scholar, and no model decides anything in
+# it. One model step only finds the sentences that describe the phase and the places in
+# the scripts that carry them out. A program checks each quote and each place, and the
+# scholar approves or holds each description.
+#
+# Project conventions this graph reads (Track V, choices 4 and 5):
+#   pipeline.yaml   each step declares its phase, `phase: collection`, `cleaning`, or
+#                   `analysis`, beside its id and script
+#   step marks      a script marks the sections that are its steps with a comment line
+#                   `# step: <title>`. A Python script that marks none has as its steps
+#                   its top-level functions in the order the script calls them, titled
+#                   from their names
+#   final_text.md   the final build's filled-in text, manuscript and appendix
+# The three phase graphs (data_collection, data_cleaning, data_analysis) share their
+# contract, schema, and code. They differ only in the entry step, which names the
+# phase, and in their title, goal, and triggers.
+stream: data_phases
+version: 0.1
+title: Data collection report
+triggers:
+  - The scholar asks for the data collection report.
+  - The scholar asks which steps carry out the data collection and where the manuscript describes them.
+goal: >
+  Show the scholar each step of the data collection as the pipeline's scripts carry it
+  out, as an outline of short titles and then each title with its exact code, file, and
+  lines, and list each sentence of the final build's text that describes the collection
+  with where the scripts carry it out or that it is missing. A program checks each
+  quote against the text and each place against the scripts, no model gives a verdict,
+  and the scholar approves or holds each description.
+contracts: contracts/data_phases.yaml
+schema: schemas/data_phases.yaml
+entry: phase_collection
+exit: report
+nodes:
+  - {id: phase_collection, kind: tool, does: "Name the phase this report shows, collection."}
+  - {id: outline_steps, kind: tool, does: "Read pipeline.yaml and each step's script; list each script's steps (marked sections, or the functions a Python script calls in order) with title, file, lines, and exact code; bundle the final build's text and the numbered scripts for the finding step."}
+  - {id: find_descriptions, kind: judgment, foreach: find_items.json, does: "Find each sentence of the final build's text that describes the phase, quoted exactly, and the places in the scripts that carry it out, or none. Finds only and judges nothing."}
+  - {id: check_descriptions, kind: tool, does: "Check that each quote is in the final build's text and that each place is lines of a script the pipeline declares; name the steps each place falls in."}
+  - {id: report, kind: tool, does: "Write findings.json, report.md, and fields.json with the outline, the code under each title, the descriptions table, and the files read; each description is an item for the scholar."}
+edges:
+  - from: phase_collection
+    rel: LEADS_TO
+    to: outline_steps
+    condition: Always.
+    guidance: Take the steps whose pipeline.yaml entry declares this phase, in pipeline order. Name every step that declares no phase or a phase that is not collection, cleaning, or analysis, since no phase report would show it.
+    pitfalls:
+      - Guessing a step's phase from its script's name or its kind; only the phase the step declares counts.
+      - Dropping a step with no phase silently; it is in no report unless it is named.
+    source: the authors 2026-10-30, track plan V choice 4
+  - from: outline_steps
+    rel: PROVIDES_INPUT_FOR
+    to: find_descriptions
+    condition: Always; one ask for the phase, holding the final build's text and every script of the pipeline with line numbers.
+    guidance: Quote each sentence of the text that describes this phase exactly as written, and give each place in the scripts, a file and its first and last line, that carries it out. Give no place when no code does, so the report can say missing. Judge nothing about whether the code is right or the description is fair.
+    pitfalls:
+      - Rewording a sentence instead of quoting it; the program looks for the quote in the text and reports one it cannot find.
+      - Pointing to code that only resembles the description, such as a filter on another column; give the lines that carry out what the sentence says, or none.
+      - Giving a verdict, a severity, or a fix; the step finds and the scholar decides.
+      - Leaving out a description because no code carries it out; that is the case the report must show as missing.
+    source: the authors 2026-10-30, track plan V choice 5
+  - from: find_descriptions
+    rel: LEADS_TO
+    to: check_descriptions
+    condition: Always; an answer that could not be read leaves no descriptions and a warning.
+    guidance: Look for each quote in the final build's text, ignoring only differences of spacing, quote marks, dashes, and case. Check that each place names a script the pipeline declares and lines inside it. Show both results, and never correct a quote or a place.
+    pitfalls:
+      - Accepting a near quote; a quote that is not in the text is shown as not found for the scholar to judge.
+      - Accepting a place in a file the pipeline does not run, or past a script's last line.
+      - Dropping an answer entry that cannot be read; it is named as a warning.
+    source: the authors 2026-10-30, track plan V choice 5
+  - from: outline_steps
+    rel: PROVIDES_INPUT_FOR
+    to: check_descriptions
+    condition: Always; the outline gives each script's length and steps.
+    guidance: Name the steps each place falls in, with their phase, so the scholar sees which part of the outline the description points to.
+    pitfalls:
+      - Reading the scripts again instead of the outline, which could show other bytes than the outline.
+    source: proposed
+  - from: outline_steps
+    rel: CONVERGES_TO
+    to: report
+    condition: Always.
+    guidance: Give the outline first, one bullet for each step with its short title under its pipeline step, then each title again with its file, its lines, and its code copied exactly. A phase with no step declared says so.
+    pitfalls:
+      - Summarizing or tidying the code under a title; it is copied exactly as the script holds it.
+      - Shortening a long title by hand; the title stays as the script gives it and a note asks for one or two words.
+    source: the authors 2026-10-30
+  - from: check_descriptions
+    rel: CONVERGES_TO
+    to: report
+    condition: Always.
+    guidance: Give each description as a row with its quote, where the scripts carry it out or missing, whether the quote is in the text, and whether each place was confirmed. Each row is an item for the scholar to approve or hold.
+    pitfalls:
+      - Ranking or scoring descriptions; the report shows what was found and checked, and the scholar decides.
+    source: the authors 2026-10-30

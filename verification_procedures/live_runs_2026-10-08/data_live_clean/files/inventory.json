@@ -1,0 +1,68 @@
+{
+  "helpers": [
+    "params_io.py"
+  ],
+  "n_numbers": 5,
+  "n_steps": 3,
+  "outputs": [
+    "clean_survey.csv",
+    "fig_income_by_region.svg",
+    "model_record_model.json",
+    "params_record_clean.csv",
+    "params_record_describe.csv",
+    "params_record_model.csv",
+    "table_descriptives.csv",
+    "table_model.csv"
+  ],
+  "raw": [
+    "raw_survey.csv"
+  ],
+  "scripts": [
+    "s1_clean.py",
+    "s2_describe.py",
+    "s3_model.py"
+  ],
+  "steps": [
+    {
+      "id": "clean",
+      "inputs": [
+        "raw_survey.csv"
+      ],
+      "kind": "prep",
+      "outputs": [
+        "clean_survey.csv",
+        "params_record_clean.csv"
+      ],
+      "runner": "python3",
+      "script": "s1_clean.py"
+    },
+    {
+      "id": "describe",
+      "inputs": [
+        "clean_survey.csv"
+      ],
+      "kind": "table",
+      "outputs": [
+        "table_descriptives.csv",
+        "fig_income_by_region.svg",
+        "params_record_describe.csv"
+      ],
+      "runner": "python3",
+      "script": "s2_describe.py"
+    },
+    {
+      "id": "model",
+      "inputs": [
+        "clean_survey.csv"
+      ],
+      "kind": "model",
+      "outputs": [
+        "table_model.csv",
+        "model_record_model.json",
+        "params_record_model.csv"
+      ],
+      "runner": "python3",
+      "script": "s3_model.py"
+    }
+  ]
+}

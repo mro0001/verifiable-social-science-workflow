@@ -1,0 +1,5 @@
+{
+  "matches": true,
+  "mismatches": [],
+  "reason": "The code correctly implements the documented claims by stripping comments after '#' and raising a ValueError when an indented line is encountered."
+}

@@ -1,0 +1,47 @@
+# The record of the AI's changes (synthetic), as the audit layer's rationales record writes it
+# out. Each entry names one change an AI made, by its anchor (the revised sentence, or the
+# deleted one), its kind, and the reason the AI stated before it. An empty rationale is an AI
+# change with no recorded reason. A change no entry names is the scholar's own. The move is
+# planted as the audit layer writes an AI move made by two edits, a delete entry (r01) and an
+# insert entry (r10) on the same sentence.
+# Planted faults are listed in truth.yaml.
+- id: r01
+  anchor: Prior work has focused mainly on private firms.
+  kind: delete
+  rationale: Moved the gap statement ahead of the study aim so the aim answers it.
+- id: r02
+  anchor: This study examines whether structured interviews are associated with lower first-year turnover in municipal agencies.
+  kind: edit
+  rationale: Rewrote "In this study we examine" as "This study examines" for a more direct opening; the aim is unchanged.
+- id: r03
+  anchor: We draw on personnel records from 52 agencies in three states [@alvarez2019].
+  kind: edit
+  rationale: Updated the agency count from 48 to 52 to match the sample table.
+- id: r04
+  anchor: First-year turnover is especially costly for small agencies [@park2020].
+  kind: edit
+  rationale: Style. Smoothed the sentence so it reads more naturally.
+- id: r05
+  anchor: One clerk said the process "felt like a genuine conversation about the work."
+  kind: edit
+  rationale: Fixed punctuation in the quotation.
+- id: r06
+  anchor: The results show that structured interviews reduce early exits by 9 percentage points.
+  kind: edit
+  rationale: Tightened wording.
+- id: r07
+  anchor: The next section turns to the interview protocol itself.
+  kind: edit
+  rationale: Added a signpost sentence pointing to the next section.
+- id: r08
+  anchor: This pattern held across agencies of different sizes.
+  kind: edit
+  rationale: Clarified that the pattern holds across agency sizes.
+- id: r09
+  anchor: Managers in our sample called the format slow but fair.
+  kind: edit
+  rationale: ''
+- id: r10
+  anchor: Prior work has focused mainly on private firms.
+  kind: insert
+  rationale: Moved the gap statement ahead of the study aim so the aim answers it.

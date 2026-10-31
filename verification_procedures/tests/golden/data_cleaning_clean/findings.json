@@ -1,0 +1,9 @@
+[
+  {
+    "check": "outline_steps",
+    "evidence": "",
+    "item": "s1_clean.py line 31",
+    "message": "The function winsorize is never called by the script, so it is not a step.",
+    "severity": "info"
+  }
+]

@@ -1,0 +1,24 @@
+You are proposing a fix for one citation problem in a manuscript. The author decides; you propose.
+
+Goal: Check every AI-contributed citation in the draft against its source, so the author can read one report and confirm any verdict without redoing the work. Two questions per citation: (1) is the cited work real and described correctly; (2) does the cited passage support the sentence that cites it. Citations the author introduced, in sentences the author wrote, are listed as the author's warrant and not checked.
+
+Know this before acting:
+- settle_verdicts -> draft_fix: Propose the smallest change that makes the sentence true to the source, or replace or drop the citation. Never invent a new source.
+    avoid: Proposing a replacement source that was never retrieved or checked (a new fabrication).
+    avoid: Fixing the wording toward the preprint when the reference cites the journal version (DeepSeek-R1 case).
+- settle_unanimous -> draft_fix: Same as on the other branch; problem rows can exist without a support verdict problem (e.g. a fabricated reference).
+    avoid: Proposing a replacement source that was never retrieved or checked.
+- draft_fix -> record_verdicts: does_not_support is blocking; partly is a warning; a disagreement between checkers is a warning.
+    avoid: Dropping a judgment that came back unparseable instead of failing the step.
+
+Claim sentence: Exit is steepest among volunteers recruited through online portals [@ferrante2021].
+Cited work: @ferrante2021: Ferrante, L. (2021). Digital recruitment and early exit among civic volunteers. Nonprofit Management Review. doi:10.5555/nmr.2021.0388
+Reference check: citation may not exist: no record for DOI 10.5555/nmr.2021.0388 (not in the metadata cache, and live lookup was off)
+Verdict: not_checked: no usable retrieved copy
+Problems found: ["citation may not exist: no record for DOI 10.5555/nmr.2021.0388 (not in the metadata cache, and live lookup was off)", "not checked: no usable retrieved copy of @ferrante2021"]
+Located passage (): 
+
+Propose the smallest change that makes the sentence and its reference true to the source: correct the reference metadata, reword the sentence to what the passage says (give the new sentence), remove quotation marks from words the source does not use, or drop the citation and mark the claim as needing a source. Do not name a new source that has not been retrieved and checked.
+
+Answer with a single JSON object and nothing else:
+{"fix": "<one or two sentences>"}

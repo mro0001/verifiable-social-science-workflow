@@ -1,0 +1,70 @@
+# Connecting a project to a university computing cluster, written as a procedural
+# graph (proposal Overview, operational tasks; appendix A2.4, "Procedural graphs",
+# "Operational tasks"). The run reads the scholar's settings (hpc.yaml) and, when
+# given, a copy of the scholar's ssh config (ssh_config). It never reads a key file.
+# Code lives in implementations/ops/, and run_commands and report are shared with
+# the GitHub procedure.
+stream: ops
+version: 0.1
+title: Connect a project to a university computing cluster
+goal: >
+  Check that a project can reach the scholar's cluster over SSH with no password
+  prompt, that its folder exists there, and that the scheduler and the modules it
+  needs answer. Run commands only when the settings file says so, and never read a
+  key file.
+triggers:
+  - The scholar asks to connect a project to a computing cluster.
+  - Work is about to go to the cluster before the connection has been checked.
+contracts: contracts/ops_hpc.yaml
+entry: hpc_settings
+exit: report
+nodes:
+  - {id: hpc_settings, kind: tool, does: "Read the settings file, fill each missing field with its default, and block on a missing or badly formed alias, host, user, identity file, or remote folder, or a scheduler this procedure does not know."}
+  - {id: hpc_ssh_entry, kind: tool, does: "Find the alias's Host entry in the copy of the ssh config, say whether its host name, user, and identity file match the settings, and write the entry to add, without opening the identity file."}
+  - {id: hpc_plan, kind: tool, does: "Plan the commands that connect with no password prompt, make the project folder on the cluster, ask the scheduler for its version, and load each module."}
+  - {id: run_commands, kind: tool, replay: network, does: "Run the planned commands in order when the settings file sets apply to true, and stop at the first failure. Otherwise list them as planned."}
+  - {id: report, kind: tool, does: "Write a report with the settings, the ssh entry, and each command with its result."}
+edges:
+  - from: hpc_settings
+    rel: LEADS_TO
+    to: hpc_ssh_entry
+    check: "settings.json:valid == true"
+    condition: The settings file names an alias, a host, a user, an identity file, and a remote folder, and nothing in it is blocking.
+    guidance: Compare the ssh entry with the settings before any command is planned.
+    pitfalls:
+      - Copying a key into the run folder, when the settings name the identity file by its path and nothing reads it.
+    source: proposal Overview (operational tasks); appendix A2.4 (Procedural graphs, Operational tasks)
+  - from: hpc_settings
+    rel: CONVERGES_TO
+    to: report
+    check: "settings.json:valid == false"
+    condition: The settings file has a blocking problem.
+    guidance: Report each problem with the field it names, and plan no command.
+    pitfalls:
+      - Guessing a host, a user, or a folder the settings file does not give.
+    source: appendix A2.4 (Procedural graphs, Operational tasks)
+  - from: hpc_ssh_entry
+    rel: LEADS_TO
+    to: hpc_plan
+    condition: Always, once the ssh entry is compared.
+    guidance: Give the scholar the entry to add when it is missing or differs, and plan the commands either way.
+    pitfalls:
+      - Writing to the scholar's ssh config, when the scholar adds the entry by hand from the report.
+    source: proposal Overview (operational tasks); appendix A2.4 (Procedural graphs, Operational tasks)
+  - from: hpc_plan
+    rel: LEADS_TO
+    to: run_commands
+    condition: Always, once the commands are planned.
+    guidance: Run the commands only when the settings file sets apply to true, the connection test first.
+    pitfalls:
+      - A connection test that can wait for a password, when the first command must fail at once if the key is not accepted.
+      - Running anything when apply is false, when a first run only plans.
+    source: proposal Overview (operational tasks); appendix A2.4 (Procedural graphs, Operational tasks)
+  - from: run_commands
+    rel: CONVERGES_TO
+    to: report
+    condition: Always, once the commands ran or were listed as planned.
+    guidance: Report each command with its result, and name the one that failed and its last error line.
+    pitfalls:
+      - Going on after a failed command, when each later command needs the connection the first one tests.
+    source: appendix A2.4 (Procedural graphs, Operational tasks)

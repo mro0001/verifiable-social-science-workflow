@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Observability view</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <strong>Observability view</strong>
+    <span class="badge" id="live"></span>
+  </div>
+  <dl class="meta" id="meta"></dl>
+  <ul class="notes" id="notes"></ul>
+  <nav class="tabs" role="tablist">
+    <button type="button" data-tab="traces" role="tab">Sessions and runs</button>
+    <button type="button" data-tab="files" role="tab">Files</button>
+    <button type="button" data-tab="kb" role="tab">Knowledge base</button>
+  </nav>
+</header>
+<main>
+  <p class="banner" id="nodata" hidden>The view's data file, data.js, is missing or did not load. Build the view with python3 -m observability build.</p>
+
+  <section class="tab" id="tab-traces">
+    <div class="toolbar">
+      <label>Source <select id="filter-source"></select></label>
+      <label>Project <select id="filter-project"></select></label>
+    </div>
+    <div class="card tablewrap"><table id="traces"></table></div>
+    <div class="grid2" id="trace-view">
+      <div class="card">
+        <h3 id="timeline-title"></h3>
+        <div class="keys" id="timeline-keys"></div>
+        <div class="wf" id="timeline"></div>
+      </div>
+      <aside class="panel" id="detail"></aside>
+    </div>
+  </section>
+
+  <section class="tab" id="tab-files">
+    <div class="toolbar">
+      <label>Role <select id="filter-role"></select></label>
+      <label>Session or run <select id="filter-trace"></select></label>
+    </div>
+    <div class="card tablewrap"><table id="files"></table></div>
+  </section>
+
+  <section class="tab" id="tab-kb">
+    <div class="tiles" id="kb-tiles"></div>
+    <h3>Retrievals</h3>
+    <div class="card tablewrap"><table id="kb-reads"></table></div>
+    <h3>Entries</h3>
+    <div class="card tablewrap"><table id="kb-entries"></table></div>
+  </section>
+</main>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

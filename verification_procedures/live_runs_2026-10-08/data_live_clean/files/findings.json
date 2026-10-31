@@ -1,0 +1,16 @@
+[
+  {
+    "check": "check_params",
+    "evidence": "JSON layout, not an analytic choice",
+    "item": "params_io.py:L106",
+    "message": "literal declared not a parameter",
+    "severity": "info"
+  },
+  {
+    "check": "check_params",
+    "evidence": "layout margin in pixels, not an analytic choice",
+    "item": "s2_describe.py:L73",
+    "message": "literal declared not a parameter",
+    "severity": "info"
+  }
+]

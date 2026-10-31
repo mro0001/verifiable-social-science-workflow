@@ -1,0 +1,6 @@
+# SYNTHETIC reference list (CSL-YAML-like) for the test story.
+# The three entries are copied from the seeded citations fixture.
+references:
+  - {id: castellanos2017, type: article-journal, author: [{family: Castellanos, given: Rosa}, {family: Ibe, given: Kelechi}], issued: 2017, title: Fit and retention in local volunteering, container-title: Voluntary Sector Studies, DOI: 10.5555/vss.2017.0021}
+  - {id: dumont2014, type: article-journal, author: [{family: Dumont, given: Claire}], issued: 2014, title: Fixed-term assignments and volunteer re-enlistment, container-title: Voluntary Sector Studies, DOI: 10.5555/vss.2014.0048}
+  - {id: nakamura2020, type: article-journal, author: [{family: Nakamura, given: Emi}], issued: 2020, title: Recognition events and the long-serving volunteer, container-title: Voluntary Sector Studies, DOI: 10.5555/vss.2020.0063}

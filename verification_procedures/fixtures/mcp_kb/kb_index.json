@@ -1,0 +1,44 @@
+{
+  "description": "Three made-up entries for the mcp_kb tests.",
+  "entries": [
+    {
+      "body": "# The build ledger\n\nThe build ledger holds one row per numbered build. Each row names the build's source hash.\n\n1. A row is added after the build passes its checks.\n2. A row is never edited once written.",
+      "description": "The build ledger holds one row per numbered build.",
+      "group": "FORMATS",
+      "id": "formats-ledger",
+      "path": "formats/formats-ledger.md",
+      "point": "The build ledger holds one row per numbered build. Each row names the build's source hash.",
+      "source": "docs/ledger.md",
+      "source_commit": "sha256:111111111111",
+      "title": "The build ledger",
+      "updated": "2026-10-01"
+    },
+    {
+      "body": "# The numbers manifest\n\nThe numbers manifest maps each placeholder key to the output that produced it. The prose cites keys and never typed numerals.\n\n1. Each key names its output file and the field that holds the value.\n2. A build resolves every key and records the manifest beside its row in the ledger.\n\n## Consult also\n\n- formats-ledger - for the rows a build writes.",
+      "description": "The numbers manifest maps each placeholder key to the output that produced it.",
+      "group": "FORMATS",
+      "id": "formats-manifest",
+      "path": "formats/formats-manifest.md",
+      "point": "The numbers manifest maps each placeholder key to the output that produced it. The prose cites keys and never typed numerals.",
+      "source": "docs/manifest.md",
+      "source_commit": "sha256:222222222222",
+      "title": "The numbers manifest",
+      "updated": "2026-10-02"
+    },
+    {
+      "body": "# The review loop\n\nThe scholar reviews each build in Word and hands it back. Every accepted change is carried to the source by hand.\n\n1. The loop compares the return with the baseline build.\n2. A pending change becomes a question, and the checks run again on the next build.",
+      "description": "The scholar reviews each build in Word and hands it back.",
+      "group": "LOOP",
+      "id": "loop-review",
+      "path": "loop/loop-review.md",
+      "point": "The scholar reviews each build in Word and hands it back. Every accepted change is carried to the source by hand.",
+      "source": "docs/review.md",
+      "source_commit": "sha256:333333333333",
+      "title": "The review loop",
+      "updated": "2026-10-03"
+    }
+  ],
+  "schema": "kb-index",
+  "schema_version": 1,
+  "title": "Synthetic knowledge base for the server graph"
+}

@@ -1,0 +1,27 @@
+# The test pipeline of the data phase reports, a small synthetic survey. Each step declares
+# its phase, collection, cleaning, or analysis, and each phase report shows the steps of
+# its own phase. The collection and analysis scripts mark their steps with a comment line
+# `# step: <title>`, and the cleaning script marks none, so its steps are its functions in
+# the order the script calls them.
+steps:
+  - id: collect
+    phase: collection
+    kind: prep
+    runner: python3
+    script: s0_collect.py
+    inputs: []
+    outputs: [raw_survey.csv]
+  - id: clean
+    phase: cleaning
+    kind: prep
+    runner: python3
+    script: s1_clean.py
+    inputs: [raw_survey.csv]
+    outputs: [clean_survey.csv]
+  - id: model
+    phase: analysis
+    kind: model
+    runner: python3
+    script: s2_model.py
+    inputs: [clean_survey.csv]
+    outputs: [table_model.csv]

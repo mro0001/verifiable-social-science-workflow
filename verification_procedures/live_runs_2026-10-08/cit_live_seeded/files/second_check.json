@@ -1,0 +1,42 @@
+[
+  {
+    "agree": true,
+    "verdict": "does_not_support",
+    "reason": "The source reports a 24% drop in twelve‑month retention, not the 42% claimed.",
+    "item_id": "r05",
+    "executor": "live:openai/gpt-oss-120b",
+    "prompt_sha256": "sha256:cc72eece51d6a84440b476ce0da25f0111554817f4602649a844f71806b8066b"
+  },
+  {
+    "agree": true,
+    "verdict": "partly",
+    "reason": "The source shows longer tenure only compared to volunteers given a verbal briefing, while the claim omits this specific condition.",
+    "item_id": "r06",
+    "executor": "live:openai/gpt-oss-120b",
+    "prompt_sha256": "sha256:3a17499b7e77bae88ed78c2b3a5710c90a49fe57f7e89db084175f9414f9f5a6"
+  },
+  {
+    "agree": true,
+    "verdict": "does_not_support",
+    "reason": "The source only refers to the records as “administrative traces” and does not use the term “civic paradata.”",
+    "item_id": "r07",
+    "executor": "live:openai/gpt-oss-120b",
+    "prompt_sha256": "sha256:29162c43590468bb7958c535243fc8e618d1e2755a637e76f55149dbb883a189"
+  },
+  {
+    "agree": true,
+    "verdict": "does_not_support",
+    "reason": "The source states recognition events had no measurable effect and even a slight increase in exit, contradicting the claim that they reduced exit.",
+    "item_id": "r08",
+    "executor": "live:openai/gpt-oss-120b",
+    "prompt_sha256": "sha256:a09ccc68a216efdc77a5da61837fd1192ea9c49b605af9ccf0ac732e0baea8df"
+  },
+  {
+    "agree": true,
+    "verdict": "does_not_support",
+    "reason": "The source reports the effect in only two of the three cities, with a non‑significant difference in the third, contradicting the claim of an effect in all three cities.",
+    "item_id": "r13",
+    "executor": "live:openai/gpt-oss-120b",
+    "prompt_sha256": "sha256:f132cc2cd57d1791543a7bcbd54b8eeaac1c1fff7d7af4ee95caafe793833578"
+  }
+]

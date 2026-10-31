@@ -1,0 +1,107 @@
+[
+  {
+    "check": "check_docs",
+    "evidence": "present: Purpose",
+    "item": "s2_describe.py",
+    "message": "module docstring lacks sections: Inputs, Outputs, Parameters, Assumptions",
+    "severity": "blocking"
+  },
+  {
+    "check": "check_numbers",
+    "evidence": "numbers.yml '0.015'; replayed table_model.csv estimate = '0.011'",
+    "item": "slope_income_k",
+    "message": "manuscript number does not come from the process",
+    "severity": "blocking"
+  },
+  {
+    "check": "check_params",
+    "evidence": "min_age = 21",
+    "item": "s1_clean.py:L42",
+    "message": "hard-coded parameter: min_age = 21 here, params.yaml sets min_age: 18",
+    "severity": "blocking"
+  },
+  {
+    "check": "check_raw",
+    "evidence": "recorded sha256:2ce927e550d1..., now sha256:6d2976a77b36...",
+    "item": "raw_survey.csv",
+    "message": "raw data changed after acquisition",
+    "severity": "blocking"
+  },
+  {
+    "check": "check_records",
+    "evidence": "record sha256:f2dd99589ab9..., current sha256:0a5141ade027...",
+    "item": "model_record_model.json",
+    "message": "stale model: record was made under a different params.yaml",
+    "severity": "blocking"
+  },
+  {
+    "check": "replay_pipeline",
+    "evidence": "line 16: committed '  \"params_sha256\": \"sha256:f2dd99589ab9088ba40d9eacf1ca176fd2f2ef4a829' / replayed '  \"params_sha256\": \"sha256:0a5141ade02767b3bc4075e416ab782c0e31d33014e'",
+    "item": "model_record_model.json",
+    "message": "output does not reproduce: hand-edited or stale",
+    "severity": "blocking"
+  },
+  {
+    "check": "replay_pipeline",
+    "evidence": "line 4: committed 'South,10,0,91.320,3.200' / replayed 'South,10,0,86.820,3.200'",
+    "item": "table_descriptives.csv",
+    "message": "output does not reproduce: hand-edited or stale",
+    "severity": "blocking"
+  },
+  {
+    "check": "check_docs",
+    "evidence": "min_age - respondents younger than this are excluded.",
+    "item": "s1_clean.py",
+    "message": "Parameters section names min_age, but the script never reads it from params.yaml",
+    "severity": "warning"
+  },
+  {
+    "check": "judge_method_docs",
+    "evidence": "says 'Drop rows with missing income: keep a row only if its income cell has text.', code 'return [r for r in rows if r[\"age\"].strip() != \"\"]'; says 'min_age - respondents younger than this are excluded.', code 'min_age = 21' [live:qwen/qwen3.5-122b]",
+    "item": "s1_clean",
+    "message": "documentation does not describe what the code does (judgment: confirm)",
+    "severity": "warning"
+  },
+  {
+    "check": "judge_method_docs",
+    "evidence": "says 'Drop rows whose income cell is blank', code 'return [r for r in rows if r[\"age\"].strip() != \"\"]'; says 'keep a row only if its income cell has text', code 'return [r for r in rows if r[\"age\"].strip() != \"\"]' [live:qwen/qwen3.5-122b]",
+    "item": "s1_clean.drop_missing",
+    "message": "documentation does not describe what the code does (judgment: confirm)",
+    "severity": "warning"
+  },
+  {
+    "check": "judge_method_docs",
+    "evidence": "says 'Keep respondents aged at least min_age', code 'min_age = 21' [live:qwen/qwen3.5-122b]",
+    "item": "s1_clean.filter_age",
+    "message": "documentation does not describe what the code does (judgment: confirm)",
+    "severity": "warning"
+  },
+  {
+    "check": "replay_pipeline",
+    "evidence": "<replay>/s3_model.py:50: UserWarning: 3 rows dropped: blank satisfaction or income_k   warnings.warn(\"%d rows dropped: blank %s or %s\" % (dropped, outcome, predictor))",
+    "item": "s3_model.py",
+    "message": "step wrote warnings to stderr while exiting 0",
+    "severity": "warning"
+  },
+  {
+    "check": "check_params",
+    "evidence": "min_age: 18",
+    "item": "min_age",
+    "message": "set in params.yaml but read by no script",
+    "severity": "info"
+  },
+  {
+    "check": "check_params",
+    "evidence": "JSON layout, not an analytic choice",
+    "item": "params_io.py:L106",
+    "message": "literal declared not a parameter",
+    "severity": "info"
+  },
+  {
+    "check": "check_params",
+    "evidence": "layout margin in pixels, not an analytic choice",
+    "item": "s2_describe.py:L58",
+    "message": "literal declared not a parameter",
+    "severity": "info"
+  }
+]

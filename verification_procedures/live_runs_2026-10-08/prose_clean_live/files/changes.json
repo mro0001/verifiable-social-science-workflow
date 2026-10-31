@@ -1,0 +1,47 @@
+[
+  {
+    "after": "Prior work has focused mainly on private firms.",
+    "b_index": 3,
+    "before": "Prior work has focused mainly on private firms.",
+    "id": "c01",
+    "kind": "move",
+    "moved": true,
+    "r_index": 1
+  },
+  {
+    "after": "This study examines whether structured interviews are associated with lower first-year turnover in municipal agencies.",
+    "b_index": 1,
+    "before": "In this study we examine whether structured interviews are associated with lower first-year turnover in municipal agencies.",
+    "id": "c02",
+    "kind": "edit",
+    "moved": false,
+    "r_index": 2
+  },
+  {
+    "after": "Structured interviews ask every candidate the same questions in the same order.",
+    "b_index": 4,
+    "before": "Structured interviews standardize the questions that every candidate answers.",
+    "id": "c03",
+    "kind": "edit",
+    "moved": false,
+    "r_index": 4
+  },
+  {
+    "after": "",
+    "b_index": 7,
+    "before": "Agencies that adopted the format did so for a variety of different reasons, and those reasons varied a great deal.",
+    "id": "c04",
+    "kind": "delete",
+    "moved": false,
+    "r_index": null
+  },
+  {
+    "after": "The next section turns to the interview protocol itself.",
+    "b_index": null,
+    "before": "",
+    "id": "c05",
+    "kind": "insert",
+    "moved": false,
+    "r_index": 10
+  }
+]

@@ -1,0 +1,5 @@
+{
+"matches": true,
+"mismatches": [],
+"reason": "The docstring correctly claims the function fits a linear model via least squares and returns intercept, slope, and standard errors, and the comment on line 63 accurately describes the calculation of residual variance using n-2 degrees of freedom as implemented in the code."
+}

@@ -1,0 +1,121 @@
+# The references procedure, built to the authors' four steps for citations (2026-10-30).
+# The report is a verification step for the scholar. No model gives a verdict, a
+# severity, a fix, or a second opinion. A model's only work is to locate a passage in a
+# source when the record holds no quote.
+stream: citations
+version: 0.2
+goal: >
+  Lay out, for the scholar to approve or hold, each citation in the final build. Say
+  which citations came from an AI in the record of sessions and artifacts. For each one,
+  say whether the cited work can be found, and for each work that can be found give the
+  sentence, the reason the AI gave for the citation, and a quote from the source with a
+  check that the quote is in the source text. Programs establish the facts and the
+  record supplies the evidence. The scholar decides every item.
+contracts: contracts/citations.yaml
+schema: schemas/citations.yaml
+entry: pin_document
+exit: report
+nodes:
+  - {id: pin_document, kind: tool, does: "Hash the final build's text (draft.md) and every other input, so the report names exactly what was read."}
+  - {id: extract_citations, kind: tool, does: "One row for each cited key in each sentence of the final build's text, with the sentence and its locator."}
+  - {id: match_references, kind: tool, does: Match each cited key to the reference list. A cited key with no entry and an entry the final build does not cite are each a note.}
+  - {id: read_origin, kind: tool, does: "Read each citation's origin from the citation provenance record, ai, scholar, or unknown, with the record's evidence for it."}
+  - {id: fetch_metadata, kind: tool, replay: network, does: "Look up the DOI of each work an AI citation names, in the metadata cache first, then Crossref, then DataCite for a DOI Crossref lacks, unless VG_OFFLINE=1."}
+  - {id: check_existence, kind: tool, does: "Say for each AI citation's work whether it was found, not found, or not looked up, and show the record that was found."}
+  - {id: pin_sources, kind: tool, does: "Pin the source texts (source_<citekey>.txt) with their access level and sha256, so each quote check names the copy it read."}
+  - {id: gather_reason_and_quote, kind: tool, does: "For each AI citation whose work was found, take the AI's recorded reason and any recorded quote from the provenance record, and mark the citations that have no recorded quote for the passage step."}
+  - {id: locate_passage, kind: judgment, foreach: rows_reasons.json, where: "status in [to_locate]", does: "For a citation whose record holds no quote that is in its source text, find the passage in the source text that the sentence draws on, and give it word for word, or a section pointer, or a paraphrase marked as one. No verdict."}
+  - {id: verify_quote, kind: tool, does: "Check every exact quote, from the record or from the passage step, against the source text, and say whether it was found and where."}
+  - {id: report, kind: tool, does: "Write fields.json, findings.json, and report.md. Counts first, then each citation with its sentence, origin, and evidence, and for AI citations the lookup, the reason, the quote, and the quote check."}
+edges:
+  - from: pin_document
+    rel: LEADS_TO
+    to: extract_citations
+    condition: Always.
+    guidance: Read the citations from the pinned text of the final build only. The hash in doc_pin.json is the text the report names.
+    pitfalls:
+      - Reading a working draft instead of the final build, so a citation removed before the build is listed or one added at the build is missed.
+    source: the authors' step 1, 2026-10-30
+  - from: extract_citations
+    rel: LEADS_TO
+    to: match_references
+    condition: Always.
+    guidance: Match each cited key to its reference entry. A key with no entry is a note for the scholar, and an entry the final build does not cite is listed and not checked.
+    pitfalls:
+      - Checking a work that is in the reference list but no longer cited in the final build.
+      - Dropping a cited key that has no reference entry instead of listing it.
+    source: the authors' step 1, 2026-10-30
+  - from: match_references
+    rel: LEADS_TO
+    to: read_origin
+    condition: Always.
+    guidance: Take the origin from the provenance record, which says who first named the work in the record. Show the record's evidence, the session's public id, the time, and the excerpt.
+    pitfalls:
+      - Deciding the origin from the text of the manuscript instead of from the record.
+      - Checking a citation the scholar named first. Step 3 covers AI citations only.
+      - Showing a harness session id or a full path in place of the public id or the path inside the project.
+    source: the authors' steps 2 and 4, 2026-10-30
+  - from: read_origin
+    rel: LEADS_TO
+    to: fetch_metadata
+    condition: Always.
+    guidance: Look up each AI citation's work by its DOI, in the cache first. A work with no DOI is listed as not looked up.
+    pitfalls:
+      - Counting a lookup that failed on the network as a work that does not exist.
+      - Looking up the scholar's own citations, which step 3 leaves out.
+    source: the authors' step 3a, 2026-10-30
+  - from: fetch_metadata
+    rel: LEADS_TO
+    to: check_existence
+    condition: Always.
+    guidance: Say whether each work was found and where, and show the record that was found beside the reference entry. What cannot be found is a note for the scholar, never a blocking finding.
+    pitfalls:
+      - Calling a work fake because it could not be found. The scholar decides whether there is an issue.
+      - Treating a work that was found as one that supports the sentence. Being found says nothing about use.
+    source: the authors' step 3a, 2026-10-30
+  - from: check_existence
+    rel: LEADS_TO
+    to: pin_sources
+    condition: Always.
+    guidance: Record the sha256 and access level of every source text, so each quote check names the exact copy it read.
+    pitfalls:
+      - Checking a quote against one version of a work while the reference cites another, such as a preprint for a journal article.
+    source: project history
+  - from: pin_sources
+    rel: LEADS_TO
+    to: gather_reason_and_quote
+    condition: Always.
+    guidance: Take the reason and any quote from the record first. The reason is the AI's own words around the work's first AI appearance. When none is recorded, say no reason recorded.
+    pitfalls:
+      - Writing a reason the record does not hold.
+      - Asking a model for a quote when the record already holds one.
+    source: the authors' steps 3b and 4, 2026-10-30
+  - from: gather_reason_and_quote
+    rel: LEADS_TO
+    to: locate_passage
+    condition: Always. The step asks once for each citation marked to_locate, and asks nothing when there is none.
+    guidance: Copy the passage from the source text character for character, one to three sentences, and give the nearest page marker or section heading. When no passage is word for word, point to the section or give a paraphrase and mark it as one. Say nothing about whether the source supports the sentence.
+    pitfalls:
+      - A paraphrase presented as a direct quote (Hardwig 1985 case).
+      - Giving a verdict, a rating, or a fix, which the scholar alone decides.
+      - A number lifted from the wrong table (1,634 vs 21,730, Kapoor case). Find the passage the sentence's number comes from.
+      - On an abstract, saying more than the abstract says.
+    source: the authors' step 3b, 2026-10-30
+  - from: locate_passage
+    rel: LEADS_TO
+    to: verify_quote
+    condition: Always.
+    guidance: Look for every exact quote in the source text after normalizing case, quotation marks, dashes, and spaces, and give the page marker or section heading where it was found. A section pointer or a paraphrase is shown as it is and not checked word for word.
+    pitfalls:
+      - A paraphrase presented as a direct quote (Hardwig 1985 case).
+      - Checking a quote against the abstract and reporting it as checked against the full text.
+    source: the authors' step 3b, 2026-10-30
+  - from: verify_quote
+    rel: CONVERGES_TO
+    to: report
+    condition: Always.
+    guidance: Lead with the counts of citations, AI citations, works not found, quotes not found in their source, and AI citations with no recorded reason. Then give each citation with its evidence. Each AI citation is an item for the scholar to approve or hold.
+    pitfalls:
+      - Ranking the citations or giving any verdict. The report lays out facts and the record for the scholar.
+      - Naming an absolute path, a user name, or a harness session id anywhere in the report.
+    source: the ruling of 2026-10-30

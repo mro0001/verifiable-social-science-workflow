@@ -1,0 +1,11 @@
+{
+  "draft_sha256": "sha256:397d3090b864c7dc860a68b869467947287bfdd4f8654494c5b76daa4c637ede",
+  "inputs": {
+    "author_draft.md": "sha256:70e2b34deb4711e12f261243102aa72bec5fd07249439a883b2f4cecd3d2239b",
+    "citation_log.yaml": "sha256:b34a6a450d4b2c8fa3038d97c0847872478ef545d5b47e7b6993cfa555505a74",
+    "draft.md": "sha256:397d3090b864c7dc860a68b869467947287bfdd4f8654494c5b76daa4c637ede",
+    "metadata_cache.json": "sha256:1608c0317161c5e6596881bd3da7cb9c321336773cda8ae04b9fd86a478b6feb",
+    "prior_checks.json": "sha256:ced26887777072a950cacb61866a12940861d6dedc8863f719d5d33e1c81e1ed",
+    "refs.yaml": "sha256:241a8c061c7977775c4df2e3ff3d678652439af4eb6ed029949b21cca208a729"
+  }
+}

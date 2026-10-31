@@ -1,0 +1,8 @@
+# Manuscript numbers. Prose cites {{num:<key>}}; each value must equal the
+# replayed output it names (from + field, optionally where). Display strings.
+numbers:
+  n_analytic: {value: "41", from: model_record_model.json, field: n}
+  slope_income_k: {value: "0.011", from: table_model.csv, field: estimate, where: {term: income_k}}
+  p_income_k: {value: "0.000", from: table_model.csv, field: p, where: {term: income_k}}
+  mean_income_k_north: {value: "59.311", from: table_descriptives.csv, field: mean_income_k, where: {region: North}}
+  alpha: {value: "0.05", from: params_record_model.csv, field: value, where: {param: alpha}}

@@ -1,0 +1,72 @@
+[
+  {
+    "check": "rationale_coverage",
+    "evidence": "record r09 names it with no reason, Managers in our sample described the format as slow but fair. -> Managers in our sample called the format slow but fair.",
+    "item": "c05",
+    "message": "AI change with no recorded reason",
+    "severity": "blocking"
+  },
+  {
+    "check": "content_handoff",
+    "evidence": "numbers 48 -> 52",
+    "item": "c03",
+    "message": "content change, hand off to data stream",
+    "severity": "warning"
+  },
+  {
+    "check": "content_handoff",
+    "evidence": "citations kim2018 -> park2020",
+    "item": "c04",
+    "message": "content change, hand off to citations stream",
+    "severity": "warning"
+  },
+  {
+    "check": "content_handoff",
+    "evidence": "quotes felt like a real conversation about the job. -> felt like a genuine conversation about the work.",
+    "item": "c06",
+    "message": "content change, hand off to citations stream",
+    "severity": "warning"
+  },
+  {
+    "check": "content_handoff",
+    "evidence": "strength may, suggest -> show",
+    "item": "c08",
+    "message": "content change, hand off to data stream",
+    "severity": "warning"
+  },
+  {
+    "check": "rationale_coverage",
+    "evidence": "The next section turns to the interview protocol itself.",
+    "item": "c09",
+    "message": "kind mismatch, record entry r07 says edit and the diff says insert",
+    "severity": "warning"
+  },
+  {
+    "check": "rationale_coverage",
+    "evidence": "anchor text is present unchanged in revised.md, This pattern held across agencies of different sizes.",
+    "item": "r08",
+    "message": "recorded AI change matches no change between the two texts",
+    "severity": "warning"
+  },
+  {
+    "check": "exclude_author",
+    "evidence": "Agencies adopted the format for many different reasons.",
+    "item": "c07",
+    "message": "the scholar's own change, which no record entry names, listed not checked",
+    "severity": "info"
+  },
+  {
+    "check": "pin_versions",
+    "evidence": "sha256:6120b6a078e5bff2b9acf9b206ea64ebec3ca04646845d15c34c75216348b840",
+    "item": "baseline.md",
+    "message": "baseline is pinned version v001",
+    "severity": "info"
+  },
+  {
+    "check": "pin_versions",
+    "evidence": "sha256:916d5056cdb13387154b57442156ed12c0dfd67503f8e7644c2b8b4411c307eb",
+    "item": "revised.md",
+    "message": "revised hashed for the record (not yet ledgered)",
+    "severity": "info"
+  }
+]

@@ -1,0 +1,1 @@
+{"honest": true, "meaning_changed": false, "reason": "The rationale explicitly identifies the change as a relocation ('Moved the gap statement ahead of the study aim'), which matches the identical text appearing at a new position, and no content tokens were altered."}

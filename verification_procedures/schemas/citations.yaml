@@ -1,0 +1,205 @@
+# The references procedure's schema. The report step's fill function
+# (implementations/citations/report.py) fills these fields from the step outputs, and the one
+# builder (implementations/_report.py) writes fields.json, findings.json, and report.md from
+# them. Raise the version by hand when a field or the layout changes.
+stream: citations
+version: 4
+item: one citation, one cited key in one sentence of the final build's text (rows_quoted.json)
+id: id
+# The item fields the results file carries for each citation, in this order.
+results: [id, citekey, sentence, origin, origin_evidence, reference, lookup, existence, record,
+          reason, reason_source, quotes, quote_in_source, access, source_file, notes,
+          needs_decision, sessions]
+
+fields:
+  id:
+    type: str
+    filled_by: [extract_citations]
+  citekey:
+    type: str
+    filled_by: [extract_citations]
+  sentence:
+    type: str
+    filled_by: [extract_citations]
+  # Who first named the work in the record (the authors' step 2).
+  origin:
+    type: enum
+    values: [ai, scholar, unknown]
+    filled_by: [read_origin]
+  # The record's evidence for the origin, with the time, the session's public id or the
+  # artifact's path, and the excerpt.
+  origin_evidence:
+    type: str
+    filled_by: [read_origin]
+  reference:
+    type: str
+    filled_by: [match_references]
+  # Whether the work can be found (the authors' step 3a). not_checked for a citation that is
+  # not an AI's.
+  lookup:
+    type: enum
+    values: [found, not_found, not_looked_up, not_checked]
+    filled_by: [check_existence]
+  existence:
+    type: str
+    filled_by: [check_existence]
+  # The record that was found, written as a reference, empty when none was found.
+  record:
+    type: str
+    filled_by: [check_existence]
+  # The AI's recorded reason and where it came from (the authors' step 3b), empty when none is
+  # recorded or the citation is not checked.
+  reason:
+    type: str
+    filled_by: [gather_reason_and_quote]
+  reason_source:
+    type: str
+    filled_by: [gather_reason_and_quote]
+  # Each quote, section pointer, or paraphrase, with where it came from and its check.
+  quotes:
+    type: list
+    filled_by: [gather_reason_and_quote, locate_passage, verify_quote]
+  quote_in_source:
+    type: enum
+    values: ["yes", "no", not_checked]
+    filled_by: [verify_quote]
+  # The source text the quotes were checked against, empty when there is none.
+  access:
+    type: enum
+    values: [fulltext, abstract, none]
+    filled_by: [pin_sources]
+  source_file:
+    type: str
+    filled_by: [pin_sources]
+  source_sha256:
+    type: str
+    filled_by: [pin_sources]
+  # The notes the steps wrote on the citation or its key.
+  notes:
+    type: list
+    filled_by: [match_references, read_origin, check_existence, gather_reason_and_quote, verify_quote]
+  # An AI citation and a citation of unknown origin wait for the scholar to approve or hold
+  # them. The scholar's own citation needs no decision.
+  needs_decision:
+    type: bool
+    filled_by: [read_origin]
+  # The public ids of the sessions in which an AI named the work. Left out when there are none.
+  sessions:
+    type: list
+    required: false
+    filled_by: [read_origin]
+  # The text of sessions for the citation's Session line.
+  # A report template takes no list field, so the report prints this text, not sessions.
+  session_line:
+    type: str
+    required: false
+    filled_by: [read_origin]
+  # The lines of the citation's block in the report, with the wording the report shows. A
+  # line is empty when the block does not show it.
+  heading:
+    type: str
+    filled_by: [extract_citations, read_origin]
+  reference_line:
+    type: str
+    filled_by: [match_references]
+  existence_line:
+    type: str
+    filled_by: [check_existence]
+  reason_line:
+    type: str
+    filled_by: [gather_reason_and_quote]
+  quote_line:
+    type: str
+    filled_by: [gather_reason_and_quote, locate_passage]
+  quote_check_line:
+    type: str
+    filled_by: [verify_quote]
+  notes_line:
+    type: str
+    filled_by: [match_references, read_origin, check_existence, gather_reason_and_quote, verify_quote]
+  trail:
+    type: str
+    filled_by: [read_origin, fetch_metadata, check_existence, pin_sources, locate_passage, verify_quote]
+  # The citation's line in the list of the scholar's citations.
+  listed_line:
+    type: str
+    filled_by: [extract_citations, read_origin]
+
+run:
+  draft_sha256:
+    type: str
+    filled_by: [pin_document]
+  n_citations:
+    type: int
+    filled_by: [extract_citations]
+  n_ai:
+    type: int
+    filled_by: [read_origin]
+  n_scholar:
+    type: int
+    filled_by: [read_origin]
+  n_unknown:
+    type: int
+    filled_by: [read_origin]
+  n_not_found:
+    type: int
+    filled_by: [check_existence]
+  n_not_looked_up:
+    type: int
+    filled_by: [check_existence]
+  n_quote_not_found:
+    type: int
+    filled_by: [verify_quote]
+  n_record_quote_not_found:
+    type: int
+    filled_by: [verify_quote]
+  n_no_reason:
+    type: int
+    filled_by: [gather_reason_and_quote]
+
+report:
+  title: References report
+  intro: |-
+    The text read is the final build's text, `draft.md` ({run.draft_sha256}). Each citation in it is listed with who first named the cited work in the record of sessions and artifacts. For each citation from an AI, the report says whether the work could be found, and for each work found it gives the AI's recorded reason and a quote, which a program then looks for in the source text. Nothing here is a verdict. The scholar approves or holds each citation from an AI and each one the record never names.
+
+    | Count | Number |
+    |---|---|
+    | Citations in the final build | {run.n_citations} |
+    | From an AI | {run.n_ai} |
+    | The scholar's | {run.n_scholar} |
+    | Never named in the record | {run.n_unknown} |
+    | Works not found | {run.n_not_found} |
+    | Works not looked up | {run.n_not_looked_up} |
+    | AI citations with no quote found in their source | {run.n_quote_not_found} |
+    | Quotes in the record not found in their source | {run.n_record_quote_not_found} |
+    | AI citations with no recorded reason | {run.n_no_reason} |
+  sections:
+    - heading: Citations
+      parts:
+        - kind: groups
+          rows: items
+          by: origin
+          groups:
+            - {value: ai, title: From an AI}
+            - {value: unknown, title: Never named in the record}
+          block:
+            heading: "{heading}"
+            lines:
+              - {label: Sentence, value: "{sentence}"}
+              - {label: Origin, value: "{origin_evidence}"}
+              - {label: Session, value: "{session_line}", omit_empty: true}
+              - {label: Reference, value: "{reference_line}"}
+              - {label: Found, value: "{existence_line}", omit_empty: true}
+              - {label: Reason, value: "{reason_line}", omit_empty: true}
+              - {label: Quote, value: "{quote_line}", omit_empty: true}
+              - {label: Quote check, value: "{quote_check_line}", omit_empty: true}
+              - {label: Notes, value: "{notes_line}", omit_empty: true}
+              - {label: Trail, value: "{trail}"}
+            empty: None.
+        - kind: text
+          template: "**The scholar's citations, not checked further ({run.n_scholar})**"
+        - kind: list
+          rows: items
+          where: origin in [scholar]
+          line: "{listed_line}"
+          empty: None.

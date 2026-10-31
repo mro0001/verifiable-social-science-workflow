@@ -1,0 +1,96 @@
+{
+  "schema": "verification-results",
+  "schema_version": 1,
+  "stream": "data",
+  "run_id": "data_sample",
+  "procedure_version": 0.2,
+  "inputs": {
+    "README.md": "sha256:a660896bad24ed3f070751133403919a13d4e6b9aef9e95d264a67e5225b97ef",
+    "acquisition.yaml": "sha256:5acff4c29457369b0b8801e8090ff12630e359cd00ae0fd1a07a2f19b5a69c99",
+    "manuscript.md": "sha256:e3a63694ae0cc0591bbec1a1b3f11ede513e34c3498282c02c97f907a41b9167",
+    "next_word_counts.json": "sha256:91d7bb242135199f7fa4aa51ee40695105308198df9944828244d4cc3c4aa42d",
+    "next_word_results.json": "sha256:4f3c4c2fd8aec8a775ee7a2680d387f8b475cb474d303ae72aa72f2cba2c352b",
+    "numbers.yml": "sha256:8f8486eff220454f26a3157a615d9522863c691e40fbc9ce1ad2da026455a307",
+    "params.yaml": "sha256:56d4626fbd65af9f0a1451cd5cbe0ed8c5ee12ed04b7fc5667f9a9d2c5a07a30",
+    "params_io.py": "sha256:2c0af822eef3ddf1a1f1e6deff40bb22728bdb3d2c83309c5f1862f92222c4a9",
+    "params_record_results.csv": "sha256:2d7675d6afe123169eb8ca94159be9a1d4b06b788b4e381dc0023adbe1f81074",
+    "pipeline.yaml": "sha256:6f9d5cdf3ac34cf08ffb1748fc635498903d3cd433e5721ae8951266c9d68312",
+    "refs.bib": "sha256:d1bd16f9904d92d06460f40e32789490aca13a6d247bc664f90a60f6c79532f4",
+    "s1_results.py": "sha256:3e20148de1f42aa423597a4cdae159292b748893ff3cb821cd6b7a315e8b59d1",
+    "slides.md": "sha256:27edf9ec476cd3d0fc9cac1de30cf01c73756d3aeaf9ede0d217ee95c061aeae",
+    "top_words.md": "sha256:046904114ae45bf55dcc52fe8780f9f1be37ed2b356344c19972c10a96b7ae89"
+  },
+  "items": [
+    {
+      "id": "definition.distinct",
+      "kind": "number",
+      "summary": "definition.distinct = 10, rerun 10, from next_word_results.json",
+      "findings": [],
+      "needs_decision": true
+    },
+    {
+      "id": "definition.top_pct",
+      "kind": "number",
+      "summary": "definition.top_pct = 30.0, rerun 30.0, from next_word_results.json",
+      "findings": [],
+      "needs_decision": true
+    },
+    {
+      "id": "definition.top_word",
+      "kind": "number",
+      "summary": "definition.top_word = meticulous, rerun meticulous, from next_word_results.json",
+      "findings": [],
+      "needs_decision": true
+    },
+    {
+      "id": "model",
+      "kind": "number",
+      "summary": "model = mistral-small:22b, rerun mistral-small:22b, from next_word_results.json",
+      "findings": [],
+      "needs_decision": true
+    },
+    {
+      "id": "n_per_condition",
+      "kind": "number",
+      "summary": "n_per_condition = 60, rerun 60, from next_word_results.json",
+      "findings": [],
+      "needs_decision": true
+    },
+    {
+      "id": "none.distinct",
+      "kind": "number",
+      "summary": "none.distinct = 16, rerun 16, from next_word_results.json",
+      "findings": [],
+      "needs_decision": true
+    },
+    {
+      "id": "none.top_pct",
+      "kind": "number",
+      "summary": "none.top_pct = 30.0, rerun 30.0, from next_word_results.json",
+      "findings": [],
+      "needs_decision": true
+    },
+    {
+      "id": "none.top_word",
+      "kind": "number",
+      "summary": "none.top_word = proactive, rerun proactive, from next_word_results.json",
+      "findings": [],
+      "needs_decision": true
+    },
+    {
+      "id": "question",
+      "kind": "number",
+      "summary": "question = The ideal candidate for this internship is someone who is, rerun The ideal candidate for this internship is someone who is, from next_word_results.json",
+      "findings": [],
+      "needs_decision": true
+    },
+    {
+      "id": "temperature",
+      "kind": "number",
+      "summary": "temperature = 1.0, rerun 1.0, from next_word_results.json",
+      "findings": [],
+      "needs_decision": true
+    }
+  ],
+  "decisions": []
+}

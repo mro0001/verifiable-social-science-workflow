@@ -1,0 +1,5 @@
+{
+"matches": true,
+"mismatches": [],
+"reason": "The docstring correctly claims the function draws mean income_k by region with dimensions from params.yaml, and the comments accurately describe the margin as a non-analytic constant and the bar height scaling logic as implemented in the code."
+}

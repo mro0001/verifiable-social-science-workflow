@@ -1,0 +1,251 @@
+[
+  {
+    "exists": true,
+    "id": "abara2019",
+    "metadata_ok": true,
+    "record": {
+      "author": [
+        {
+          "family": "Abara",
+          "given": "Nkem"
+        },
+        {
+          "family": "Hollis",
+          "given": "Teresa"
+        }
+      ],
+      "container-title": "Journal of Civic Administration",
+      "issued": 2019,
+      "title": "Ownership and exit in municipal volunteer programs",
+      "type": "journal-article"
+    },
+    "status": "exists; metadata matches"
+  },
+  {
+    "exists": true,
+    "id": "brennan2016",
+    "metadata_ok": true,
+    "record": {
+      "author": [
+        {
+          "family": "Brennan",
+          "given": "Siobhan"
+        }
+      ],
+      "container-title": "Civic Press",
+      "issued": 2016,
+      "title": "The work is theirs",
+      "type": "book"
+    },
+    "status": "exists; metadata matches"
+  },
+  {
+    "exists": true,
+    "id": "dumont2014",
+    "metadata_ok": true,
+    "record": {
+      "author": [
+        {
+          "family": "Dumont",
+          "given": "Claire"
+        }
+      ],
+      "container-title": "Voluntary Sector Studies",
+      "issued": 2014,
+      "title": "Fixed-term assignments and volunteer re-enlistment",
+      "type": "journal-article"
+    },
+    "status": "exists; metadata matches"
+  },
+  {
+    "exists": false,
+    "id": "ferrante2021",
+    "metadata_ok": false,
+    "record": null,
+    "status": "citation may not exist: no record for DOI 10.5555/nmr.2021.0388 (not in the metadata cache, and live lookup was off)"
+  },
+  {
+    "exists": true,
+    "id": "haldane2017",
+    "metadata_ok": false,
+    "record": {
+      "author": [
+        {
+          "family": "Haldane",
+          "given": "P. J."
+        }
+      ],
+      "container-title": "Public Service Quarterly",
+      "issued": 2017,
+      "title": "Program size and attachment to staff",
+      "type": "journal-article"
+    },
+    "status": "author initials differ: Haldane (R. vs P.)"
+  },
+  {
+    "exists": true,
+    "id": "iversen2018",
+    "metadata_ok": true,
+    "record": {
+      "author": [
+        {
+          "family": "Iversen",
+          "given": "Tor"
+        }
+      ],
+      "container-title": "Youth and Civic Life",
+      "issued": 2018,
+      "title": "Peer mentoring in youth volunteer programs",
+      "type": "journal-article"
+    },
+    "status": "exists; metadata matches"
+  },
+  {
+    "exists": true,
+    "id": "kessler2019",
+    "metadata_ok": true,
+    "record": {
+      "author": [
+        {
+          "family": "Kessler",
+          "given": "Dana"
+        }
+      ],
+      "container-title": "Journal of Civic Administration",
+      "issued": 2019,
+      "title": "Orientation length and volunteer retention",
+      "type": "journal-article"
+    },
+    "status": "exists; metadata matches"
+  },
+  {
+    "exists": true,
+    "id": "lindqvist2020",
+    "metadata_ok": false,
+    "record": {
+      "author": [
+        {
+          "family": "Lindqvist",
+          "given": "Hanna"
+        },
+        {
+          "family": "Morales",
+          "given": "Julia"
+        }
+      ],
+      "container-title": "Nonprofit Management Review",
+      "issued": 2020,
+      "title": "Supervisor feedback and seasonal return",
+      "type": "journal-article"
+    },
+    "status": "author mismatch: reference lists Lindqvist H., Moreau J.; record lists Lindqvist H., Morales J."
+  },
+  {
+    "exists": true,
+    "id": "marchetti2012",
+    "metadata_ok": true,
+    "record": {
+      "author": [
+        {
+          "family": "Marchetti",
+          "given": "Paolo"
+        }
+      ],
+      "container-title": "Records and Society",
+      "issued": 2012,
+      "title": "Administrative traces of volunteer work",
+      "type": "journal-article"
+    },
+    "status": "exists; metadata matches"
+  },
+  {
+    "exists": true,
+    "id": "nakamura2020",
+    "metadata_ok": true,
+    "record": {
+      "author": [
+        {
+          "family": "Nakamura",
+          "given": "Emi"
+        }
+      ],
+      "container-title": "Voluntary Sector Studies",
+      "issued": 2020,
+      "title": "Recognition events and the long-serving volunteer",
+      "type": "journal-article"
+    },
+    "status": "exists; metadata matches"
+  },
+  {
+    "exists": true,
+    "id": "okafor2018",
+    "metadata_ok": false,
+    "record": {
+      "author": [
+        {
+          "family": "Okafor",
+          "given": "Adaeze"
+        }
+      ],
+      "container-title": "Public Service Quarterly",
+      "issued": 2019,
+      "title": "Written role descriptions and volunteer tenure",
+      "type": "journal-article"
+    },
+    "status": "year mismatch: reference says 2018; record says 2019"
+  },
+  {
+    "exists": true,
+    "id": "sorensen2022",
+    "metadata_ok": false,
+    "record": {
+      "author": [
+        {
+          "family": "Sorensen",
+          "given": "Mikkel"
+        }
+      ],
+      "container-title": "CivicArXiv",
+      "issued": 2022,
+      "title": "Coordinator turnover and volunteer exit",
+      "type": "posted-content"
+    },
+    "status": "venue differs: reference says Journal of Civic Administration; record says CivicArXiv; stage mismatch: reference describes a published article-journal; the DOI resolves to a posted-content"
+  },
+  {
+    "exists": true,
+    "id": "tanaka2016",
+    "metadata_ok": true,
+    "record": {
+      "author": [
+        {
+          "family": "Tanaka",
+          "given": "Hiroshi"
+        }
+      ],
+      "container-title": "Public Service Quarterly",
+      "issued": 2016,
+      "title": "Training length and volunteer retention",
+      "type": "journal-article"
+    },
+    "status": "exists; metadata matches"
+  },
+  {
+    "exists": true,
+    "id": "whitlock2020",
+    "metadata_ok": true,
+    "record": {
+      "author": [
+        {
+          "family": "Whitlock",
+          "given": "Grace"
+        }
+      ],
+      "container-title": "Urban Affairs Notes",
+      "issued": 2020,
+      "title": "Named contacts and volunteer tenure in three cities",
+      "type": "journal-article"
+    },
+    "status": "exists; metadata matches"
+  }
+]

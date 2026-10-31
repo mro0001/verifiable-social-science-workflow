@@ -1,0 +1,125 @@
+# Evaluating LLM runs, written as a procedural graph (appendix Table A5,
+# "Procedure for evaluating LLM runs", A5 and Table A10, A2.4 "Procedural
+# graphs"). The run reads a finished run of another procedure, packed as
+# run.tar, and never reruns it or asks a model anything. Appendix-only part.
+stream: llm_runs
+version: 0.3
+title: Evaluate an LLM run
+goal: >
+  Check a finished run of any procedure that put questions to a model, so the
+  scholar can see which model answered, whether every question and answer was
+  kept and matches the record, which items went unanswered, and how the answers
+  compare with a reference, before relying on its verdicts. Read the run from
+  its archive, and rerun nothing and ask nothing.
+triggers:
+  - A procedure has finished a run with live judgment.
+  - The scholar compares two runs of the same procedure on the same files.
+contracts: contracts/llm_runs.yaml
+entry: read_run
+exit: report
+nodes:
+  - {id: read_run, kind: tool, does: "Read the run's archive, index its manifest, its judgment steps, its tool steps, and its trail, and write its answers in the recorded answers form."}
+  - {id: check_record, kind: tool, does: "For each judgment step, check that every answer's saved prompt matches its recorded checksum and that its response was saved, and count the items answered, not judged, and retried."}
+  - {id: check_models, kind: tool, does: "Name the executor of each role, say when its answers came from a recorded file, warn when the judge and the second checker are the same, and say what the run does not record about the model."}
+  - {id: compare_reference, kind: tool, does: "Compare the run's answers with a reference answer book on the short fields both answers hold, and count the items that agree for each judgment step."}
+  - {id: skip_reference, kind: tool, does: "Say that no reference was given, so the run's answers were not compared."}
+  - {id: check_replay, kind: tool, does: "Read the replay the run's verify command saved and the score against planted faults, and name each failed step and each missed fault."}
+  - {id: report, kind: tool, does: "Write a report with the models and settings the run used, each judgment step with its items, the agreement with a reference, and the replay and score."}
+edges:
+  - from: read_run
+    rel: LEADS_TO
+    to: check_record
+    condition: The archive holds a run.
+    check: "run_index.json:is_run == true"
+    guidance: Check every answer against the prompt and the response the run saved for it, step by step.
+    pitfalls:
+      - Asking a model again to check an answer, when the run kept every answer for review rather than rerun.
+      - Treating an item that was not judged as a pass, when no answer stands behind it.
+    source: appendix A5; Table A5 (Procedure for evaluating LLM runs); A2.4 (Procedural graphs)
+  - from: read_run
+    rel: PROVIDES_INPUT_FOR
+    to: check_models
+    condition: The archive holds a run.
+    check: "run_index.json:is_run == true"
+    guidance: Name the executor of each role as the manifest gives it, and the model the provider setting gave when the manifest holds one.
+    pitfalls:
+      - Reading the executor as the model's version, when the run records the model's name only.
+      - Accepting a second check made by the same model as the first, when the second checker must be a different model.
+    source: appendix A5; Table A10; Table A5 (Recording which model and version answered each AI call); Table A6 (Second checker)
+  - from: read_run
+    rel: CONVERGES_TO
+    to: report
+    condition: The archive holds no run.
+    check: "run_index.json:is_run == false"
+    guidance: Report that there is nothing to evaluate, with the blocking finding that says why.
+    pitfalls:
+      - Reporting an empty archive as a run with no problems, when it holds no run at all.
+    source: appendix A5; Table A5 (Procedure for evaluating LLM runs)
+  - from: check_record
+    rel: CONVERGES_TO
+    to: report
+    condition: Always.
+    guidance: Give each judgment step's items asked, answered, not judged, retried, and prompt mismatches.
+    pitfalls:
+      - Leaving out the items not judged, when they are the gaps in the run's verdicts.
+    source: appendix A5; A2.4 (Procedural graphs)
+  - from: check_models
+    rel: CONVERGES_TO
+    to: report
+    condition: Always.
+    guidance: Carry each role's executor and what the run does not record into the report.
+    pitfalls:
+      - Writing a model version the run never recorded.
+    source: appendix A5; Table A10; Table A5 (Recording which model and version answered each AI call)
+  - from: check_record
+    rel: LEADS_TO
+    to: compare_reference
+    condition: A reference answer book was given.
+    check: "run_index.json:has_reference == true"
+    guidance: Compare each item both books hold on its short fields only, such as a verdict, a yes or no, or a number, and name each field that differs.
+    pitfalls:
+      - Counting a difference in wording as a different verdict, when two runs can word the same reason in many ways.
+      - Reading an item found in only one book as agreement, when nothing was compared for it.
+    source: appendix A5; Table A11; Table A5 (Procedure for evaluating LLM runs)
+  - from: check_record
+    rel: LEADS_TO
+    to: skip_reference
+    condition: No reference answer book was given.
+    check: "run_index.json:has_reference == false"
+    guidance: Say that the answers were not compared, so agreement is unknown.
+    pitfalls:
+      - Reporting full agreement when no reference was given to agree with.
+    source: appendix A5; Table A11
+  - from: check_record
+    rel: LEADS_TO
+    to: check_replay
+    condition: Always.
+    guidance: Read the replay and the score the run saved in its archive, and rerun nothing.
+    pitfalls:
+      - Reading a missing replay as a pass, when a run never verified shows nothing about its tool steps.
+      - Rerunning the run's steps to check them, when the archive keeps the replay the run's own verify command saved.
+    source: appendix A5; Table A11; A2.4 (Procedural graphs)
+  - from: compare_reference
+    rel: CONVERGES_TO
+    to: report
+    condition: Always.
+    guidance: Give each step's compared and agreed items, and each field that differs.
+    pitfalls:
+      - Hiding a differing field inside a total, when the scholar needs to see which item and which field differ.
+    source: appendix A5; Table A11
+  - from: skip_reference
+    rel: CONVERGES_TO
+    to: report
+    condition: Always.
+    guidance: Say in the report that no reference was given.
+    pitfalls:
+      - Leaving the agreement section empty, when it should say why nothing was compared.
+    source: appendix A5; Table A11
+  - from: check_replay
+    rel: CONVERGES_TO
+    to: report
+    condition: Always.
+    guidance: Carry each failed replay, each missed fault, and the score's recall into the report.
+    pitfalls:
+      - Reporting a recall without the faults it missed.
+    source: appendix A5; Table A11

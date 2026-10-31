@@ -1,0 +1,1 @@
+{"quote": "Volunteers who received a written description of their role remained active longer than volunteers who received only a verbal briefing.", "location": "p. 4", "found": true}

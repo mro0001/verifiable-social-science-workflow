@@ -1,0 +1,5 @@
+{
+"matches": true,
+"mismatches": [],
+"reason": "Every claim in the docstring and comments regarding input parsing rules, output file generation, sorting behavior, and parameter handling is accurately reflected in the corresponding code logic."
+}

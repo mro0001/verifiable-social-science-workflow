@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="template" content="paper-template-v1 (author's house style)">
+<title>$title$</title>
+</head>
+<body>
+<header><h1 class="title">$title$</h1>
+$for(author)$<p class="author">$author$</p>$endfor$
+</header>
+$if(toc)$
+<nav id="TOC">
+$table-of-contents$
+</nav>
+$endif$
+$body$
+</body>
+</html>

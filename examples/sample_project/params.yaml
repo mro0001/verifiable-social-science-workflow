@@ -1,0 +1,4 @@
+# Every analytic choice is set here, once. s1_results.py reads these through
+# params_io.Params, and each run writes what it read to params_record_results.csv.
+top_words: 3      # results: most common words listed per condition in the table
+share_digits: 1   # results: decimals in every published share

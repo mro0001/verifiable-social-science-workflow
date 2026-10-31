@@ -1,0 +1,14 @@
+[
+  {
+    "records_ok": true,
+    "step": "clean"
+  },
+  {
+    "records_ok": true,
+    "step": "describe"
+  },
+  {
+    "records_ok": true,
+    "step": "model"
+  }
+]

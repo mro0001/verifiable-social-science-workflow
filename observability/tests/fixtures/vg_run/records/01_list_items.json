@@ -1,0 +1,49 @@
+{
+  "record_version": 1,
+  "seq": 1,
+  "node": "list_items",
+  "kind": "tool",
+  "graph_version": 0.1,
+  "started_at": "2026-10-29T03:30:48-07:00",
+  "duration_s": 0.1,
+  "inputs": {
+    "words.txt": "sha256:5ed555b445c1322c4c97425f41d2d064401c0a4718578ef523d4373fda7777b6"
+  },
+  "execution": {
+    "type": "script",
+    "executor": "python3",
+    "code_files": {
+      "code/01_list_items/_lib.py": "sha256:bab908da53dea59fcf603a8d94c4e3e2e29312f8bf2ff66f631a5e273b937a8b",
+      "code/01_list_items/list_items.py": "sha256:7d8cecc912463c4c1efc661ea105b62a87345d013d7694f19b0c98d773919f39"
+    },
+    "exit_code": 0,
+    "logs": [
+      "logs/01_list_items.stdout",
+      "logs/01_list_items.stderr"
+    ],
+    "replay": "exact"
+  },
+  "outputs": {
+    "items.json": "sha256:ecfda50f6a242d41af727e44fc69848dda6a94c6c4e3d338bbd03fccc1f61180",
+    "count.json": "sha256:0e143db52339a29aa1f1e55a5063423213cff61bc26fedaecd7140d9d3a34ab6"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "judge_items",
+      "rel": "LEADS_TO",
+      "check": null,
+      "fired": true
+    },
+    {
+      "to": "skipped_branch",
+      "rel": "TRIGGERS",
+      "check": "count.json:n > 100",
+      "actual": 4,
+      "fired": false
+    }
+  ]
+}

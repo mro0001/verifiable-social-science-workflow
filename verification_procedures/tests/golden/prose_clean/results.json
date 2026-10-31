@@ -1,0 +1,51 @@
+{
+  "schema": "verification-results",
+  "schema_version": 1,
+  "stream": "prose",
+  "run_id": "prose_clean",
+  "procedure_version": 0.3,
+  "inputs": {
+    "baseline.md": "sha256:9ad819dfea4749532771aa6951edcc632e46d51d13be26a8fa12b6781c63d2c2",
+    "rationales.yaml": "sha256:e5d7b6729cf39fc798fc215a0fd2e08e6efa2a84a153b4bb45d804283f86fadc",
+    "revised.md": "sha256:1911caaa40c99550d07077b5191aff6e7c50f7a1d4112ac37d3877f4ed476426",
+    "versions.yaml": "sha256:8f17bccaba3135dd591db966f6e4583179e52fc8488197a50421a3ce7cc6f0ed"
+  },
+  "items": [
+    {
+      "id": "c01",
+      "kind": "change",
+      "summary": "move: Prior work has focused mainly on private firms.",
+      "findings": [],
+      "needs_decision": true
+    },
+    {
+      "id": "c02",
+      "kind": "change",
+      "summary": "edit: This study examines whether structured interviews are associated with lower first-year turnover in municipal agencies.",
+      "findings": [],
+      "needs_decision": true
+    },
+    {
+      "id": "c03",
+      "kind": "change",
+      "summary": "edit: Structured interviews ask every candidate the same questions in the same order.",
+      "findings": [],
+      "needs_decision": true
+    },
+    {
+      "id": "c04",
+      "kind": "change",
+      "summary": "delete: Agencies that adopted the format did so for a variety of different reasons, and those reasons varied a great deal.",
+      "findings": [],
+      "needs_decision": true
+    },
+    {
+      "id": "c05",
+      "kind": "change",
+      "summary": "insert: The next section turns to the interview protocol itself.",
+      "findings": [],
+      "needs_decision": true
+    }
+  ],
+  "decisions": []
+}

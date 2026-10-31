@@ -1,0 +1,56 @@
+{
+  "record_version": 1,
+  "seq": 7,
+  "node": "pin_sources",
+  "kind": "tool",
+  "graph_version": 0.1,
+  "started_at": "2026-10-08T13:10:08-07:00",
+  "duration_s": 0.12,
+  "inputs": {
+    "refs_index.json": "sha256:6f2f0c8d4e810b42b7b6c9e7a5d9108d42a6f16aad73509bd071a5eb0564ea97",
+    "source_abara2019.txt": "sha256:ad8f787f260fcf13f452a3cf1af4976f5d905c1f8a70e822c7e719d001c79bec",
+    "source_brennan2016.txt": "sha256:661edc2f73731da6e97937b28fd2fab65949f9edeed2a6805e50b6dc19d16349",
+    "source_castellanos2017.txt": "sha256:70b97652acb22af0a5b76752c20323f451ed9b3a2ec03dc131e3bcc588346783",
+    "source_dumont2014.txt": "sha256:b7f33c539a058bc5579246f23052f471bbfbfaf911e2433b064382ebba68bfb8",
+    "source_haldane2017.txt": "sha256:82db46999166f7434e5a7bde318b0bf3ae2040fe36ed35a80957561276e4b8a0",
+    "source_iversen2018.txt": "sha256:f0e7b5216a4b201ed38df5a2119d49da56d9387a93f2827a939a24b5563315fd",
+    "source_kessler2019.txt": "sha256:7d9630b8ffa53651d4883724fc678139a3490699443b169639659b975ce5bd10",
+    "source_lindqvist2020.txt": "sha256:15c8420dce9edab85ececc4c7ea367e844afabe5578ee32d4eb003944a262bae",
+    "source_marchetti2012.txt": "sha256:bf71479d43258ee7f0600b7bf0fdf9330cc903980c6896d3dcadb4013c29c5bd",
+    "source_nakamura2020.txt": "sha256:b76d203442bed99058a467b55cf5140debc45181361cd35ebb6b44a3a7c78074",
+    "source_okafor2018.txt": "sha256:6a6b24c93e2bd2f050215e92a7832183cb3e9af9e823311a2b059ac6eeb5cebe",
+    "source_quinlan2015.txt": "sha256:112a9949b0b70e818b61f9df9d9dd8d4992f6adc843dd546097c063f3bde596f",
+    "source_sorensen2022.txt": "sha256:641e25777266710cdecb83eefb01aeaf551df524e1d4a816c50b57117eba23fa",
+    "source_tanaka2016.txt": "sha256:233d015db38164f01a8744f6dfb94488de057922daaf83b32f4597634c202053",
+    "source_whitlock2020.txt": "sha256:dfea1280766c3c1498eac2d142a95edead05539c883d4e200faff3245d958364"
+  },
+  "execution": {
+    "type": "script",
+    "executor": "python3",
+    "code_files": {
+      "code/07_pin_sources/_lib.py": "sha256:bab908da53dea59fcf603a8d94c4e3e2e29312f8bf2ff66f631a5e273b937a8b",
+      "code/07_pin_sources/pin_sources.py": "sha256:d56246f6ee9a7fa42d361ed22e91b9948b4d34c90b5d5745b4ad6f788436a3f6"
+    },
+    "exit_code": 0,
+    "logs": [
+      "logs/07_pin_sources.stdout",
+      "logs/07_pin_sources.stderr"
+    ],
+    "replay": "exact"
+  },
+  "outputs": {
+    "sources.json": "sha256:9dae14e94d8d162d41adaf259b3aa2d8b566451654328a72dfb1bf17f2810ac8"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "reuse_prior",
+      "rel": "LEADS_TO",
+      "check": null,
+      "fired": true
+    }
+  ]
+}

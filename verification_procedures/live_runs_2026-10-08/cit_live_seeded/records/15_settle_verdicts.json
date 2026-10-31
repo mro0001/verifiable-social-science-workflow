@@ -1,0 +1,42 @@
+{
+  "record_version": 1,
+  "seq": 15,
+  "node": "settle_verdicts",
+  "kind": "tool",
+  "graph_version": 0.1,
+  "started_at": "2026-10-08T13:10:28-07:00",
+  "duration_s": 0.17,
+  "inputs": {
+    "rows_judged.json": "sha256:7847342b57d80dbdbc93f2967c7108604643e1cc2dee5a0e4e1b05dc598c95cc",
+    "second_check.json": "sha256:57097b2a747ff2e2301237dd396a0441da2fbd4a66f2c384911efd7fcaa0b191"
+  },
+  "execution": {
+    "type": "script",
+    "executor": "python3",
+    "code_files": {
+      "code/15_settle_verdicts/_lib.py": "sha256:bab908da53dea59fcf603a8d94c4e3e2e29312f8bf2ff66f631a5e273b937a8b",
+      "code/15_settle_verdicts/settle_verdicts.py": "sha256:bf23a2ea9fa93daba3252225bee6699e34e6a89dfbb791f0c72160b3b879d3e0"
+    },
+    "exit_code": 0,
+    "logs": [
+      "logs/15_settle_verdicts.stdout",
+      "logs/15_settle_verdicts.stderr"
+    ],
+    "replay": "exact"
+  },
+  "outputs": {
+    "rows_settled.json": "sha256:1bf45e51a2779d1591dafbf045131b062a49d8efbe896bee8c75fae9009daef1"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "draft_fix",
+      "rel": "CONVERGES_TO",
+      "check": null,
+      "fired": true
+    }
+  ]
+}

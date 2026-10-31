@@ -1,0 +1,5 @@
+{
+"matches": true,
+"mismatches": [],
+"reason": "The code sorts the keys before writing to the CSV file, which directly implements the documented claim that the output is sorted by name to ensure identical bytes on reruns."
+}

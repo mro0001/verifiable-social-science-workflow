@@ -1,0 +1,24 @@
+{"at": "2026-10-08T12:59:37-07:00", "event": "run_initialized", "stream": "prose", "graph_version": 0.2}
+{"at": "2026-10-08T12:59:37-07:00", "event": "step_started", "node": "pin_versions", "seq": 1, "kind": "tool"}
+{"at": "2026-10-08T12:59:37-07:00", "event": "step_finished", "node": "pin_versions", "seq": 1, "contract": "pass", "fired": ["diff_changes"]}
+{"at": "2026-10-08T12:59:37-07:00", "event": "step_started", "node": "diff_changes", "seq": 2, "kind": "tool"}
+{"at": "2026-10-08T12:59:37-07:00", "event": "step_finished", "node": "diff_changes", "seq": 2, "contract": "pass", "fired": ["exclude_author"]}
+{"at": "2026-10-08T12:59:37-07:00", "event": "step_started", "node": "exclude_author", "seq": 3, "kind": "tool"}
+{"at": "2026-10-08T12:59:38-07:00", "event": "step_finished", "node": "exclude_author", "seq": 3, "contract": "pass", "fired": ["content_handoff"]}
+{"at": "2026-10-08T12:59:38-07:00", "event": "step_started", "node": "content_handoff", "seq": 4, "kind": "tool"}
+{"at": "2026-10-08T12:59:38-07:00", "event": "step_finished", "node": "content_handoff", "seq": 4, "contract": "pass", "fired": ["rationale_coverage"]}
+{"at": "2026-10-08T12:59:38-07:00", "event": "step_started", "node": "rationale_coverage", "seq": 5, "kind": "tool"}
+{"at": "2026-10-08T12:59:38-07:00", "event": "step_finished", "node": "rationale_coverage", "seq": 5, "contract": "pass", "fired": ["judge_rationale"]}
+{"at": "2026-10-08T12:59:38-07:00", "event": "step_started", "node": "judge_rationale", "seq": 6, "kind": "judgment"}
+{"at": "2026-10-08T12:59:39-07:00", "event": "judgment_item", "node": "judge_rationale", "item": "c01", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T12:59:39-07:00", "event": "judgment_item", "node": "judge_rationale", "item": "c02", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T12:59:40-07:00", "event": "judgment_item", "node": "judge_rationale", "item": "c03", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T12:59:40-07:00", "event": "judgment_item", "node": "judge_rationale", "item": "c04", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T12:59:41-07:00", "event": "judgment_item", "node": "judge_rationale", "item": "c06", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T12:59:41-07:00", "event": "judgment_item", "node": "judge_rationale", "item": "c08", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T12:59:42-07:00", "event": "judgment_item", "node": "judge_rationale", "item": "c09", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T12:59:42-07:00", "event": "step_finished", "node": "judge_rationale", "seq": 6, "contract": "pass", "fired": ["report"]}
+{"at": "2026-10-08T12:59:42-07:00", "event": "step_started", "node": "report", "seq": 7, "kind": "tool"}
+{"at": "2026-10-08T12:59:42-07:00", "event": "step_finished", "node": "report", "seq": 7, "contract": "pass", "fired": []}
+{"at": "2026-10-08T12:59:42-07:00", "event": "run_finished"}
+{"at": "2026-10-08T13:11:01-07:00", "event": "verified", "failures": 0}

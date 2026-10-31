@@ -1,0 +1,1 @@
+{"fix": "Recognition events did not reduce exit among long-serving volunteers; if anything, exit rose slightly in the quarter after an event [@nakamura2020]."}

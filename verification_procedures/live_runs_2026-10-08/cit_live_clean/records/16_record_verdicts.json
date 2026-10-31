@@ -1,0 +1,44 @@
+{
+  "record_version": 1,
+  "seq": 16,
+  "node": "record_verdicts",
+  "kind": "tool",
+  "graph_version": 0.1,
+  "started_at": "2026-10-08T13:10:43-07:00",
+  "duration_s": 0.12,
+  "inputs": {
+    "rows_settled.json": "sha256:96cc6e9258d096a4be88fb63978bd0177042874c1553d34c8fffc334d5dd950c",
+    "draft_fix.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+  },
+  "execution": {
+    "type": "script",
+    "executor": "python3",
+    "code_files": {
+      "code/16_record_verdicts/_lib.py": "sha256:bab908da53dea59fcf603a8d94c4e3e2e29312f8bf2ff66f631a5e273b937a8b",
+      "code/16_record_verdicts/record_verdicts.py": "sha256:76418b5626e3aa5da80c73925b3773bf76c472f2bfef47f2a2c26dbca92d4366"
+    },
+    "exit_code": 0,
+    "logs": [
+      "logs/16_record_verdicts.stdout",
+      "logs/16_record_verdicts.stderr"
+    ],
+    "replay": "exact"
+  },
+  "outputs": {
+    "rows_final.json": "sha256:fbbedd9e765755230ee9b9c6dbeef1cb0531b66269cc21d63dcaa87fe941561d",
+    "findings_judge_support.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "findings_second_check.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "report",
+      "rel": "CONVERGES_TO",
+      "check": null,
+      "fired": true
+    }
+  ]
+}

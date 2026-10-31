@@ -1,0 +1,37 @@
+[
+  {
+    "check": "judge_rationale",
+    "evidence": "The rationale claims a sentence was moved, but the before and after text are identical, meaning no change occurred. (live:qwen/qwen3.5-122b)",
+    "item": "c01",
+    "message": "rationale misdescribes the change",
+    "severity": "warning"
+  },
+  {
+    "check": "judge_rationale",
+    "evidence": "The rationale explicitly states the agency count was updated from 48 to 52, which accurately describes the numerical ch… (live:qwen/qwen3.5-122b)",
+    "item": "c03",
+    "message": "change alters meaning beyond what the rationale says",
+    "severity": "warning"
+  },
+  {
+    "check": "judge_rationale",
+    "evidence": "The rationale claims only stylistic improvement while the edit replaces the citation key 'kim2018' with 'park2020', alt… (live:qwen/qwen3.5-122b)",
+    "item": "c04",
+    "message": "rationale misdescribes the change, and the change alters meaning",
+    "severity": "warning"
+  },
+  {
+    "check": "judge_rationale",
+    "evidence": "The rationale falsely claims only punctuation was fixed while the quoted text was altered from 'real conversation about… (live:qwen/qwen3.5-122b)",
+    "item": "c06",
+    "message": "rationale misdescribes the change, and the change alters meaning",
+    "severity": "warning"
+  },
+  {
+    "check": "judge_rationale",
+    "evidence": "The rationale claims 'tightened wording' but the edit replaces the hedge 'may suggest' with the booster 'show', alterin… (live:qwen/qwen3.5-122b)",
+    "item": "c08",
+    "message": "rationale misdescribes the change, and the change alters meaning",
+    "severity": "warning"
+  }
+]

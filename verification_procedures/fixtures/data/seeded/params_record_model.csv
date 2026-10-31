@@ -1,0 +1,4 @@
+param,value,step,script
+alpha,0.05,model,s3_model.py
+model_formula,satisfaction ~ income_k,model,s3_model.py
+round_digits,3,model,s3_model.py

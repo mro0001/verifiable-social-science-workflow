@@ -1,0 +1,44 @@
+{
+  "record_version": 1,
+  "seq": 7,
+  "node": "report",
+  "kind": "tool",
+  "graph_version": 0.2,
+  "started_at": "2026-10-08T12:59:47-07:00",
+  "duration_s": 0.11,
+  "inputs": {
+    "pins.json": "sha256:fc2ac744f0fe688b0bd12b33f2e6246664e47675a1cd80316e2ee5023581f7e3",
+    "changes.json": "sha256:05859e0f1a0417cae243e53396e004fe8d92bdfb53efe74e958ad406848a8e6d",
+    "author_changes.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "judge_items.json": "sha256:5961ae8ddf1df266ba5a2a64241bda6b110d703501f0614cf86540e2c9e410cb",
+    "judge_rationale.json": "sha256:3e668add36acb6a3b5d33024afae5fa308088f382cb05cc3a3512e3512e46d44",
+    "handoff.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "findings_pin_versions.json": "sha256:9ca392e59b87a777fedf960b9b7e425784bafb5bb9479366e72cc10312f9eac8",
+    "findings_exclude_author.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "findings_content_handoff.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "findings_rationale_coverage.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+  },
+  "execution": {
+    "type": "script",
+    "executor": "python3",
+    "code_files": {
+      "code/07_report/_lib.py": "sha256:bab908da53dea59fcf603a8d94c4e3e2e29312f8bf2ff66f631a5e273b937a8b",
+      "code/07_report/report.py": "sha256:96af901c8ee46f1a372b257e7af78ff60493efd7e2cc63661325854863a5dc38"
+    },
+    "exit_code": 0,
+    "logs": [
+      "logs/07_report.stdout",
+      "logs/07_report.stderr"
+    ],
+    "replay": "exact"
+  },
+  "outputs": {
+    "findings.json": "sha256:4aefa48b56110fb32e99b71e386b792cb600e44a710a064482b0fc39b965c0ad",
+    "report.md": "sha256:6597bef9f91c7f8d5f19b3d45a51404f7937bb58e8f14e6079191bcf3fd56553"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": []
+}

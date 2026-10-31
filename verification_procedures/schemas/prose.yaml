@@ -1,0 +1,238 @@
+# The prose stream's schema. The report step's fill function (implementations/prose/report.py)
+# fills these fields from the step outputs, and the one builder (implementations/_report.py)
+# writes fields.json, findings.json, and report.md from them. Raise the version by hand when a
+# field or the layout changes. Version 3 (Track V, step V1) is the report built for the
+# scholar's verification, with no model's verdict in it.
+stream: prose
+version: 3
+item: one change between the scholar's last draft and the final build's text, or one group of problems found on something other than a change
+id: id
+# The item fields the results file carries for each item, in this order, the keys Track W gave
+# this stream's items.
+results: [id, kind, summary, findings, needs_decision, sessions]
+
+# The items the results file lists for the prose stream. A change's own problems ride on its
+# row, and every other group of blocking or warning findings is an item of kind finding. The
+# change's own fields are not required, since an item of kind finding has none of them.
+fields:
+  id:
+    type: str
+    filled_by: [pin_versions, diff_changes, exclude_author, content_handoff, rationale_coverage]
+  # change or finding, as the results file has it. The kind of a change is change_kind.
+  kind:
+    type: enum
+    values: [change, finding]
+    filled_by: [pin_versions, diff_changes, exclude_author, content_handoff, rationale_coverage]
+  summary:
+    type: str
+    filled_by: [pin_versions, diff_changes, exclude_author, content_handoff, rationale_coverage]
+  findings:
+    type: list
+    filled_by: [pin_versions, diff_changes, exclude_author, content_handoff, rationale_coverage]
+  # True for each AI change and each item of kind finding, false for the scholar's own change.
+  needs_decision:
+    type: bool
+    filled_by: [pin_versions, diff_changes, exclude_author, content_handoff, rationale_coverage]
+  change_kind:
+    type: enum
+    values: [edit, insert, delete, move]
+    required: false
+    filled_by: [diff_changes]
+  before:
+    type: str
+    required: false
+    filled_by: [diff_changes]
+  after:
+    type: str
+    required: false
+    filled_by: [diff_changes]
+  moved:
+    type: bool
+    required: false
+    filled_by: [diff_changes]
+  # ai when the record of the AI's changes names the change, author (the scholar) otherwise.
+  by:
+    type: enum
+    values: [ai, author]
+    required: false
+    filled_by: [exclude_author]
+  # The record entry that names an AI change, or the two that name a move the record gives
+  # as a delete and an insert, joined by and. Left out for the scholar's own change.
+  record_id:
+    type: str
+    required: false
+    filled_by: [exclude_author]
+  # The reason the record gives for an AI change, word for word. Left out when none is recorded.
+  rationale:
+    type: str
+    required: false
+    filled_by: [exclude_author]
+  # The streams an AI change is handed to, empty when none. Left out for the scholar's own change.
+  streams:
+    type: list
+    required: false
+    filled_by: [content_handoff]
+  # The public ids of the sessions behind the change, copied from its record entry's
+  # session_ref. Left out when the entry gives none.
+  sessions:
+    type: list
+    required: false
+    filled_by: [exclude_author]
+  # The text of sessions for the change's line in the report.
+  # A report template takes no list field, so the report prints this text, not sessions.
+  session_line:
+    type: str
+    required: false
+    filled_by: [exclude_author]
+  # The cells and lines the report shows for a change.
+  kind_cell:
+    type: str
+    required: false
+    filled_by: [diff_changes]
+  before_cell:
+    type: str
+    required: false
+    filled_by: [diff_changes]
+  after_cell:
+    type: str
+    required: false
+    filled_by: [diff_changes]
+  change_cell:
+    type: str
+    required: false
+    filled_by: [diff_changes]
+  reason_cell:
+    type: str
+    required: false
+    filled_by: [exclude_author, rationale_coverage]
+  content_cell:
+    type: str
+    required: false
+    filled_by: [content_handoff]
+  trail:
+    type: str
+    required: false
+    filled_by: [diff_changes, exclude_author, content_handoff, rationale_coverage]
+
+run:
+  baseline_file:
+    type: str
+    filled_by: [pin_versions]
+  # The ledgered version, or not pinned.
+  baseline_version:
+    type: str
+    filled_by: [pin_versions]
+  baseline_sha256:
+    type: str
+    filled_by: [pin_versions]
+  revised_file:
+    type: str
+    filled_by: [pin_versions]
+  # The ledgered version, or not ledgered.
+  revised_version:
+    type: str
+    filled_by: [pin_versions]
+  revised_sha256:
+    type: str
+    filled_by: [pin_versions]
+  n_changes:
+    type: int
+    filled_by: [diff_changes]
+  n_edit:
+    type: int
+    filled_by: [diff_changes]
+  n_insert:
+    type: int
+    filled_by: [diff_changes]
+  n_delete:
+    type: int
+    filled_by: [diff_changes]
+  n_move:
+    type: int
+    filled_by: [diff_changes]
+  n_ai:
+    type: int
+    filled_by: [exclude_author]
+  n_author:
+    type: int
+    filled_by: [exclude_author]
+  n_no_reason:
+    type: int
+    filled_by: [rationale_coverage]
+  n_handoff:
+    type: int
+    filled_by: [content_handoff]
+
+tables:
+  # One row for each change handed to another stream, with the cells the Hand-off table shows.
+  - id: handoff
+    fields:
+      change:
+        type: str
+        filled_by: [content_handoff]
+      streams:
+        type: str
+        filled_by: [content_handoff]
+      token_diffs:
+        type: str
+        filled_by: [content_handoff]
+
+report:
+  title: Prose verification
+  intro: |-
+    This report lists each change between the scholar's last draft and the final build's text, for the scholar to verify. A change is the AI's when the record of the AI's changes names it. Each AI change is shown with its sentence before and after and the reason the record gives, and the scholar approves or holds it. A program notes each AI change with no recorded reason and points out each one that alters a number, a citation, a quotation, a negation, or how strongly a claim is stated. No model judges any change. The scholar's own changes are listed and not checked.
+
+    Changes between the two texts {run.n_changes} (edits {run.n_edit}, inserts {run.n_insert}, deletes {run.n_delete}, moves {run.n_move}). AI changes by the record {run.n_ai} (with no recorded reason {run.n_no_reason}, altering content {run.n_handoff}). The scholar's own changes {run.n_author}.
+  sections:
+    - heading: Versions
+      parts:
+        - kind: text
+          template: |-
+            - The scholar's last draft `{run.baseline_file}` ({run.baseline_version}) {run.baseline_sha256}
+            - The final build's text `{run.revised_file}` ({run.revised_version}) {run.revised_sha256}
+    - heading: AI changes
+      parts:
+        - kind: blocks
+          rows: items
+          where: by in [ai]
+          heading: "{id} ({kind_cell})"
+          lines:
+            - {label: Before, value: "{before_cell}"}
+            - {label: After, value: "{after_cell}"}
+            - {label: Stated reason, value: "{reason_cell}"}
+            - {label: Content changed, value: "{content_cell}", omit_empty: true}
+          empty: None.
+        # Only the changes whose record entry names a session.
+        - kind: list
+          rows: items
+          where: session_line
+          line: "Change {id} came from session {session_line}."
+    - heading: The scholar's own changes
+      parts:
+        - kind: text
+          template: These changes are not in the record of the AI's changes. They are listed and not checked. An AI change made through a shell command, or one the record cannot split such as a whole file an AI tool call wrote or a sentence an AI moved within one edit, would also be listed here.
+        - kind: table
+          rows: items
+          where: by in [author]
+          columns:
+            - {header: Id, value: "{id}"}
+            - {header: Kind, value: "{kind_cell}"}
+            - {header: "Change (before -> after)", value: "{change_cell}"}
+          empty: None.
+    - heading: Hand-off
+      parts:
+        - kind: table
+          rows: handoff
+          columns:
+            - {header: Change, value: "{change}"}
+            - {header: Streams, value: "{streams}"}
+            - {header: Token differences, value: "{token_diffs}"}
+          empty: None.
+    - heading: Trail
+      parts:
+        - kind: text
+          template: Record numbers refer to `records/NN_<step>.json` in the run folder.
+        - kind: list
+          rows: items
+          where: kind in [change]
+          line: "{trail}"

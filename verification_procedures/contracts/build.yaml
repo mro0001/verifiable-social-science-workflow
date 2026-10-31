@@ -1,0 +1,46 @@
+# What each build-stream step reads and must produce. project.tar is the project
+# folder at check time (in real use: git archive of the working tree).
+read_map:
+  reads: [project.tar]
+  produces:
+    map.json: {deliverables: list, n_deliverables: int, look_alikes: list, allowlist: list}
+    findings_read_map.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+check_ledger:
+  reads: [project.tar, map.json]
+  produces:
+    ledger.json: {rows: int, builds: list, latest: dict}
+    findings_check_ledger.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+check_prefs:
+  reads: [project.tar, map.json, ledger.json]
+  produces:
+    prefs.json: {items: {deliverable: str, pref: str, in_command: bool}}
+    findings_check_prefs.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+rebuild:
+  reads: [project.tar, map.json, ledger.json]
+  produces:
+    rebuild.json: {exercised: bool, rebuilt: int, matched: int, builds: list}
+    findings_rebuild.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+no_rebuild:
+  reads: [ledger.json]
+  produces:
+    rebuild.json: {exercised: bool, rebuilt: int, matched: int, builds: list}
+    findings_rebuild.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+check_hardcoding:
+  reads: [project.tar, map.json]
+  produces:
+    findings_check_hardcoding.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+check_ai_touch:
+  reads: [session_writes.jsonl, map.json]
+  produces:
+    findings_check_ai_touch.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+report:
+  reads_optional: ["findings_*.json"]  # any upstream findings, including findings_unjudged_<node>.json
+  # steps.json is written by the runtime before this step (which steps ran, and why a skipped one did not)
+  reads: [map.json, ledger.json, prefs.json, rebuild.json, findings_read_map.json, findings_check_ledger.json,
+          findings_check_prefs.json, findings_rebuild.json, findings_check_hardcoding.json,
+          findings_check_ai_touch.json, steps.json]
+  produces:
+    fields.json: {schema: dict, run: dict, tables: dict}  # and items; the builder checks every field against the schema
+    findings_completeness.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+    findings.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+    report.md: {headings: [Summary, Problems, Deliverables, Builds, What was checked]}

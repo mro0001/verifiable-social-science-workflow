@@ -1,0 +1,45 @@
+{
+  "record_version": 1,
+  "seq": 3,
+  "node": "attribute_origin",
+  "kind": "tool",
+  "graph_version": 0.1,
+  "started_at": "2026-10-08T13:10:07-07:00",
+  "duration_s": 0.15,
+  "inputs": {
+    "rows.json": "sha256:8a06d3e7a5de9750ac10e6cc402c36b99d66536bc458f8b512cdd9169e2712d1",
+    "draft.md": "sha256:397d3090b864c7dc860a68b869467947287bfdd4f8654494c5b76daa4c637ede",
+    "author_draft.md": "sha256:70e2b34deb4711e12f261243102aa72bec5fd07249439a883b2f4cecd3d2239b",
+    "citation_log.yaml": "sha256:b34a6a450d4b2c8fa3038d97c0847872478ef545d5b47e7b6993cfa555505a74"
+  },
+  "execution": {
+    "type": "script",
+    "executor": "python3",
+    "code_files": {
+      "code/03_attribute_origin/_lib.py": "sha256:bab908da53dea59fcf603a8d94c4e3e2e29312f8bf2ff66f631a5e273b937a8b",
+      "code/03_attribute_origin/attribute_origin.py": "sha256:d5d1c4f9bb02ad1d2a21b7e7b36b631bb2ba7b17d10ae1331ca7a48c60b4acce"
+    },
+    "exit_code": 0,
+    "logs": [
+      "logs/03_attribute_origin.stdout",
+      "logs/03_attribute_origin.stderr"
+    ],
+    "replay": "exact"
+  },
+  "outputs": {
+    "rows_attributed.json": "sha256:a51fa7e03b7de5470fbc2dfd81eecdfe6b6e9d43a15be05a886789cf7b79afec",
+    "findings_attribute_origin.json": "sha256:2eb79ad1f6db505e8e2c101d70316cd8d9dae3d459065ebe68ea8ba3849061a0"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "match_references",
+      "rel": "LEADS_TO",
+      "check": null,
+      "fired": true
+    }
+  ]
+}

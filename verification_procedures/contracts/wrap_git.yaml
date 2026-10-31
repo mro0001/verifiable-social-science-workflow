@@ -1,0 +1,18 @@
+# Contracts for the git wrapper graph. A run's input is the wrapper's call file,
+# calls.jsonl, one JSON object per line. events.json uses the slice's event
+# fields with its fixed lists as the allowed values.
+read_calls:
+  reads: [calls.jsonl]
+  produces:
+    calls.json: {items: {id: str, argv: list, cwd: str, started_at: str, ended_at: str, exit_code: int}}
+    findings_read_calls.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+to_events:
+  reads: [calls.json]
+  produces:
+    events.json: {items: {harness: str, harness_session_id: str, source_id: str, verb: [wrote, edited, ran, searched, verified, committed], kind: [action, decision, observation, blocker], object: str, rationale: str, role: [produced, edited, read, cited, ""]}}
+report:
+  reads: [calls.json, events.json]
+  reads_optional: ["findings_*.json"]  # read_calls's findings, so the report carries its warnings
+  produces:
+    findings.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+    report.md: {headings: [Summary, Problems, Events]}

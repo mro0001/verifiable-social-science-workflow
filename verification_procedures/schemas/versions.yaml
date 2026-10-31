@@ -1,0 +1,21 @@
+# The recorded version of each stream schema. Each line gives a version and the sha256 of
+# the schema file at that version. When a field or the layout of a schema changes, raise
+# its `version` by hand and add a line here with the new file's checksum. The acceptance
+# tests fail when a schema file changes without a new version.
+build:
+  1: "sha256:a0a1e1a7cc400db1f8b835c6624a820b362a0096ec503ceaf0583fee6c245928"
+  2: "sha256:49added5bd5a3751aed45d18841a469f4398531217e15d4ecab0eec429d40495"
+citations:
+  1: "sha256:cdbb23b518c464801dc0c59d76d9fb1d5b9491e8f2fd0ffaa36cdfbf6d341b05"
+  2: "sha256:91edcd760c14226b7d9bf4bb5b34fcdc26a3e6e86b994dd401053af99be80c52"
+  3: "sha256:55c80240245ea152ae00d5fcb852ab956d38a5a934790ec8eace2549b62a4fef"
+  4: "sha256:da4b83c2966ac08d1448fa435ec4596d6de6fab54a8ea7303213ec90d1fc7f3f"
+data:
+  1: "sha256:77d4b04051a1b8d8a476b43ffcc2b9bf0ba8e13e83f834b1552f5d10f9623774"
+  2: "sha256:783fd2b4828f83dbf7e4cab75719af1f1cdae3c546c825afc64b50ceb5c1f329"
+prose:
+  1: "sha256:dcb557b1d4f36fdc3f7db04a9e111cad00d3eb1e40a8b8fea4d7f31074e1fc81"
+  2: "sha256:fa4d30a85be6709d565205ff756ed17b00ff018f918f528f61f5b0272132cbc2"
+  3: "sha256:207babc1d93d4f8bda09fc041f64d9c58c051bc83bf804e50a6446a1dd22b153"
+data_phases:
+  1: "sha256:99bf8dceca4e4271526ed58b3ed36f67f9d32762948db13bcabc241a9e8792c5"

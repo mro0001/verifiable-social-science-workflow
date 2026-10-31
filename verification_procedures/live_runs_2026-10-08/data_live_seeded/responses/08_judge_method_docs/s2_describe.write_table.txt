@@ -1,0 +1,1 @@
+{"matches": true, "mismatches": [], "reason": "The docstring claims a fixed column order and line ending, which is accurately reflected in the code's hardcoded `cols` list and `lineterminator=\"\\n\"` argument."}

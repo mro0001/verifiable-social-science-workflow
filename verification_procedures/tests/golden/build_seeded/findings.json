@@ -1,0 +1,86 @@
+[
+  {
+    "check": "check_ai_touch",
+    "evidence": "session s-0104, ai via Edit",
+    "item": "builds/slides/v001.html",
+    "message": "AI touched the deliverable directly; only the map's build rule may write here.",
+    "severity": "blocking"
+  },
+  {
+    "check": "check_hardcoding",
+    "evidence": "line 16: Districts that met monthly reported higher learning scores than districts that met quarterly (standardized difference 0…",
+    "item": "paper/paper.md:0.31",
+    "message": "Hard-coded result: equals numbers.yml key 'effect_monthly'; use {{num:effect_monthly}} so it moves with the data.",
+    "severity": "blocking"
+  },
+  {
+    "check": "check_hardcoding",
+    "evidence": "n_teams",
+    "item": "slides/slides.md:{{num:n_teams}}",
+    "message": "Placeholder with no value in numbers.yml; the build will refuse, by design.",
+    "severity": "blocking"
+  },
+  {
+    "check": "check_ledger",
+    "evidence": "ledger 07f6f1debcdd..., file a239813c9e1b...",
+    "item": "builds/paper/v001.html",
+    "message": "Deliverable edited after build: its sha256 no longer matches the ledger.",
+    "severity": "blocking"
+  },
+  {
+    "check": "check_prefs",
+    "evidence": "number_sections: true; needs --number-sections",
+    "item": "slides:number_sections",
+    "message": "Preference not integrated: the author declared it but the map's command for slides does not carry it.",
+    "severity": "blocking"
+  },
+  {
+    "check": "rebuild",
+    "evidence": "build has, rebuild lacks: <p>Monthly meetings clearly cause better learning.</p>",
+    "item": "builds/paper/v002.html",
+    "message": "Deliverable not derived from the build: same snapshot, same command, same pandoc, different bytes (direct edit).",
+    "severity": "blocking"
+  },
+  {
+    "check": "read_map",
+    "evidence": "add '> ARCHIVE <date>: superseded by paper/paper.md' after the front matter",
+    "item": "drafts/paper_full.md",
+    "message": "Competing canonical: this file reads as paper/paper.md (same title as the canonical) and has no ARCHIVE line.",
+    "severity": "warning"
+  },
+  {
+    "check": "check_ai_touch",
+    "evidence": "",
+    "item": "canonical sources",
+    "message": "4 AI write(s) to canonical sources; that is where AI works.",
+    "severity": "info"
+  },
+  {
+    "check": "read_map",
+    "evidence": "> ARCHIVE 2026-09-30: superseded by paper/paper.md",
+    "item": "drafts/paper_2026-09.md",
+    "message": "Archived look-alike, correctly bannered.",
+    "severity": "info"
+  },
+  {
+    "check": "rebuild",
+    "evidence": "recorded source 302823ae30f7...",
+    "item": "builds/paper/v001.html",
+    "message": "Canonical or numbers changed since this build; the rebuild starts from the frozen snapshot.",
+    "severity": "info"
+  },
+  {
+    "check": "rebuild",
+    "evidence": "recorded source a20660b79688...",
+    "item": "builds/paper/v002.html",
+    "message": "Canonical or numbers changed since this build; the rebuild starts from the frozen snapshot.",
+    "severity": "info"
+  },
+  {
+    "check": "rebuild",
+    "evidence": "recorded source 304c011820ef...",
+    "item": "builds/slides/v001.html",
+    "message": "Canonical or numbers changed since this build; the rebuild starts from the frozen snapshot.",
+    "severity": "info"
+  }
+]

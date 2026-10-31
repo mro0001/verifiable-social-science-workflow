@@ -1,0 +1,33 @@
+# Planted faults in the SYNTHETIC seeded fixture of the references procedure 0.2. item is
+# the row id or the citekey as it appears in the finding's item field. Every finding is a
+# note, and a fault is caught when any finding names its check and item.
+faults:
+  - {id: F01_work_not_found,             check: check_existence,         item: ferrante2021}
+  - {id: F02_second_work_not_found,      check: check_existence,         item: sorensen2022}
+  - {id: F03_recorded_quote_not_in_source, check: verify_quote,          item: r04}
+  - {id: F04_located_quote_not_in_source,  check: verify_quote,          item: r05}
+  - {id: F05_no_recorded_reason,         check: gather_reason_and_quote, item: r06}
+  - {id: F06_second_no_recorded_reason,  check: gather_reason_and_quote, item: r09}
+  - {id: F07_section_pointer_not_a_quote, check: verify_quote,           item: r07}
+  - {id: F08_no_source_text,             check: gather_reason_and_quote, item: r10}
+  - {id: F09_key_missing_from_refs,      check: match_references,        item: pruitt2022}
+  - {id: F10_never_named_in_the_record,  check: read_origin,             item: r14}
+  - {id: F11_scholars_citation_listed,   check: read_origin,             item: r03}
+  - {id: F12_dropped_before_final_build, check: match_references,        item: whitlock2020}
+  - {id: F13_second_dropped_citation,    check: match_references,        item: quinlan2015}
+# The scholar's citations, which must not be looked up, located, or checked. tanaka2016's
+# DOI is not in the metadata cache and its sentence has no source passage to match.
+not_checked: [r03, castellanos2017, r15, tanaka2016]
+origins:
+  r01: ai
+  r03: scholar
+  r11: unknown      # pruitt2022, no entry in the reference list or the record
+  r14: unknown      # dumont2014, never named in the record
+  r15: scholar
+quote_in_source:
+  r01: "yes"        # a recorded quote
+  r04: "yes"        # a recorded quote that is not in the source, so a located one is checked too, and it is there
+  r05: "no"         # a located quote that is not in the source
+  r07: not_checked  # a section pointer
+  r08: "yes"        # a located quote
+  r12: "yes"        # a recorded quote, checked against the abstract only

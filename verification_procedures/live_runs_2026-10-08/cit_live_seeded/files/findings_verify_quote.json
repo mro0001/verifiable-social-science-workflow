@@ -1,0 +1,23 @@
+[
+  {
+    "check": "verify_quote",
+    "evidence": "source_brennan2016.txt",
+    "item": "r04",
+    "message": "quoted words are not in the source (a paraphrase presented as a direct quote): \"volunteers leave when the work stops feeling like their own\"",
+    "severity": "blocking"
+  },
+  {
+    "check": "verify_quote",
+    "evidence": "source_kessler2019.txt",
+    "item": "r05",
+    "message": "number 42% in the claim does not appear in the source",
+    "severity": "blocking"
+  },
+  {
+    "check": "verify_quote",
+    "evidence": "source_marchetti2012.txt",
+    "item": "r07",
+    "message": "the source never uses the quoted term \"civic paradata\"",
+    "severity": "blocking"
+  }
+]

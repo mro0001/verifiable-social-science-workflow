@@ -1,0 +1,50 @@
+{"at": "2026-10-08T13:04:29-07:00", "event": "run_initialized", "stream": "data", "graph_version": 0.1}
+{"at": "2026-10-08T13:04:29-07:00", "event": "step_started", "node": "inventory", "seq": 1, "kind": "tool"}
+{"at": "2026-10-08T13:04:29-07:00", "event": "step_finished", "node": "inventory", "seq": 1, "contract": "pass", "fired": ["check_raw", "check_params", "replay_pipeline"]}
+{"at": "2026-10-08T13:04:29-07:00", "event": "step_started", "node": "check_raw", "seq": 2, "kind": "tool"}
+{"at": "2026-10-08T13:04:29-07:00", "event": "step_finished", "node": "check_raw", "seq": 2, "contract": "pass", "fired": ["replay_pipeline"]}
+{"at": "2026-10-08T13:04:29-07:00", "event": "step_started", "node": "check_params", "seq": 3, "kind": "tool"}
+{"at": "2026-10-08T13:04:30-07:00", "event": "step_finished", "node": "check_params", "seq": 3, "contract": "pass", "fired": ["check_docs", "check_records"]}
+{"at": "2026-10-08T13:04:30-07:00", "event": "step_started", "node": "replay_pipeline", "seq": 4, "kind": "tool"}
+{"at": "2026-10-08T13:04:30-07:00", "event": "step_finished", "node": "replay_pipeline", "seq": 4, "contract": "pass", "fired": ["check_records", "check_numbers"]}
+{"at": "2026-10-08T13:04:30-07:00", "event": "step_started", "node": "check_docs", "seq": 5, "kind": "tool"}
+{"at": "2026-10-08T13:04:30-07:00", "event": "step_finished", "node": "check_docs", "seq": 5, "contract": "pass", "fired": ["judge_method_docs"]}
+{"at": "2026-10-08T13:04:30-07:00", "event": "step_started", "node": "check_records", "seq": 6, "kind": "tool"}
+{"at": "2026-10-08T13:04:30-07:00", "event": "step_finished", "node": "check_records", "seq": 6, "contract": "pass", "fired": ["report"]}
+{"at": "2026-10-08T13:04:31-07:00", "event": "step_started", "node": "check_numbers", "seq": 7, "kind": "tool"}
+{"at": "2026-10-08T13:04:31-07:00", "event": "step_finished", "node": "check_numbers", "seq": 7, "contract": "pass", "fired": ["report"]}
+{"at": "2026-10-08T13:04:31-07:00", "event": "step_started", "node": "judge_method_docs", "seq": 8, "kind": "judgment"}
+{"at": "2026-10-08T13:04:31-07:00", "event": "judgment_item", "node": "judge_method_docs", "item": "params_io", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:04:32-07:00", "event": "judgment_item", "node": "judge_method_docs", "item": "params_io.Params", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:04:32-07:00", "event": "judgment_item", "node": "judge_method_docs", "item": "params_io.Params.__getitem__", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:04:33-07:00", "event": "judgment_item", "node": "judge_method_docs", "item": "params_io.Params.__init__", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:04:34-07:00", "event": "judgment_item", "node": "judge_method_docs", "item": "params_io.Params.write_record", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:04:34-07:00", "event": "judgment_item", "node": "judge_method_docs", "item": "params_io.file_sha256", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:04:35-07:00", "event": "judgment_item", "node": "judge_method_docs", "item": "params_io.load", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:04:35-07:00", "event": "judgment_item", "node": "judge_method_docs", "item": "params_io.parse_value", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:04:36-07:00", "event": "judgment_item", "node": "judge_method_docs", "item": "params_io.write_model_record", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:04:36-07:00", "event": "judgment_item", "node": "judge_method_docs", "item": "s1_clean", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:04:37-07:00", "event": "judgment_item", "node": "judge_method_docs", "item": "s1_clean.drop_missing", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:04:37-07:00", "event": "judgment_item", "node": "judge_method_docs", "item": "s1_clean.filter_age", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:04:38-07:00", "event": "judgment_item", "node": "judge_method_docs", "item": "s1_clean.main", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:04:38-07:00", "event": "judgment_item", "node": "judge_method_docs", "item": "s1_clean.read_rows", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:04:39-07:00", "event": "judgment_item", "node": "judge_method_docs", "item": "s1_clean.top_code", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:04:40-07:00", "event": "judgment_item", "node": "judge_method_docs", "item": "s1_clean.write_rows", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:04:41-07:00", "event": "judgment_item", "node": "judge_method_docs", "item": "s2_describe", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:04:41-07:00", "event": "judgment_item", "node": "judge_method_docs", "item": "s2_describe.by_region", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:04:42-07:00", "event": "judgment_item", "node": "judge_method_docs", "item": "s2_describe.main", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:04:43-07:00", "event": "judgment_item", "node": "judge_method_docs", "item": "s2_describe.read_rows", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:04:44-07:00", "event": "judgment_item", "node": "judge_method_docs", "item": "s2_describe.summarize", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:04:44-07:00", "event": "judgment_item", "node": "judge_method_docs", "item": "s2_describe.svg_bars", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:04:45-07:00", "event": "judgment_item", "node": "judge_method_docs", "item": "s2_describe.write_table", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:04:46-07:00", "event": "judgment_item", "node": "judge_method_docs", "item": "s3_model", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:04:46-07:00", "event": "judgment_item", "node": "judge_method_docs", "item": "s3_model.coef_rows", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:04:47-07:00", "event": "judgment_item", "node": "judge_method_docs", "item": "s3_model.complete_cases", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:04:47-07:00", "event": "judgment_item", "node": "judge_method_docs", "item": "s3_model.main", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:04:48-07:00", "event": "judgment_item", "node": "judge_method_docs", "item": "s3_model.ols", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:04:48-07:00", "event": "judgment_item", "node": "judge_method_docs", "item": "s3_model.parse_formula", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:04:49-07:00", "event": "judgment_item", "node": "judge_method_docs", "item": "s3_model.read_rows", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-08T13:04:49-07:00", "event": "step_finished", "node": "judge_method_docs", "seq": 8, "contract": "pass", "fired": ["report"]}
+{"at": "2026-10-08T13:04:49-07:00", "event": "step_started", "node": "report", "seq": 9, "kind": "tool"}
+{"at": "2026-10-08T13:04:49-07:00", "event": "step_finished", "node": "report", "seq": 9, "contract": "pass", "fired": []}
+{"at": "2026-10-08T13:04:49-07:00", "event": "run_finished"}

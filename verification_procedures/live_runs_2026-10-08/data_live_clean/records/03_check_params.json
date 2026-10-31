@@ -1,0 +1,49 @@
+{
+  "record_version": 1,
+  "seq": 3,
+  "node": "check_params",
+  "kind": "tool",
+  "graph_version": 0.1,
+  "started_at": "2026-10-08T13:04:29-07:00",
+  "duration_s": 0.18,
+  "inputs": {
+    "project.json": "sha256:e8a605c336ba66c22961a5567c4932a96e4c40c4cf21e022453f84f2f83def10",
+    "inventory.json": "sha256:9c729f66b8bd507a6a918cd069773b179db35ab2dedcab65484c18fc49599118"
+  },
+  "execution": {
+    "type": "script",
+    "executor": "python3",
+    "code_files": {
+      "code/03_check_params/_lib.py": "sha256:bab908da53dea59fcf603a8d94c4e3e2e29312f8bf2ff66f631a5e273b937a8b",
+      "code/03_check_params/check_params.py": "sha256:9f08f12c8baf0d7d76c4c03f8faf9f2820ea5969cac12f460de839e984865eb4"
+    },
+    "exit_code": 0,
+    "logs": [
+      "logs/03_check_params.stdout",
+      "logs/03_check_params.stderr"
+    ],
+    "replay": "exact"
+  },
+  "outputs": {
+    "params_usage.json": "sha256:593ebb215726cef768f1ed53ba5cc132df037785c384832635741ba79eb65063",
+    "findings_check_params.json": "sha256:93774ddca190dd3e7b809b2cf3138a0b9d228c24c76b07cc52cb0b226d954283"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "check_docs",
+      "rel": "PROVIDES_INPUT_FOR",
+      "check": null,
+      "fired": true
+    },
+    {
+      "to": "check_records",
+      "rel": "PROVIDES_INPUT_FOR",
+      "check": null,
+      "fired": true
+    }
+  ]
+}

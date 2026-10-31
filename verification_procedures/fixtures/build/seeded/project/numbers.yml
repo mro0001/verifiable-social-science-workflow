@@ -1,0 +1,5 @@
+# Written by the analysis scripts (synthetic values). Display strings; the resolver formats nothing.
+n_districts: "48"
+n_members: "1,214"
+effect_monthly: "0.31"
+ci_monthly: "[0.12, 0.50]"

@@ -1,0 +1,22 @@
+{
+  "created_at": "2026-10-29T03:30:48-07:00",
+  "stream": "selftest",
+  "graph": {
+    "path": "graphs/selftest.yaml",
+    "version": 0.1,
+    "sha256": "sha256:ea4fc8b778d0ebd23b7aad62a196f802bcb2b5a0fcf0ec726bdf3b014db40bc1"
+  },
+  "contracts": {
+    "path": "contracts/selftest.yaml",
+    "sha256": "sha256:4654e9e173c1c20e49aa0feaa247350a825d7cee323004d57cb26596e47b3397"
+  },
+  "inputs_from": "fixtures/selftest",
+  "inputs": {
+    "words.txt": "sha256:5ed555b445c1322c4c97425f41d2d064401c0a4718578ef523d4373fda7777b6"
+  },
+  "executors": {
+    "judge": "recorded:fixtures/selftest/recorded_judge.json",
+    "second": null
+  },
+  "python": "3.9.5"
+}

@@ -1,0 +1,59 @@
+# What each step of the references procedure reads and must produce. draft.md is the
+# final build's text. citation_provenance.yaml is the audit layer's citation provenance
+# record (python3 -m audit_layer write-out citation-provenance).
+pin_document:
+  reads: [draft.md, citation_provenance.yaml, refs.yaml, metadata_cache.json]
+  produces:
+    doc_pin.json: {draft_sha256: str, inputs: dict}
+extract_citations:
+  reads: [draft.md]
+  produces:
+    rows.json: {items: {id: str, citekey: str, sentence: str, sentence_hash: str, locator: str, quoted: list, numbers: list}}
+    findings_extract_citations.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+match_references:
+  reads: [rows.json, refs.yaml]
+  produces:
+    refs_index.json: {items: {id: str, in_refs: bool, cited: bool, reference: str}}
+    findings_match_references.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+read_origin:
+  reads: [rows.json, citation_provenance.yaml]
+  produces:
+    rows_origin.json: {items: {id: str, origin: [ai, scholar, unknown], origin_evidence: str, sessions: list, needs_decision: bool}}
+    findings_read_origin.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+fetch_metadata:
+  reads: [refs_index.json, rows_origin.json, metadata_cache.json]
+  produces:
+    lookups.json: {items: {id: str, doi: str, found: bool, via: str}}
+check_existence:
+  reads: [refs_index.json, lookups.json]
+  produces:
+    refs_verified.json: {items: {id: str, lookup: [found, not_found, not_looked_up], existence: str, record: str}}
+    findings_check_existence.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+pin_sources:
+  reads: [refs_index.json]
+  reads_optional: ["source_*.txt"]
+  produces:
+    sources.json: {}
+gather_reason_and_quote:
+  reads: [rows_origin.json, refs_index.json, refs_verified.json, sources.json, citation_provenance.yaml]
+  produces:
+    rows_reasons.json: {items: {id: str, status: [to_locate, recorded_quote, no_source, work_not_found, not_checked], lookup: [found, not_found, not_looked_up, not_checked], reason: str, reason_source: str}}
+    findings_gather_reason_and_quote.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+locate_passage:
+  reads: [rows_reasons.json]
+  produces:
+    locate_passage.json: {items: {item_id: str, kind: [quote, section, paraphrase, none], text: str, location: str}}
+verify_quote:
+  reads: [rows_reasons.json, locate_passage.json]
+  produces:
+    rows_quoted.json: {items: {id: str, quotes: list, quote_in_source: ["yes", "no", not_checked]}}
+    findings_verify_quote.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+report:
+  reads_optional: ["findings_*.json"]  # any upstream findings, including findings_unjudged_<node>.json
+  # steps.json is written by the runtime before this step (which steps ran, and why a skipped one did not)
+  reads: [rows_quoted.json, doc_pin.json, findings_extract_citations.json, findings_match_references.json, findings_read_origin.json, findings_check_existence.json, findings_gather_reason_and_quote.json, findings_verify_quote.json, steps.json]
+  produces:
+    fields.json: {schema: dict, run: dict, tables: dict}  # and items; the builder checks every field against the schema
+    findings_completeness.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+    findings.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+    report.md: {headings: [Citations, Notes]}

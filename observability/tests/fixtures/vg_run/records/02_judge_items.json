@@ -1,0 +1,38 @@
+{
+  "record_version": 1,
+  "seq": 2,
+  "node": "judge_items",
+  "kind": "judgment",
+  "graph_version": 0.1,
+  "started_at": "2026-10-29T03:30:48-07:00",
+  "duration_s": 0.02,
+  "inputs": {
+    "items.json": "sha256:ecfda50f6a242d41af727e44fc69848dda6a94c6c4e3d338bbd03fccc1f61180"
+  },
+  "execution": {
+    "type": "judgment",
+    "role": "judge",
+    "executor": [
+      "recorded:recorded_judge.json"
+    ],
+    "items": 4,
+    "unjudged": [],
+    "prompts": "prompts/02_judge_items",
+    "responses": "responses/02_judge_items"
+  },
+  "outputs": {
+    "judge_items.json": "sha256:251db9e5e319a9a67539c5239af4cc19665b2c199e71c97411a1bb997b5b6b3c"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "report",
+      "rel": "CONVERGES_TO",
+      "check": null,
+      "fired": true
+    }
+  ]
+}

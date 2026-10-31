@@ -1,0 +1,1 @@
+{"verdict": "supports", "reason": "The located passage explicitly states that the quality of supervisors' feedback predicted whether volunteers returned for a second season, matching the claim's assertion exactly."}

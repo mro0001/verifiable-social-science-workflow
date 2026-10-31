@@ -1,0 +1,9 @@
+[
+  {
+    "check": "check_raw",
+    "evidence": "recorded sha256:2ce927e550d1..., now sha256:6d2976a77b36...",
+    "item": "raw_survey.csv",
+    "message": "raw data changed after acquisition",
+    "severity": "blocking"
+  }
+]

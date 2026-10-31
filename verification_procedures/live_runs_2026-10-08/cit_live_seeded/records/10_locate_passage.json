@@ -1,0 +1,38 @@
+{
+  "record_version": 1,
+  "seq": 10,
+  "node": "locate_passage",
+  "kind": "judgment",
+  "graph_version": 0.1,
+  "started_at": "2026-10-08T13:10:08-07:00",
+  "duration_s": 7.05,
+  "inputs": {
+    "rows_access.json": "sha256:84599c2674555472802c31803ae4b759d1231f67c9e9a5a9a793043e079adde7"
+  },
+  "execution": {
+    "type": "judgment",
+    "role": "judge",
+    "executor": [
+      "live:qwen/qwen3.5-122b"
+    ],
+    "items": 12,
+    "unjudged": [],
+    "prompts": "prompts/10_locate_passage",
+    "responses": "responses/10_locate_passage"
+  },
+  "outputs": {
+    "locate_passage.json": "sha256:634e9918fce742f9625569045db5005cf25be0e2a4354577839aa73a80bc7514"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "verify_quote",
+      "rel": "LEADS_TO",
+      "check": null,
+      "fired": true
+    }
+  ]
+}

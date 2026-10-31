@@ -1,0 +1,37 @@
+{
+  "faults": 8,
+  "caught": [
+    "F1",
+    "F2",
+    "F3",
+    "F4",
+    "F5",
+    "F6",
+    "F7",
+    "F8"
+  ],
+  "missed": [],
+  "recall": 1.0,
+  "extra_findings": [
+    {
+      "check": "replay_pipeline",
+      "item": "model_record_model.json",
+      "message": "output does not reproduce: hand-edited or stale"
+    },
+    {
+      "check": "check_docs",
+      "item": "s1_clean.py",
+      "message": "Parameters section names min_age, but the script never reads it from params.yaml"
+    },
+    {
+      "check": "judge_method_docs",
+      "item": "s1_clean",
+      "message": "documentation does not describe what the code does (judgment: confirm)"
+    },
+    {
+      "check": "judge_method_docs",
+      "item": "s1_clean.filter_age",
+      "message": "documentation does not describe what the code does (judgment: confirm)"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "check": "attribute_ai",
+    "evidence": "inputs",
+    "item": "file_edits.yaml",
+    "message": "no record of the AI's file edits was given, so no script or parameter is marked as the AI's and every number waits for the scholar",
+    "severity": "info"
+  },
+  {
+    "check": "check_params",
+    "evidence": "JSON layout, not an analytic choice",
+    "item": "params_io.py:L106",
+    "message": "literal declared not a parameter",
+    "severity": "info"
+  },
+  {
+    "check": "check_params",
+    "evidence": "JSON layout, not an analytic choice",
+    "item": "s1_results.py:L81",
+    "message": "literal declared not a parameter",
+    "severity": "info"
+  }
+]

@@ -1,0 +1,42 @@
+{
+  "record_version": 1,
+  "seq": 2,
+  "node": "check_raw",
+  "kind": "tool",
+  "graph_version": 0.1,
+  "started_at": "2026-10-08T13:09:32-07:00",
+  "duration_s": 0.11,
+  "inputs": {
+    "project.json": "sha256:786a34db6047dffba634c7eae42461d23db3550eeb681e4ee73c0f1dc1f9c1d2",
+    "inventory.json": "sha256:9c729f66b8bd507a6a918cd069773b179db35ab2dedcab65484c18fc49599118"
+  },
+  "execution": {
+    "type": "script",
+    "executor": "python3",
+    "code_files": {
+      "code/02_check_raw/_lib.py": "sha256:bab908da53dea59fcf603a8d94c4e3e2e29312f8bf2ff66f631a5e273b937a8b",
+      "code/02_check_raw/check_raw.py": "sha256:cae6acf01d64e4ff032cf24ae77d445170954a200cf7e9ab21675659745d3e7b"
+    },
+    "exit_code": 0,
+    "logs": [
+      "logs/02_check_raw.stdout",
+      "logs/02_check_raw.stderr"
+    ],
+    "replay": "exact"
+  },
+  "outputs": {
+    "findings_check_raw.json": "sha256:fb0bbcd3c7587ab5e2be16ef9d6fe5095b710c4e64f2c3a6a8979cc92572200f"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "replay_pipeline",
+      "rel": "LEADS_TO",
+      "check": null,
+      "fired": true
+    }
+  ]
+}

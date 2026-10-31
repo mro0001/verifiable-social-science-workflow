@@ -1,0 +1,44 @@
+{
+  "5f3c0413-2a7d-4b9e-8c61-a0d4e7b2c913": {
+    "title": "Add two findings on volunteer exit after the sentence on fit",
+    "gist": "The scholar asked for two cited findings in Results, a notes file, a check, and a commit, and the AI did each.",
+    "summary": "The scholar asked for two findings from the volunteer retention literature after the sentence on fit in the Results section, with their citations. The AI read the manuscript, added a finding from Dumont (2014) on clear end dates and one from Nakamura (2020) on recognition events, listed both sources in source_notes.md, ran the manuscript check, which passed, and committed both files.",
+    "keywords": [
+      "volunteer retention",
+      "volunteer exit",
+      "citations",
+      "Results section",
+      "manuscript check"
+    ],
+    "decisions": [
+      {
+        "ordinal": 2,
+        "rationale": "The scholar asked for the findings right after the sentence on fit, so the first one went there."
+      }
+    ]
+  },
+  "5f3c0413-2a7d-4b9e-8c61-a0d4e7b2c913/agent-a7c41e2b9d0f3856": {
+    "title": "Start a reading list and check a citation",
+    "gist": "A subagent added the plain-text workflow source to a reading list and found that the manuscript cites nakamura2020.",
+    "summary": "The subagent read refs.bib, found Healy's guide as the source on plain-text workflows, started notes/reading_list.md with it and its citation, and searched manuscript.md, which cites nakamura2020.",
+    "keywords": [
+      "reading list",
+      "plain-text workflows",
+      "healy2020",
+      "nakamura2020"
+    ],
+    "decisions": []
+  },
+  "c2a1e5f0-7b3d-4e8a-9c16-d4f0b8a2e357": {
+    "title": "Add a finding with no summary",
+    "gist": "A faulty answer that leaves out the summary.",
+    "keywords": [
+      "faulty answer",
+      "summary",
+      "tests"
+    ],
+    "decisions": []
+  },
+  "e8b4d2a6-1f7c-4a9e-b3d5-62c0f9e1a748": "```json\n{\n  \"title\": \"Add a finding the action log cannot place\",\n  \"gist\": \"A faulty answer whose decision names an ordinal the action log lacks.\",\n  \"summary\": \"A synthetic answer for the tests, written by hand.\",\n  \"keywords\": [\n    \"faulty answer\",\n    \"ordinal\",\n    \"tests\"\n  ],\n  \"decisions\": [\n    {\n      \"ordinal\": 9,\n      \"rationale\": \"The ninth event does not exist.\"\n    }\n  ]\n}\n```",
+  "a3f7c1d9-5e2b-4c8d-8a41-f6b0e2d7c935": "<think>\nThe scholar asked for findings. I will answer in JSON.\n</think>\n{\"title\": \"Add a finding with a rationale of two sentences\", \"gist\": \"A faulty answer whose rationale holds two sentences.\", \"summary\": \"A synthetic answer for the tests, written by hand.\", \"keywords\": [\"faulty answer\", \"rationale\", \"tests\"], \"decisions\": [{\"ordinal\": 2, \"rationale\": \"The scholar asked for it. It went after the sentence on fit.\"}]}"
+}

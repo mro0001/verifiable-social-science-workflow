@@ -1,0 +1,13 @@
+first:
+  reads: [items.txt]
+  produces:
+    items.json: {items: {id: str}}
+judge:
+  reads: [items.json]
+  produces:
+    judge.json: {items: {item_id: str, verdict: str}}
+last:
+  reads: [judge.json]
+  reads_optional: ["findings_*.json"]
+  produces:
+    report.md: {headings: [Summary]}

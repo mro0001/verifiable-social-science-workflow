@@ -1,0 +1,23 @@
+[
+  {
+    "check": "attribute_origin",
+    "evidence": "dumont2014",
+    "item": "r15",
+    "message": "origin unknown (no citation-log entry for @dumont2014); checked as if AI-contributed",
+    "severity": "warning"
+  },
+  {
+    "check": "attribute_origin",
+    "evidence": "castellanos2017",
+    "item": "r03",
+    "message": "not checked, author's warrant (sentence moved, text unchanged)",
+    "severity": "info"
+  },
+  {
+    "check": "attribute_origin",
+    "evidence": "quinlan2015",
+    "item": "r17",
+    "message": "not checked, author's warrant (sentence moved, text unchanged)",
+    "severity": "info"
+  }
+]

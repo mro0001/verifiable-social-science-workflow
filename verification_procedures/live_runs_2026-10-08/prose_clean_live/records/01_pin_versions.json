@@ -1,0 +1,44 @@
+{
+  "record_version": 1,
+  "seq": 1,
+  "node": "pin_versions",
+  "kind": "tool",
+  "graph_version": 0.2,
+  "started_at": "2026-10-08T12:59:43-07:00",
+  "duration_s": 0.17,
+  "inputs": {
+    "baseline.md": "sha256:9ad819dfea4749532771aa6951edcc632e46d51d13be26a8fa12b6781c63d2c2",
+    "revised.md": "sha256:1911caaa40c99550d07077b5191aff6e7c50f7a1d4112ac37d3877f4ed476426",
+    "versions.yaml": "sha256:8f17bccaba3135dd591db966f6e4583179e52fc8488197a50421a3ce7cc6f0ed"
+  },
+  "execution": {
+    "type": "script",
+    "executor": "python3",
+    "code_files": {
+      "code/01_pin_versions/_lib.py": "sha256:bab908da53dea59fcf603a8d94c4e3e2e29312f8bf2ff66f631a5e273b937a8b",
+      "code/01_pin_versions/pin_versions.py": "sha256:363636c07a53151e073c61875ef18a6f58bde727026c4e196b167bf14a255d46"
+    },
+    "exit_code": 0,
+    "logs": [
+      "logs/01_pin_versions.stdout",
+      "logs/01_pin_versions.stderr"
+    ],
+    "replay": "exact"
+  },
+  "outputs": {
+    "pins.json": "sha256:fc2ac744f0fe688b0bd12b33f2e6246664e47675a1cd80316e2ee5023581f7e3",
+    "findings_pin_versions.json": "sha256:9ca392e59b87a777fedf960b9b7e425784bafb5bb9479366e72cc10312f9eac8"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "diff_changes",
+      "rel": "LEADS_TO",
+      "check": null,
+      "fired": true
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+[
+  {
+    "check": "attribute_origin",
+    "evidence": "castellanos2017",
+    "item": "r02",
+    "message": "not checked, author's warrant (sentence moved, text unchanged)",
+    "severity": "info"
+  }
+]

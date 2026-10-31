@@ -1,0 +1,69 @@
+# What the audit layer writes out as the citation provenance record for the test story
+# (python3 -m audit_layer write-out citation-provenance), kept to compare with it.
+# The story session's notes file and its closing message name dumont2014 and
+# nakamura2020, and nothing in the record names the scholar's castellanos2017.
+# session_ref is the session's public id.
+works:
+  castellanos2017:
+    origin: unknown
+    appearances: []
+    first_ai: null
+    first_scholar: null
+    reason: null
+    quotes: []
+  dumont2014:
+    origin: ai
+    appearances:
+    - time: '2026-10-21T14:02:30.055Z'
+      by: ai
+      kind: artifact
+      session_ref: S55ac19fb97b9
+      artifact: source_notes.md
+      excerpt: '- Dumont 2014, clear end dates and signing up again - Nakamura 2020, recognition events and exit among long-serving volunteers'
+    - time: '2026-10-21T14:02:41.233Z'
+      by: ai
+      kind: conversation
+      session_ref: S55ac19fb97b9
+      excerpt: I added two findings after your sentence on fit, Dumont (2014) on clear end dates and Nakamura (2020) on recognition events.
+    first_ai:
+      time: '2026-10-21T14:02:30.055Z'
+      by: ai
+      kind: artifact
+      session_ref: S55ac19fb97b9
+      artifact: source_notes.md
+      excerpt: '- Dumont 2014, clear end dates and signing up again - Nakamura 2020, recognition events and exit among long-serving volunteers'
+    first_scholar: null
+    reason:
+      time: '2026-10-21T14:02:30.055Z'
+      text: '- Dumont 2014, clear end dates and signing up again - Nakamura 2020, recognition events and exit among long-serving volunteers'
+      session_ref: S55ac19fb97b9
+      artifact: source_notes.md
+    quotes: []
+  nakamura2020:
+    origin: ai
+    appearances:
+    - time: '2026-10-21T14:02:30.055Z'
+      by: ai
+      kind: artifact
+      session_ref: S55ac19fb97b9
+      artifact: source_notes.md
+      excerpt: '- Dumont 2014, clear end dates and signing up again - Nakamura 2020, recognition events and exit among long-serving volunteers'
+    - time: '2026-10-21T14:02:41.233Z'
+      by: ai
+      kind: conversation
+      session_ref: S55ac19fb97b9
+      excerpt: I added two findings after your sentence on fit, Dumont (2014) on clear end dates and Nakamura (2020) on recognition events.
+    first_ai:
+      time: '2026-10-21T14:02:30.055Z'
+      by: ai
+      kind: artifact
+      session_ref: S55ac19fb97b9
+      artifact: source_notes.md
+      excerpt: '- Dumont 2014, clear end dates and signing up again - Nakamura 2020, recognition events and exit among long-serving volunteers'
+    first_scholar: null
+    reason:
+      time: '2026-10-21T14:02:30.055Z'
+      text: '- Dumont 2014, clear end dates and signing up again - Nakamura 2020, recognition events and exit among long-serving volunteers'
+      session_ref: S55ac19fb97b9
+      artifact: source_notes.md
+    quotes: []

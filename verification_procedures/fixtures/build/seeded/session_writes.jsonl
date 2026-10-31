@@ -1,0 +1,17 @@
+{"actor": "ai", "path": "paper/paper.md", "session": "s-0101", "tool": "Write"}
+{"actor": "author", "path": "build_prefs.yaml", "session": "s-0101", "tool": "Edit"}
+{"actor": "build", "path": "builds/paper/v001.md", "session": "s-0101", "tool": "make paper"}
+{"actor": "build", "path": "builds/paper/v001.html", "session": "s-0101", "tool": "make paper"}
+{"actor": "build", "path": "builds/paper/BUILDS.md", "session": "s-0101", "tool": "make paper"}
+{"actor": "ai", "path": "paper/paper.md", "session": "s-0102", "tool": "Edit"}
+{"actor": "ai", "path": "slides/slides.md", "session": "s-0102", "tool": "Write"}
+{"actor": "build", "path": "builds/paper/v002.md", "session": "s-0102", "tool": "make paper"}
+{"actor": "build", "path": "builds/paper/v002.html", "session": "s-0102", "tool": "make paper"}
+{"actor": "build", "path": "builds/paper/BUILDS.md", "session": "s-0102", "tool": "make paper"}
+{"actor": "build", "path": "builds/slides/v001.md", "session": "s-0102", "tool": "make slides"}
+{"actor": "build", "path": "builds/slides/v001.html", "session": "s-0102", "tool": "make slides"}
+{"actor": "build", "path": "builds/slides/BUILDS.md", "session": "s-0102", "tool": "make slides"}
+{"actor": "author", "path": "builds/paper/returns/v002_author.docx", "session": "s-0103", "tool": "Word"}
+{"actor": "ai", "path": "notes/ideas.md", "session": "s-0103", "tool": "Edit"}
+{"actor": "ai", "path": "builds/slides/v001.html", "session": "s-0104", "tool": "Edit"}
+{"actor": "ai", "path": "paper/paper.md", "session": "s-0104", "tool": "Edit"}

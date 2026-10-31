@@ -1,0 +1,2 @@
+faults:
+  - {id: F1, check: judge_items, item: w3}

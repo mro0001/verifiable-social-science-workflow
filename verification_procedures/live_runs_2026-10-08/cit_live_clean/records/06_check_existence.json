@@ -1,0 +1,43 @@
+{
+  "record_version": 1,
+  "seq": 6,
+  "node": "check_existence",
+  "kind": "tool",
+  "graph_version": 0.1,
+  "started_at": "2026-10-08T13:10:38-07:00",
+  "duration_s": 0.09,
+  "inputs": {
+    "refs_index.json": "sha256:c12edaf56999a9543396ff99b0143c4fb98dbfcd26b97fc6526d2269f61520b9",
+    "lookups.json": "sha256:e1bc63fb556dc4f23d7ee2545004a0b03d6dae5b123eb3d737f69c9eaa652879"
+  },
+  "execution": {
+    "type": "script",
+    "executor": "python3",
+    "code_files": {
+      "code/06_check_existence/_lib.py": "sha256:bab908da53dea59fcf603a8d94c4e3e2e29312f8bf2ff66f631a5e273b937a8b",
+      "code/06_check_existence/check_existence.py": "sha256:c91a81b2d878aa86e9d627be717f6b8cc972b81f0eee439e69b94df3eb3f68c5"
+    },
+    "exit_code": 0,
+    "logs": [
+      "logs/06_check_existence.stdout",
+      "logs/06_check_existence.stderr"
+    ],
+    "replay": "exact"
+  },
+  "outputs": {
+    "refs_verified.json": "sha256:30ebfde6328b653046ae938138e25ee1e7ba96ca58a15eb14039d50fb02952e3",
+    "findings_check_existence.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "pin_sources",
+      "rel": "LEADS_TO",
+      "check": null,
+      "fired": true
+    }
+  ]
+}

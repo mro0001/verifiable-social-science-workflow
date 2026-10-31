@@ -1,0 +1,9 @@
+[
+  {
+    "check": "exclude_author",
+    "evidence": "Agencies adopted the format for many different reasons.",
+    "item": "c07",
+    "message": "author edit (a01), listed not judged: author shortened the sentence in Word without Track Changes",
+    "severity": "info"
+  }
+]

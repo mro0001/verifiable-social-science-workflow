@@ -1,0 +1,9 @@
+# SYNTHETIC reference list (CSL-YAML-like).
+references:
+  - {id: abara2019, type: article-journal, author: [{family: Abara, given: Nkem}, {family: Hollis, given: Teresa}], issued: 2019, title: Ownership and exit in municipal volunteer programs, container-title: Journal of Civic Administration, DOI: 10.5555/jca.2019.0142}
+  - {id: castellanos2017, type: article-journal, author: [{family: Castellanos, given: Rosa}, {family: Ibe, given: Kelechi}], issued: 2017, title: Fit and retention in local volunteering, container-title: Voluntary Sector Studies, DOI: 10.5555/vss.2017.0021}
+  - {id: moreno2018, type: book, author: [{family: Moreno, given: Lucia}], issued: 2018, title: Matching volunteers to roles, container-title: Civic Press, DOI: 10.5555/cp.2018.0011}
+  - {id: devries2021, type: article-journal, author: [{family: de Vries, given: Maarten}], issued: 2021, title: Scheduling flexibility and volunteer hours, container-title: Nonprofit Management Review, DOI: 10.5555/nmr.2021.0120}
+  - {id: whitlock2020, type: article-journal, author: [{family: Whitlock, given: Grace}], issued: 2020, title: Named contacts and volunteer tenure in three cities, container-title: Urban Affairs Notes, DOI: 10.5555/uan.2020.0230}
+  - {id: tanaka2016, type: article-journal, author: [{family: Tanaka, given: Hiroshi}], issued: 2016, title: Training length and volunteer retention, container-title: Public Service Quarterly, DOI: 10.5555/psq.2016.0071}
+  - {id: osei2015, type: article-journal, author: [{family: Osei, given: Kwame}], issued: 2015, title: Volunteer motives across city sizes, container-title: Urban Affairs Notes, DOI: 10.5555/uan.2015.0102}

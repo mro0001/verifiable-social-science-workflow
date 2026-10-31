@@ -1,0 +1,1 @@
+{"fix": "Correct the reference metadata to list the second author as Morales J. instead of Moreau J. The sentence remains accurate as the source explicitly states that the quality of supervisors' feedback predicted whether volunteers returned for a second season."}

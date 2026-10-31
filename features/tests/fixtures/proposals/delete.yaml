@@ -1,0 +1,10 @@
+# A recorded proposal that asks the organizer to delete a file.
+schema: organizer-proposal
+schema_version: 1
+proposed_by: "ai:claude_code:{{SESSION}}"
+inventory_id: "{{INVENTORY_ID}}"
+changes:
+  - id: c1
+    op: delete
+    reason: The file looks unused.
+    path: stray.txt

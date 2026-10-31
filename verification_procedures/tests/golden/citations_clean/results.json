@@ -1,0 +1,190 @@
+{
+  "schema": "verification-results",
+  "schema_version": 1,
+  "stream": "citations",
+  "run_id": "citations_clean",
+  "procedure_version": 0.2,
+  "inputs": {
+    "citation_provenance.yaml": "sha256:261638a286a7030c8885ff679d304de1e36056c583dca004b4d03f06097fc4fd",
+    "draft.md": "sha256:ff7b50f02cfb3322979fc44dd2cdd26895c05699906b14005162534e89254373",
+    "metadata_cache.json": "sha256:7a63236ec231a4d923eb55e0a79aa1e40fb0598c47597427172a29165f3c753e",
+    "refs.yaml": "sha256:dd2c0a09720c52315e93bf54058c91cbb4b1320b8d7cb4eee8dd0962161122cc",
+    "source_abara2019.txt": "sha256:ad8f787f260fcf13f452a3cf1af4976f5d905c1f8a70e822c7e719d001c79bec",
+    "source_devries2021.txt": "sha256:c0368a8d7e002a7fc0f99637580650dbdddd959a51d2852935c677b260437464",
+    "source_tanaka2016.txt": "sha256:233d015db38164f01a8744f6dfb94488de057922daaf83b32f4597634c202053",
+    "source_whitlock2020.txt": "sha256:dfea1280766c3c1498eac2d142a95edead05539c883d4e200faff3245d958364"
+  },
+  "items": [
+    {
+      "id": "r01",
+      "citekey": "abara2019",
+      "sentence": "In a panel of 48 city programs, 31% of first-year volunteers left before completing six months of service [@abara2019, p. 7].",
+      "origin": "ai",
+      "origin_evidence": "First named by an AI at 2026-10-12T09:00:05Z in session S3a41c0d2e9f7, where the record reads \"Abara and Hollis (2019) report that 31% of first-year volunteers left within six months.\"",
+      "reference": "Abara, N., Hollis, T. (2019). Ownership and exit in municipal volunteer programs. Journal of Civic Administration. doi:10.5555/jca.2019.0142",
+      "lookup": "found",
+      "existence": "found in the metadata cache (DOI 10.5555/jca.2019.0142)",
+      "record": "Abara, N., Hollis, T. (2019). Ownership and exit in municipal volunteer programs. Journal of Civic Administration. Type journal-article.",
+      "reason": "Abara and Hollis (2019) report that 31% of first-year volunteers left within six months. Their panel paper gives the figure directly, \"Across the 48 programs in our panel, 31% of first-year volunteers exited before completing six months of service.\"",
+      "reason_source": "at 2026-10-12T09:00:05Z in session S3a41c0d2e9f7",
+      "quotes": [
+        {
+          "found_at": "p. 7",
+          "from": "record",
+          "in_source": "yes",
+          "kind": "quote",
+          "location": "",
+          "text": "Across the 48 programs in our panel, 31% of first-year volunteers exited before completing six months of service.",
+          "where": "at 2026-10-12T09:00:05Z in session S3a41c0d2e9f7"
+        }
+      ],
+      "quote_in_source": "yes",
+      "access": "fulltext",
+      "source_file": "source_abara2019.txt",
+      "notes": [],
+      "needs_decision": true,
+      "sessions": [
+        "S3a41c0d2e9f7"
+      ]
+    },
+    {
+      "id": "r02",
+      "citekey": "castellanos2017",
+      "sentence": "Castellanos and Ibe describe retention as a matter of fit between the volunteer's goals and the tasks offered [@castellanos2017].",
+      "origin": "scholar",
+      "origin_evidence": "First named by the scholar at 2026-10-12T08:58:00Z in session S3a41c0d2e9f7, where the record reads \"Keep my sentence on Castellanos and Ibe (2017) about fit.\"",
+      "reference": "Castellanos, R., Ibe, K. (2017). Fit and retention in local volunteering. Voluntary Sector Studies. doi:10.5555/vss.2017.0021",
+      "lookup": "not_checked",
+      "existence": "not looked up, since the citation is not an AI's",
+      "record": "",
+      "reason": "",
+      "reason_source": "",
+      "quotes": [],
+      "quote_in_source": "not_checked",
+      "access": "none",
+      "source_file": "",
+      "notes": [
+        "@castellanos2017 was first named by the scholar in the record, so it is not checked further"
+      ],
+      "needs_decision": false
+    },
+    {
+      "id": "r03",
+      "citekey": "moreno2018",
+      "sentence": "Moreno calls this the \"role-match problem\" and argues that it is invisible in sign-up data [@moreno2018, p. 33].",
+      "origin": "scholar",
+      "origin_evidence": "First named by the scholar at 2026-10-12T08:55:00Z in session S3a41c0d2e9f7 in drafts/author_notes.md, where the record reads \"Moreno names this the role-match problem (Moreno 2018, p. 33).\"",
+      "reference": "Moreno, L. (2018). Matching volunteers to roles. Civic Press. doi:10.5555/cp.2018.0011",
+      "lookup": "not_checked",
+      "existence": "not looked up, since the citation is not an AI's",
+      "record": "",
+      "reason": "",
+      "reason_source": "",
+      "quotes": [],
+      "quote_in_source": "not_checked",
+      "access": "none",
+      "source_file": "",
+      "notes": [
+        "@moreno2018 was first named by the scholar in the record, so it is not checked further"
+      ],
+      "needs_decision": false
+    },
+    {
+      "id": "r04",
+      "citekey": "devries2021",
+      "sentence": "Flexible scheduling was associated with more hours per volunteer but not with longer tenure [@devries2021].",
+      "origin": "ai",
+      "origin_evidence": "First named by an AI at 2026-10-12T09:03:00Z in session S3a41c0d2e9f7, where the record reads \"De Vries (2021) separates hours from tenure.\"",
+      "reference": "de Vries, M. (2021). Scheduling flexibility and volunteer hours. Nonprofit Management Review. doi:10.5555/nmr.2021.0120",
+      "lookup": "found",
+      "existence": "found in the metadata cache (DOI 10.5555/nmr.2021.0120)",
+      "record": "de Vries, M. (2021). Scheduling flexibility and volunteer hours. Nonprofit Management Review. Type journal-article.",
+      "reason": "De Vries (2021) separates hours from tenure, which keeps the scheduling sentence careful.",
+      "reason_source": "at 2026-10-12T09:03:00Z in session S3a41c0d2e9f7",
+      "quotes": [
+        {
+          "found_at": "p. 14",
+          "from": "located",
+          "in_source": "yes",
+          "kind": "quote",
+          "location": "p. 14",
+          "text": "Volunteers offered flexible schedules contributed more hours per month, but their tenure did not differ from that of volunteers on fixed schedules.",
+          "where": ""
+        }
+      ],
+      "quote_in_source": "yes",
+      "access": "fulltext",
+      "source_file": "source_devries2021.txt",
+      "notes": [],
+      "needs_decision": true,
+      "sessions": [
+        "S3a41c0d2e9f7"
+      ]
+    },
+    {
+      "id": "r05",
+      "citekey": "whitlock2020",
+      "sentence": "Whitlock found that assigning a named staff contact kept volunteers longer in two of the three cities studied [@whitlock2020, p. 112].",
+      "origin": "ai",
+      "origin_evidence": "First named by an AI at 2026-10-12T09:04:10Z in session S3a41c0d2e9f7, where the record reads \"Whitlock (2020) studied named staff contacts in three cities.\"",
+      "reference": "Whitlock, G. (2020). Named contacts and volunteer tenure in three cities. Urban Affairs Notes. doi:10.5555/uan.2020.0230",
+      "lookup": "found",
+      "existence": "found in the metadata cache (DOI 10.5555/uan.2020.0230)",
+      "record": "Whitlock, G. (2020). Named contacts and volunteer tenure in three cities. Urban Affairs Notes. Type journal-article.",
+      "reason": "Whitlock (2020) studied named staff contacts in three cities, \"In two of the three cities, volunteers assigned a named staff contact stayed longer than those without one.\"",
+      "reason_source": "at 2026-10-12T09:04:10Z in session S3a41c0d2e9f7",
+      "quotes": [
+        {
+          "found_at": "p. 112",
+          "from": "record",
+          "in_source": "yes",
+          "kind": "quote",
+          "location": "",
+          "text": "In two of the three cities, volunteers assigned a named staff contact stayed longer than those without one.",
+          "where": "at 2026-10-12T09:04:10Z in session S3a41c0d2e9f7"
+        }
+      ],
+      "quote_in_source": "yes",
+      "access": "fulltext",
+      "source_file": "source_whitlock2020.txt",
+      "notes": [],
+      "needs_decision": true,
+      "sessions": [
+        "S3a41c0d2e9f7"
+      ]
+    },
+    {
+      "id": "r06",
+      "citekey": "tanaka2016",
+      "sentence": "Training length alone did not predict retention [@tanaka2016].",
+      "origin": "ai",
+      "origin_evidence": "First named by an AI at 2026-10-12T09:05:20Z in session S3a41c0d2e9f7, where the record reads \"Tanaka (2016) tested training length against retention.\"",
+      "reference": "Tanaka, H. (2016). Training length and volunteer retention. Public Service Quarterly. doi:10.5555/psq.2016.0071",
+      "lookup": "found",
+      "existence": "found in the metadata cache (DOI 10.5555/psq.2016.0071)",
+      "record": "Tanaka, H. (2016). Training length and volunteer retention. Public Service Quarterly. Type journal-article.",
+      "reason": "Tanaka (2016) tested training length against retention, and the null result fits the closing sentence.",
+      "reason_source": "at 2026-10-12T09:05:20Z in session S3a41c0d2e9f7",
+      "quotes": [
+        {
+          "found_at": "p. 19",
+          "from": "located",
+          "in_source": "yes",
+          "kind": "quote",
+          "location": "p. 19",
+          "text": "Once role clarity was accounted for, the length of training alone did not predict retention.",
+          "where": ""
+        }
+      ],
+      "quote_in_source": "yes",
+      "access": "fulltext",
+      "source_file": "source_tanaka2016.txt",
+      "notes": [],
+      "needs_decision": true,
+      "sessions": [
+        "S3a41c0d2e9f7"
+      ]
+    }
+  ],
+  "decisions": []
+}

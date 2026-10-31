@@ -1,0 +1,24 @@
+# The pipeline from raw data to the manuscript's tables, figure, and numbers.
+# Steps run in this order, each as `<runner> <script>` in the project folder.
+# Only python3 is used here so the fixture replays anywhere; an R step would
+# declare `runner: Rscript`, a Quarto step `runner: quarto render`.
+helpers: [params_io.py]
+steps:
+  - id: clean
+    kind: prep
+    runner: python3
+    script: s1_clean.py
+    inputs: [raw_survey.csv]
+    outputs: [clean_survey.csv, params_record_clean.csv]
+  - id: describe
+    kind: table
+    runner: python3
+    script: s2_describe.py
+    inputs: [clean_survey.csv]
+    outputs: [table_descriptives.csv, fig_income_by_region.svg, params_record_describe.csv]
+  - id: model
+    kind: model
+    runner: python3
+    script: s3_model.py
+    inputs: [clean_survey.csv]
+    outputs: [table_model.csv, model_record_model.json, params_record_model.csv]

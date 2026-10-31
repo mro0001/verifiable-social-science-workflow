@@ -1,0 +1,95 @@
+{
+  "verified_at": "2026-10-08T13:10:53-07:00",
+  "steps": [
+    {
+      "seq": 1,
+      "node": "pin_document",
+      "verdict": "replay matches"
+    },
+    {
+      "seq": 2,
+      "node": "extract_citations",
+      "verdict": "replay matches"
+    },
+    {
+      "seq": 3,
+      "node": "attribute_origin",
+      "verdict": "replay matches"
+    },
+    {
+      "seq": 4,
+      "node": "match_references",
+      "verdict": "replay matches"
+    },
+    {
+      "seq": 5,
+      "node": "fetch_metadata",
+      "verdict": "network step: outputs hashed, not replayed"
+    },
+    {
+      "seq": 6,
+      "node": "check_existence",
+      "verdict": "replay matches"
+    },
+    {
+      "seq": 7,
+      "node": "pin_sources",
+      "verdict": "replay matches"
+    },
+    {
+      "seq": 8,
+      "node": "reuse_prior",
+      "verdict": "replay matches"
+    },
+    {
+      "seq": 9,
+      "node": "check_access",
+      "verdict": "replay matches"
+    },
+    {
+      "seq": 10,
+      "node": "locate_passage",
+      "verdict": "judgment: recorded answers kept; review, not replay"
+    },
+    {
+      "seq": 11,
+      "node": "verify_quote",
+      "verdict": "replay matches"
+    },
+    {
+      "seq": 12,
+      "node": "judge_support",
+      "verdict": "judgment: recorded answers kept; review, not replay"
+    },
+    {
+      "seq": 13,
+      "node": "collect_verdicts",
+      "verdict": "replay matches"
+    },
+    {
+      "seq": 14,
+      "node": "second_check",
+      "verdict": "judgment: recorded answers kept; review, not replay"
+    },
+    {
+      "seq": 15,
+      "node": "settle_verdicts",
+      "verdict": "replay matches"
+    },
+    {
+      "seq": 16,
+      "node": "draft_fix",
+      "verdict": "judgment: recorded answers kept; review, not replay"
+    },
+    {
+      "seq": 17,
+      "node": "record_verdicts",
+      "verdict": "replay matches"
+    },
+    {
+      "seq": 18,
+      "node": "report",
+      "verdict": "replay matches"
+    }
+  ]
+}

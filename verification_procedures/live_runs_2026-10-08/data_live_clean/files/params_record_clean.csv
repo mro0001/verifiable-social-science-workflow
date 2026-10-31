@@ -1,0 +1,3 @@
+param,value,step,script
+income_cap,250000,clean,s1_clean.py
+min_age,18,clean,s1_clean.py

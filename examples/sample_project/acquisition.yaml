@@ -1,0 +1,6 @@
+# Raw data is immutable. Its hash is recorded at acquisition, so a later edit shows.
+raw:
+  - file: next_word_counts.json
+    sha256: sha256:91d7bb242135199f7fa4aa51ee40695105308198df9944828244d4cc3c4aa42d
+    source: "One-word answers from mistral-small:22b, 60 per condition at temperature 1.0, sampled by the talk's own sampling script through a university-hosted inference service"
+    collected: 2026-07-27

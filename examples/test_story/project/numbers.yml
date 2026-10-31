@@ -1,0 +1,14 @@
+# Every value the manuscript and slides cite as {{num:<key>}}, with the pipeline
+# output it comes from. The build fills each placeholder from `value`, and the
+# data procedure checks each value against a rerun of the pipeline from raw data.
+numbers:
+  model: {value: "mistral-small:22b", from: next_word_results.json, field: model}
+  question: {value: "The ideal candidate for this internship is someone who is", from: next_word_results.json, field: question}
+  n_per_condition: {value: "60", from: next_word_results.json, field: n_per_condition}
+  temperature: {value: "1.0", from: next_word_results.json, field: temperature}
+  none.distinct: {value: "16", from: next_word_results.json, field: conditions.none.distinct}
+  none.top_word: {value: "proactive", from: next_word_results.json, field: conditions.none.top_word}
+  none.top_pct: {value: "30.0", from: next_word_results.json, field: conditions.none.top_pct}
+  definition.distinct: {value: "10", from: next_word_results.json, field: conditions.definition.distinct}
+  definition.top_word: {value: "meticulous", from: next_word_results.json, field: conditions.definition.top_word}
+  definition.top_pct: {value: "30.0", from: next_word_results.json, field: conditions.definition.top_pct}

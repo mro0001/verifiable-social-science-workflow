@@ -1,0 +1,148 @@
+# The schema of the three data phase reports (graphs/data_collection.yaml,
+# graphs/data_cleaning.yaml, and graphs/data_analysis.yaml), in the form the authors gave on
+# 2026-10-30. The report step's fill function (implementations/data_phases/report.py) fills
+# these fields from the step outputs, and the one builder (implementations/_report.py) writes
+# fields.json, findings.json, and report.md from them. The outline and the code under each
+# title are written by the fill function as text, since a report part has no nested list and
+# no code block. Raise the version by hand when a field or the layout changes.
+stream: data_phases
+version: 1
+item: one sentence of the final build's text that describes the phase, or one group of problems found on something other than a description
+id: id
+# The item fields the results file carries for each item, in this order.
+results: [id, kind, summary, findings, needs_decision]
+
+# A description's own problems ride on its row, and every other group of blocking or warning
+# findings is an item of kind finding. The description's own fields are not required, since
+# an item of kind finding has none of them.
+fields:
+  id:
+    type: str
+    filled_by: [outline_steps, check_descriptions]
+  kind:
+    type: enum
+    values: [description, finding]
+    filled_by: [outline_steps, check_descriptions]
+  # The quote cut to 120 characters, or the number of problems and the first problem.
+  summary:
+    type: str
+    filled_by: [outline_steps, check_descriptions]
+  findings:
+    type: list
+    filled_by: [outline_steps, check_descriptions]
+  # True for every item. The scholar approves or holds each description.
+  needs_decision:
+    type: bool
+    filled_by: [outline_steps, check_descriptions]
+  # The sentence word for word as the finding step quoted it.
+  quote:
+    type: str
+    required: false
+    filled_by: [find_descriptions]
+  # Whether the program found the quote in the final build's text.
+  quote_found:
+    type: bool
+    required: false
+    filled_by: [check_descriptions]
+  # Each place the finding step gave, {file, start, end, status, steps}.
+  where:
+    type: list
+    required: false
+    filled_by: [check_descriptions]
+  # confirmed when every place is lines of a script the pipeline declares, missing when no
+  # place is given, and not found otherwise.
+  location_status:
+    type: enum
+    values: [confirmed, missing, not found]
+    required: false
+    filled_by: [check_descriptions]
+  # The cells the descriptions table shows.
+  quote_cell:
+    type: str
+    required: false
+    filled_by: [find_descriptions]
+  where_cell:
+    type: str
+    required: false
+    filled_by: [check_descriptions]
+  quote_check_cell:
+    type: str
+    required: false
+    filled_by: [check_descriptions]
+
+run:
+  phase:
+    type: enum
+    values: [collection, cleaning, analysis]
+    filled_by: [outline_steps]
+  phase_name:
+    type: str
+    filled_by: [outline_steps]
+  title:
+    type: str
+    filled_by: [outline_steps]
+  n_pipeline_steps:
+    type: int
+    filled_by: [outline_steps]
+  n_steps:
+    type: int
+    filled_by: [outline_steps]
+  n_descriptions:
+    type: int
+    filled_by: [check_descriptions]
+  n_missing:
+    type: int
+    filled_by: [check_descriptions]
+  n_quote_not_found:
+    type: int
+    filled_by: [check_descriptions]
+  n_location_not_found:
+    type: int
+    filled_by: [check_descriptions]
+  # The outline, one bullet for each pipeline step of the phase and under it one for each of
+  # its steps, or a sentence saying no step declares the phase.
+  outline_text:
+    type: str
+    filled_by: [outline_steps]
+  # Each title again with its file, its lines, and its code copied exactly, or None.
+  code_text:
+    type: str
+    filled_by: [outline_steps]
+  # Each file read, by its name, with its role and checksum.
+  files_text:
+    type: str
+    filled_by: [outline_steps]
+
+report:
+  title: "{run.title}"
+  intro: |-
+    This report shows the {run.phase_name} for the scholar to verify. The outline lists each step with a short title, and under it each title is shown again with the exact code that carries it out, copied from its script with its file and lines. A step is a section a script marks with a comment line `# step: <title>`, or, in a Python script that marks none, a function the script calls, in the order it calls them. The descriptions table lists each sentence of the final build's text that describes this phase, as one model step found them, with where the scripts carry it out or missing. A program checks that each quote is in the text and that each place is in the scripts. No model judges whether a description fits its code, and the scholar approves or holds each description.
+
+    Pipeline steps in this phase {run.n_pipeline_steps}, outline steps {run.n_steps}. Descriptions found {run.n_descriptions} (missing from the scripts {run.n_missing}, quotes not in the text {run.n_quote_not_found}, places not in the scripts {run.n_location_not_found}).
+  sections:
+    - heading: Outline
+      parts:
+        - kind: text
+          template: "{run.outline_text}"
+    - heading: Code
+      parts:
+        - kind: text
+          template: "{run.code_text}"
+    - heading: Descriptions
+      parts:
+        - kind: text
+          template: Each row is a sentence of the final build's text that the finding step gave as describing this phase, with the places in the scripts it gave. The last two columns are the program's checks. A place is confirmed when it is lines of a script the pipeline declares, and the steps it falls in are named beside it.
+        - kind: table
+          rows: items
+          where: kind in [description]
+          columns:
+            - {header: Id, value: "{id}"}
+            - {header: "Description in the final build's text", value: "{quote_cell}"}
+            - {header: Where the scripts carry it out, value: "{where_cell}"}
+            - {header: Quote in the text, value: "{quote_check_cell}"}
+            - {header: Location check, value: "{location_status}"}
+          empty: None.
+    - heading: Files read
+      parts:
+        - kind: text
+          template: "{run.files_text}"

@@ -1,0 +1,42 @@
+# The git wrapper written as a procedural graph (appendix A2.2, "Wrappers", and
+# A2.4, "Procedural graphs"). The wrapper's own program runs the real git and,
+# after the command returns, appends one line to calls.jsonl. This graph runs
+# later and turns those lines into events in the audit layer's event schema.
+# The wrapper's program and reading events.json into capture live in the
+# connections layer.
+stream: wrap_git
+version: 0.1
+title: The git wrapper, written as a procedural graph
+goal: >
+  Turn each git command the scholar ran, as the wrapper recorded it after the
+  command returned, into one event in the audit layer's event schema, so the
+  audit layer holds the scholar's own version control actions beside the AI's.
+  Nothing here can delay or change the command.
+triggers:
+  - The wrapper's call file holds calls not yet turned into events, such as before capture runs.
+contracts: contracts/wrap_git.yaml
+entry: read_calls
+exit: report
+nodes:
+  - {id: read_calls, kind: tool, does: "Read each line of the call file, keep the calls that are whole and start with git, and warn on every other line and on a repeated call id."}
+  - {id: to_events, kind: tool, does: "Turn each call into one event, with the verb and kind its git subcommand and exit code give, the command line as the object, and the session its day and folder give."}
+  - {id: report, kind: tool, does: "Count the calls and the events by verb and kind, and write a report listing every event."}
+edges:
+  - from: read_calls
+    rel: LEADS_TO
+    to: to_events
+    condition: Always, even when the call file is empty.
+    guidance: Pass on every whole git call in the order the commands started, failed ones included.
+    pitfalls:
+      - Dropping a failed command, when it is an event of kind blocker.
+      - Reading the files a command touched, when an event names the command and the folder and never file contents.
+    source: appendix A2.2 (Wrappers); Figure A2
+  - from: to_events
+    rel: CONVERGES_TO
+    to: report
+    condition: Always.
+    guidance: Write one event per call in the slice's event schema, and nothing about the call beyond what the wrapper recorded.
+    pitfalls:
+      - Holding up or rerunning the scholar's command, when the wrapper records after the call returns and this graph runs later.
+      - Filtering calls by folder here, when capture skips a call made in an excluded folder as it skips a session run there.
+    source: appendix A2.2 (Wrappers); Figure A2; the slice's event schema

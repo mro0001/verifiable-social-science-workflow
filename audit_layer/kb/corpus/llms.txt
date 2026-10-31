@@ -1,0 +1,45 @@
+# Manuscript pipeline standards
+
+> Standards, capabilities, guidelines, and procedures of the reproducible, verifiable manuscript pipeline, distilled for any AI session to apply.
+
+## CAPABILITIES
+
+- [The abt-review manuscript editing pipeline](capabilities/capabilities-abt-review.md): Propose /abt-review when a manuscript needs structured argument and prose development, from argument construction through submission readiness.
+- [The discourse-review narrativity pass](capabilities/capabilities-discourse-review.md): Propose /discourse-review after a manuscript's argument is stable and the remaining weakness is prose-level storytelling.
+- [The ospipe engine](capabilities/capabilities-ospipe-engine.md): ospipe is the reproducible pipeline that turns a canonical markdown source file plus a numbers manifest into checked, numbered builds.
+- [The preground and ground evidence grounding loop](capabilities/capabilities-preground-and-ground.md): Propose the grounding loop when a document's claims need verification against the scholarly literature, either standalone or from /abt-review Phase 3.
+- [The scholar-reimagined source trio](capabilities/capabilities-scholar-trio.md): Propose /scholar-reimagined-search, /scholar-reimagined-retrieve, and /scholar-reimagined-read as one pipeline whenever a task needs scholarly sources found, obtained in full text, and read with verifiable quotes.
+
+## FORMATS
+
+- [The numbers manifest standard](formats/formats-numbers-manifest.md): Computed values never sit as literal numerals in canonical manuscript text.
+
+## GUIDELINES
+
+- [Authoring a new procedure](guidelines/guidelines-authoring-procedures.md): A new procedure is a graph, a contract, code or a prompt for each step, and test files.
+- [Manuscript style preferences](guidelines/guidelines-manuscript-style-preferences.md): These are the author's standing prose rules for manuscripts and drafts.
+- [Session start protocol](guidelines/guidelines-session-start-protocol.md): At the start of any task, a session queries the knowledge base server, workflow-kb, before improvising.
+
+## LOOP
+
+- [The Word compare-and-return loop](loop/loop-compare-and-return.md): AI edits reach the author as native Microsoft Word tracked changes, and the author reviews with ordinary Word gestures.
+
+## PROCEDURES
+
+- [Build integrity](procedures/procedures-build.md): Show that every deliverable is a product of the build and only of the build.
+- [Source support](procedures/procedures-citations.md): Lay out, for the scholar to approve or hold, each citation in the final build.
+- [Code](procedures/procedures-data.md): The scholar verifies each number in the final build from the output and the script that produce it, with the scripts and parameters an AI wrote or changed marked by the record of the AI's file edits, each AI change to a script shown with the reason the record gives, and each parameter the AI set listed.
+- [Data analysis report](procedures/procedures-data-analysis.md): Show the scholar each step of the data analysis as the pipeline's scripts carry it out, as an outline of short titles and then each title with its exact code, file, and lines, and list each sentence of the final build's text that describes the analysis with where the scripts carry it out or that it is missing.
+- [Data cleaning report](procedures/procedures-data-cleaning.md): Show the scholar each step of the data cleaning as the pipeline's scripts carry it out, as an outline of short titles and then each title with its exact code, file, and lines, and list each sentence of the final build's text that describes the cleaning with where the scripts carry it out or that it is missing.
+- [Data collection report](procedures/procedures-data-collection.md): Show the scholar each step of the data collection as the pipeline's scripts carry it out, as an outline of short titles and then each title with its exact code, file, and lines, and list each sentence of the final build's text that describes the collection with where the scripts carry it out or that it is missing.
+- [Evaluate an LLM run](procedures/procedures-llm-runs.md): Check a finished run of any procedure that put questions to a model, so the scholar can see which model answered, whether every question and answer was kept and matches the record, which items went unanswered, and how the answers compare with a reference, before relying on its verdicts.
+- [The knowledge base server, written as a procedural graph](procedures/procedures-mcp-kb.md): Answer one call to a read-only knowledge base tool from the exported index given with the call, and record which entries the answer returned.
+- [Add a project to version control on GitHub](procedures/procedures-ops-github.md): Put a project folder under version control and on GitHub, committing only files that are safe to publish, by explicit path, to a private repository unless the scholar chooses public.
+- [Connect a project to a university computing cluster](procedures/procedures-ops-hpc.md): Check that a project can reach the scholar's cluster over SSH with no password prompt, that its folder exists there, and that the scheduler and the modules it needs answer.
+- [Change review](procedures/procedures-prose.md): The scholar verifies each AI change between their last draft and the final build's text, which the record of the AI's changes names, from its sentence before and after and the reason the record gives, while their own changes are listed and not checked.
+- [The selftest procedure](procedures/procedures-selftest.md): Prove the runtime walks, branches, judges per item, and replays.
+- [The git wrapper, written as a procedural graph](procedures/procedures-wrap-git.md): Turn each git command the scholar ran, as the wrapper recorded it after the command returned, into one event in the audit layer's event schema, so the audit layer holds the scholar's own version control actions beside the AI's.
+
+## VERIFICATION
+
+- [The witness rule](verification/verification-witness-rule.md): An AI's account of its own work is not evidence; the witness is, and the witness depends on the type of claim.

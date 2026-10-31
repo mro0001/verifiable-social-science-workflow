@@ -1,0 +1,9 @@
+[
+  {
+    "check": "reuse_prior",
+    "evidence": "sha256:30ec7adba66f",
+    "item": "r16",
+    "message": "verdict carried over from the check of 2026-09-30 (sentence and retrieved copy unchanged)",
+    "severity": "info"
+  }
+]

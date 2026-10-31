@@ -1,0 +1,37 @@
+{
+  "record_version": 1,
+  "seq": 6,
+  "node": "judge_rationale",
+  "kind": "judgment",
+  "graph_version": 0.2,
+  "started_at": "2026-10-08T12:59:38-07:00",
+  "duration_s": 4.08,
+  "inputs": {
+    "judge_items.json": "sha256:c779c2526e4518db62ade43baa1869c0d9b00f28d17fb1bf3b5e180982a6f489"
+  },
+  "execution": {
+    "type": "judgment",
+    "role": "judge",
+    "executor": [
+      "live:qwen/qwen3.5-122b"
+    ],
+    "items": 7,
+    "prompts": "prompts/06_judge_rationale",
+    "responses": "responses/06_judge_rationale"
+  },
+  "outputs": {
+    "judge_rationale.json": "sha256:80cd249f34f0e146661c6bffdfb19aacefbb406b108af87f498db456907591b4"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "report",
+      "rel": "CONVERGES_TO",
+      "check": null,
+      "fired": true
+    }
+  ]
+}

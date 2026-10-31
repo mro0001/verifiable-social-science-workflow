@@ -1,0 +1,86 @@
+[
+  {
+    "verdict": "supports",
+    "reason": "The located passage on page 7 explicitly states that across the 48 programs in the panel, 31% of first-year volunteers exited before completing six months of service, which matches the claim's numbers, scope, and direction exactly.",
+    "item_id": "r01",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:2c75656dee250bc6f73e2f9e977f7d05b18e9c36dc7baeb51d22c7d58fddd895"
+  },
+  {
+    "verdict": "supports",
+    "reason": "The source passage explicitly states that volunteers exit when they no longer experience the work as theirs, which directly matches the claim's assertion that they leave when the work stops feeling like their own.",
+    "item_id": "r04",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:d41e20e38f2df135f965c8dc1bcacc004350f7c064fcf95f1507db3d01de6772"
+  },
+  {
+    "verdict": "does_not_support",
+    "reason": "The source states retention fell by 24%, whereas the claim incorrectly asserts a 42% decline.",
+    "item_id": "r05",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:fa09aeebe38cca3f1cac8c24220ea43793bc1626a715ad76cd28c5aa15dff540"
+  },
+  {
+    "verdict": "partly",
+    "reason": "The source specifies that the comparison was against volunteers receiving only a verbal briefing, whereas the claim broadly states 'those who did not' receive written descriptions, omitting this specific condition.",
+    "item_id": "r06",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:0e9d9b8a03ddea2c1ddc9b08e5e556519aa1a601c540fa4398067fcc29d95b6c"
+  },
+  {
+    "verdict": "does_not_support",
+    "reason": "The source describes the records as 'administrative traces' but does not use the specific term 'civic paradata' attributed to Marchetti in the claim.",
+    "item_id": "r07",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:13b5c5cd47837ecadd21c7d615341324ac4ec9a8a1526b006d20d3c901b002b0"
+  },
+  {
+    "verdict": "does_not_support",
+    "reason": "The source explicitly states that recognition events had no measurable effect on exit and that exit actually rose slightly, which directly contradicts the claim that they reduced exit.",
+    "item_id": "r08",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:9302bdab9f02b7206bffd0ad47d254749f470e587a252a79df7ccbfb3311e9fe"
+  },
+  {
+    "verdict": "supports",
+    "reason": "The located passage explicitly states that the quality of supervisors' feedback predicted whether volunteers returned for a second season, matching the claim's assertion exactly.",
+    "item_id": "r09",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:2497db8c4e13766a82f0425600a97bf90f8c4432a1286f21eb0362daa34b6aea"
+  },
+  {
+    "verdict": "supports",
+    "reason": "The located passage explicitly states that volunteers in smaller programs reported stronger attachment to paid staff than those in large programs, which directly confirms the claim.",
+    "item_id": "r10",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:937e6f174bffd7f4d0fec7b3600310a430668a3619e0dd73dbf05fe82ce3f728"
+  },
+  {
+    "verdict": "supports",
+    "reason": "The abstract explicitly states that youth volunteer programs with peer mentoring had higher retention at six months than those without, which directly confirms the claim's assertion of an association between peer mentoring and higher retention.",
+    "item_id": "r12",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:8d2289376e7e19974ca650804e417d9be9b44650d71c3cc49dc7d7771c9c5396"
+  },
+  {
+    "verdict": "does_not_support",
+    "reason": "The source states the effect held in only two of the three cities with a non-significant difference in the third, directly contradicting the claim that it occurred in all three cities.",
+    "item_id": "r13",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:811a518e949417949b9b377cace9f23040dc820924ae08714ef4bbe1c918dfa6"
+  },
+  {
+    "verdict": "supports",
+    "reason": "The located passage explicitly states that turnover among volunteer coordinators tends to precede spikes in volunteer exit, matching the claim's assertion of temporal precedence and direction.",
+    "item_id": "r14",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:2973d62168f0853f2cd476029a25196f7eb95ddb73fe8c3b6fbf81879971b5cb"
+  },
+  {
+    "verdict": "supports",
+    "reason": "The located passage explicitly states that assignments with a clear end date made volunteers more willing to sign up again, which directly matches the claim's assertion.",
+    "item_id": "r15",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:bbd1c29922fc9fb2e77514aa0420c6152de80c8ef6540f4e5999311dad6650f3"
+  }
+]

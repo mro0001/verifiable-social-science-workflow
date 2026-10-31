@@ -1,0 +1,1 @@
+{"matches": true, "mismatches": [], "reason": "The docstring claim that the function writes one row per parameter read is true, and the comment claiming the output is sorted by name to ensure identical bytes on rerun is true because the code iterates over `sorted(self.used)`."}

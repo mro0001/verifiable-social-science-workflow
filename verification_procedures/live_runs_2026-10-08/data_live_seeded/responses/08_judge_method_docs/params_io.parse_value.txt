@@ -1,0 +1,5 @@
+{
+"matches": true,
+"mismatches": [],
+"reason": "The code correctly implements the documented logic: it strips quotes from values starting and ending with the same quote character, attempts to cast the remaining text to int then float, and returns the original text if both conversions fail."
+}

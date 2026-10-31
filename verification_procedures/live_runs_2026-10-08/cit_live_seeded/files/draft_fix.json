@@ -1,0 +1,68 @@
+[
+  {
+    "fix": "The citation to Ferrante (2021) must be removed because the reference appears to be fabricated (DOI 10.5555/nmr.2021.0388 does not exist) and no source was retrieved to verify the claim that exit is steepest among volunteers recruited through online portals.",
+    "item_id": "r02",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:c16ad69c0e0b46945069ab0a836e56f7c065e64af7b07cc7cd82d233d159d6ba"
+  },
+  {
+    "fix": "Brennan puts it plainly that volunteers tend to exit once they no longer experience the work as theirs [@brennan2016, p. 12].",
+    "item_id": "r04",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:a24a4064e582939b97946663d3230522f9502af373d5309f2378acb4e00f2ac7"
+  },
+  {
+    "fix": "Programs that cut orientation to a single session saw retention fall by 24% within a year [@kessler2019].",
+    "item_id": "r05",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:1474df0ce8d6e33a9556f11431a713bf250d2eed84092b545b8164a4e1616be8"
+  },
+  {
+    "fix": "Volunteers who received written role descriptions stayed longer than those who received only a verbal briefing [@okafor2018, p. 4]. The reference year should be corrected to 2019 to match the publication record.",
+    "item_id": "r06",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:c38ff52538b4fc5c310338d55ccc41b92e6c748c06a94b737973dc2242e4876e"
+  },
+  {
+    "fix": "Marchetti describes the records volunteers leave behind as 'administrative traces' [@marchetti2012].",
+    "item_id": "r07",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:06a22f8f357cdc7beaf40516404b77119be116047ffc25115663e8ae273efb71"
+  },
+  {
+    "fix": "Recognition events did not reduce exit among long-serving volunteers; if anything, exit rose slightly in the quarter after an event [@nakamura2020].",
+    "item_id": "r08",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:c6dc31bb54c1fb17be8b5d3e834cf7b017d138a583084be15946cb52c8466aea"
+  },
+  {
+    "fix": "Correct the reference metadata to list the second author as Morales J. instead of Moreau J. The sentence remains accurate as the source explicitly states that the quality of supervisors' feedback predicted whether volunteers returned for a second season.",
+    "item_id": "r09",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:479dfe7932cf9b7deb5d6776e5cdbb5195c90e2c335143b215ad4610d5e9d063"
+  },
+  {
+    "fix": "Correct the reference metadata to list the author as Haldane, P. (2017) to match the source, as the located passage explicitly confirms that volunteers in smaller programs reported stronger attachment to paid staff than those in large programs.",
+    "item_id": "r10",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:5f0b072cb04ddb452faec79bf072c57a7e46e7fd42175354ac620056b2c6273d"
+  },
+  {
+    "fix": "Exit interviews are rarely conducted in municipal programs. [Citation needed: The reference @pruitt2022 is missing from the bibliography and could not be verified.]",
+    "item_id": "r11",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:db0ca0b2f033fc856cc7dd10b8c4af2a6e3d8c33c84b2a41a526c2713981ffb6"
+  },
+  {
+    "fix": "Whitlock found that assigning a named staff contact kept volunteers longer in two of the three cities studied, with a non-significant difference in the third [@whitlock2020, p. 112].",
+    "item_id": "r13",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:95cf73d2049410fb76cc48ee22822ed351e8b1fbe14b79bdcb40d1e7ce4e3090"
+  },
+  {
+    "fix": "Turnover among volunteer coordinators tends to precede spikes in volunteer exit by one to two months [@sorensen2022]. The reference metadata should be corrected to reflect that the work is a preprint on CivicArXiv rather than a published article in the Journal of Civic Administration.",
+    "item_id": "r14",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:78b774d853da4302a13c6d3f74b4e5988c39ff98991b1512c347984760549baa"
+  }
+]

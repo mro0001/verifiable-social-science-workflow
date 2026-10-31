@@ -1,0 +1,30 @@
+# A recorded proposal standing in for the AI's answer on the test story's
+# project, written as the organizer's guide says. The test fills in the
+# inventory id. By the reconciliation (Track F), author_draft.md is marked
+# with a note instead of archived, since two procedures read it.
+schema: organizer-proposal
+schema_version: 1
+proposed_by: "ai:claude_code:5f3c0413-2a7d-4b9e-8c61-a0d4e7b2c913"
+inventory_id: "{{INVENTORY_ID}}"
+changes:
+  - id: c1
+    op: mark
+    reason: The author's earlier draft has the manuscript's title, and the prose and references procedures read it as the author's own text, so it stays as it is.
+    item_kind: file
+    item: author_draft.md
+    mark: note
+    value: The author's earlier draft, kept unarchived because two procedures read it.
+  - id: c2
+    op: mark
+    reason: The session edited the manuscript and wrote the source notes.
+    item_kind: session
+    item: 5f3c0413-2a7d-4b9e-8c61-a0d4e7b2c913
+    mark: note
+    value: The story session that edited manuscript.md and wrote source_notes.md.
+  - id: c3
+    op: mark
+    reason: The project guide still carries the sample project's heading.
+    item_kind: file
+    item: README.md
+    mark: note
+    value: This guide describes the sample project the story is copied from.

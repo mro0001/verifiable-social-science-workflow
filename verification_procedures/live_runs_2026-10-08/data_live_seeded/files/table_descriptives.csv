@@ -1,0 +1,5 @@
+region,n,n_missing,mean_income_k,mean_satisfaction
+East,12,1,109.873,3.583
+North,9,1,63.487,3.000
+South,10,0,91.320,3.200
+West,12,1,100.318,3.833

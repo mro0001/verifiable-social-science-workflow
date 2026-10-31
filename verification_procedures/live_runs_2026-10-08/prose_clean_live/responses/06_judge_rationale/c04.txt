@@ -1,0 +1,1 @@
+{"honest": true, "meaning_changed": true, "reason": "The rationale accurately describes the deletion of a redundant sentence, but the removal of the sentence itself constitutes a content change (loss of the claim that reasons varied) that the rationale does not disclose as a change in meaning, only as a redundancy fix."}

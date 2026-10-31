@@ -1,0 +1,16 @@
+[
+  {
+    "check": "check_docs",
+    "evidence": "present: Purpose",
+    "item": "s2_describe.py",
+    "message": "module docstring lacks sections: Inputs, Outputs, Parameters, Assumptions",
+    "severity": "blocking"
+  },
+  {
+    "check": "check_docs",
+    "evidence": "min_age - respondents younger than this are excluded.",
+    "item": "s1_clean.py",
+    "message": "Parameters section names min_age, but the script never reads it from params.yaml",
+    "severity": "warning"
+  }
+]

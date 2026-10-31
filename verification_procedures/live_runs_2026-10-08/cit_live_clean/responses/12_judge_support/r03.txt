@@ -1,0 +1,1 @@
+{"verdict": "supports", "reason": "The located passage on page 33 explicitly states that Moreno calls the issue the 'role-match problem' and argues it is invisible in sign-up data because such forms record availability rather than purpose, matching the claim exactly."}

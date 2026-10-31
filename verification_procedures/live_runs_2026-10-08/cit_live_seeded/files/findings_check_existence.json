@@ -1,0 +1,44 @@
+[
+  {
+    "check": "check_existence",
+    "evidence": "10.5555/nmr.2021.0388",
+    "item": "ferrante2021",
+    "message": "citation may not exist: no record for DOI 10.5555/nmr.2021.0388 (not in the metadata cache, and live lookup was off)",
+    "severity": "blocking"
+  },
+  {
+    "check": "check_existence",
+    "evidence": "10.5555/nmr.2020.0157",
+    "item": "lindqvist2020",
+    "message": "author mismatch: reference lists Lindqvist H., Moreau J.; record lists Lindqvist H., Morales J.",
+    "severity": "blocking"
+  },
+  {
+    "check": "check_existence",
+    "evidence": "10.5555/psq.2019.0044",
+    "item": "okafor2018",
+    "message": "year mismatch: reference says 2018; record says 2019",
+    "severity": "blocking"
+  },
+  {
+    "check": "check_existence",
+    "evidence": "10.5555/psq.2017.0090",
+    "item": "haldane2017",
+    "message": "author initials differ: Haldane (R. vs P.)",
+    "severity": "warning"
+  },
+  {
+    "check": "check_existence",
+    "evidence": "10.5555/jca.2022.0301",
+    "item": "sorensen2022",
+    "message": "stage mismatch: reference describes a published article-journal; the DOI resolves to a posted-content",
+    "severity": "warning"
+  },
+  {
+    "check": "check_existence",
+    "evidence": "10.5555/jca.2022.0301",
+    "item": "sorensen2022",
+    "message": "venue differs: reference says Journal of Civic Administration; record says CivicArXiv",
+    "severity": "warning"
+  }
+]

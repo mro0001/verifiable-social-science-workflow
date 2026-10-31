@@ -1,0 +1,42 @@
+{
+  "record_version": 1,
+  "seq": 2,
+  "node": "diff_changes",
+  "kind": "tool",
+  "graph_version": 0.1,
+  "started_at": "2026-10-08T12:59:06-07:00",
+  "duration_s": 0.09,
+  "inputs": {
+    "baseline.md": "sha256:6120b6a078e5bff2b9acf9b206ea64ebec3ca04646845d15c34c75216348b840",
+    "revised.md": "sha256:916d5056cdb13387154b57442156ed12c0dfd67503f8e7644c2b8b4411c307eb"
+  },
+  "execution": {
+    "type": "script",
+    "executor": "python3",
+    "code_files": {
+      "code/02_diff_changes/_lib.py": "sha256:bab908da53dea59fcf603a8d94c4e3e2e29312f8bf2ff66f631a5e273b937a8b",
+      "code/02_diff_changes/diff_changes.py": "sha256:a38af6a9fba7f37d317be5fd38952988af0d9edb518675f64d8e13bc1ebb2ab9"
+    },
+    "exit_code": 0,
+    "logs": [
+      "logs/02_diff_changes.stdout",
+      "logs/02_diff_changes.stderr"
+    ],
+    "replay": "exact"
+  },
+  "outputs": {
+    "changes.json": "sha256:4c625ba54894b94060859a7c1d5976e785ac3cb36771c697f6d618b389e8e9b7"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "exclude_author",
+      "rel": "LEADS_TO",
+      "check": null,
+      "fired": true
+    }
+  ]
+}

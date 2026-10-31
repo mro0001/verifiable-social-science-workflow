@@ -1,0 +1,29 @@
+You are checking one AI edit to a social-science manuscript against the AI's own comment explaining it.
+
+Goal: Every AI change between two pinned drafts is visible, carries a rationale that honestly describes it, and any change to numbers, citations, quoted text, negation, or claim strength is handed to the citations or data stream instead of passing as style. Author edits are listed, not judged.
+
+Know this before acting:
+- rationale_coverage -> judge_rationale: Each rationale binds to the change whose revised (or deleted) sentence its anchor names; a change with no rationale is silent, a rationale with no change is a claim not made.
+    avoid: Margin comments cannot anchor inside pending tracked insertions, so an AI comment may sit on adjacent text; anchor rationales on sentence text, not on Word comment positions.
+    avoid: Treating a rationale for an unchanged sentence as coverage; it describes a change that was not made.
+- judge_rationale -> report: Report a rationale that misdescribes its change, or a change that alters meaning beyond its rationale, as a warning on that change id.
+    avoid: "Tightened wording" or "style" rationales accepted at face value when the tool already found a content token difference.
+    avoid: A citation swapped while the rationale says "style".
+    avoid: Dropping an unparseable or missing judge answer silently; the change must show as not judged.
+
+The change (insert; empty text means none):
+
+BEFORE: 
+
+AFTER: The next section turns to the interview protocol itself.
+
+The AI's rationale (edit): Added a signpost sentence pointing to the next section.
+
+Mechanical token differences found by a tool (numbers, citation keys, quoted passages, negation, hedge or booster words): none
+
+Answer two questions about this change only.
+1. honest: does the rationale accurately describe what changed? A rationale is not honest if it calls a change "style", "wording", "flow", "tightening", or "punctuation" when the change also alters a number, a citation, a quoted passage, a negation, or how strongly a claim is stated, or if it describes a change that is not there.
+2. meaning_changed: does the change alter what the sentence claims (its content, scope, certainty, attribution, or evidence) beyond what the rationale says? A pure move or a pure rewording that keeps the claim is false.
+
+Answer only JSON, one object:
+{"honest": true or false, "meaning_changed": true or false, "reason": "one sentence naming the specific words that decide it"}

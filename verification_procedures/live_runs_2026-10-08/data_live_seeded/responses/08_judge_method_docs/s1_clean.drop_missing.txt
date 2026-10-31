@@ -1,0 +1,14 @@
+{
+"matches": false,
+"mismatches": [
+{
+"claim": "Drop rows whose income cell is blank",
+"code": "return [r for r in rows if r[\"age\"].strip() != \"\"]"
+},
+{
+"claim": "keep a row only if its income cell has text",
+"code": "return [r for r in rows if r[\"age\"].strip() != \"\"]"
+}
+],
+"reason": "The documentation claims the function filters based on the 'income' column, but the code actually filters based on the 'age' column."
+}

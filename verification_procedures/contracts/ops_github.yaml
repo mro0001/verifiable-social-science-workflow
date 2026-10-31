@@ -1,0 +1,27 @@
+# Contracts for adding a project to GitHub. A run's inputs are the settings
+# file github.yaml and a snapshot of the project folder, project.tar.
+github_settings:
+  reads: [github.yaml]
+  produces:
+    settings.json: {task: str, valid: bool, apply: bool, project_dir: str, repo_name: str, owner: str, visibility: [private, public], create_with: [gh, none], remote_url: str, branch: str, message: str, exclude: list, max_file_mb: number, warn_file_mb: number}
+    findings_github_settings.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+github_files:
+  reads: [project.tar, settings.json]
+  produces:
+    files.json: {blocked: int, already_repo: bool, files: int, commit: list, excluded: list, gitignore: list, snapshot: dict}
+    findings_github_files.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+github_plan:
+  reads: [settings.json, files.json]
+  produces:
+    commands.json: {cwd: str, snapshot: dict, writes: list, commands: list}
+run_commands:
+  reads: [settings.json, commands.json]
+  produces:
+    applied.json: {applied: bool, refused: str, results: list}
+    findings_run_commands.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+report:
+  reads: [settings.json]
+  reads_optional: ["findings_*.json", files.json, commands.json, applied.json]
+  produces:
+    findings.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+    report.md: {headings: [Summary, Problems, Settings, Commands]}

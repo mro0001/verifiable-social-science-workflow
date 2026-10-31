@@ -1,0 +1,309 @@
+[
+  {
+    "authors": [
+      {
+        "family": "Abara",
+        "given": "Nkem"
+      },
+      {
+        "family": "Hollis",
+        "given": "Teresa"
+      }
+    ],
+    "cited": true,
+    "cited_in_checked": true,
+    "container": "Journal of Civic Administration",
+    "doi": "10.5555/jca.2019.0142",
+    "id": "abara2019",
+    "in_refs": true,
+    "title": "Ownership and exit in municipal volunteer programs",
+    "type": "article-journal",
+    "year": 2019
+  },
+  {
+    "authors": [
+      {
+        "family": "Brennan",
+        "given": "Siobhan"
+      }
+    ],
+    "cited": true,
+    "cited_in_checked": true,
+    "container": "Civic Press",
+    "doi": "10.5555/cp.2016.0007",
+    "id": "brennan2016",
+    "in_refs": true,
+    "title": "The work is theirs",
+    "type": "book",
+    "year": 2016
+  },
+  {
+    "authors": [
+      {
+        "family": "Castellanos",
+        "given": "Rosa"
+      },
+      {
+        "family": "Ibe",
+        "given": "Kelechi"
+      }
+    ],
+    "cited": true,
+    "cited_in_checked": false,
+    "container": "Voluntary Sector Studies",
+    "doi": "10.5555/vss.2017.0021",
+    "id": "castellanos2017",
+    "in_refs": true,
+    "title": "Fit and retention in local volunteering",
+    "type": "article-journal",
+    "year": 2017
+  },
+  {
+    "authors": [
+      {
+        "family": "Dumont",
+        "given": "Claire"
+      }
+    ],
+    "cited": true,
+    "cited_in_checked": true,
+    "container": "Voluntary Sector Studies",
+    "doi": "10.5555/vss.2014.0048",
+    "id": "dumont2014",
+    "in_refs": true,
+    "title": "Fixed-term assignments and volunteer re-enlistment",
+    "type": "article-journal",
+    "year": 2014
+  },
+  {
+    "authors": [
+      {
+        "family": "Ferrante",
+        "given": "Luca"
+      }
+    ],
+    "cited": true,
+    "cited_in_checked": true,
+    "container": "Nonprofit Management Review",
+    "doi": "10.5555/nmr.2021.0388",
+    "id": "ferrante2021",
+    "in_refs": true,
+    "title": "Digital recruitment and early exit among civic volunteers",
+    "type": "article-journal",
+    "year": 2021
+  },
+  {
+    "authors": [
+      {
+        "family": "Haldane",
+        "given": "R. J."
+      }
+    ],
+    "cited": true,
+    "cited_in_checked": true,
+    "container": "Public Service Quarterly",
+    "doi": "10.5555/psq.2017.0090",
+    "id": "haldane2017",
+    "in_refs": true,
+    "title": "Program size and attachment to staff",
+    "type": "article-journal",
+    "year": 2017
+  },
+  {
+    "authors": [
+      {
+        "family": "Iversen",
+        "given": "Tor"
+      }
+    ],
+    "cited": true,
+    "cited_in_checked": true,
+    "container": "Youth and Civic Life",
+    "doi": "10.5555/ycl.2018.0012",
+    "id": "iversen2018",
+    "in_refs": true,
+    "title": "Peer mentoring in youth volunteer programs",
+    "type": "article-journal",
+    "year": 2018
+  },
+  {
+    "authors": [
+      {
+        "family": "Kessler",
+        "given": "Dana"
+      }
+    ],
+    "cited": true,
+    "cited_in_checked": true,
+    "container": "Journal of Civic Administration",
+    "doi": "10.5555/jca.2019.0215",
+    "id": "kessler2019",
+    "in_refs": true,
+    "title": "Orientation length and volunteer retention",
+    "type": "article-journal",
+    "year": 2019
+  },
+  {
+    "authors": [
+      {
+        "family": "Lindqvist",
+        "given": "Hanna"
+      },
+      {
+        "family": "Moreau",
+        "given": "Julien"
+      }
+    ],
+    "cited": true,
+    "cited_in_checked": true,
+    "container": "Nonprofit Management Review",
+    "doi": "10.5555/nmr.2020.0157",
+    "id": "lindqvist2020",
+    "in_refs": true,
+    "title": "Supervisor feedback and seasonal return",
+    "type": "article-journal",
+    "year": 2020
+  },
+  {
+    "authors": [
+      {
+        "family": "Marchetti",
+        "given": "Paolo"
+      }
+    ],
+    "cited": true,
+    "cited_in_checked": true,
+    "container": "Records and Society",
+    "doi": "10.5555/rs.2012.0109",
+    "id": "marchetti2012",
+    "in_refs": true,
+    "title": "Administrative traces of volunteer work",
+    "type": "article-journal",
+    "year": 2012
+  },
+  {
+    "authors": [
+      {
+        "family": "Nakamura",
+        "given": "Emi"
+      }
+    ],
+    "cited": true,
+    "cited_in_checked": true,
+    "container": "Voluntary Sector Studies",
+    "doi": "10.5555/vss.2020.0063",
+    "id": "nakamura2020",
+    "in_refs": true,
+    "title": "Recognition events and the long-serving volunteer",
+    "type": "article-journal",
+    "year": 2020
+  },
+  {
+    "authors": [
+      {
+        "family": "Okafor",
+        "given": "Adaeze"
+      }
+    ],
+    "cited": true,
+    "cited_in_checked": true,
+    "container": "Public Service Quarterly",
+    "doi": "10.5555/psq.2019.0044",
+    "id": "okafor2018",
+    "in_refs": true,
+    "title": "Written role descriptions and volunteer tenure",
+    "type": "article-journal",
+    "year": 2018
+  },
+  {
+    "authors": [
+      {
+        "family": "Osei",
+        "given": "Kwame"
+      }
+    ],
+    "cited": false,
+    "cited_in_checked": false,
+    "container": "Urban Affairs Notes",
+    "doi": "10.5555/uan.2015.0102",
+    "id": "osei2015",
+    "in_refs": true,
+    "title": "Volunteer motives across city sizes",
+    "type": "article-journal",
+    "year": 2015
+  },
+  {
+    "cited": true,
+    "cited_in_checked": true,
+    "id": "pruitt2022",
+    "in_refs": false
+  },
+  {
+    "authors": [
+      {
+        "family": "Quinlan",
+        "given": "Maeve"
+      }
+    ],
+    "cited": true,
+    "cited_in_checked": false,
+    "container": "Nonprofit Management Review",
+    "doi": "10.5555/nmr.2016.0019",
+    "id": "quinlan2015",
+    "in_refs": true,
+    "title": "Why volunteers say they leave",
+    "type": "article-journal",
+    "year": 2015
+  },
+  {
+    "authors": [
+      {
+        "family": "Sorensen",
+        "given": "Mikkel"
+      }
+    ],
+    "cited": true,
+    "cited_in_checked": true,
+    "container": "Journal of Civic Administration",
+    "doi": "10.5555/jca.2022.0301",
+    "id": "sorensen2022",
+    "in_refs": true,
+    "title": "Coordinator turnover and volunteer exit",
+    "type": "article-journal",
+    "year": 2022
+  },
+  {
+    "authors": [
+      {
+        "family": "Tanaka",
+        "given": "Hiroshi"
+      }
+    ],
+    "cited": true,
+    "cited_in_checked": true,
+    "container": "Public Service Quarterly",
+    "doi": "10.5555/psq.2016.0071",
+    "id": "tanaka2016",
+    "in_refs": true,
+    "title": "Training length and volunteer retention",
+    "type": "article-journal",
+    "year": 2016
+  },
+  {
+    "authors": [
+      {
+        "family": "Whitlock",
+        "given": "Grace"
+      }
+    ],
+    "cited": true,
+    "cited_in_checked": true,
+    "container": "Urban Affairs Notes",
+    "doi": "10.5555/uan.2020.0230",
+    "id": "whitlock2020",
+    "in_refs": true,
+    "title": "Named contacts and volunteer tenure in three cities",
+    "type": "article-journal",
+    "year": 2020
+  }
+]

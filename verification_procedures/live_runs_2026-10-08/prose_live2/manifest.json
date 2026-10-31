@@ -1,0 +1,26 @@
+{
+  "created_at": "2026-10-08T12:59:37-07:00",
+  "stream": "prose",
+  "graph": {
+    "path": "graphs/prose.yaml",
+    "version": 0.2,
+    "sha256": "sha256:925f86f6ac7bc96d3b9dd158d7a97a695e4eb50ab1164981e7cb6ad4ba1fccae"
+  },
+  "contracts": {
+    "path": "contracts/prose.yaml",
+    "sha256": "sha256:de28597172ecc72b4634ffd90fc6e4e5d9932edf50132fd00a8b55817876f02e"
+  },
+  "inputs_from": "/path/to/repository/verification_graphs/fixtures/prose/seeded",
+  "inputs": {
+    "author_edits.yaml": "sha256:b65389e1fb881c27677149fe77e9bc72a07a4a4d3fd9ffa018cfbad5df16696e",
+    "baseline.md": "sha256:6120b6a078e5bff2b9acf9b206ea64ebec3ca04646845d15c34c75216348b840",
+    "rationales.yaml": "sha256:379589da86ca0d7a10b1c0c130a3166014d6ce3dd15475fb4df824e6623afe19",
+    "revised.md": "sha256:916d5056cdb13387154b57442156ed12c0dfd67503f8e7644c2b8b4411c307eb",
+    "versions.yaml": "sha256:af31b4ae75ffd48d5fe5c4e15dd2fbcd06e98acfe9be9b148a0e633113429929"
+  },
+  "executors": {
+    "judge": "live:qwen/qwen3.5-122b",
+    "second": null
+  },
+  "python": "3.9.5"
+}

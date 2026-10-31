@@ -1,0 +1,42 @@
+{
+  "record_version": 1,
+  "seq": 5,
+  "node": "fetch_metadata",
+  "kind": "tool",
+  "graph_version": 0.1,
+  "started_at": "2026-10-08T13:10:08-07:00",
+  "duration_s": 0.17,
+  "inputs": {
+    "refs_index.json": "sha256:6f2f0c8d4e810b42b7b6c9e7a5d9108d42a6f16aad73509bd071a5eb0564ea97",
+    "metadata_cache.json": "sha256:1608c0317161c5e6596881bd3da7cb9c321336773cda8ae04b9fd86a478b6feb"
+  },
+  "execution": {
+    "type": "script",
+    "executor": "python3",
+    "code_files": {
+      "code/05_fetch_metadata/_lib.py": "sha256:bab908da53dea59fcf603a8d94c4e3e2e29312f8bf2ff66f631a5e273b937a8b",
+      "code/05_fetch_metadata/fetch_metadata.py": "sha256:06d70e792a2d44c18b62fa3aa0968c65622b7a6c0893f2a3342cde7f5dc7cb59"
+    },
+    "exit_code": 0,
+    "logs": [
+      "logs/05_fetch_metadata.stdout",
+      "logs/05_fetch_metadata.stderr"
+    ],
+    "replay": "network"
+  },
+  "outputs": {
+    "lookups.json": "sha256:5821fe9ef735b2c4d6c56533e7aab2bd3cf77de89c1c281c5b132932e64c2ebc"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "check_existence",
+      "rel": "LEADS_TO",
+      "check": null,
+      "fired": true
+    }
+  ]
+}

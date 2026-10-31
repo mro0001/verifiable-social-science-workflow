@@ -1,0 +1,13 @@
+# The author's build preferences, in the author's words. The build verifier
+# checks that each one is carried by the map (Makefile) and shows in the builds.
+all:                       # applies to every deliverable
+  bibliography: refs.bib
+  citation_style: style/mini-author-date.csl
+paper:
+  format: html
+  template: paper/template.html
+  toc: true
+  number_sections: true
+slides:
+  format: slides
+  number_sections: true

@@ -1,0 +1,40 @@
+{
+  "verified_at": "2026-10-08T13:11:01-07:00",
+  "steps": [
+    {
+      "seq": 1,
+      "node": "pin_versions",
+      "verdict": "replay matches"
+    },
+    {
+      "seq": 2,
+      "node": "diff_changes",
+      "verdict": "replay matches"
+    },
+    {
+      "seq": 3,
+      "node": "exclude_author",
+      "verdict": "replay matches"
+    },
+    {
+      "seq": 4,
+      "node": "content_handoff",
+      "verdict": "replay matches"
+    },
+    {
+      "seq": 5,
+      "node": "rationale_coverage",
+      "verdict": "replay matches"
+    },
+    {
+      "seq": 6,
+      "node": "judge_rationale",
+      "verdict": "judgment: recorded answers kept; review, not replay"
+    },
+    {
+      "seq": 7,
+      "node": "report",
+      "verdict": "replay matches"
+    }
+  ]
+}

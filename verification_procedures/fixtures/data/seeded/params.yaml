@@ -1,0 +1,9 @@
+# Every analytic choice is set here, once. Scripts read these through
+# params_io.Params; each run writes what it read to params_record_<step>.csv.
+min_age: 18            # clean: respondents younger than this are excluded
+income_cap: 250000     # clean: incomes above this are top-coded to it
+round_digits: 3        # describe, model: decimals in published tables
+fig_width: 520         # describe: figure width, pixels
+fig_height: 260        # describe: figure height, pixels
+model_formula: "satisfaction ~ income_k"   # model: outcome ~ predictor
+alpha: 0.05            # model: threshold for the significant column

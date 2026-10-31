@@ -1,0 +1,43 @@
+{
+  "record_version": 1,
+  "seq": 4,
+  "node": "match_references",
+  "kind": "tool",
+  "graph_version": 0.1,
+  "started_at": "2026-10-08T13:10:37-07:00",
+  "duration_s": 0.12,
+  "inputs": {
+    "rows_attributed.json": "sha256:5a46b624545f57bb16300c2073d5af8c8360afd1efc059d67b71014b883a411d",
+    "refs.yaml": "sha256:dd2c0a09720c52315e93bf54058c91cbb4b1320b8d7cb4eee8dd0962161122cc"
+  },
+  "execution": {
+    "type": "script",
+    "executor": "python3",
+    "code_files": {
+      "code/04_match_references/_lib.py": "sha256:bab908da53dea59fcf603a8d94c4e3e2e29312f8bf2ff66f631a5e273b937a8b",
+      "code/04_match_references/match_references.py": "sha256:9bd7dc4b43348b78ea8da52724fee957755b7566e74ac848ac3a20377ebadd4a"
+    },
+    "exit_code": 0,
+    "logs": [
+      "logs/04_match_references.stdout",
+      "logs/04_match_references.stderr"
+    ],
+    "replay": "exact"
+  },
+  "outputs": {
+    "refs_index.json": "sha256:c12edaf56999a9543396ff99b0143c4fb98dbfcd26b97fc6526d2269f61520b9",
+    "findings_match_references.json": "sha256:201333a5fe77b14cd0a19195ad7c6980d203474c6d0038265238031b8a9eff4b"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "fetch_metadata",
+      "rel": "LEADS_TO",
+      "check": null,
+      "fired": true
+    }
+  ]
+}

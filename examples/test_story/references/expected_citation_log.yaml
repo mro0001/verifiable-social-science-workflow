@@ -1,0 +1,7 @@
+# Written by hand. What the audit layer should write out for the test story.
+# Entries name only the two citations the story session added. The scholar's
+# castellanos2017 has no entry, and draft stays empty. session_ref is the
+# session's public id.
+citations:
+  dumont2014: {introduced_by: ai, draft: "", session: "5f3c0413-2a7d-4b9e-8c61-a0d4e7b2c913", session_ref: S55ac19fb97b9}
+  nakamura2020: {introduced_by: ai, draft: "", session: "5f3c0413-2a7d-4b9e-8c61-a0d4e7b2c913", session_ref: S55ac19fb97b9}

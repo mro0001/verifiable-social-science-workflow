@@ -1,0 +1,324 @@
+[
+  {
+    "code": "\"\"\"Read params.yaml once and write the records that a run produces.\n\nPurpose:\n    Give every pipeline script one way to read parameters. A value is set once,\n    in params.yaml. Every value a script reads through Params is remembered and\n    written to that step's parameter record by the run itself, so the record is\n    produced by the process and never typed.\nInputs:\n    params.yaml - flat `name: value` parameters; the only place values are set.\nOutputs:\n    params_record_<step>.csv - written by Params.write_record (param, value, step, script).\n    model_record_<step>.json - written by write_model_record.\nParameters:\n    none; this module carries no values of its own.\nAssumptions:\n    params.yaml is flat: one `name: value` per line, `#` starts a comment, and a\n    string value may be quoted. An indented line means nested YAML, which this\n    reader refuses rather than guessing. Standard library only, so the pipeline\n    replays anywhere. (R binding: the same contract via yaml::read_yaml and a\n    data.frame written with write.csv; Quarto: params read in a setup chunk.)\n\"\"\"\nimport csv\nimport hashlib\nimport json\n\n\ndef file_sha256(name):\n    \"\"\"Return 'sha256:<hex>' for the bytes of a file; model records carry it.\"\"\"\n    with open(name, \"rb\") as f:\n        return \"sha256:\" + hashlib.sha256(f.read()).hexdigest()\n\n\ndef parse_value(text):\n    \"\"\"Turn the text after `name:` into an int, a float, or a string.\"\"\"\n    text = text.strip()\n    # A quoted value is a string: strip the matching quotes and keep the rest as is.\n    if text[:1] in (\"'\", '\"') and text[-1:] == text[:1]:\n        return text[1:-1]\n    # Otherwise try int, then float; anything else stays text.\n    for cast in (int, float):\n        try:\n            return cast(text)\n        except ValueError:\n            pass\n    return text\n\n\ndef load(name):\n    \"\"\"Read a flat params.yaml into a dict; an indented line raises an error.\"\"\"\n    values = {}\n    with open(name) as f:\n        for line in f:\n            # Everything after `#` is a comment (so `#` cannot appear inside a value).\n            body = line.split(\"#\", 1)[0].rstrip()\n            if not body.strip():\n                continue\n            # Nested YAML is refused: an indented line is an error, not a guess.\n            if body[:1].isspace():\n                raise ValueError(\"params.yaml must be flat; nested line: \" + line.strip())\n            key, _, text = body.partition(\":\")\n            values[key.strip()] = parse_value(text)\n    return values\n\n\nclass Params:\n    \"\"\"The parameters for one step; every value read is remembered for the record.\"\"\"\n\n    def __init__(self, step, script, name=\"params.yaml\"):\n        \"\"\"Load params.yaml and its hash, and start an empty record of uses.\"\"\"\n        self.step = step\n        self.script = script\n        self.values = load(name)\n        self.sha256 = file_sha256(name)\n        self.used = {}\n\n    def __getitem__(self, key):\n        \"\"\"Return the value of `key` and add it to this step's record of uses.\"\"\"\n        value = self.values[key]\n        self.used[key] = value\n        return value\n\n    def write_record(self):\n        \"\"\"Write params_record_<step>.csv: one row per parameter this run read.\"\"\"\n        with open(\"params_record_\" + self.step + \".csv\", \"w\", newline=\"\") as f:\n            writer = csv.writer(f, lineterminator=\"\\n\")\n            writer.writerow([\"param\", \"value\", \"step\", \"script\"])\n            # Sorted by name so a rerun writes identical bytes.\n            for key in sorted(self.used):\n                writer.writerow([key, self.used[key], self.step, self.script])\n\n\ndef write_model_record(params, model, spec, n, outputs, estimates):\n    \"\"\"Write model_record_<step>.json: spec, parameters used, params.yaml hash, n, outputs.\"\"\"\n    record = {\n        \"step\": params.step,\n        \"script\": params.script,\n        \"model\": model,\n        \"spec\": spec,\n        \"params\": dict(sorted(params.used.items())),\n        \"params_sha256\": params.sha256,\n        \"n\": n,\n        \"outputs\": outputs,\n        \"estimates\": estimates,\n    }\n    with open(\"model_record_\" + params.step + \".json\", \"w\") as f:\n        json.dump(record, f, indent=2, sort_keys=True)  # not-a-param: JSON layout, not an analytic choice\n        f.write(\"\\n\")\n",
+    "comments": [
+      "L36: # A quoted value is a string: strip the matching quotes and keep the rest as is.",
+      "L39: # Otherwise try int, then float; anything else stays text.",
+      "L53: # Everything after `#` is a comment (so `#` cannot appear inside a value).",
+      "L57: # Nested YAML is refused: an indented line is an error, not a guess.",
+      "L87: # Sorted by name so a rerun writes identical bytes.",
+      "L106: # not-a-param: JSON layout, not an analytic choice"
+    ],
+    "doc": "Read params.yaml once and write the records that a run produces.\n\nPurpose:\n    Give every pipeline script one way to read parameters. A value is set once,\n    in params.yaml. Every value a script reads through Params is remembered and\n    written to that step's parameter record by the run itself, so the record is\n    produced by the process and never typed.\nInputs:\n    params.yaml - flat `name: value` parameters; the only place values are set.\nOutputs:\n    params_record_<step>.csv - written by Params.write_record (param, value, step, script).\n    model_record_<step>.json - written by write_model_record.\nParameters:\n    none; this module carries no values of its own.\nAssumptions:\n    params.yaml is flat: one `name: value` per line, `#` starts a comment, and a\n    string value may be quoted. An indented line means nested YAML, which this\n    reader refuses rather than guessing. Standard library only, so the pipeline\n    replays anywhere. (R binding: the same contract via yaml::read_yaml and a\n    data.frame written with write.csv; Quarto: params read in a setup chunk.)",
+    "id": "params_io",
+    "kind": "step",
+    "name": "params_io",
+    "script": "params_io.py"
+  },
+  {
+    "code": "class Params:\n    \"\"\"The parameters for one step; every value read is remembered for the record.\"\"\"\n\n    def __init__(self, step, script, name=\"params.yaml\"):\n        \"\"\"Load params.yaml and its hash, and start an empty record of uses.\"\"\"\n        self.step = step\n        self.script = script\n        self.values = load(name)\n        self.sha256 = file_sha256(name)\n        self.used = {}\n\n    def __getitem__(self, key):\n        \"\"\"Return the value of `key` and add it to this step's record of uses.\"\"\"\n        value = self.values[key]\n        self.used[key] = value\n        return value\n\n    def write_record(self):\n        \"\"\"Write params_record_<step>.csv: one row per parameter this run read.\"\"\"\n        with open(\"params_record_\" + self.step + \".csv\", \"w\", newline=\"\") as f:\n            writer = csv.writer(f, lineterminator=\"\\n\")\n            writer.writerow([\"param\", \"value\", \"step\", \"script\"])\n            # Sorted by name so a rerun writes identical bytes.\n            for key in sorted(self.used):\n                writer.writerow([key, self.used[key], self.step, self.script])",
+    "comments": [
+      "L87: # Sorted by name so a rerun writes identical bytes."
+    ],
+    "doc": "The parameters for one step; every value read is remembered for the record.",
+    "id": "params_io.Params",
+    "kind": "function",
+    "name": "Params",
+    "script": "params_io.py"
+  },
+  {
+    "code": "def __getitem__(self, key):\n        \"\"\"Return the value of `key` and add it to this step's record of uses.\"\"\"\n        value = self.values[key]\n        self.used[key] = value\n        return value",
+    "comments": [],
+    "doc": "Return the value of `key` and add it to this step's record of uses.",
+    "id": "params_io.Params.__getitem__",
+    "kind": "function",
+    "name": "Params.__getitem__",
+    "script": "params_io.py"
+  },
+  {
+    "code": "def __init__(self, step, script, name=\"params.yaml\"):\n        \"\"\"Load params.yaml and its hash, and start an empty record of uses.\"\"\"\n        self.step = step\n        self.script = script\n        self.values = load(name)\n        self.sha256 = file_sha256(name)\n        self.used = {}",
+    "comments": [],
+    "doc": "Load params.yaml and its hash, and start an empty record of uses.",
+    "id": "params_io.Params.__init__",
+    "kind": "function",
+    "name": "Params.__init__",
+    "script": "params_io.py"
+  },
+  {
+    "code": "def write_record(self):\n        \"\"\"Write params_record_<step>.csv: one row per parameter this run read.\"\"\"\n        with open(\"params_record_\" + self.step + \".csv\", \"w\", newline=\"\") as f:\n            writer = csv.writer(f, lineterminator=\"\\n\")\n            writer.writerow([\"param\", \"value\", \"step\", \"script\"])\n            # Sorted by name so a rerun writes identical bytes.\n            for key in sorted(self.used):\n                writer.writerow([key, self.used[key], self.step, self.script])",
+    "comments": [
+      "L87: # Sorted by name so a rerun writes identical bytes."
+    ],
+    "doc": "Write params_record_<step>.csv: one row per parameter this run read.",
+    "id": "params_io.Params.write_record",
+    "kind": "function",
+    "name": "Params.write_record",
+    "script": "params_io.py"
+  },
+  {
+    "code": "def file_sha256(name):\n    \"\"\"Return 'sha256:<hex>' for the bytes of a file; model records carry it.\"\"\"\n    with open(name, \"rb\") as f:\n        return \"sha256:\" + hashlib.sha256(f.read()).hexdigest()",
+    "comments": [],
+    "doc": "Return 'sha256:<hex>' for the bytes of a file; model records carry it.",
+    "id": "params_io.file_sha256",
+    "kind": "function",
+    "name": "file_sha256",
+    "script": "params_io.py"
+  },
+  {
+    "code": "def load(name):\n    \"\"\"Read a flat params.yaml into a dict; an indented line raises an error.\"\"\"\n    values = {}\n    with open(name) as f:\n        for line in f:\n            # Everything after `#` is a comment (so `#` cannot appear inside a value).\n            body = line.split(\"#\", 1)[0].rstrip()\n            if not body.strip():\n                continue\n            # Nested YAML is refused: an indented line is an error, not a guess.\n            if body[:1].isspace():\n                raise ValueError(\"params.yaml must be flat; nested line: \" + line.strip())\n            key, _, text = body.partition(\":\")\n            values[key.strip()] = parse_value(text)\n    return values",
+    "comments": [
+      "L53: # Everything after `#` is a comment (so `#` cannot appear inside a value).",
+      "L57: # Nested YAML is refused: an indented line is an error, not a guess."
+    ],
+    "doc": "Read a flat params.yaml into a dict; an indented line raises an error.",
+    "id": "params_io.load",
+    "kind": "function",
+    "name": "load",
+    "script": "params_io.py"
+  },
+  {
+    "code": "def parse_value(text):\n    \"\"\"Turn the text after `name:` into an int, a float, or a string.\"\"\"\n    text = text.strip()\n    # A quoted value is a string: strip the matching quotes and keep the rest as is.\n    if text[:1] in (\"'\", '\"') and text[-1:] == text[:1]:\n        return text[1:-1]\n    # Otherwise try int, then float; anything else stays text.\n    for cast in (int, float):\n        try:\n            return cast(text)\n        except ValueError:\n            pass\n    return text",
+    "comments": [
+      "L36: # A quoted value is a string: strip the matching quotes and keep the rest as is.",
+      "L39: # Otherwise try int, then float; anything else stays text."
+    ],
+    "doc": "Turn the text after `name:` into an int, a float, or a string.",
+    "id": "params_io.parse_value",
+    "kind": "function",
+    "name": "parse_value",
+    "script": "params_io.py"
+  },
+  {
+    "code": "def write_model_record(params, model, spec, n, outputs, estimates):\n    \"\"\"Write model_record_<step>.json: spec, parameters used, params.yaml hash, n, outputs.\"\"\"\n    record = {\n        \"step\": params.step,\n        \"script\": params.script,\n        \"model\": model,\n        \"spec\": spec,\n        \"params\": dict(sorted(params.used.items())),\n        \"params_sha256\": params.sha256,\n        \"n\": n,\n        \"outputs\": outputs,\n        \"estimates\": estimates,\n    }\n    with open(\"model_record_\" + params.step + \".json\", \"w\") as f:\n        json.dump(record, f, indent=2, sort_keys=True)  # not-a-param: JSON layout, not an analytic choice\n        f.write(\"\\n\")",
+    "comments": [
+      "L106: # not-a-param: JSON layout, not an analytic choice"
+    ],
+    "doc": "Write model_record_<step>.json: spec, parameters used, params.yaml hash, n, outputs.",
+    "id": "params_io.write_model_record",
+    "kind": "function",
+    "name": "write_model_record",
+    "script": "params_io.py"
+  },
+  {
+    "code": "\"\"\"Clean the raw survey into the analytic file that every later step reads.\n\nPurpose:\n    Turn the raw survey into the analytic file: drop rows with no income, keep\n    adults only, top-code very high incomes, and add income in thousands\n    (income_k), the model's predictor.\nInputs:\n    raw_survey.csv - one row per respondent as collected; never edited.\nOutputs:\n    clean_survey.csv - analytic rows: id, region, age, income, income_k, satisfaction.\n    params_record_clean.csv - the parameters this run read, written by the run.\nParameters:\n    min_age - respondents younger than this are excluded.\n    income_cap - incomes above this are set to this value (top-coding).\nAssumptions:\n    A blank cell means missing. A blank income is dropped first, because income\n    is the model's predictor. A blank age cannot show a respondent is an adult,\n    so the age rule excludes it.\n\"\"\"\nimport csv\n\nimport params_io\n\nP = params_io.Params(step=\"clean\", script=\"s1_clean.py\")\nCOLUMNS = [\"id\", \"region\", \"age\", \"income\", \"income_k\", \"satisfaction\"]\n\n\ndef read_rows(name):\n    \"\"\"Read a CSV file into a list of dicts, one per row, every value as text.\"\"\"\n    with open(name, newline=\"\") as f:\n        return list(csv.DictReader(f))\n\n\ndef drop_missing(rows):\n    \"\"\"Drop rows whose income cell is blank; income is the model's predictor.\"\"\"\n    # Drop rows with missing income: keep a row only if its income cell has text.\n    return [r for r in rows if r[\"age\"].strip() != \"\"]\n\n\ndef filter_age(rows):\n    \"\"\"Keep respondents aged at least min_age; a blank age cannot qualify.\"\"\"\n    min_age = 21\n    # A blank age is excluded here: it cannot be shown to meet min_age.\n    return [r for r in rows if r[\"age\"].strip() != \"\" and int(r[\"age\"]) >= min_age]\n\n\ndef top_code(rows):\n    \"\"\"Set incomes above income_cap to income_cap and add income_k (thousands).\"\"\"\n    cap = P[\"income_cap\"]\n    out = []\n    for r in rows:\n        row = {c: r.get(c, \"\") for c in COLUMNS}\n        # A blank income passes through unchanged (none remain after drop_missing).\n        if r[\"income\"].strip() != \"\":\n            income = min(float(r[\"income\"]), cap)  # top-coding: the cap replaces larger values\n            row[\"income\"] = \"%.0f\" % income\n            row[\"income_k\"] = \"%.3f\" % (income / 1000)  # thousands of dollars\n        out.append(row)\n    return out\n\n\ndef write_rows(name, rows):\n    \"\"\"Write rows with a fixed column order and line ending so reruns are byte-identical.\"\"\"\n    with open(name, \"w\", newline=\"\") as f:\n        writer = csv.DictWriter(f, fieldnames=COLUMNS, lineterminator=\"\\n\")\n        writer.writeheader()\n        writer.writerows(rows)\n\n\ndef main():\n    \"\"\"Run the cleaning rules in the documented order, then write data and record.\"\"\"\n    rows = read_rows(\"raw_survey.csv\")\n    rows = drop_missing(rows)\n    rows = filter_age(rows)\n    rows = top_code(rows)\n    write_rows(\"clean_survey.csv\", rows)\n    P.write_record()\n\n\nif __name__ == \"__main__\":\n    main()\n",
+    "comments": [
+      "L36: # Drop rows with missing income: keep a row only if its income cell has text.",
+      "L43: # A blank age is excluded here: it cannot be shown to meet min_age.",
+      "L53: # A blank income passes through unchanged (none remain after drop_missing).",
+      "L55: # top-coding: the cap replaces larger values",
+      "L57: # thousands of dollars"
+    ],
+    "doc": "Clean the raw survey into the analytic file that every later step reads.\n\nPurpose:\n    Turn the raw survey into the analytic file: drop rows with no income, keep\n    adults only, top-code very high incomes, and add income in thousands\n    (income_k), the model's predictor.\nInputs:\n    raw_survey.csv - one row per respondent as collected; never edited.\nOutputs:\n    clean_survey.csv - analytic rows: id, region, age, income, income_k, satisfaction.\n    params_record_clean.csv - the parameters this run read, written by the run.\nParameters:\n    min_age - respondents younger than this are excluded.\n    income_cap - incomes above this are set to this value (top-coding).\nAssumptions:\n    A blank cell means missing. A blank income is dropped first, because income\n    is the model's predictor. A blank age cannot show a respondent is an adult,\n    so the age rule excludes it.",
+    "id": "s1_clean",
+    "kind": "step",
+    "name": "s1_clean",
+    "script": "s1_clean.py"
+  },
+  {
+    "code": "def drop_missing(rows):\n    \"\"\"Drop rows whose income cell is blank; income is the model's predictor.\"\"\"\n    # Drop rows with missing income: keep a row only if its income cell has text.\n    return [r for r in rows if r[\"age\"].strip() != \"\"]",
+    "comments": [
+      "L36: # Drop rows with missing income: keep a row only if its income cell has text."
+    ],
+    "doc": "Drop rows whose income cell is blank; income is the model's predictor.",
+    "id": "s1_clean.drop_missing",
+    "kind": "function",
+    "name": "drop_missing",
+    "script": "s1_clean.py"
+  },
+  {
+    "code": "def filter_age(rows):\n    \"\"\"Keep respondents aged at least min_age; a blank age cannot qualify.\"\"\"\n    min_age = 21\n    # A blank age is excluded here: it cannot be shown to meet min_age.\n    return [r for r in rows if r[\"age\"].strip() != \"\" and int(r[\"age\"]) >= min_age]",
+    "comments": [
+      "L43: # A blank age is excluded here: it cannot be shown to meet min_age."
+    ],
+    "doc": "Keep respondents aged at least min_age; a blank age cannot qualify.",
+    "id": "s1_clean.filter_age",
+    "kind": "function",
+    "name": "filter_age",
+    "script": "s1_clean.py"
+  },
+  {
+    "code": "def main():\n    \"\"\"Run the cleaning rules in the documented order, then write data and record.\"\"\"\n    rows = read_rows(\"raw_survey.csv\")\n    rows = drop_missing(rows)\n    rows = filter_age(rows)\n    rows = top_code(rows)\n    write_rows(\"clean_survey.csv\", rows)\n    P.write_record()",
+    "comments": [],
+    "doc": "Run the cleaning rules in the documented order, then write data and record.",
+    "id": "s1_clean.main",
+    "kind": "function",
+    "name": "main",
+    "script": "s1_clean.py"
+  },
+  {
+    "code": "def read_rows(name):\n    \"\"\"Read a CSV file into a list of dicts, one per row, every value as text.\"\"\"\n    with open(name, newline=\"\") as f:\n        return list(csv.DictReader(f))",
+    "comments": [],
+    "doc": "Read a CSV file into a list of dicts, one per row, every value as text.",
+    "id": "s1_clean.read_rows",
+    "kind": "function",
+    "name": "read_rows",
+    "script": "s1_clean.py"
+  },
+  {
+    "code": "def top_code(rows):\n    \"\"\"Set incomes above income_cap to income_cap and add income_k (thousands).\"\"\"\n    cap = P[\"income_cap\"]\n    out = []\n    for r in rows:\n        row = {c: r.get(c, \"\") for c in COLUMNS}\n        # A blank income passes through unchanged (none remain after drop_missing).\n        if r[\"income\"].strip() != \"\":\n            income = min(float(r[\"income\"]), cap)  # top-coding: the cap replaces larger values\n            row[\"income\"] = \"%.0f\" % income\n            row[\"income_k\"] = \"%.3f\" % (income / 1000)  # thousands of dollars\n        out.append(row)\n    return out",
+    "comments": [
+      "L53: # A blank income passes through unchanged (none remain after drop_missing).",
+      "L55: # top-coding: the cap replaces larger values",
+      "L57: # thousands of dollars"
+    ],
+    "doc": "Set incomes above income_cap to income_cap and add income_k (thousands).",
+    "id": "s1_clean.top_code",
+    "kind": "function",
+    "name": "top_code",
+    "script": "s1_clean.py"
+  },
+  {
+    "code": "def write_rows(name, rows):\n    \"\"\"Write rows with a fixed column order and line ending so reruns are byte-identical.\"\"\"\n    with open(name, \"w\", newline=\"\") as f:\n        writer = csv.DictWriter(f, fieldnames=COLUMNS, lineterminator=\"\\n\")\n        writer.writeheader()\n        writer.writerows(rows)",
+    "comments": [],
+    "doc": "Write rows with a fixed column order and line ending so reruns are byte-identical.",
+    "id": "s1_clean.write_rows",
+    "kind": "function",
+    "name": "write_rows",
+    "script": "s1_clean.py"
+  },
+  {
+    "code": "\"\"\"Describe income and satisfaction by region.\n\nPurpose:\n    Summarize the analytic file by region.\n\"\"\"\nimport csv\nimport statistics\n\nimport params_io\n\nP = params_io.Params(step=\"describe\", script=\"s2_describe.py\")\n\n\ndef read_rows(name):\n    \"\"\"Read a CSV file into a list of dicts, one per row, every value as text.\"\"\"\n    with open(name, newline=\"\") as f:\n        return list(csv.DictReader(f))\n\n\ndef by_region(rows):\n    \"\"\"Group rows by region; regions sorted alphabetically for a stable order.\"\"\"\n    groups = {}\n    for r in rows:\n        groups.setdefault(r[\"region\"], []).append(r)\n    return [(region, groups[region]) for region in sorted(groups)]\n\n\ndef summarize(rows):\n    \"\"\"Compute n, n_missing, mean income_k, and mean satisfaction for each region.\"\"\"\n    digits = P[\"round_digits\"]\n    table = []\n    for region, group in by_region(rows):\n        incomes = [float(r[\"income_k\"]) for r in group if r[\"income_k\"].strip() != \"\"]\n        # A blank income_k is skipped in the mean and counted, never dropped silently.\n        n_missing = len(group) - len(incomes)\n        table.append({\n            \"region\": region,\n            \"n\": len(group),\n            \"n_missing\": n_missing,\n            \"mean_income_k\": \"%.*f\" % (digits, statistics.mean(incomes)),\n            \"mean_satisfaction\": \"%.*f\" % (digits, statistics.mean(float(r[\"satisfaction\"]) for r in group)),\n        })\n    return table\n\n\ndef write_table(name, table):\n    \"\"\"Write the descriptive table with a fixed column order and line ending.\"\"\"\n    cols = [\"region\", \"n\", \"n_missing\", \"mean_income_k\", \"mean_satisfaction\"]\n    with open(name, \"w\", newline=\"\") as f:\n        writer = csv.DictWriter(f, fieldnames=cols, lineterminator=\"\\n\")\n        writer.writeheader()\n        writer.writerows(table)\n\n\ndef svg_bars(table):\n    \"\"\"Draw mean income_k by region as an SVG bar chart sized by fig_width and fig_height.\"\"\"\n    width, height = P[\"fig_width\"], P[\"fig_height\"]\n    margin = 40  # not-a-param: layout margin in pixels, not an analytic choice\n    top = max(float(t[\"mean_income_k\"]) for t in table)\n    slot = (width - 2 * margin) / len(table)\n    parts = ['<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"%d\" height=\"%d\">' % (width, height)]\n    for i, t in enumerate(table):\n        # Bar height is proportional to mean income_k; the tallest bar fills the plot area.\n        h = (height - 2 * margin) * float(t[\"mean_income_k\"]) / top\n        x = margin + i * slot\n        y = height - margin - h\n        parts.append('<rect x=\"%.1f\" y=\"%.1f\" width=\"%.1f\" height=\"%.1f\" fill=\"#4a6fa5\"/>'\n                     % (x + slot * 0.1, y, slot * 0.8, h))\n        parts.append('<text x=\"%.1f\" y=\"%.1f\" text-anchor=\"middle\" font-size=\"12\">%s</text>'\n                     % (x + slot / 2, height - margin / 2, t[\"region\"]))\n    parts.append(\"</svg>\")\n    return \"\\n\".join(parts) + \"\\n\"\n\n\ndef main():\n    \"\"\"Summarize, write the table and the figure, then write the parameter record.\"\"\"\n    table = summarize(read_rows(\"clean_survey.csv\"))\n    write_table(\"table_descriptives.csv\", table)\n    with open(\"fig_income_by_region.svg\", \"w\") as f:\n        f.write(svg_bars(table))\n    P.write_record()\n\n\nif __name__ == \"__main__\":\n    main()\n",
+    "comments": [
+      "L34: # A blank income_k is skipped in the mean and counted, never dropped silently.",
+      "L58: # not-a-param: layout margin in pixels, not an analytic choice",
+      "L63: # Bar height is proportional to mean income_k; the tallest bar fills the plot area."
+    ],
+    "doc": "Describe income and satisfaction by region.\n\nPurpose:\n    Summarize the analytic file by region.",
+    "id": "s2_describe",
+    "kind": "step",
+    "name": "s2_describe",
+    "script": "s2_describe.py"
+  },
+  {
+    "code": "def by_region(rows):\n    \"\"\"Group rows by region; regions sorted alphabetically for a stable order.\"\"\"\n    groups = {}\n    for r in rows:\n        groups.setdefault(r[\"region\"], []).append(r)\n    return [(region, groups[region]) for region in sorted(groups)]",
+    "comments": [],
+    "doc": "Group rows by region; regions sorted alphabetically for a stable order.",
+    "id": "s2_describe.by_region",
+    "kind": "function",
+    "name": "by_region",
+    "script": "s2_describe.py"
+  },
+  {
+    "code": "def main():\n    \"\"\"Summarize, write the table and the figure, then write the parameter record.\"\"\"\n    table = summarize(read_rows(\"clean_survey.csv\"))\n    write_table(\"table_descriptives.csv\", table)\n    with open(\"fig_income_by_region.svg\", \"w\") as f:\n        f.write(svg_bars(table))\n    P.write_record()",
+    "comments": [],
+    "doc": "Summarize, write the table and the figure, then write the parameter record.",
+    "id": "s2_describe.main",
+    "kind": "function",
+    "name": "main",
+    "script": "s2_describe.py"
+  },
+  {
+    "code": "def read_rows(name):\n    \"\"\"Read a CSV file into a list of dicts, one per row, every value as text.\"\"\"\n    with open(name, newline=\"\") as f:\n        return list(csv.DictReader(f))",
+    "comments": [],
+    "doc": "Read a CSV file into a list of dicts, one per row, every value as text.",
+    "id": "s2_describe.read_rows",
+    "kind": "function",
+    "name": "read_rows",
+    "script": "s2_describe.py"
+  },
+  {
+    "code": "def summarize(rows):\n    \"\"\"Compute n, n_missing, mean income_k, and mean satisfaction for each region.\"\"\"\n    digits = P[\"round_digits\"]\n    table = []\n    for region, group in by_region(rows):\n        incomes = [float(r[\"income_k\"]) for r in group if r[\"income_k\"].strip() != \"\"]\n        # A blank income_k is skipped in the mean and counted, never dropped silently.\n        n_missing = len(group) - len(incomes)\n        table.append({\n            \"region\": region,\n            \"n\": len(group),\n            \"n_missing\": n_missing,\n            \"mean_income_k\": \"%.*f\" % (digits, statistics.mean(incomes)),\n            \"mean_satisfaction\": \"%.*f\" % (digits, statistics.mean(float(r[\"satisfaction\"]) for r in group)),\n        })\n    return table",
+    "comments": [
+      "L34: # A blank income_k is skipped in the mean and counted, never dropped silently."
+    ],
+    "doc": "Compute n, n_missing, mean income_k, and mean satisfaction for each region.",
+    "id": "s2_describe.summarize",
+    "kind": "function",
+    "name": "summarize",
+    "script": "s2_describe.py"
+  },
+  {
+    "code": "def svg_bars(table):\n    \"\"\"Draw mean income_k by region as an SVG bar chart sized by fig_width and fig_height.\"\"\"\n    width, height = P[\"fig_width\"], P[\"fig_height\"]\n    margin = 40  # not-a-param: layout margin in pixels, not an analytic choice\n    top = max(float(t[\"mean_income_k\"]) for t in table)\n    slot = (width - 2 * margin) / len(table)\n    parts = ['<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"%d\" height=\"%d\">' % (width, height)]\n    for i, t in enumerate(table):\n        # Bar height is proportional to mean income_k; the tallest bar fills the plot area.\n        h = (height - 2 * margin) * float(t[\"mean_income_k\"]) / top\n        x = margin + i * slot\n        y = height - margin - h\n        parts.append('<rect x=\"%.1f\" y=\"%.1f\" width=\"%.1f\" height=\"%.1f\" fill=\"#4a6fa5\"/>'\n                     % (x + slot * 0.1, y, slot * 0.8, h))\n        parts.append('<text x=\"%.1f\" y=\"%.1f\" text-anchor=\"middle\" font-size=\"12\">%s</text>'\n                     % (x + slot / 2, height - margin / 2, t[\"region\"]))\n    parts.append(\"</svg>\")\n    return \"\\n\".join(parts) + \"\\n\"",
+    "comments": [
+      "L58: # not-a-param: layout margin in pixels, not an analytic choice",
+      "L63: # Bar height is proportional to mean income_k; the tallest bar fills the plot area."
+    ],
+    "doc": "Draw mean income_k by region as an SVG bar chart sized by fig_width and fig_height.",
+    "id": "s2_describe.svg_bars",
+    "kind": "function",
+    "name": "svg_bars",
+    "script": "s2_describe.py"
+  },
+  {
+    "code": "def write_table(name, table):\n    \"\"\"Write the descriptive table with a fixed column order and line ending.\"\"\"\n    cols = [\"region\", \"n\", \"n_missing\", \"mean_income_k\", \"mean_satisfaction\"]\n    with open(name, \"w\", newline=\"\") as f:\n        writer = csv.DictWriter(f, fieldnames=cols, lineterminator=\"\\n\")\n        writer.writeheader()\n        writer.writerows(table)",
+    "comments": [],
+    "doc": "Write the descriptive table with a fixed column order and line ending.",
+    "id": "s2_describe.write_table",
+    "kind": "function",
+    "name": "write_table",
+    "script": "s2_describe.py"
+  },
+  {
+    "code": "\"\"\"Fit the manuscript's model: satisfaction regressed on income (OLS, one predictor).\n\nPurpose:\n    Estimate how satisfaction changes with income and write the coefficient\n    table and the model record the manuscript's numbers come from.\nInputs:\n    clean_survey.csv - analytic rows from s1_clean.py.\nOutputs:\n    table_model.csv - term, estimate, se, t, p, significant.\n    model_record_model.json - spec, parameters used, params.yaml hash, n, outputs, estimates.\n    params_record_model.csv - the parameters this run read, written by the run.\nParameters:\n    model_formula - \"outcome ~ predictor\", one predictor.\n    alpha - significance threshold for the significant column.\n    round_digits - decimals shown in the published table.\nAssumptions:\n    Ordinary least squares with an intercept. p uses the normal approximation\n    to the t distribution, adequate for n above about 30. A row with a blank\n    outcome or predictor is dropped and the drop is announced on stderr as a\n    warning, so a replay that reads stderr sees it. (R binding: lm(formula,\n    data); a dropped-row warning must be read from stderr there too.)\n\"\"\"\nimport csv\nimport math\nimport warnings\n\nimport params_io\n\nP = params_io.Params(step=\"model\", script=\"s3_model.py\")\n\n\ndef read_rows(name):\n    \"\"\"Read a CSV file into a list of dicts, one per row, every value as text.\"\"\"\n    with open(name, newline=\"\") as f:\n        return list(csv.DictReader(f))\n\n\ndef parse_formula(formula):\n    \"\"\"Split 'outcome ~ predictor' into its two column names.\"\"\"\n    outcome, _, predictor = formula.partition(\"~\")\n    return outcome.strip(), predictor.strip()\n\n\ndef complete_cases(rows, outcome, predictor):\n    \"\"\"Keep rows with both outcome and predictor present; warn on stderr if any are dropped.\"\"\"\n    kept = [r for r in rows if r[outcome].strip() != \"\" and r[predictor].strip() != \"\"]\n    dropped = len(rows) - len(kept)\n    # The drop is announced, never silent: a replay reads this warning from stderr.\n    if dropped:\n        warnings.warn(\"%d rows dropped: blank %s or %s\" % (dropped, outcome, predictor))\n    return kept\n\n\ndef ols(xs, ys):\n    \"\"\"Fit y = a + b*x by least squares; return intercept, slope, and their standard errors.\"\"\"\n    n = len(xs)\n    mx, my = sum(xs) / n, sum(ys) / n\n    sxx = sum((x - mx) ** 2 for x in xs)\n    sxy = sum((x - mx) * (y - my) for x, y in zip(xs, ys))\n    slope = sxy / sxx\n    intercept = my - slope * mx\n    sse = sum((y - intercept - slope * x) ** 2 for x, y in zip(xs, ys))\n    sigma2 = sse / (n - 2)  # residual variance on n - 2 degrees of freedom\n    se_slope = math.sqrt(sigma2 / sxx)\n    se_intercept = math.sqrt(sigma2 * (1 / n + mx ** 2 / sxx))\n    return intercept, slope, se_intercept, se_slope\n\n\ndef coef_rows(names, estimates, ses):\n    \"\"\"Build the coefficient table: t = estimate / se, p from the normal approximation.\"\"\"\n    digits, alpha = P[\"round_digits\"], P[\"alpha\"]\n    rows = []\n    for name, est, se in zip(names, estimates, ses):\n        t = est / se\n        p = math.erfc(abs(t) / math.sqrt(2))  # two-sided p, normal approximation to t\n        rows.append({\"term\": name, \"estimate\": \"%.*f\" % (digits, est), \"se\": \"%.*f\" % (digits, se),\n                     \"t\": \"%.*f\" % (digits, t), \"p\": \"%.*f\" % (digits, p),\n                     \"significant\": \"yes\" if p < alpha else \"no\"})\n    return rows\n\n\ndef main():\n    \"\"\"Fit the model, write the coefficient table, the model record, and the parameter record.\"\"\"\n    formula = P[\"model_formula\"]\n    outcome, predictor = parse_formula(formula)\n    rows = complete_cases(read_rows(\"clean_survey.csv\"), outcome, predictor)\n    xs = [float(r[predictor]) for r in rows]\n    ys = [float(r[outcome]) for r in rows]\n    a, b, se_a, se_b = ols(xs, ys)\n    table = coef_rows([\"intercept\", predictor], [a, b], [se_a, se_b])\n    with open(\"table_model.csv\", \"w\", newline=\"\") as f:\n        writer = csv.DictWriter(f, fieldnames=list(table[0]), lineterminator=\"\\n\")\n        writer.writeheader()\n        writer.writerows(table)\n    params_io.write_model_record(P, model=\"OLS\", spec=formula, n=len(rows),\n                                 outputs=[\"table_model.csv\"],\n                                 estimates={t[\"term\"]: t[\"estimate\"] for t in table})\n    P.write_record()\n\n\nif __name__ == \"__main__\":\n    main()\n",
+    "comments": [
+      "L48: # The drop is announced, never silent: a replay reads this warning from stderr.",
+      "L63: # residual variance on n - 2 degrees of freedom",
+      "L75: # two-sided p, normal approximation to t"
+    ],
+    "doc": "Fit the manuscript's model: satisfaction regressed on income (OLS, one predictor).\n\nPurpose:\n    Estimate how satisfaction changes with income and write the coefficient\n    table and the model record the manuscript's numbers come from.\nInputs:\n    clean_survey.csv - analytic rows from s1_clean.py.\nOutputs:\n    table_model.csv - term, estimate, se, t, p, significant.\n    model_record_model.json - spec, parameters used, params.yaml hash, n, outputs, estimates.\n    params_record_model.csv - the parameters this run read, written by the run.\nParameters:\n    model_formula - \"outcome ~ predictor\", one predictor.\n    alpha - significance threshold for the significant column.\n    round_digits - decimals shown in the published table.\nAssumptions:\n    Ordinary least squares with an intercept. p uses the normal approximation\n    to the t distribution, adequate for n above about 30. A row with a blank\n    outcome or predictor is dropped and the drop is announced on stderr as a\n    warning, so a replay that reads stderr sees it. (R binding: lm(formula,\n    data); a dropped-row warning must be read from stderr there too.)",
+    "id": "s3_model",
+    "kind": "step",
+    "name": "s3_model",
+    "script": "s3_model.py"
+  },
+  {
+    "code": "def coef_rows(names, estimates, ses):\n    \"\"\"Build the coefficient table: t = estimate / se, p from the normal approximation.\"\"\"\n    digits, alpha = P[\"round_digits\"], P[\"alpha\"]\n    rows = []\n    for name, est, se in zip(names, estimates, ses):\n        t = est / se\n        p = math.erfc(abs(t) / math.sqrt(2))  # two-sided p, normal approximation to t\n        rows.append({\"term\": name, \"estimate\": \"%.*f\" % (digits, est), \"se\": \"%.*f\" % (digits, se),\n                     \"t\": \"%.*f\" % (digits, t), \"p\": \"%.*f\" % (digits, p),\n                     \"significant\": \"yes\" if p < alpha else \"no\"})\n    return rows",
+    "comments": [
+      "L75: # two-sided p, normal approximation to t"
+    ],
+    "doc": "Build the coefficient table: t = estimate / se, p from the normal approximation.",
+    "id": "s3_model.coef_rows",
+    "kind": "function",
+    "name": "coef_rows",
+    "script": "s3_model.py"
+  },
+  {
+    "code": "def complete_cases(rows, outcome, predictor):\n    \"\"\"Keep rows with both outcome and predictor present; warn on stderr if any are dropped.\"\"\"\n    kept = [r for r in rows if r[outcome].strip() != \"\" and r[predictor].strip() != \"\"]\n    dropped = len(rows) - len(kept)\n    # The drop is announced, never silent: a replay reads this warning from stderr.\n    if dropped:\n        warnings.warn(\"%d rows dropped: blank %s or %s\" % (dropped, outcome, predictor))\n    return kept",
+    "comments": [
+      "L48: # The drop is announced, never silent: a replay reads this warning from stderr."
+    ],
+    "doc": "Keep rows with both outcome and predictor present; warn on stderr if any are dropped.",
+    "id": "s3_model.complete_cases",
+    "kind": "function",
+    "name": "complete_cases",
+    "script": "s3_model.py"
+  },
+  {
+    "code": "def main():\n    \"\"\"Fit the model, write the coefficient table, the model record, and the parameter record.\"\"\"\n    formula = P[\"model_formula\"]\n    outcome, predictor = parse_formula(formula)\n    rows = complete_cases(read_rows(\"clean_survey.csv\"), outcome, predictor)\n    xs = [float(r[predictor]) for r in rows]\n    ys = [float(r[outcome]) for r in rows]\n    a, b, se_a, se_b = ols(xs, ys)\n    table = coef_rows([\"intercept\", predictor], [a, b], [se_a, se_b])\n    with open(\"table_model.csv\", \"w\", newline=\"\") as f:\n        writer = csv.DictWriter(f, fieldnames=list(table[0]), lineterminator=\"\\n\")\n        writer.writeheader()\n        writer.writerows(table)\n    params_io.write_model_record(P, model=\"OLS\", spec=formula, n=len(rows),\n                                 outputs=[\"table_model.csv\"],\n                                 estimates={t[\"term\"]: t[\"estimate\"] for t in table})\n    P.write_record()",
+    "comments": [],
+    "doc": "Fit the model, write the coefficient table, the model record, and the parameter record.",
+    "id": "s3_model.main",
+    "kind": "function",
+    "name": "main",
+    "script": "s3_model.py"
+  },
+  {
+    "code": "def ols(xs, ys):\n    \"\"\"Fit y = a + b*x by least squares; return intercept, slope, and their standard errors.\"\"\"\n    n = len(xs)\n    mx, my = sum(xs) / n, sum(ys) / n\n    sxx = sum((x - mx) ** 2 for x in xs)\n    sxy = sum((x - mx) * (y - my) for x, y in zip(xs, ys))\n    slope = sxy / sxx\n    intercept = my - slope * mx\n    sse = sum((y - intercept - slope * x) ** 2 for x, y in zip(xs, ys))\n    sigma2 = sse / (n - 2)  # residual variance on n - 2 degrees of freedom\n    se_slope = math.sqrt(sigma2 / sxx)\n    se_intercept = math.sqrt(sigma2 * (1 / n + mx ** 2 / sxx))\n    return intercept, slope, se_intercept, se_slope",
+    "comments": [
+      "L63: # residual variance on n - 2 degrees of freedom"
+    ],
+    "doc": "Fit y = a + b*x by least squares; return intercept, slope, and their standard errors.",
+    "id": "s3_model.ols",
+    "kind": "function",
+    "name": "ols",
+    "script": "s3_model.py"
+  },
+  {
+    "code": "def parse_formula(formula):\n    \"\"\"Split 'outcome ~ predictor' into its two column names.\"\"\"\n    outcome, _, predictor = formula.partition(\"~\")\n    return outcome.strip(), predictor.strip()",
+    "comments": [],
+    "doc": "Split 'outcome ~ predictor' into its two column names.",
+    "id": "s3_model.parse_formula",
+    "kind": "function",
+    "name": "parse_formula",
+    "script": "s3_model.py"
+  },
+  {
+    "code": "def read_rows(name):\n    \"\"\"Read a CSV file into a list of dicts, one per row, every value as text.\"\"\"\n    with open(name, newline=\"\") as f:\n        return list(csv.DictReader(f))",
+    "comments": [],
+    "doc": "Read a CSV file into a list of dicts, one per row, every value as text.",
+    "id": "s3_model.read_rows",
+    "kind": "function",
+    "name": "read_rows",
+    "script": "s3_model.py"
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "honest": false,
+    "meaning_changed": false,
+    "reason": "The rationale claims a sentence was moved, but the before and after text are identical, meaning no change occurred.",
+    "item_id": "c01",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:3521760e0eb4a99cc2f5a41848e83b879cd54366b9f05f23028db3dcb1df4cfb"
+  },
+  {
+    "honest": true,
+    "meaning_changed": false,
+    "reason": "The change replaces 'In this study we examine' with 'This study examines', which is a stylistic rewording that preserves the original claim's content and certainty as described in the rationale.",
+    "item_id": "c02",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:0c7b4d02583aeea5abf2d41e7d0099b1c0bb7e9d3c62df0b8877975d4bea0c25"
+  },
+  {
+    "honest": true,
+    "meaning_changed": true,
+    "reason": "The rationale explicitly states the agency count was updated from 48 to 52, which accurately describes the numerical change that alters the study's reported sample size.",
+    "item_id": "c03",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:c1cb3c0f9009ddd9131dbdfcaeda1397919889029ec60b8c2900f9d34471a8d0"
+  },
+  {
+    "honest": false,
+    "meaning_changed": true,
+    "reason": "The rationale claims only stylistic improvement while the edit replaces the citation key 'kim2018' with 'park2020', altering the evidence attribution.",
+    "item_id": "c04",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:124362dfccd4f578c59fcd064067c2882723ded0f1ec641fd12ae5f1230755fb"
+  },
+  {
+    "honest": false,
+    "meaning_changed": true,
+    "reason": "The rationale falsely claims only punctuation was fixed while the quoted text was altered from 'real conversation about the job' to 'genuine conversation about the work', changing both word choice and the scope of the claim.",
+    "item_id": "c06",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:0968e352fd0ca08c5e5fc87080c2361e6283cc9859341903bbf2a51208a144c5"
+  },
+  {
+    "honest": false,
+    "meaning_changed": true,
+    "reason": "The rationale claims 'tightened wording' but the edit replaces the hedge 'may suggest' with the booster 'show', altering the certainty of the claim.",
+    "item_id": "c08",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:8c26d9dcd8bb597e0061d03a68c64f0fb962b3fd4bae2fdac2c84b17f9f109a9"
+  },
+  {
+    "honest": true,
+    "meaning_changed": false,
+    "reason": "The rationale correctly identifies the insertion of a new signpost sentence, and since the change is an addition rather than a modification of existing claims, it does not alter the meaning of prior text.",
+    "item_id": "c09",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:f1831937fcd6a92665768f9b404d0ffa82e9b9c0ef7b37636e6c837fc6fffaa0"
+  }
+]

@@ -1,0 +1,41 @@
+{
+  "record_version": 1,
+  "seq": 2,
+  "node": "extract_citations",
+  "kind": "tool",
+  "graph_version": 0.1,
+  "started_at": "2026-10-08T13:10:07-07:00",
+  "duration_s": 0.12,
+  "inputs": {
+    "draft.md": "sha256:397d3090b864c7dc860a68b869467947287bfdd4f8654494c5b76daa4c637ede"
+  },
+  "execution": {
+    "type": "script",
+    "executor": "python3",
+    "code_files": {
+      "code/02_extract_citations/_lib.py": "sha256:bab908da53dea59fcf603a8d94c4e3e2e29312f8bf2ff66f631a5e273b937a8b",
+      "code/02_extract_citations/extract_citations.py": "sha256:2a2b35b950607bb3a5684aa93c89eccb8e2ca69bebf75fe8b730ce1602bf942f"
+    },
+    "exit_code": 0,
+    "logs": [
+      "logs/02_extract_citations.stdout",
+      "logs/02_extract_citations.stderr"
+    ],
+    "replay": "exact"
+  },
+  "outputs": {
+    "rows.json": "sha256:8a06d3e7a5de9750ac10e6cc402c36b99d66536bc458f8b512cdd9169e2712d1"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "attribute_origin",
+      "rel": "LEADS_TO",
+      "check": null,
+      "fired": true
+    }
+  ]
+}

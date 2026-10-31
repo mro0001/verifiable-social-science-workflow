@@ -1,0 +1,1 @@
+{"quote": "Recognition events had no measurable effect on exit among long-serving volunteers. If anything, exit rose slightly in the quarter after an event, a pattern we attribute to volunteers treating the event as a natural point to step down.", "location": "p. 15", "found": true}

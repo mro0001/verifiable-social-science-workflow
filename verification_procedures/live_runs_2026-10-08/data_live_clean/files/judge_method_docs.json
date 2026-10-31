@@ -1,0 +1,242 @@
+[
+  {
+    "matches": true,
+    "mismatches": [],
+    "reason": "Every claim in the docstring and comments regarding input parsing rules, output file generation, sorting behavior, and parameter handling is accurately reflected in the corresponding code logic.",
+    "item_id": "params_io",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:88d5459117b2e304270bea770903f48a1f6cc01109b6ef772d233fda77159eb4"
+  },
+  {
+    "matches": true,
+    "mismatches": [],
+    "reason": "The code sorts the keys before writing to the CSV file, which directly implements the documented claim that the output is sorted by name to ensure identical bytes on reruns.",
+    "item_id": "params_io.Params",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:a9471af754e9bbc265f445919503d819f8c611ec9ce06770cd241bc2cbb85d43"
+  },
+  {
+    "matches": true,
+    "mismatches": [],
+    "reason": "The code retrieves the value for the key from self.values and records it in self.used, which exactly matches the documentation's claim.",
+    "item_id": "params_io.Params.__getitem__",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:0174c24aaf18ef010cd47144f7999f4912369757232d2ec1f4425028cb79b9f9"
+  },
+  {
+    "matches": true,
+    "mismatches": [],
+    "reason": "The docstring accurately describes the code's actions of loading the YAML file, computing its hash, and initializing an empty record.",
+    "item_id": "params_io.Params.__init__",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:0e1e7f84fb1540bdd928898c51349a8cd17505476825060e42e2af20320ff048"
+  },
+  {
+    "matches": true,
+    "mismatches": [],
+    "reason": "The docstring correctly claims the function writes a CSV with one row per parameter, and the comment correctly claims the output is sorted by name to ensure identical bytes on reruns, both of which are implemented in the code.",
+    "item_id": "params_io.Params.write_record",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:74b52f8ee37f2115934d25106e0328eaf35ae25645dcc99f084464e09ff3972d"
+  },
+  {
+    "matches": true,
+    "mismatches": [],
+    "reason": "The docstring accurately describes the code's behavior of reading a file in binary mode and returning a 'sha256:' prefixed hex digest.",
+    "item_id": "params_io.file_sha256",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:aabf39a0884ce14eb4739967dae2ef2e94641c0842329f8876e45aae4f0fcebe"
+  },
+  {
+    "matches": true,
+    "mismatches": [],
+    "reason": "The code correctly implements the documented claims by stripping comments after '#' and raising a ValueError when an indented line is encountered.",
+    "item_id": "params_io.load",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:7e2959cc4493381e2ac1879baa8fb60f0d6ae40ef73c09272707edfe1cbceeec"
+  },
+  {
+    "matches": true,
+    "mismatches": [],
+    "reason": "The docstring and comments accurately describe the code's logic for handling quoted strings and attempting integer/float conversion before defaulting to a string.",
+    "item_id": "params_io.parse_value",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:6d5a3ad84cefa6a64e0cb98d3b0492ee8d0acb00c83ce29bcb8237aabe35f884"
+  },
+  {
+    "matches": true,
+    "mismatches": [],
+    "reason": "The code correctly implements all documented claims: it writes a JSON file containing the spec, parameters, params.yaml hash, n, outputs, and estimates, and the comment correctly identifies the JSON layout as a non-analytic choice.",
+    "item_id": "params_io.write_model_record",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:a89a2445ae2958435b8dc125681a9babfe15a70ff83f512f44968153cf6a6c36"
+  },
+  {
+    "matches": true,
+    "mismatches": [],
+    "reason": "Every documented claim regarding column handling, filtering logic, parameter sourcing, and assumptions is accurately reflected in the code.",
+    "item_id": "s1_clean",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:fca6c21882d6480e04ed72a622dd3aafb240406b5959388b7d9b4d5dc8af88d0"
+  },
+  {
+    "matches": true,
+    "mismatches": [],
+    "reason": "The code correctly implements the documented claim by filtering rows where the 'income' cell is not blank.",
+    "item_id": "s1_clean.drop_missing",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:d48c65f71cde6a96d2042446e0c22af26cc9980504358ff260836778f5a2fe82"
+  },
+  {
+    "matches": true,
+    "mismatches": [],
+    "reason": "The code correctly implements the documented claims by filtering for non-blank ages and comparing the integer value against the min_age parameter read from P.",
+    "item_id": "s1_clean.filter_age",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:93c69f2e8acc596b1733d9f10477c669396a7dbb16b0757d9f43de2d575756ea"
+  },
+  {
+    "matches": true,
+    "mismatches": [],
+    "reason": "The docstring accurately describes the sequence of cleaning rules and the final write operations shown in the code.",
+    "item_id": "s1_clean.main",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:48cac9fc2a5ef8e9ee58272d26aa9f7ca494769521cbc18f96bb2693143eb58f"
+  },
+  {
+    "matches": true,
+    "mismatches": [],
+    "reason": "The code correctly implements the documented claim by reading a CSV file into a list of dictionaries where all values are strings, as DictReader returns string values by default.",
+    "item_id": "s1_clean.read_rows",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:30b5fa2c1cc3293d962b67f53cec645b7ec06d86afa4b4b090bc87e9345d1842"
+  },
+  {
+    "matches": true,
+    "mismatches": [],
+    "reason": "The docstring and comments accurately describe the code's behavior of capping income at P['income_cap'] and creating an income_k column, with no contradictions found.",
+    "item_id": "s1_clean.top_code",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:4fe102c91701fe53e090204c26b98100b249445e30f2fc36502c6108a8e8dc28"
+  },
+  {
+    "matches": true,
+    "mismatches": [],
+    "reason": "The code uses `lineterminator=\"\\n\"` and `fieldnames=COLUMNS` to enforce fixed line endings and column order, which directly matches the docstring's claim of writing rows with fixed column order and line ending for byte-identical reruns.",
+    "item_id": "s1_clean.write_rows",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:c41dbd615271915aff6066eaff9a2ad8d936119e7605510007138bf91e7f09b6"
+  },
+  {
+    "matches": true,
+    "mismatches": [],
+    "reason": "All documented claims regarding inputs, outputs, parameter usage, assumptions about missing data handling, and sorting order are accurately reflected in the code.",
+    "item_id": "s2_describe",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:c5d92adaa2631f66d1679b00b5065e5bd61bc037eafef19bcc3ab69d82806046"
+  },
+  {
+    "matches": true,
+    "mismatches": [],
+    "reason": "The code groups rows by the 'region' key and returns them in alphabetical order via sorted(groups), which exactly matches the docstring claim.",
+    "item_id": "s2_describe.by_region",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:3f65c12cf47299f8d4cec1de797a013fc9a99a04db5fb99a1778b200953681b9"
+  },
+  {
+    "matches": true,
+    "mismatches": [],
+    "reason": "The code explicitly performs the sequence of summarizing data, writing a table, writing a figure, and writing a parameter record, which exactly matches the claims in the docstring.",
+    "item_id": "s2_describe.main",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:d794f85d3ff12dac6539e9ec0e3a1b04fa06e75908d8809a3ca5d113fbacc8ba"
+  },
+  {
+    "matches": true,
+    "mismatches": [],
+    "reason": "The docstring accurately describes the code's behavior of reading a CSV file into a list of dictionaries with string values using csv.DictReader.",
+    "item_id": "s2_describe.read_rows",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:838dd6a120f9840ebfa4749cffbb0cc17b50a087c2dd49938d820acd5feeef45"
+  },
+  {
+    "matches": true,
+    "mismatches": [],
+    "reason": "The docstring accurately describes the computation of n, n_missing, mean income_k, and mean satisfaction per region, and the comment correctly reflects that blank income_k values are excluded from the mean calculation while contributing to the missing count.",
+    "item_id": "s2_describe.summarize",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:46db1aa6e2ddd98c8b5d99ba0bc2b6ad8d7bbce588119ebdf689916ae3cb56f8"
+  },
+  {
+    "matches": true,
+    "mismatches": [],
+    "reason": "The docstring correctly claims the function draws mean income_k by region with dimensions from params.yaml, and the comments accurately describe the margin as a non-analytic layout choice and the bar height scaling logic, all of which are verified by the code.",
+    "item_id": "s2_describe.svg_bars",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:9c6392bd1b9edeed0b39392e4dc393edd78f60d7397610ba8640e4011f2217ee"
+  },
+  {
+    "matches": true,
+    "mismatches": [],
+    "reason": "The docstring claims a fixed column order and line ending, which is accurately reflected in the code's hardcoded `cols` list and `lineterminator=\"\\n\"`.",
+    "item_id": "s2_describe.write_table",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:4114ded59eee36c6b135c566c9904d0f3fafb83aea44766e2661e39b8fe6946e"
+  },
+  {
+    "matches": true,
+    "mismatches": [],
+    "reason": "All documented claims regarding inputs, outputs, parameters, assumptions, and specific implementation details (such as the normal approximation for p-values and the warning for dropped rows) are accurately reflected in the code.",
+    "item_id": "s3_model",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:d2bc4685331f64dc1b8031e0cd961211d1953aeb8c95fededa4267cb61af913b"
+  },
+  {
+    "matches": true,
+    "mismatches": [],
+    "reason": "The docstring and comment accurately describe the code's calculation of t as estimate/se and p using the normal approximation via math.erfc.",
+    "item_id": "s3_model.coef_rows",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:2aae31052b10cb73d8bce6d42b9ef64570a86e9f5926ba059d10d25db3eda2b3"
+  },
+  {
+    "matches": true,
+    "mismatches": [],
+    "reason": "The code correctly implements the documented logic of filtering rows based on non-empty outcome and predictor values and issuing a warning via stderr when rows are dropped.",
+    "item_id": "s3_model.complete_cases",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:5068fc877ea96057b3b5029a01d3b303b248a0b1cc4ef873267dd4d38f1c2168"
+  },
+  {
+    "matches": true,
+    "mismatches": [],
+    "reason": "The docstring accurately claims the function fits a model, writes a coefficient table, a model record, and a parameter record, all of which are explicitly performed in the code.",
+    "item_id": "s3_model.main",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:a6aac6d5de5c033eb4cb7dc4b1929feb1abb44fb4fb2d780586c80b384824a62"
+  },
+  {
+    "matches": true,
+    "mismatches": [],
+    "reason": "The docstring correctly claims the function fits a linear model via least squares and returns intercept, slope, and standard errors, and the comment on line 63 accurately describes the calculation of residual variance using n-2 degrees of freedom as implemented in the code.",
+    "item_id": "s3_model.ols",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:8a784b041db3af305938de6d7f6c213d17187af6dab28eee0f573f85cb39e7b4"
+  },
+  {
+    "matches": true,
+    "mismatches": [],
+    "reason": "The docstring accurately claims the function splits the formula string into two column names, which is exactly what the code does using partition and strip.",
+    "item_id": "s3_model.parse_formula",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:204b662f519e6265e65adf268657f6afe98070cc4ae3fba9164fdec031c5a943"
+  },
+  {
+    "matches": true,
+    "mismatches": [],
+    "reason": "The docstring accurately describes the code's behavior of reading a CSV file into a list of dictionaries with all values as strings.",
+    "item_id": "s3_model.read_rows",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:bf981a09d158ed48f19e57f08f9abbdbd619194d6ea780d59f3dd2fea43e9e1d"
+  }
+]

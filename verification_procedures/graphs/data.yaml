@@ -1,0 +1,174 @@
+# Data stream: from raw data to the manuscript's tables, figures, and numbers.
+# The authors' design notes, 2026-10-08: "reproducible data scripts data collection to data
+# tables/graphs for manuscript. Method steps need their own documentation
+# (literature programming?) and parameter settings need to be something that
+# gets set and then simultaneous populates a table that is a record of the
+# parameters and the models themselves."
+#
+# Project conventions this graph checks (a project declares, the run proves):
+#   pipeline.yaml     ordered steps {id, kind, runner, script, inputs, outputs}, raw -> outputs
+#   acquisition.yaml  each raw file's sha256, source, collected date; raw is never edited
+#   params.yaml       every analytic choice, set once; scripts read it through a Params
+#                     object, and each run writes params_record_<step>.csv (param, value,
+#                     step, script) and, for a model step, model_record_<step>.json
+#                     (model, spec, params, params_sha256, n, outputs): produced, never typed
+#   docstrings        each script opens with Purpose / Inputs / Outputs / Parameters /
+#                     Assumptions; each function has a docstring; comments tie each claimed
+#                     action to the line that does it; `# not-a-param: <why>` marks a literal
+#                     that is not an analytic choice
+#   numbers.yml       key -> {value, from: <output>, field, where}; prose cites {{num:key}}
+# Bindings: the fixture is pure Python (stdlib) so it replays anywhere. R binds the same
+# contract with yaml::read_yaml + write.csv records and `runner: Rscript`; Quarto with params
+# in the YAML header, records written from a setup chunk, and `runner: quarto render`.
+# replay_pipeline currently replays python3 steps only and blocks on other runners.
+#
+# the authors (2026-10-30): "The report is meant to be a verification step for the human."
+# No AI makes a decision in the report. Version 0.2 is the final-numbers report (Track V,
+# step V2). It lists each number in the final build with the output and the script that
+# produce it, marks the scripts and parameters an AI wrote or changed by the record of the
+# AI's file edits (file_edits.yaml, as the audit layer writes it out), shows each AI change
+# to a script with the reason the record gives, and lists each parameter the AI set. A
+# number from AI work waits for the scholar to approve or hold it. Reproducibility stays a
+# section of its own, since verification and the reproducible pipeline are kept distinct
+# (decision 26). The model step that judged method documentation is removed.
+stream: data
+version: 0.2
+goal: >
+  The scholar verifies each number in the final build from the output and the script that
+  produce it, with the scripts and parameters an AI wrote or changed marked by the record of
+  the AI's file edits, each AI change to a script shown with the reason the record gives, and
+  each parameter the AI set listed. No model gives a verdict, and a number from AI work waits
+  for the scholar to approve or hold it. Separately, the pipeline is rerun from unchanged raw
+  data in an empty folder, and each number's match or mismatch, the raw data's checksums, and
+  the parameter and model records the run wrote are shown.
+contracts: contracts/data.yaml
+schema: schemas/data.yaml
+entry: inventory
+exit: report
+nodes:
+  - {id: inventory, kind: tool, does: "Parse pipeline.yaml; check every declared file exists, inputs come from raw or earlier steps; bundle the project and the record of the AI's file edits, when given, into project.json."}
+  - {id: check_raw, kind: tool, does: "Compare each raw file with its acquisition hash; a raw input without an acquisition record is blocking."}
+  - {id: check_params, kind: tool, does: "AST scan: literals that equal a params value or act as thresholds/settings without coming from params.yaml; unused and unknown params."}
+  - {id: check_docs, kind: tool, does: "Docstring sections present; Inputs/Outputs agree with pipeline.yaml; Parameters agree with what the script reads; functions documented."}
+  - {id: attribute_ai, kind: tool, does: "Mark each script and parameter the record of the AI's file edits shows an AI tool call wrote or changed; note each AI change with no recorded reason, each whose text is no longer in its script, and each parameter the AI set; trace each number to the scripts and parameters behind it."}
+  - {id: replay_pipeline, kind: tool, does: "Run every step from raw in an empty folder; compare each output byte for byte with the committed copy; read stderr."}
+  - {id: check_records, kind: tool, does: "Parameter and model records exist, equal params.yaml, equal the replay, and were made under the current params.yaml."}
+  - {id: check_numbers, kind: tool, does: "Each numbers.yml value equals the replayed output it names."}
+  - {id: report, kind: tool, does: "Write findings.json and report.md with each number's output, script, and AI work, each AI change to a script with its stated reason, the parameters the AI set, the scripts, and the Reproducibility section."}
+edges:
+  - from: inventory
+    rel: LEADS_TO
+    to: check_raw
+    condition: Always; raw data is checked before anything is computed from it.
+    guidance: Hash every raw file and compare with acquisition.yaml. A mismatch is blocking even if all outputs reproduce, because replay starts from raw as it is now.
+    pitfalls:
+      - Trusting a passing replay as proof raw data is untouched; an edit on a row the pipeline drops changes no output.
+      - Re-hashing the edited file into acquisition.yaml to make the check pass; the acquisition record is written once, at collection.
+    source: proposed
+  - from: inventory
+    rel: PROVIDES_INPUT_FOR
+    to: check_params
+    condition: Always.
+    guidance: Scan every step script and helper. Parameters are set once in params.yaml; a literal that equals a params value, or a number used as a threshold or setting, is a second place the value is set.
+    pitfalls:
+      - Treating a literal that equals the params value as harmless; the two copies drift on the next change to params.yaml.
+      - Flagging every number; 0, 1, -1 and arithmetic constants are not choices, and `# not-a-param:` lines are declared exceptions, listed not flagged.
+      - Missing rounding and format precision buried in format strings; the scan does not see them yet, so the scholar reads them in the scripts.
+    source: proposed
+  - from: check_params
+    rel: PROVIDES_INPUT_FOR
+    to: check_docs
+    condition: Always; the Parameters section is checked against what the script actually reads.
+    guidance: Require Purpose, Inputs, Outputs, Parameters, Assumptions in each step script's docstring and a docstring on every function. Compare documented inputs/outputs with pipeline.yaml and documented parameters with params_usage.json.
+    pitfalls:
+      - "Passing a script because the sections exist; a parser silently preferred a refusal keyword over a complete forecast and mislabeled 38 forecasts for weeks, and nothing stated that assumption where a reader would meet it. Assumptions must be stated beside the code that makes them."
+      - Treating a section heading with no content as documentation.
+    source: project history
+  - from: check_params
+    rel: PROVIDES_INPUT_FOR
+    to: attribute_ai
+    condition: Always; a number is traced to the parameters its scripts read.
+    guidance: Take a change, a script, or a parameter as the AI's only when the record of the AI's file edits shows an AI tool call made it. Quote the reason the record gives word for word, and say so when none is recorded. Check that each AI change's text is still in its script, and trace each number through the steps whose outputs it is computed from to their scripts, the helpers, and the parameters they read.
+    pitfalls:
+      - Judging whether a reason fits its change; no model and no program decides that, the scholar does.
+      - Treating a missing record as no AI work; with no record given nothing can be marked, so every number waits for the scholar and the report says why.
+      - Marking only the script that writes a number's output; an AI change to an earlier step, a helper, or a parameter those scripts read changes the number too.
+      - Treating a script as the scholar's because the record has no edit on it; changes made through shell commands are not in the record.
+    source: proposed
+  - from: attribute_ai
+    rel: CONVERGES_TO
+    to: report
+    condition: Always.
+    guidance: Show each AI change to a script with its text before and after and the stated reason, list each parameter the AI set, and mark each number that comes from AI work as needing the scholar's decision.
+    pitfalls:
+      - Asking the scholar to approve numbers from code no AI touched; verification covers AI contributions, and the rerun covers every number.
+    source: proposed
+  - from: check_docs
+    rel: CONVERGES_TO
+    to: report
+    condition: Always.
+    guidance: A documentation problem is a finding on its script, shown in the Scripts table.
+    pitfalls:
+      - Reading a passing structure check as proof the words describe the code; the scholar reads the code.
+    source: proposed
+  - from: check_raw
+    rel: LEADS_TO
+    to: replay_pipeline
+    condition: Always; replay runs even when raw changed, so the report shows what the change does downstream.
+    guidance: Copy only raw data, scripts, helpers, and params.yaml into an empty folder and run every step in pipeline order. Compare every declared output byte for byte. Read stderr of every step, not just exit codes.
+    pitfalls:
+      - A stale cached intermediate passed a dependency check; replay from raw, never from committed or cached intermediates.
+      - An R package (did 2.3.0) silently dropped never-treated units and only stderr showed it; a step that exits 0 with warnings is a warning finding, not a pass.
+      - An integer overflow crashed a permutation test mid-pipeline; a crashed step is blocking and its downstream outputs are reported as not produced, not skipped.
+      - The most complete draft was stale on every quantity and nothing on it said so; a committed output that differs from the replay is blocking whatever its polish.
+    source: project history
+  - from: inventory
+    rel: PROVIDES_INPUT_FOR
+    to: replay_pipeline
+    condition: Always; the bundle carries the files the replay seeds from.
+    guidance: Seed the replay from project.json so the replay sees exactly the inventoried bytes.
+    pitfalls:
+      - Seeding from the working folder, where a later edit could slip in after inventory hashed it.
+    source: proposed
+  - from: replay_pipeline
+    rel: PROVIDES_INPUT_FOR
+    to: check_records
+    condition: Always.
+    guidance: Each step that reads parameters must have a parameter record, and each model step a model record, equal to params.yaml and to the replay. A model record made under a different params.yaml hash is a stale model.
+    pitfalls:
+      - Accepting a typed parameter table; the record is valid only if the run wrote it, which the replay comparison shows.
+      - Checking values but not the params.yaml hash; a model fit before params.yaml changed can still show plausible values.
+    source: proposed
+  - from: check_params
+    rel: PROVIDES_INPUT_FOR
+    to: check_records
+    condition: Always; the record must cover every parameter the script reads.
+    guidance: A parameter the script reads that its record omits means the record came from another version of the script.
+    pitfalls:
+      - Treating a short record as complete because every row it has is right.
+    source: proposed
+  - from: replay_pipeline
+    rel: PROVIDES_INPUT_FOR
+    to: check_numbers
+    condition: Always.
+    guidance: Resolve every numbers.yml key against the REPLAYED output it names and compare values.
+    pitfalls:
+      - Numbers frozen into prose rotted through two data reruns; compare against the replay, not the committed copy and not the draft.
+      - Accepting a number whose source is not a pipeline output (a spreadsheet, a note); it does not come from the process.
+    source: project history
+  - from: check_records
+    rel: CONVERGES_TO
+    to: report
+    condition: Always.
+    guidance: Assemble the Parameter record table from the replayed records, so the table the reader sees is produced by the run.
+    pitfalls:
+      - Building the parameter table from params.yaml alone, which shows what was intended rather than what ran.
+    source: proposed
+  - from: check_numbers
+    rel: CONVERGES_TO
+    to: report
+    condition: Always.
+    guidance: Summary first, problems first; then the numbers, the AI changes to scripts, the parameters the AI set, the scripts, and the Reproducibility section.
+    pitfalls:
+      - Burying a blocking reproduction failure under a long table of passes.
+    source: proposed

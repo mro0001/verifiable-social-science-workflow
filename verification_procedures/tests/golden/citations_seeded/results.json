@@ -1,0 +1,458 @@
+{
+  "schema": "verification-results",
+  "schema_version": 1,
+  "stream": "citations",
+  "run_id": "citations_seeded",
+  "procedure_version": 0.2,
+  "inputs": {
+    "citation_provenance.yaml": "sha256:6f67fb0db32ca80a90306e26c0265f015b1b79980a3a16717592114aca0f377f",
+    "draft.md": "sha256:667c48dc9515ec4faa145da42436a7696a65a60039dbba57ae800f7fa7520d05",
+    "metadata_cache.json": "sha256:66bc781e243ec681ac50f9c8dc8be08ae45e8302008854cb74b14d663e949a11",
+    "refs.yaml": "sha256:72de3efc0dc060ddc1965de07ffd3ccabe5ef6a938b8be59cc4b70663d04e1d9",
+    "source_abara2019.txt": "sha256:ad8f787f260fcf13f452a3cf1af4976f5d905c1f8a70e822c7e719d001c79bec",
+    "source_brennan2016.txt": "sha256:661edc2f73731da6e97937b28fd2fab65949f9edeed2a6805e50b6dc19d16349",
+    "source_castellanos2017.txt": "sha256:70b97652acb22af0a5b76752c20323f451ed9b3a2ec03dc131e3bcc588346783",
+    "source_iversen2018.txt": "sha256:f0e7b5216a4b201ed38df5a2119d49da56d9387a93f2827a939a24b5563315fd",
+    "source_kessler2019.txt": "sha256:7d9630b8ffa53651d4883724fc678139a3490699443b169639659b975ce5bd10",
+    "source_lindqvist2020.txt": "sha256:15c8420dce9edab85ececc4c7ea367e844afabe5578ee32d4eb003944a262bae",
+    "source_marchetti2012.txt": "sha256:bf71479d43258ee7f0600b7bf0fdf9330cc903980c6896d3dcadb4013c29c5bd",
+    "source_nakamura2020.txt": "sha256:b76d203442bed99058a467b55cf5140debc45181361cd35ebb6b44a3a7c78074",
+    "source_okafor2018.txt": "sha256:6a6b24c93e2bd2f050215e92a7832183cb3e9af9e823311a2b059ac6eeb5cebe",
+    "source_tanaka2016.txt": "sha256:233d015db38164f01a8744f6dfb94488de057922daaf83b32f4597634c202053"
+  },
+  "items": [
+    {
+      "id": "r01",
+      "citekey": "abara2019",
+      "sentence": "In a panel of 48 city programs, 31% of first-year volunteers left before completing six months of service [@abara2019, p. 7].",
+      "origin": "ai",
+      "origin_evidence": "First named by an AI at 2026-10-12T09:00:05Z in session S3a41c0d2e9f7, where the record reads \"Abara and Hollis (2019) report that 31% of first-year volunteers left within six months.\"",
+      "reference": "Abara, N., Hollis, T. (2019). Ownership and exit in municipal volunteer programs. Journal of Civic Administration. doi:10.5555/jca.2019.0142",
+      "lookup": "found",
+      "existence": "found in the metadata cache (DOI 10.5555/jca.2019.0142)",
+      "record": "Abara, N., Hollis, T. (2019). Ownership and exit in municipal volunteer programs. Journal of Civic Administration. Type journal-article.",
+      "reason": "Abara and Hollis (2019) report that 31% of first-year volunteers left within six months. Their panel paper gives the figure directly, \"Across the 48 programs in our panel, 31% of first-year volunteers exited before completing six months of service.\" It fits the opening claim about first-year loss.",
+      "reason_source": "at 2026-10-12T09:00:05Z in session S3a41c0d2e9f7",
+      "quotes": [
+        {
+          "found_at": "p. 7",
+          "from": "record",
+          "in_source": "yes",
+          "kind": "quote",
+          "location": "",
+          "text": "Across the 48 programs in our panel, 31% of first-year volunteers exited before completing six months of service.",
+          "where": "at 2026-10-12T09:00:05Z in session S3a41c0d2e9f7"
+        }
+      ],
+      "quote_in_source": "yes",
+      "access": "fulltext",
+      "source_file": "source_abara2019.txt",
+      "notes": [],
+      "needs_decision": true,
+      "sessions": [
+        "S3a41c0d2e9f7"
+      ]
+    },
+    {
+      "id": "r02",
+      "citekey": "ferrante2021",
+      "sentence": "Exit is steepest among volunteers recruited through online portals [@ferrante2021].",
+      "origin": "ai",
+      "origin_evidence": "First named by an AI at 2026-10-12T09:02:11Z in session S3a41c0d2e9f7, where the record reads \"Ferrante, L. (2021). Digital recruitment and early exit among civic volunteers. Nonprofit Management Review.\"",
+      "reference": "Ferrante, L. (2021). Digital recruitment and early exit among civic volunteers. Nonprofit Management Review. doi:10.5555/nmr.2021.0388",
+      "lookup": "not_found",
+      "existence": "not found, since DOI 10.5555/nmr.2021.0388 is not in the metadata cache and live lookup was off",
+      "record": "",
+      "reason": "",
+      "reason_source": "",
+      "quotes": [],
+      "quote_in_source": "not_checked",
+      "access": "none",
+      "source_file": "",
+      "notes": [
+        "@ferrante2021 was not found, since DOI 10.5555/nmr.2021.0388 is not in the metadata cache and live lookup was off"
+      ],
+      "needs_decision": true,
+      "sessions": [
+        "S3a41c0d2e9f7"
+      ]
+    },
+    {
+      "id": "r03",
+      "citekey": "castellanos2017",
+      "sentence": "Castellanos and Ibe describe retention as a matter of fit between the volunteer's goals and the tasks offered [@castellanos2017].",
+      "origin": "scholar",
+      "origin_evidence": "First named by the scholar at 2026-10-12T08:58:00Z in session S3a41c0d2e9f7, where the record reads \"Keep my sentence on Castellanos and Ibe (2017) about fit.\"",
+      "reference": "Castellanos, R., Ibe, K. (2017). Fit and retention in local volunteering. Voluntary Sector Studies. doi:10.5555/vss.2017.0021",
+      "lookup": "not_checked",
+      "existence": "not looked up, since the citation is not an AI's",
+      "record": "",
+      "reason": "",
+      "reason_source": "",
+      "quotes": [],
+      "quote_in_source": "not_checked",
+      "access": "fulltext",
+      "source_file": "source_castellanos2017.txt",
+      "notes": [
+        "@castellanos2017 was first named by the scholar in the record, so it is not checked further"
+      ],
+      "needs_decision": false
+    },
+    {
+      "id": "r04",
+      "citekey": "brennan2016",
+      "sentence": "Brennan puts it plainly that volunteers leave once the work no longer feels like their own [@brennan2016, p. 12].",
+      "origin": "ai",
+      "origin_evidence": "First named by an AI at 2026-10-12T09:05:30Z in session S3a41c0d2e9f7, where the record reads \"Brennan (2016) makes the point in plain words.\"",
+      "reference": "Brennan, S. (2016). The work is theirs. Civic Press. doi:10.5555/cp.2016.0007",
+      "lookup": "found",
+      "existence": "found in the metadata cache (DOI 10.5555/cp.2016.0007)",
+      "record": "Brennan, S. (2016). The work is theirs. Civic Press. Type book.",
+      "reason": "Brennan (2016) makes the point in plain words, \"volunteers leave when the work stops feeling like their own\", which suits the second section.",
+      "reason_source": "at 2026-10-12T09:05:30Z in session S3a41c0d2e9f7",
+      "quotes": [
+        {
+          "found_at": "",
+          "from": "record",
+          "in_source": "no",
+          "kind": "quote",
+          "location": "",
+          "text": "volunteers leave when the work stops feeling like their own",
+          "where": "at 2026-10-12T09:05:30Z in session S3a41c0d2e9f7"
+        },
+        {
+          "found_at": "p. 12",
+          "from": "located",
+          "in_source": "yes",
+          "kind": "quote",
+          "location": "p. 12",
+          "text": "Volunteers tend to exit once they no longer experience the work as theirs.",
+          "where": ""
+        }
+      ],
+      "quote_in_source": "yes",
+      "access": "fulltext",
+      "source_file": "source_brennan2016.txt",
+      "notes": [
+        "the quote given for @brennan2016 is not in its source text source_brennan2016.txt"
+      ],
+      "needs_decision": true,
+      "sessions": [
+        "S3a41c0d2e9f7"
+      ]
+    },
+    {
+      "id": "r05",
+      "citekey": "kessler2019",
+      "sentence": "Programs that cut orientation to a single session saw retention fall [@kessler2019].",
+      "origin": "ai",
+      "origin_evidence": "First named by an AI at 2026-10-12T09:07:02Z in session S3a41c0d2e9f7, where the record reads \"Kessler (2019) compared single-session orientation with longer ones and found that retention fell.\"",
+      "reference": "Kessler, D. (2019). Orientation length and volunteer retention. Journal of Civic Administration. doi:10.5555/jca.2019.0215",
+      "lookup": "found",
+      "existence": "found in the metadata cache (DOI 10.5555/jca.2019.0215)",
+      "record": "Kessler, D. (2019). Orientation length and volunteer retention. Journal of Civic Administration. Type journal-article.",
+      "reason": "Kessler (2019) compared single-session orientation with longer ones and found that retention fell. That supports the orientation sentence.",
+      "reason_source": "at 2026-10-12T09:07:02Z in session S3a41c0d2e9f7",
+      "quotes": [
+        {
+          "found_at": "",
+          "from": "located",
+          "in_source": "no",
+          "kind": "quote",
+          "location": "p. 9",
+          "text": "Programs that cut orientation to a single session saw retention fall by 42% within a year.",
+          "where": ""
+        }
+      ],
+      "quote_in_source": "no",
+      "access": "fulltext",
+      "source_file": "source_kessler2019.txt",
+      "notes": [
+        "the quote given for @kessler2019 is not in its source text source_kessler2019.txt"
+      ],
+      "needs_decision": true,
+      "sessions": [
+        "S3a41c0d2e9f7"
+      ]
+    },
+    {
+      "id": "r06",
+      "citekey": "okafor2018",
+      "sentence": "Volunteers who received written role descriptions stayed longer than those who did not [@okafor2018, p. 4].",
+      "origin": "ai",
+      "origin_evidence": "First named by an AI at 2026-10-12T09:08:15Z in session S3a41c0d2e9f7, where the record reads \"Okafor, A. (2018). Written role descriptions and volunteer tenure. Public Service Quarterly.\"",
+      "reference": "Okafor, A. (2018). Written role descriptions and volunteer tenure. Public Service Quarterly. doi:10.5555/psq.2019.0044",
+      "lookup": "found",
+      "existence": "found in the metadata cache (DOI 10.5555/psq.2019.0044)",
+      "record": "Okafor, A. (2019). Written role descriptions and volunteer tenure. Public Service Quarterly. Type journal-article.",
+      "reason": "",
+      "reason_source": "",
+      "quotes": [
+        {
+          "found_at": "p. 4",
+          "from": "located",
+          "in_source": "yes",
+          "kind": "quote",
+          "location": "p. 4",
+          "text": "Volunteers who received a written description of their role remained active longer than volunteers who received only a verbal briefing.",
+          "where": ""
+        }
+      ],
+      "quote_in_source": "yes",
+      "access": "fulltext",
+      "source_file": "source_okafor2018.txt",
+      "notes": [
+        "no reason is recorded for @okafor2018, since the record holds no AI words around its first AI appearance"
+      ],
+      "needs_decision": true,
+      "sessions": [
+        "S3a41c0d2e9f7"
+      ]
+    },
+    {
+      "id": "r07",
+      "citekey": "marchetti2012",
+      "sentence": "Marchetti studies the records volunteers leave behind [@marchetti2012].",
+      "origin": "ai",
+      "origin_evidence": "First named by an AI at 2026-10-13T10:01:00Z in session S7be25f19c0a4 in notes/sources.md, where the record reads \"Marchetti (2012) studies the records volunteers leave behind.\"",
+      "reference": "Marchetti, P. (2012). Administrative traces of volunteer work. Records and Society. doi:10.5555/rs.2012.0109",
+      "lookup": "found",
+      "existence": "found in the metadata cache (DOI 10.5555/rs.2012.0109)",
+      "record": "Marchetti, P. (2012). Administrative traces of volunteer work. Records and Society. Type journal-article.",
+      "reason": "Marchetti (2012) studies the records volunteers leave behind, sign-in sheets and shift logs, and is a good anchor for the records sentence.",
+      "reason_source": "at 2026-10-13T10:01:00Z in session S7be25f19c0a4 in notes/sources.md",
+      "quotes": [
+        {
+          "found_at": "",
+          "from": "located",
+          "in_source": "not_checked",
+          "kind": "section",
+          "location": "p. 3, on the administrative traces of volunteer activity",
+          "text": "",
+          "where": ""
+        }
+      ],
+      "quote_in_source": "not_checked",
+      "access": "fulltext",
+      "source_file": "source_marchetti2012.txt",
+      "notes": [
+        "no exact quote was given for @marchetti2012, since the passage step gave a section pointer, which is not checked word for word"
+      ],
+      "needs_decision": true,
+      "sessions": [
+        "S7be25f19c0a4"
+      ]
+    },
+    {
+      "id": "r08",
+      "citekey": "nakamura2020",
+      "sentence": "Recognition events had no clear effect on exit among long-serving volunteers [@nakamura2020].",
+      "origin": "ai",
+      "origin_evidence": "First named by an AI at 2026-10-13T10:03:20Z in session S7be25f19c0a4, where the record reads \"Nakamura (2020) looked at recognition events among long-serving volunteers.\"",
+      "reference": "Nakamura, E. (2020). Recognition events and the long-serving volunteer. Voluntary Sector Studies. doi:10.5555/vss.2020.0063",
+      "lookup": "found",
+      "existence": "found in the metadata cache (DOI 10.5555/vss.2020.0063)",
+      "record": "Nakamura, E. (2020). Recognition events and the long-serving volunteer. Voluntary Sector Studies. Type journal-article.",
+      "reason": "Nakamura (2020) looked at recognition events among long-serving volunteers. Their result belongs beside the feedback finding.",
+      "reason_source": "at 2026-10-13T10:03:20Z in session S7be25f19c0a4",
+      "quotes": [
+        {
+          "found_at": "p. 15",
+          "from": "located",
+          "in_source": "yes",
+          "kind": "quote",
+          "location": "p. 15",
+          "text": "Recognition events had no measurable effect on exit among long-serving volunteers.",
+          "where": ""
+        }
+      ],
+      "quote_in_source": "yes",
+      "access": "fulltext",
+      "source_file": "source_nakamura2020.txt",
+      "notes": [],
+      "needs_decision": true,
+      "sessions": [
+        "S7be25f19c0a4"
+      ]
+    },
+    {
+      "id": "r09",
+      "citekey": "lindqvist2020",
+      "sentence": "Supervisors' feedback quality predicted whether volunteers returned for a second season [@lindqvist2020].",
+      "origin": "ai",
+      "origin_evidence": "First named by an AI at 2026-10-13T10:04:44Z in session S7be25f19c0a4, where the record reads \"Lindqvist, H., & Moreau, J. (2020). Supervisor feedback and seasonal return.\"",
+      "reference": "Lindqvist, H., Moreau, J. (2020). Supervisor feedback and seasonal return. Nonprofit Management Review. doi:10.5555/nmr.2020.0157",
+      "lookup": "found",
+      "existence": "found in the metadata cache (DOI 10.5555/nmr.2020.0157)",
+      "record": "Lindqvist, H., Morales, J. (2020). Supervisor feedback and seasonal return. Nonprofit Management Review. Type journal-article.",
+      "reason": "",
+      "reason_source": "",
+      "quotes": [
+        {
+          "found_at": "p. 6",
+          "from": "located",
+          "in_source": "yes",
+          "kind": "quote",
+          "location": "p. 6",
+          "text": "The quality of supervisors' feedback predicted whether volunteers returned for a second season, net of program size and volunteer age.",
+          "where": ""
+        }
+      ],
+      "quote_in_source": "yes",
+      "access": "fulltext",
+      "source_file": "source_lindqvist2020.txt",
+      "notes": [
+        "no reason is recorded for @lindqvist2020, since the record holds no AI words around its first AI appearance"
+      ],
+      "needs_decision": true,
+      "sessions": [
+        "S7be25f19c0a4"
+      ]
+    },
+    {
+      "id": "r10",
+      "citekey": "haldane2017",
+      "sentence": "Volunteers in smaller programs reported stronger attachment to staff [@haldane2017].",
+      "origin": "ai",
+      "origin_evidence": "First named by an AI at 2026-10-13T10:06:10Z in session S7be25f19c0a4, where the record reads \"Haldane (2017) compared attachment to staff across program sizes.\"",
+      "reference": "Haldane, R. (2017). Program size and attachment to staff. Public Service Quarterly. doi:10.5555/psq.2017.0090",
+      "lookup": "found",
+      "existence": "found in the metadata cache (DOI 10.5555/psq.2017.0090)",
+      "record": "Haldane, P. (2017). Program size and attachment to staff. Public Service Quarterly. Type journal-article.",
+      "reason": "Haldane (2017) compared attachment to staff across program sizes, so it fits the sentence on smaller programs.",
+      "reason_source": "at 2026-10-13T10:06:10Z in session S7be25f19c0a4",
+      "quotes": [],
+      "quote_in_source": "not_checked",
+      "access": "none",
+      "source_file": "",
+      "notes": [
+        "there is no source text for @haldane2017, so no quote was located or checked"
+      ],
+      "needs_decision": true,
+      "sessions": [
+        "S7be25f19c0a4"
+      ]
+    },
+    {
+      "id": "r11",
+      "citekey": "pruitt2022",
+      "sentence": "Exit interviews are rarely conducted in municipal programs [@pruitt2022].",
+      "origin": "unknown",
+      "origin_evidence": "The provenance record has no entry for @pruitt2022.",
+      "reference": "(no entry in the reference list)",
+      "lookup": "not_checked",
+      "existence": "not looked up, since the citation is not an AI's",
+      "record": "",
+      "reason": "",
+      "reason_source": "",
+      "quotes": [],
+      "quote_in_source": "not_checked",
+      "access": "none",
+      "source_file": "",
+      "notes": [
+        "@pruitt2022 is cited in the final build and has no entry in the reference list",
+        "the provenance record has no entry for @pruitt2022, so its origin is unknown and it is not checked"
+      ],
+      "needs_decision": true
+    },
+    {
+      "id": "r12",
+      "citekey": "iversen2018",
+      "sentence": "Peer mentoring was associated with higher retention in youth volunteer programs [@iversen2018].",
+      "origin": "ai",
+      "origin_evidence": "First named by an AI at 2026-10-13T10:08:00Z in session S7be25f19c0a4, where the record reads \"Iversen (2018) studied peer mentoring in youth programs.\"",
+      "reference": "Iversen, T. (2018). Peer mentoring in youth volunteer programs. Youth and Civic Life. doi:10.5555/ycl.2018.0012",
+      "lookup": "found",
+      "existence": "found in the metadata cache (DOI 10.5555/ycl.2018.0012)",
+      "record": "Iversen, T. (2018). Peer mentoring in youth volunteer programs. Youth and Civic Life. Type journal-article.",
+      "reason": "Iversen (2018) studied peer mentoring in youth programs. The abstract says \"Youth volunteer programs that paired new volunteers with a peer mentor had higher retention at six months than programs without mentoring.\"",
+      "reason_source": "at 2026-10-13T10:08:00Z in session S7be25f19c0a4",
+      "quotes": [
+        {
+          "found_at": "",
+          "from": "record",
+          "in_source": "yes",
+          "kind": "quote",
+          "location": "",
+          "text": "Youth volunteer programs that paired new volunteers with a peer mentor had higher retention at six months than programs without mentoring.",
+          "where": "at 2026-10-13T10:08:00Z in session S7be25f19c0a4"
+        }
+      ],
+      "quote_in_source": "yes",
+      "access": "abstract",
+      "source_file": "source_iversen2018.txt",
+      "notes": [],
+      "needs_decision": true,
+      "sessions": [
+        "S7be25f19c0a4"
+      ]
+    },
+    {
+      "id": "r13",
+      "citekey": "sorensen2022",
+      "sentence": "Turnover among volunteer coordinators tends to precede spikes in volunteer exit [@sorensen2022].",
+      "origin": "ai",
+      "origin_evidence": "First named by an AI at 2026-10-13T10:11:00Z in session S7be25f19c0a4, where the record reads \"Sorensen (2022) reports that coordinator turnover comes before spikes in exit.\"",
+      "reference": "Sorensen, M. (2022). Coordinator turnover and volunteer exit. Journal of Civic Administration. doi:10.5555/jca.2022.0301",
+      "lookup": "not_found",
+      "existence": "not found, since DOI 10.5555/jca.2022.0301 is not in the metadata cache and live lookup was off",
+      "record": "",
+      "reason": "",
+      "reason_source": "",
+      "quotes": [],
+      "quote_in_source": "not_checked",
+      "access": "none",
+      "source_file": "",
+      "notes": [
+        "@sorensen2022 was not found, since DOI 10.5555/jca.2022.0301 is not in the metadata cache and live lookup was off"
+      ],
+      "needs_decision": true,
+      "sessions": [
+        "S7be25f19c0a4"
+      ]
+    },
+    {
+      "id": "r14",
+      "citekey": "dumont2014",
+      "sentence": "Clear end dates for assignments made volunteers more willing to sign up again [@dumont2014].",
+      "origin": "unknown",
+      "origin_evidence": "The record never names @dumont2014.",
+      "reference": "Dumont, C. (2014). Fixed-term assignments and volunteer re-enlistment. Voluntary Sector Studies. doi:10.5555/vss.2014.0048",
+      "lookup": "not_checked",
+      "existence": "not looked up, since the citation is not an AI's",
+      "record": "",
+      "reason": "",
+      "reason_source": "",
+      "quotes": [],
+      "quote_in_source": "not_checked",
+      "access": "none",
+      "source_file": "",
+      "notes": [
+        "the record never names @dumont2014, so its origin is unknown and it is not checked"
+      ],
+      "needs_decision": true
+    },
+    {
+      "id": "r15",
+      "citekey": "tanaka2016",
+      "sentence": "Training length alone did not predict retention [@tanaka2016].",
+      "origin": "scholar",
+      "origin_evidence": "First named by the scholar at 2026-10-12T08:55:00Z in session S3a41c0d2e9f7 in drafts/author_notes.md, where the record reads \"Training length alone did not predict retention (Tanaka 2016).\"",
+      "reference": "Tanaka, H. (2016). Training length and volunteer retention. Public Service Quarterly. doi:10.5555/psq.2016.0071",
+      "lookup": "not_checked",
+      "existence": "not looked up, since the citation is not an AI's",
+      "record": "",
+      "reason": "",
+      "reason_source": "",
+      "quotes": [],
+      "quote_in_source": "not_checked",
+      "access": "fulltext",
+      "source_file": "source_tanaka2016.txt",
+      "notes": [
+        "@tanaka2016 was first named by the scholar in the record, so it is not checked further"
+      ],
+      "needs_decision": false
+    }
+  ],
+  "decisions": []
+}

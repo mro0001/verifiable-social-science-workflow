@@ -1,0 +1,14 @@
+{
+"matches": false,
+"mismatches": [
+{
+"claim": "Drop rows with missing income: keep a row only if its income cell has text.",
+"code": "return [r for r in rows if r[\"age\"].strip() != \"\"]"
+},
+{
+"claim": "min_age - respondents younger than this are excluded.",
+"code": "min_age = 21"
+}
+],
+"reason": "The code filters based on the 'age' column instead of 'income' in the drop_missing function, and hard-codes the min_age threshold to 21 instead of reading it from the parameters."
+}

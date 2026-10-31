@@ -1,0 +1,54 @@
+# The portal's sources, with paths from the workflow's folder. Only what is
+# named here enters the site, so private folders such as notes/ and recon/
+# never do. A missing optional doc gives a warning, and a missing required
+# doc stops the build. The optional learn pages are those the reconciliation
+# names (Track F). The home page's text opens the catalog (step F15).
+title: An AI-Enhanced Workflow for Verifiable Social Science
+kb_corpus: audit_layer/kb/corpus
+graphs: verification_procedures/graphs
+home: features/portal/pages/home.md
+docs:
+  - path: verification_procedures/README.md
+    title: Verification graphs
+    section: learn
+    optional: false
+  - path: features/portal/pages/implement.md
+    title: Implement the workflow
+    section: implement
+    optional: false
+  - path: examples/sample_project/README.md
+    title: The sample project
+    section: implement
+    optional: false
+  - path: features/setup/GUIDE.md
+    title: Pipeline setup guide
+    section: implement
+    optional: false
+  - path: features/organizer/GUIDE.md
+    title: Project organizer guide
+    section: implement
+    optional: false
+  - path: features/portal/pages/critique.md
+    title: Critique the workflow
+    section: critique
+    optional: false
+  - path: verification_procedures/AUTHORING.md
+    title: Writing a new procedure
+    section: learn
+    optional: true
+  - path: audit_layer/hooks/INSTALL.md
+    title: Starting the sweep by hook and by schedule
+    section: learn
+    optional: true
+  - path: observability/CONTRACT.md
+    title: The observability layer's contract
+    section: learn
+    optional: true
+  - path: handoffs/README.md
+    title: Handoffs
+    section: learn
+    optional: true
+  - path: connections/README.md
+    title: The connections
+    section: learn
+    optional: true

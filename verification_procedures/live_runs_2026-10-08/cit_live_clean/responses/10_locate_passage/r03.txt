@@ -1,0 +1,1 @@
+{"quote": "I call this the role-match problem: the tasks a program needs done and the tasks volunteers came to do drift apart. Because sign-up forms record availability rather than purpose, the role-match problem is invisible in sign-up data.", "location": "p. 33", "found": true}

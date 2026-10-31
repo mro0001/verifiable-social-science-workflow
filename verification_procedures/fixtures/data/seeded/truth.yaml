@@ -1,0 +1,11 @@
+# Planted faults in the seeded data project. item matches the finding's item field.
+faults:
+  - {id: F1, check: check_raw, item: raw_survey.csv}          # raw edited after acquisition (on a dropped row)
+  - {id: F2, check: check_params, item: s1_clean.py}          # min_age = 21 hard-coded; params.yaml says 18
+  - {id: F3, check: replay_pipeline, item: table_descriptives.csv}  # hand-edited South mean_income_k
+  - {id: F4, check: check_records, item: model_record_model.json}   # params hash from an older params.yaml
+  - {id: F5, check: check_numbers, item: slope_income_k}      # typed by hand; does not reproduce from table_model.csv
+  - {id: F6, check: check_docs, item: s2_describe.py}         # docstring lost Inputs/Outputs/Parameters/Assumptions
+  - {id: F7, check: attribute_ai, item: e02}                  # the AI changed drop_missing in s1_clean.py with no stated reason
+  - {id: F8, check: replay_pipeline, item: s3_model.py}       # stderr warning: rows dropped (consequence of F7)
+  - {id: F9, check: attribute_ai, item: "params.yaml:fig_width"}  # a parameter the AI changed, 480 to 520

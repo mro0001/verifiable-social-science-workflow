@@ -1,0 +1,1 @@
+{"fix": "Correct the reference metadata to list the author as Haldane, P. (2017) to match the source, as the located passage explicitly confirms that volunteers in smaller programs reported stronger attachment to paid staff than those in large programs."}

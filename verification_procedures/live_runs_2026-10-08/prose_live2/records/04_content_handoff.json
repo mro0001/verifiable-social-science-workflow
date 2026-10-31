@@ -1,0 +1,43 @@
+{
+  "record_version": 1,
+  "seq": 4,
+  "node": "content_handoff",
+  "kind": "tool",
+  "graph_version": 0.2,
+  "started_at": "2026-10-08T12:59:38-07:00",
+  "duration_s": 0.13,
+  "inputs": {
+    "ai_changes.json": "sha256:156fe74bb7f14da151e763195f616f5e98173222c8975ba0c5a22c24af004a69"
+  },
+  "execution": {
+    "type": "script",
+    "executor": "python3",
+    "code_files": {
+      "code/04_content_handoff/_lib.py": "sha256:bab908da53dea59fcf603a8d94c4e3e2e29312f8bf2ff66f631a5e273b937a8b",
+      "code/04_content_handoff/content_handoff.py": "sha256:7211d900dbcd56d5f93bd1ea2ece935632c9d527432e95b34439e7e2bf2a5850"
+    },
+    "exit_code": 0,
+    "logs": [
+      "logs/04_content_handoff.stdout",
+      "logs/04_content_handoff.stderr"
+    ],
+    "replay": "exact"
+  },
+  "outputs": {
+    "content_tokens.json": "sha256:48fa0d691c7b81d383b1983a5ac54387693e4de1e102f59ccc89ce913653d5c9",
+    "handoff.json": "sha256:175a6b8faaed1986ec44dda780a226d837bbfbecc6a0fc8460ad047ea00af67c",
+    "findings_content_handoff.json": "sha256:363af47f6835b2fa74478192d0bf087a3136dd8d29bdabddbe7648856a16c590"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "rationale_coverage",
+      "rel": "PROVIDES_INPUT_FOR",
+      "check": null,
+      "fired": true
+    }
+  ]
+}

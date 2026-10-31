@@ -1,0 +1,36 @@
+# A recorded proposal standing in for the AI's answer on the organizer
+# fixture. The test fills in the inventory id and the project folder.
+schema: organizer-proposal
+schema_version: 1
+proposed_by: "ai:claude_code:{{SESSION}}"
+inventory_id: "{{INVENTORY_ID}}"
+changes:
+  - id: c1
+    op: archive_line
+    reason: An older draft whose file name holds the manuscript's name.
+    path: drafts/manuscript_old.md
+    superseded_by: manuscript.md
+  - id: c2
+    op: archive_line
+    reason: An older draft with the manuscript's title.
+    path: drafts/retention_full.md
+    superseded_by: manuscript.md
+  - id: c3
+    op: move
+    reason: A loose file at the top of the project.
+    path: stray.txt
+    to: misc/stray.txt
+  - id: c4
+    op: mark
+    reason: The second build replaces the first.
+    item_kind: build
+    item: manuscript/v001
+    mark: superseded
+    value: manuscript/v002
+  - id: c5
+    op: mark
+    reason: The session worked on this project.
+    item_kind: session
+    item: "{{SESSION}}"
+    mark: belongs_to
+    value: "{{PROJECT}}"

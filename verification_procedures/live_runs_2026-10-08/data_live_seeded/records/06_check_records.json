@@ -1,0 +1,45 @@
+{
+  "record_version": 1,
+  "seq": 6,
+  "node": "check_records",
+  "kind": "tool",
+  "graph_version": 0.1,
+  "started_at": "2026-10-08T13:09:33-07:00",
+  "duration_s": 0.11,
+  "inputs": {
+    "project.json": "sha256:786a34db6047dffba634c7eae42461d23db3550eeb681e4ee73c0f1dc1f9c1d2",
+    "inventory.json": "sha256:9c729f66b8bd507a6a918cd069773b179db35ab2dedcab65484c18fc49599118",
+    "replay.json": "sha256:a172b528001b8b556174d87d284411a4ba52484880e8bc9534c33b2f7a447a28",
+    "params_usage.json": "sha256:260bbfb9a43b708a9cff13cb1f721360cb485a4793b7926f2a337f2b1ac2cd48"
+  },
+  "execution": {
+    "type": "script",
+    "executor": "python3",
+    "code_files": {
+      "code/06_check_records/_lib.py": "sha256:bab908da53dea59fcf603a8d94c4e3e2e29312f8bf2ff66f631a5e273b937a8b",
+      "code/06_check_records/check_records.py": "sha256:d94c7ec89cc2b8b63a9f060fd1ecb4f8657caeb148d36b310927203163046cbc"
+    },
+    "exit_code": 0,
+    "logs": [
+      "logs/06_check_records.stdout",
+      "logs/06_check_records.stderr"
+    ],
+    "replay": "exact"
+  },
+  "outputs": {
+    "records_status.json": "sha256:77fa58b8c9e8c4140d52f6f909c82ebf31d111661802f100bb06541b2a52c2e2",
+    "findings_check_records.json": "sha256:b108abbd861db1ce7a19aba07ded3a26193d2e94af14097145b6a8a9730ca2a1"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "report",
+      "rel": "CONVERGES_TO",
+      "check": null,
+      "fired": true
+    }
+  ]
+}

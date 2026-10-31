@@ -1,0 +1,37 @@
+[
+  {
+    "check": "judge_support",
+    "evidence": "Programs that reduced orientation to a single session saw twelve-month retention fall by 24% relative to programs that …",
+    "item": "r05",
+    "message": "source does not support the claim: The source states retention fell by 24%, whereas the claim incorrectly asserts a 42% decline.",
+    "severity": "blocking"
+  },
+  {
+    "check": "judge_support",
+    "evidence": "This article studies the administrative traces of volunteer activity: sign-in sheets, shift logs, and incident forms. T…",
+    "item": "r07",
+    "message": "source does not support the claim: The source describes the records as 'administrative traces' but does not use the specific term 'civic paradata' attributed to Marchetti in the claim.",
+    "severity": "blocking"
+  },
+  {
+    "check": "judge_support",
+    "evidence": "Recognition events had no measurable effect on exit among long-serving volunteers. If anything, exit rose slightly in t…",
+    "item": "r08",
+    "message": "source does not support the claim: The source explicitly states that recognition events had no measurable effect on exit and that exit actually rose slightly, which directly contradicts the claim that they reduced exit.",
+    "severity": "blocking"
+  },
+  {
+    "check": "judge_support",
+    "evidence": "In two of the three cities, volunteers assigned a named staff contact stayed longer than those without one. In the thir…",
+    "item": "r13",
+    "message": "source does not support the claim: The source states the effect held in only two of the three cities with a non-significant difference in the third, directly contradicting the claim that it occurred in all three cities.",
+    "severity": "blocking"
+  },
+  {
+    "check": "judge_support",
+    "evidence": "Volunteers who received a written description of their role remained active longer than volunteers who received only a …",
+    "item": "r06",
+    "message": "source only partly supports the claim: The source specifies that the comparison was against volunteers receiving only a verbal briefing, whereas the claim broadly states 'those who did not' receive written descriptions, omitting this specific condition.",
+    "severity": "warning"
+  }
+]

@@ -1,0 +1,1 @@
+{"matches": true, "mismatches": [], "reason": "The docstring and comment accurately describe the code's calculation of t as estimate/se and p using the normal approximation via math.erfc."}

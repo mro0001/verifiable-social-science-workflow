@@ -1,0 +1,57 @@
+[
+  {
+    "after": "Prior work has focused mainly on private firms.",
+    "before": "Prior work has focused mainly on private firms.",
+    "id": "c01",
+    "kind": "move",
+    "mechanical_token_diff": "none",
+    "moved": true,
+    "rationale": "Moved the gap statement ahead of the study aim so the aim answers it.",
+    "rationale_id": "r01",
+    "rationale_kind": "move"
+  },
+  {
+    "after": "This study examines whether structured interviews are associated with lower first-year turnover in municipal agencies.",
+    "before": "In this study we examine whether structured interviews are associated with lower first-year turnover in municipal agencies.",
+    "id": "c02",
+    "kind": "edit",
+    "mechanical_token_diff": "none",
+    "moved": false,
+    "rationale": "Rewrote \"In this study we examine\" as \"This study examines\" for a more direct opening; the aim is unchanged.",
+    "rationale_id": "r02",
+    "rationale_kind": "edit"
+  },
+  {
+    "after": "Structured interviews ask every candidate the same questions in the same order.",
+    "before": "Structured interviews standardize the questions that every candidate answers.",
+    "id": "c03",
+    "kind": "edit",
+    "mechanical_token_diff": "none",
+    "moved": false,
+    "rationale": "Rephrased the definition in plainer words and made explicit that the order of questions is also fixed, which \"standardize\" implied.",
+    "rationale_id": "r03",
+    "rationale_kind": "edit"
+  },
+  {
+    "after": "",
+    "before": "Agencies that adopted the format did so for a variety of different reasons, and those reasons varied a great deal.",
+    "id": "c04",
+    "kind": "delete",
+    "mechanical_token_diff": "none",
+    "moved": false,
+    "rationale": "Deleted a redundant sentence that repeated itself and carried no evidence.",
+    "rationale_id": "r04",
+    "rationale_kind": "delete"
+  },
+  {
+    "after": "The next section turns to the interview protocol itself.",
+    "before": "",
+    "id": "c05",
+    "kind": "insert",
+    "mechanical_token_diff": "none",
+    "moved": false,
+    "rationale": "Added a signpost sentence pointing to the next section.",
+    "rationale_id": "r05",
+    "rationale_kind": "insert"
+  }
+]

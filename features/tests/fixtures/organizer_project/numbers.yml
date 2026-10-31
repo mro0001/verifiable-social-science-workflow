@@ -1,0 +1,3 @@
+# Each computed value the text cites, with the output it comes from.
+numbers:
+  agencies: {value: "twelve", from: results.json, field: agencies}

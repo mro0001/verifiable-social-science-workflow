@@ -1,0 +1,50 @@
+{
+  "verified_at": "2026-10-08T13:10:59-07:00",
+  "steps": [
+    {
+      "seq": 1,
+      "node": "inventory",
+      "verdict": "replay matches"
+    },
+    {
+      "seq": 2,
+      "node": "check_raw",
+      "verdict": "replay matches"
+    },
+    {
+      "seq": 3,
+      "node": "check_params",
+      "verdict": "replay matches"
+    },
+    {
+      "seq": 4,
+      "node": "replay_pipeline",
+      "verdict": "replay matches"
+    },
+    {
+      "seq": 5,
+      "node": "check_docs",
+      "verdict": "replay matches"
+    },
+    {
+      "seq": 6,
+      "node": "check_records",
+      "verdict": "replay matches"
+    },
+    {
+      "seq": 7,
+      "node": "check_numbers",
+      "verdict": "replay matches"
+    },
+    {
+      "seq": 8,
+      "node": "judge_method_docs",
+      "verdict": "judgment: recorded answers kept; review, not replay"
+    },
+    {
+      "seq": 9,
+      "node": "report",
+      "verdict": "replay matches"
+    }
+  ]
+}

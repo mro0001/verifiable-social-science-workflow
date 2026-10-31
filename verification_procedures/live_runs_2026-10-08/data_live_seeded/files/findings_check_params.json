@@ -1,0 +1,30 @@
+[
+  {
+    "check": "check_params",
+    "evidence": "min_age = 21",
+    "item": "s1_clean.py:L42",
+    "message": "hard-coded parameter: min_age = 21 here, params.yaml sets min_age: 18",
+    "severity": "blocking"
+  },
+  {
+    "check": "check_params",
+    "evidence": "min_age: 18",
+    "item": "min_age",
+    "message": "set in params.yaml but read by no script",
+    "severity": "info"
+  },
+  {
+    "check": "check_params",
+    "evidence": "JSON layout, not an analytic choice",
+    "item": "params_io.py:L106",
+    "message": "literal declared not a parameter",
+    "severity": "info"
+  },
+  {
+    "check": "check_params",
+    "evidence": "layout margin in pixels, not an analytic choice",
+    "item": "s2_describe.py:L58",
+    "message": "literal declared not a parameter",
+    "severity": "info"
+  }
+]

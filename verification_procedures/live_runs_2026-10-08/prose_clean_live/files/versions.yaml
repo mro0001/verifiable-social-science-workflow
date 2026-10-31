@@ -1,0 +1,3 @@
+# Ledger of pinned versions (stand-in for BUILDS.md). Synthetic.
+versions:
+  - {version: v001, file: baseline.md, sha256: "sha256:9ad819dfea4749532771aa6951edcc632e46d51d13be26a8fa12b6781c63d2c2"}

@@ -1,0 +1,5 @@
+# Planted faults in the seeded call file. item matches the finding's item field.
+faults:
+  - {id: F1, check: read_calls, item: line 3}     # a line cut off, so it is not JSON
+  - {id: F2, check: read_calls, item: call-0002}  # a repeated call id on line 5, the first call-0002 is kept
+  - {id: F3, check: read_calls, item: line 7}     # a call whose argv does not start with git

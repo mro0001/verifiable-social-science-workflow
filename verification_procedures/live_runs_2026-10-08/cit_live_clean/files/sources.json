@@ -1,0 +1,38 @@
+{
+  "abara2019": {
+    "access": "fulltext",
+    "file": "source_abara2019.txt",
+    "sha256": "sha256:ad8f787f260fcf13f452a3cf1af4976f5d905c1f8a70e822c7e719d001c79bec",
+    "text": "Ownership and exit in municipal volunteer programs\nNkem Abara and Teresa Hollis (SYNTHETIC)\n\n[p. 5]\nWe followed every volunteer who joined one of the programs in our panel during a single recruitment year and recorded the date of their last logged shift.\n\n[p. 7]\nAcross the 48 programs in our panel, 31% of first-year volunteers exited before completing six months of service. Exit was concentrated in the first eight weeks."
+  },
+  "castellanos2017": {
+    "access": "fulltext",
+    "file": "source_castellanos2017.txt",
+    "sha256": "sha256:70b97652acb22af0a5b76752c20323f451ed9b3a2ec03dc131e3bcc588346783",
+    "text": "Fit and retention in local volunteering\nRosa Castellanos and Kelechi Ibe (SYNTHETIC)\n\n[p. 2]\nWe treat retention as a question of fit: whether the tasks a program offers match the goals a volunteer brings."
+  },
+  "devries2021": {
+    "access": "fulltext",
+    "file": "source_devries2021.txt",
+    "sha256": "sha256:c0368a8d7e002a7fc0f99637580650dbdddd959a51d2852935c677b260437464",
+    "text": "Scheduling flexibility and volunteer hours\nMaarten de Vries (SYNTHETIC)\n\n[p. 14]\nVolunteers offered flexible schedules contributed more hours per month, but their tenure did not differ from that of volunteers on fixed schedules."
+  },
+  "moreno2018": {
+    "access": "fulltext",
+    "file": "source_moreno2018.txt",
+    "sha256": "sha256:77ce51d061bf0456cd5fdf900c0f63a3dfeb11fbb5146f9b9672b806a9b59268",
+    "text": "Matching Volunteers to Roles\nLucia Moreno (SYNTHETIC)\n\n[p. 33]\nI call this the role-match problem: the tasks a program needs done and the tasks volunteers came to do drift apart. Because sign-up forms record availability rather than purpose, the role-match problem is invisible in sign-up data."
+  },
+  "tanaka2016": {
+    "access": "fulltext",
+    "file": "source_tanaka2016.txt",
+    "sha256": "sha256:233d015db38164f01a8744f6dfb94488de057922daaf83b32f4597634c202053",
+    "text": "Training length and volunteer retention\nHiroshi Tanaka (SYNTHETIC)\n\n[p. 19]\nOnce role clarity was accounted for, the length of training alone did not predict retention."
+  },
+  "whitlock2020": {
+    "access": "fulltext",
+    "file": "source_whitlock2020.txt",
+    "sha256": "sha256:dfea1280766c3c1498eac2d142a95edead05539c883d4e200faff3245d958364",
+    "text": "Named contacts and volunteer tenure in three cities\nGrace Whitlock (SYNTHETIC)\n\n[p. 112]\nIn two of the three cities, volunteers assigned a named staff contact stayed longer than those without one. In the third city the difference was small and not statistically significant."
+  }
+}

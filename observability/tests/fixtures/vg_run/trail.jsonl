@@ -1,0 +1,13 @@
+{"at": "2026-10-29T03:30:48-07:00", "event": "run_initialized", "stream": "selftest", "graph_version": 0.1}
+{"at": "2026-10-29T03:30:48-07:00", "event": "step_started", "node": "list_items", "seq": 1, "kind": "tool"}
+{"at": "2026-10-29T03:30:48-07:00", "event": "step_finished", "node": "list_items", "seq": 1, "contract": "pass", "fired": ["judge_items"]}
+{"at": "2026-10-29T03:30:48-07:00", "event": "step_started", "node": "judge_items", "seq": 2, "kind": "judgment"}
+{"at": "2026-10-29T03:30:48-07:00", "event": "judgment_item", "node": "judge_items", "item": "w1", "executor": "recorded:recorded_judge.json"}
+{"at": "2026-10-29T03:30:48-07:00", "event": "judgment_item", "node": "judge_items", "item": "w2", "executor": "live:qwen/qwen3.5-122b"}
+{"at": "2026-10-29T03:30:48-07:00", "event": "judgment_item", "node": "judge_items", "item": "w3", "executor": "recorded:recorded_judge.json"}
+{"at": "2026-10-29T03:30:48-07:00", "event": "judgment_item", "node": "judge_items", "item": "w4", "executor": "recorded:recorded_judge.json"}
+{"at": "2026-10-29T03:30:48-07:00", "event": "step_finished", "node": "judge_items", "seq": 2, "contract": "pass", "fired": ["report"]}
+{"at": "2026-10-29T03:30:48-07:00", "event": "step_skipped", "node": "skipped_branch", "reason": "no incoming edge fired"}
+{"at": "2026-10-29T03:30:48-07:00", "event": "step_started", "node": "report", "seq": 3, "kind": "tool"}
+{"at": "2026-10-29T03:30:49-07:00", "event": "step_finished", "node": "report", "seq": 3, "contract": "pass", "fired": []}
+{"at": "2026-10-29T03:30:49-07:00", "event": "run_finished"}

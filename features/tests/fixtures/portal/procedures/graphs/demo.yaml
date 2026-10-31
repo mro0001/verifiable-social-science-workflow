@@ -1,0 +1,14 @@
+# A small graph for the portal tests.
+stream: demo
+version: 0.1
+goal: Show the portal a small graph.
+contracts: contracts/demo.yaml
+entry: first
+exit: last
+nodes:
+  - {id: first, kind: tool, does: List the items., invariant: Every item has an id., note: A key the portal does not know.}
+  - {id: judge, kind: judgment, does: Judge each item., foreach: items.json, role: judge}
+  - {id: last, kind: tool, does: Write the report., where: report.md, replay: true}
+edges:
+  - {from: first, rel: LEADS_TO, to: judge, condition: Always., guidance: One ask per item., pitfalls: [Judging all items in one ask.], source: proposed}
+  - {from: judge, rel: CONVERGES_TO, to: last, condition: At least one item., check: "count.json:n > 0", guidance: Report each verdict., pitfalls: [Dropping an answer., "Mixing < and & in a message."], source: proposed, weight: 2}

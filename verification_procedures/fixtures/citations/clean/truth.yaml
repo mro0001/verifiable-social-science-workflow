@@ -1,0 +1,11 @@
+# The SYNTHETIC clean fixture of the references procedure 0.2. Every AI citation's work
+# is found, has a recorded reason, and has a quote that is in its source text.
+faults: []
+not_checked: [r02, castellanos2017, r03, moreno2018]
+origins:
+  r01: ai
+  r02: scholar
+  r03: scholar
+  r04: ai
+  r05: ai
+  r06: ai

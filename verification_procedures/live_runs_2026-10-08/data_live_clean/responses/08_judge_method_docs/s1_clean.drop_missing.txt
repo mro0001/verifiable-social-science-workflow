@@ -1,0 +1,1 @@
+{"matches": true, "mismatches": [], "reason": "The code correctly implements the documented claim by filtering rows where the 'income' cell is not blank."}

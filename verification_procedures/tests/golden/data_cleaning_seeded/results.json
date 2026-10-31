@@ -1,0 +1,59 @@
+{
+  "schema": "verification-results",
+  "schema_version": 1,
+  "stream": "data_phases",
+  "run_id": "data_cleaning_seeded",
+  "procedure_version": 0.1,
+  "inputs": {
+    "final_text.md": "sha256:b4f9a79c8351e92e2a08b5a88d10d9c6605598a7cb9d4f85b500be52d357c3c3",
+    "pipeline.yaml": "sha256:9a752b98b171686a03d463149886cf513692caef0641af0159e5ece64bf64dbf",
+    "s0_collect.py": "sha256:83c741181757ee3fe498e3e7599dc17f72ebaa73d0c5c9dcd86616da3a7653ad",
+    "s1_clean.py": "sha256:9bcad0ae4fea754a196d3f522b62278650e6c6f14f8834226d169a75538b083c",
+    "s2_model.py": "sha256:d2340d8510c10e9837930d84b9dc9e5434facdfae43e57d9e5e7d80257ccfc30"
+  },
+  "items": [
+    {
+      "id": "d01",
+      "kind": "description",
+      "summary": "Rows with a missing income were dropped.",
+      "findings": [],
+      "needs_decision": true
+    },
+    {
+      "id": "d02",
+      "kind": "description",
+      "summary": "We kept only respondents aged 18 or older.",
+      "findings": [
+        {
+          "check": "check_descriptions",
+          "severity": "warning",
+          "message": "The quote is not in the final build's text.",
+          "evidence": "We kept only respondents aged 18 or older."
+        }
+      ],
+      "needs_decision": true
+    },
+    {
+      "id": "d03",
+      "kind": "description",
+      "summary": "Incomes above 250,000 were top-coded to 250,000.",
+      "findings": [],
+      "needs_decision": true
+    },
+    {
+      "id": "d04",
+      "kind": "description",
+      "summary": "Responses were weighted to the regional population shares.",
+      "findings": [
+        {
+          "check": "check_descriptions",
+          "severity": "warning",
+          "message": "The finding step gave no place in the scripts that carries out this description.",
+          "evidence": ""
+        }
+      ],
+      "needs_decision": true
+    }
+  ],
+  "decisions": []
+}

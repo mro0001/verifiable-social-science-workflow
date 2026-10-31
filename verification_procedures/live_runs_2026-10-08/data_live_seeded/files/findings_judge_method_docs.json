@@ -1,0 +1,23 @@
+[
+  {
+    "check": "judge_method_docs",
+    "evidence": "says 'Drop rows with missing income: keep a row only if its income cell has text.', code 'return [r for r in rows if r[\"age\"].strip() != \"\"]'; says 'min_age - respondents younger than this are excluded.', code 'min_age = 21' [live:qwen/qwen3.5-122b]",
+    "item": "s1_clean",
+    "message": "documentation does not describe what the code does (judgment: confirm)",
+    "severity": "warning"
+  },
+  {
+    "check": "judge_method_docs",
+    "evidence": "says 'Drop rows whose income cell is blank', code 'return [r for r in rows if r[\"age\"].strip() != \"\"]'; says 'keep a row only if its income cell has text', code 'return [r for r in rows if r[\"age\"].strip() != \"\"]' [live:qwen/qwen3.5-122b]",
+    "item": "s1_clean.drop_missing",
+    "message": "documentation does not describe what the code does (judgment: confirm)",
+    "severity": "warning"
+  },
+  {
+    "check": "judge_method_docs",
+    "evidence": "says 'Keep respondents aged at least min_age', code 'min_age = 21' [live:qwen/qwen3.5-122b]",
+    "item": "s1_clean.filter_age",
+    "message": "documentation does not describe what the code does (judgment: confirm)",
+    "severity": "warning"
+  }
+]

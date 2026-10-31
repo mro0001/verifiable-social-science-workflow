@@ -1,0 +1,126 @@
+{
+  "schema": "verification-results",
+  "schema_version": 1,
+  "stream": "build",
+  "run_id": "build_seeded",
+  "procedure_version": 0.1,
+  "inputs": {
+    "project.tar": "sha256:6fc152d134be9be074e7aa9a15cf36485e732f273959423c497a7d53826830a7",
+    "session_writes.jsonl": "sha256:96c285765ae8c7bb48c36d75d41c4f75cca024ef18f88115003f1eb38285f1da"
+  },
+  "items": [
+    {
+      "id": "paper",
+      "kind": "deliverable",
+      "summary": "source paper/paper.md, builds folder builds/paper, ledgered versions v001, v002",
+      "findings": [],
+      "needs_decision": true
+    },
+    {
+      "id": "slides",
+      "kind": "deliverable",
+      "summary": "source slides/slides.md, builds folder builds/slides, ledgered versions v001",
+      "findings": [],
+      "needs_decision": true
+    },
+    {
+      "id": "builds/slides/v001.html",
+      "kind": "finding",
+      "summary": "1 problem. AI touched the deliverable directly; only the map's build rule may write here.",
+      "findings": [
+        {
+          "check": "check_ai_touch",
+          "severity": "blocking",
+          "message": "AI touched the deliverable directly; only the map's build rule may write here.",
+          "evidence": "session s-0104, ai via Edit"
+        }
+      ],
+      "needs_decision": true
+    },
+    {
+      "id": "paper/paper.md:0.31",
+      "kind": "finding",
+      "summary": "1 problem. Hard-coded result: equals numbers.yml key 'effect_monthly'; use {{num:effect_monthly}} so it moves with the data.",
+      "findings": [
+        {
+          "check": "check_hardcoding",
+          "severity": "blocking",
+          "message": "Hard-coded result: equals numbers.yml key 'effect_monthly'; use {{num:effect_monthly}} so it moves with the data.",
+          "evidence": "line 16: Districts that met monthly reported higher learning scores than districts that met quarterly (standardized difference 0…"
+        }
+      ],
+      "needs_decision": true
+    },
+    {
+      "id": "slides/slides.md:{{num:n_teams}}",
+      "kind": "finding",
+      "summary": "1 problem. Placeholder with no value in numbers.yml; the build will refuse, by design.",
+      "findings": [
+        {
+          "check": "check_hardcoding",
+          "severity": "blocking",
+          "message": "Placeholder with no value in numbers.yml; the build will refuse, by design.",
+          "evidence": "n_teams"
+        }
+      ],
+      "needs_decision": true
+    },
+    {
+      "id": "builds/paper/v001.html",
+      "kind": "finding",
+      "summary": "1 problem. Deliverable edited after build: its sha256 no longer matches the ledger.",
+      "findings": [
+        {
+          "check": "check_ledger",
+          "severity": "blocking",
+          "message": "Deliverable edited after build: its sha256 no longer matches the ledger.",
+          "evidence": "ledger 07f6f1debcdd..., file a239813c9e1b..."
+        }
+      ],
+      "needs_decision": true
+    },
+    {
+      "id": "slides:number_sections",
+      "kind": "finding",
+      "summary": "1 problem. Preference not integrated: the author declared it but the map's command for slides does not carry it.",
+      "findings": [
+        {
+          "check": "check_prefs",
+          "severity": "blocking",
+          "message": "Preference not integrated: the author declared it but the map's command for slides does not carry it.",
+          "evidence": "number_sections: true; needs --number-sections"
+        }
+      ],
+      "needs_decision": true
+    },
+    {
+      "id": "builds/paper/v002.html",
+      "kind": "finding",
+      "summary": "1 problem. Deliverable not derived from the build: same snapshot, same command, same pandoc, different bytes (direct edit).",
+      "findings": [
+        {
+          "check": "rebuild",
+          "severity": "blocking",
+          "message": "Deliverable not derived from the build: same snapshot, same command, same pandoc, different bytes (direct edit).",
+          "evidence": "build has, rebuild lacks: <p>Monthly meetings clearly cause better learning.</p>"
+        }
+      ],
+      "needs_decision": true
+    },
+    {
+      "id": "drafts/paper_full.md",
+      "kind": "finding",
+      "summary": "1 problem. Competing canonical: this file reads as paper/paper.md (same title as the canonical) and has no ARCHIVE line.",
+      "findings": [
+        {
+          "check": "read_map",
+          "severity": "warning",
+          "message": "Competing canonical: this file reads as paper/paper.md (same title as the canonical) and has no ARCHIVE line.",
+          "evidence": "add '> ARCHIVE <date>: superseded by paper/paper.md' after the front matter"
+        }
+      ],
+      "needs_decision": true
+    }
+  ],
+  "decisions": []
+}

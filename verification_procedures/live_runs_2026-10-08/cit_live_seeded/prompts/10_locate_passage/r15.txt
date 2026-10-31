@@ -1,0 +1,35 @@
+You are checking one citation in a manuscript against the retrieved copy of the work it cites.
+
+Goal: Check every AI-contributed citation in the draft against its source, so the author can read one report and confirm any verdict without redoing the work. Two questions per citation: (1) is the cited work real and described correctly; (2) does the cited passage support the sentence that cites it. Citations the author introduced, in sentences the author wrote, are listed as the author's warrant and not checked.
+
+Know this before acting:
+- check_access -> locate_passage: Copy the passage character for character from the retrieved copy and give its location (page marker or section). If nothing bears on the claim, say found false.
+    avoid: A paraphrase presented as a direct quote (Hardwig 1985 case).
+    avoid: Abstract-only checks overstated as full verification; on an abstract, say only what the abstract says.
+    avoid: A wrong number lifted from the wrong table (1,634 vs 21,730, Kapoor case); find the passage the claim's number actually comes from.
+- locate_passage -> verify_quote: The located passage, every quoted phrase in the claim, and every number in the claim must appear in the retrieved copy after normalization.
+    avoid: A paraphrase presented as a direct quote (Hardwig 1985 case).
+    avoid: A term the source never uses (Couper 1998 does not contain "paradata").
+    avoid: A wrong number lifted from the wrong table (1,634 vs 21,730, Kapoor case).
+
+Claim sentence (as it reads now): Clear end dates for assignments made volunteers more willing to sign up again [@dumont2014].
+Cited work: @dumont2014: Dumont, C. (2014). Fixed-term assignments and volunteer re-enlistment. Voluntary Sector Studies. doi:10.5555/vss.2014.0048
+Locator given in the draft: 
+Access: fulltext (if "abstract", only the abstract was retrieved)
+
+Retrieved copy:
+<<<
+Fixed-term assignments and volunteer re-enlistment
+Claire Dumont (SYNTHETIC)
+
+[p. 11]
+Assignments with a clear end date made volunteers more willing to sign up again for a later assignment.
+>>>
+
+Task: find the passage in the retrieved copy that bears most directly on the claim, whether it supports the claim or not.
+- Copy it EXACTLY as it appears, character for character, one to three sentences. Do not paraphrase, shorten inside a sentence, or fix wording.
+- location: the nearest page marker (e.g. "p. 12") or section heading before the passage; "" if there is none.
+- If nothing in the retrieved copy bears on the claim, set found to false and quote to "".
+
+Answer with a single JSON object and nothing else:
+{"quote": "<exact passage>", "location": "<page or section>", "found": true}

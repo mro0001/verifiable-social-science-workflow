@@ -1,0 +1,44 @@
+{
+  "record_version": 1,
+  "seq": 9,
+  "node": "check_access",
+  "kind": "tool",
+  "graph_version": 0.1,
+  "started_at": "2026-10-08T13:10:08-07:00",
+  "duration_s": 0.12,
+  "inputs": {
+    "rows_reused.json": "sha256:f11cf3ca21cb60e8cbf29d32124859088f963b9fd5514af1cb1cae33b7f8ae13",
+    "sources.json": "sha256:9dae14e94d8d162d41adaf259b3aa2d8b566451654328a72dfb1bf17f2810ac8",
+    "refs_index.json": "sha256:6f2f0c8d4e810b42b7b6c9e7a5d9108d42a6f16aad73509bd071a5eb0564ea97"
+  },
+  "execution": {
+    "type": "script",
+    "executor": "python3",
+    "code_files": {
+      "code/09_check_access/_lib.py": "sha256:bab908da53dea59fcf603a8d94c4e3e2e29312f8bf2ff66f631a5e273b937a8b",
+      "code/09_check_access/check_access.py": "sha256:33c798cd1b43a76f2fb312600a8947287852f0e96ef450261393581a64278224"
+    },
+    "exit_code": 0,
+    "logs": [
+      "logs/09_check_access.stdout",
+      "logs/09_check_access.stderr"
+    ],
+    "replay": "exact"
+  },
+  "outputs": {
+    "rows_access.json": "sha256:84599c2674555472802c31803ae4b759d1231f67c9e9a5a9a793043e079adde7",
+    "findings_check_access.json": "sha256:010c3bce9915b29dc7672ea4de33ff3609369a4548f17e07a6b8f45bcf0877d6"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": [
+    {
+      "to": "locate_passage",
+      "rel": "LEADS_TO",
+      "check": null,
+      "fired": true
+    }
+  ]
+}

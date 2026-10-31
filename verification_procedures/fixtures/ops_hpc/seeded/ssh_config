@@ -1,0 +1,8 @@
+# A synthetic copy of an ssh config whose cluster entry has another user and no
+# identity file.
+Host github.example.invalid
+    User git
+
+Host cluster
+    HostName cluster.example.edu
+    User someone_else

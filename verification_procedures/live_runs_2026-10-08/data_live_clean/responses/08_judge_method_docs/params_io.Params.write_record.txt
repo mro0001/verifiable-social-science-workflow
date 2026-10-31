@@ -1,0 +1,5 @@
+{
+"matches": true,
+"mismatches": [],
+"reason": "The docstring correctly claims the function writes a CSV with one row per parameter, and the comment correctly claims the output is sorted by name to ensure identical bytes on reruns, both of which are implemented in the code."
+}

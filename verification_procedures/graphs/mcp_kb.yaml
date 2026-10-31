@@ -1,0 +1,135 @@
+# The knowledge base server written as a procedural graph (appendix A2.4,
+# "Serving entries" and "Procedural graphs"). One run answers one call to one
+# of the server's read-only tools, from the exported index (kb-index version 1)
+# given with the call as kb_index.json. The process that speaks MCP and runs
+# this graph once per call lives in the connections layer.
+stream: mcp_kb
+version: 0.2
+title: The knowledge base server, written as a procedural graph
+goal: >
+  Answer one call to a read-only knowledge base tool from the exported index
+  given with the call, and record which entries the answer returned. The graph
+  never writes to the knowledge base, and every call leaves a run folder that
+  shows what was retrieved.
+triggers:
+  - A harness or model calls a knowledge base tool through an MCP server that runs this graph once per call.
+contracts: contracts/mcp_kb.yaml
+entry: read_request
+exit: respond
+nodes:
+  - {id: read_request, kind: tool, does: "Read the call and the exported index, and route the call to the step that answers it, or to the refusal with the problem stated."}
+  - {id: orient_kb, kind: tool, does: "Give the knowledge base's title and description, its entry count, the count in each group, and every entry's id, title, group, and description, sorted by id."}
+  - {id: search_kb, kind: tool, does: "Score each entry for the query's words, 5 for a word in the title, 4 in the id, 2 in the point, and 1 in the body, and return the entries that score, highest first, each with a snippet of its body."}
+  - {id: list_entries, kind: tool, does: "List every entry's id, title, and group, sorted by id, only those of one group when the call names a group."}
+  - {id: get_entry, kind: tool, does: "Return one entry whole, its six frontmatter fields and its body, or say no entry has that id."}
+  - {id: lookup_provenance, kind: tool, does: "Return where one entry came from, its source, the source's checksum, and the date it was updated, or say no entry has that id."}
+  - {id: refuse, kind: tool, does: "Return the refusal's code and the problem read_request stated, and no entry."}
+  - {id: respond, kind: tool, does: "Write the response, a note naming the entries returned, and a report of the call."}
+edges:
+  - from: read_request
+    rel: TRIGGERS
+    to: orient_kb
+    condition: The call is to orient_kb with no arguments, and the index can be read.
+    check: "request_ok.json:route == orient_kb"
+    guidance: Describe the whole knowledge base from the index given with the call, so a session can choose what to read next.
+    pitfalls:
+      - Answering from entry files on disk instead of the index given with the call.
+      - Leaving an entry out of the overview.
+    source: appendix A2.4 (Serving entries)
+  - from: read_request
+    rel: TRIGGERS
+    to: search_kb
+    condition: The call is to search_kb with a query that is not empty, and the index can be read.
+    check: "request_ok.json:route == search_kb"
+    guidance: Score by the outside server's rules only, so the graph and the outside server give the same answers.
+    pitfalls:
+      - Ranking by anything beyond the outside server's rules, such as a model's sense of relevance.
+      - Returning entries that score nothing.
+    source: appendix A2.4 (Serving entries); the outside server's search rules
+  - from: read_request
+    rel: TRIGGERS
+    to: list_entries
+    condition: The call is to list_entries, its arguments are in order, and the index can be read.
+    check: "request_ok.json:route == list_entries"
+    guidance: Answer from the entries of the index given with the call, filtered by the group when the call names one.
+    pitfalls:
+      - Answering from entry files on disk instead of the index given with the call.
+      - Treating a group no entry has as an error, when it is an empty list.
+    source: appendix A2.4 (Serving entries)
+  - from: read_request
+    rel: TRIGGERS
+    to: get_entry
+    condition: The call is to get_entry with an id, and the index can be read.
+    check: "request_ok.json:route == get_entry"
+    guidance: Return the entry whole, every frontmatter field and the full body, as the index holds it.
+    pitfalls:
+      - Returning part of an entry, such as the point alone or a cut body.
+      - Returning the nearest id when the asked id has no entry.
+    source: appendix A2.4 (Serving entries)
+  - from: read_request
+    rel: TRIGGERS
+    to: lookup_provenance
+    condition: The call is to lookup_provenance with an id, and the index can be read.
+    check: "request_ok.json:route == lookup_provenance"
+    guidance: Return the entry's source, source_commit, and updated fields exactly as the index holds them.
+    pitfalls:
+      - Reading the source file itself to fill in a checksum the index does not hold.
+    source: appendix A2.4 (Serving entries; Managing entries)
+  - from: read_request
+    rel: TRIGGERS
+    to: refuse
+    condition: The call cannot be read, names an unknown tool, has a missing, mistyped, or unexpected argument, or the index cannot be read or is not kb-index version 1.
+    check: "request_ok.json:route == refuse"
+    guidance: State the problem in one sentence and refuse, with bad_request for a problem in the call and bad_index for a problem in the index.
+    pitfalls:
+      - Guessing what a malformed call meant and answering that instead.
+      - Dropping an unexpected argument and answering the rest of the call.
+    source: proposed
+  - from: orient_kb
+    rel: CONVERGES_TO
+    to: respond
+    condition: Always.
+    guidance: The answer names every entry the overview lists.
+    pitfalls:
+      - Leaving out which entries were returned.
+    source: proposal Approach paragraph 4 (the scholar sees which entries the harness retrieves)
+  - from: search_kb
+    rel: CONVERGES_TO
+    to: respond
+    condition: Always.
+    guidance: The answer names every entry the search returned, in its order, and none when nothing matched.
+    pitfalls:
+      - Leaving out which entries were returned.
+    source: proposal Approach paragraph 4 (the scholar sees which entries the harness retrieves)
+  - from: list_entries
+    rel: CONVERGES_TO
+    to: respond
+    condition: Always.
+    guidance: The answer names every entry it lists, so the run shows what was retrieved.
+    pitfalls:
+      - Leaving out which entries were returned.
+    source: proposal Approach paragraph 4 (the scholar sees which entries the harness retrieves)
+  - from: get_entry
+    rel: CONVERGES_TO
+    to: respond
+    condition: Always.
+    guidance: The answer names the entry it returned, or none when no entry has the id.
+    pitfalls:
+      - Leaving out which entries were returned.
+    source: proposal Approach paragraph 4 (the scholar sees which entries the harness retrieves)
+  - from: lookup_provenance
+    rel: CONVERGES_TO
+    to: respond
+    condition: Always.
+    guidance: The answer names the entry whose origin it returned, or none when no entry has the id.
+    pitfalls:
+      - Leaving out which entries were returned.
+    source: proposal Approach paragraph 4 (the scholar sees which entries the harness retrieves)
+  - from: refuse
+    rel: CONVERGES_TO
+    to: respond
+    condition: Always.
+    guidance: A refusal returns no entry, and the report says why the call was refused.
+    pitfalls:
+      - Writing anything outside the run, such as a log beside the knowledge base.
+    source: proposed

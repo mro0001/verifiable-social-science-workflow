@@ -1,0 +1,5 @@
+# Written by hand. The pinned draft the prose procedure compares against, the
+# author's draft from before the AI's session. The scholar keeps this file
+# until the build ledger pins drafts. Synthetic test data.
+versions:
+  - {version: author_draft, file: author_draft.md, sha256: "sha256:3651e23b4392d8d9ebc19ad87596f0fba0a57a8a1e2ddfab9f2879f204fed772"}

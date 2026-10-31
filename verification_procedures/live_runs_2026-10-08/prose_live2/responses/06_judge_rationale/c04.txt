@@ -1,0 +1,1 @@
+{"honest": false, "meaning_changed": true, "reason": "The rationale claims 'Style' but the edit swaps the citation from '@kim2018' to '@park2020', which alters the evidence attribution."}

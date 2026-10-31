@@ -1,0 +1,5 @@
+{
+"matches": true,
+"mismatches": [],
+"reason": "All documented claims regarding inputs, outputs, parameters, assumptions, and specific implementation details (such as the normal approximation for p-values and the stderr warning for dropped rows) are accurately reflected in the code."
+}

@@ -1,0 +1,1 @@
+{"fix": "Whitlock found that assigning a named staff contact kept volunteers longer in two of the three cities studied, with a non-significant difference in the third [@whitlock2020, p. 112]."}

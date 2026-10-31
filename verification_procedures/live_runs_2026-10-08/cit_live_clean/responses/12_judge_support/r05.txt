@@ -1,0 +1,1 @@
+{"verdict": "supports", "reason": "The located passage explicitly states that in two of the three cities, volunteers with a named staff contact stayed longer, which directly matches the claim's assertion regarding the number of cities and the outcome."}

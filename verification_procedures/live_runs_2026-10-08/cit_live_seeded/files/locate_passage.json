@@ -1,0 +1,98 @@
+[
+  {
+    "quote": "Across the 48 programs in our panel, 31% of first-year volunteers exited before completing six months of service. Exit was concentrated in the first eight weeks.",
+    "location": "p. 7",
+    "found": true,
+    "item_id": "r01",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:d53912c8d5341fcd5ae469bf9f0f2cf8e57f3e8d7f5e56a229aaf3313d6f3f3b"
+  },
+  {
+    "quote": "Volunteers tend to exit once they no longer experience the work as theirs.",
+    "location": "p. 12",
+    "found": true,
+    "item_id": "r04",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:cdbd43f956d978d859f5189fab8869f776307c3eb7506734532b19528928ac44"
+  },
+  {
+    "quote": "Programs that reduced orientation to a single session saw twelve-month retention fall by 24% relative to programs that kept a multi-session orientation.",
+    "location": "p. 9",
+    "found": true,
+    "item_id": "r05",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:152e0f60f8502cbb348906898a1add025e21f90b07c677640e19b485b6f0814c"
+  },
+  {
+    "quote": "Volunteers who received a written description of their role remained active longer than volunteers who received only a verbal briefing.",
+    "location": "p. 4",
+    "found": true,
+    "item_id": "r06",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:b82ff1ff153d17588d0e8d103a3bf96d26ee5de4315b42c18bd4b2e16071a1e6"
+  },
+  {
+    "quote": "This article studies the administrative traces of volunteer activity: sign-in sheets, shift logs, and incident forms. These records are kept for operational reasons and are rarely analyzed.",
+    "location": "p. 3",
+    "found": true,
+    "item_id": "r07",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:b6e740e65de1aeacd00e79f3c1cff6261e8003dbe433e70ee3ac3c87a6ca8f85"
+  },
+  {
+    "quote": "Recognition events had no measurable effect on exit among long-serving volunteers. If anything, exit rose slightly in the quarter after an event, a pattern we attribute to volunteers treating the event as a natural point to step down.",
+    "location": "p. 15",
+    "found": true,
+    "item_id": "r08",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:5ae67b063135aa946555de0e5b653eb71fd4a748ade14166c307a8706431cd31"
+  },
+  {
+    "quote": "The quality of supervisors' feedback predicted whether volunteers returned for a second season, net of program size and volunteer age.",
+    "location": "p. 6",
+    "found": true,
+    "item_id": "r09",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:b71f24437e348c6b5d8bb134f105add54ab21f3b387c82d81b8b17536f5595ba"
+  },
+  {
+    "quote": "Volunteers in smaller programs reported stronger attachment to paid staff than volunteers in large programs.",
+    "location": "p. 21",
+    "found": true,
+    "item_id": "r10",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:f5699140afd0e4e7136351260f4483339e3b4ff341f0468a7aefb2aa49a701be"
+  },
+  {
+    "quote": "Youth volunteer programs that paired new volunteers with a peer mentor had higher retention at six months than programs without mentoring.",
+    "location": "Abstract",
+    "found": true,
+    "item_id": "r12",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:85c8854330172ff36273168d33af645f5a33b4b09c425a95ef351b9e8d194d72"
+  },
+  {
+    "quote": "In two of the three cities, volunteers assigned a named staff contact stayed longer than those without one. In the third city the difference was small and not statistically significant.",
+    "location": "p. 112",
+    "found": true,
+    "item_id": "r13",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:447e933541259fbe63090671c7a9442035c85831109a7093f2408d50c1d74f81"
+  },
+  {
+    "quote": "Turnover among volunteer coordinators tends to precede spikes in volunteer exit by one to two months.",
+    "location": "p. 8",
+    "found": true,
+    "item_id": "r14",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:db3237f83bf2f6f81f8d6d2ecabbbd381055ced8c7f90d2392d11136b05afe7f"
+  },
+  {
+    "quote": "Assignments with a clear end date made volunteers more willing to sign up again for a later assignment.",
+    "location": "p. 11",
+    "found": true,
+    "item_id": "r15",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:bd5750c3a807a0d1b1c4f7402880fa16cebc0d3f1c50e27593306204b6fa1811"
+  }
+]

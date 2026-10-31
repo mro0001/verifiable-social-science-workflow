@@ -1,0 +1,44 @@
+{
+  "record_version": 1,
+  "seq": 7,
+  "node": "report",
+  "kind": "tool",
+  "graph_version": 0.1,
+  "started_at": "2026-10-08T12:59:11-07:00",
+  "duration_s": 0.14,
+  "inputs": {
+    "pins.json": "sha256:b7bf2978ddc1e6ea4bf9dc1ae20cc62e92d6545b2214b07168f2d938388e46e3",
+    "changes.json": "sha256:4c625ba54894b94060859a7c1d5976e785ac3cb36771c697f6d618b389e8e9b7",
+    "author_changes.json": "sha256:4e34e0a35752d82dd97e544362602654d057aecc6396156d0bad1239429bc995",
+    "judge_items.json": "sha256:c779c2526e4518db62ade43baa1869c0d9b00f28d17fb1bf3b5e180982a6f489",
+    "judge_rationale.json": "sha256:967a22af9331f6a921aaf997d62a2aae5cc3a98ba55d8cd2ea4d58da716c7436",
+    "handoff.json": "sha256:175a6b8faaed1986ec44dda780a226d837bbfbecc6a0fc8460ad047ea00af67c",
+    "findings_pin_versions.json": "sha256:bb816902f950d951b8936360757a55d55de7d89549195dbf3f23146035288446",
+    "findings_exclude_author.json": "sha256:3fd0ec91ce67f5d96d31b6e8a7d1eb4977d39f96b52a96f60709dd2112f8901e",
+    "findings_content_handoff.json": "sha256:363af47f6835b2fa74478192d0bf087a3136dd8d29bdabddbe7648856a16c590",
+    "findings_rationale_coverage.json": "sha256:0781622624b5d3afb457c79486c407a7b582d519209a89d7d14abc072bc9a8fd"
+  },
+  "execution": {
+    "type": "script",
+    "executor": "python3",
+    "code_files": {
+      "code/07_report/_lib.py": "sha256:bab908da53dea59fcf603a8d94c4e3e2e29312f8bf2ff66f631a5e273b937a8b",
+      "code/07_report/report.py": "sha256:96af901c8ee46f1a372b257e7af78ff60493efd7e2cc63661325854863a5dc38"
+    },
+    "exit_code": 0,
+    "logs": [
+      "logs/07_report.stdout",
+      "logs/07_report.stderr"
+    ],
+    "replay": "exact"
+  },
+  "outputs": {
+    "findings.json": "sha256:e7036c91a3243c770889b8dff96362e3a2ac805a2440665e4a9c9e5071408606",
+    "report.md": "sha256:167ce9b0de1553767a481ad83c5a80437a390171acc0112c648716519c313269"
+  },
+  "checks": {
+    "contract": "pass",
+    "problems": []
+  },
+  "branches": []
+}

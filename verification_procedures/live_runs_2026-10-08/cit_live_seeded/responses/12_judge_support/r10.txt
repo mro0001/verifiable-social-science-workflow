@@ -1,0 +1,1 @@
+{"verdict": "supports", "reason": "The located passage explicitly states that volunteers in smaller programs reported stronger attachment to paid staff than those in large programs, which directly confirms the claim."}

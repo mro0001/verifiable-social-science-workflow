@@ -1,0 +1,55 @@
+# The procedure registry. One procedure for each stream of the proposal's Table 1, with the
+# stream's and the procedure's names as Table 1 gives them, the graph that is the procedure,
+# and what starts it. Another layer's hooks, router, and adapters read this file, and
+# `python3 vg.py procedures` prints it with each procedure's versions and input files.
+#
+# triggers
+#   events   the harness and pipeline events that start the procedure, any of ai_edit,
+#            turn_end, build, and commit
+#   phrases  what a scholar may ask for in a request to start it
+#   files    glob patterns of the files whose change makes the stream out of date
+# quick_steps
+#   the steps of the light working check, the mechanical steps cheap enough to run at the
+#   end of every turn, in the graph's order. `python3 vg.py run <id> --quick` runs them.
+registry_version: 1
+procedures:
+  - id: prose
+    stream: prose
+    name: Prose
+    procedure: Change review
+    graph: graphs/prose.yaml
+    triggers:
+      events: [ai_edit, turn_end, build, commit]
+      phrases: [verify prose, check AI edits, change review]
+      files: ["*.md"]
+    quick_steps: [pin_versions, diff_changes, exclude_author, content_handoff, rationale_coverage]
+  - id: citations
+    stream: citations
+    name: References
+    procedure: Source support
+    graph: graphs/citations.yaml
+    triggers:
+      events: [ai_edit, turn_end, build, commit]
+      phrases: [verify citations, check references, citation report]
+      files: ["*.md", "*.bib", refs.yaml]
+    quick_steps: [pin_document, extract_citations, match_references, read_origin]
+  - id: data
+    stream: data
+    name: Data and analysis code
+    procedure: Code
+    graph: graphs/data.yaml
+    triggers:
+      events: [ai_edit, turn_end, build, commit]
+      phrases: [verify data, check the analysis, rerun the analysis]
+      files: ["*.py", "*.R", "*.qmd", params.yaml, numbers.yml, pipeline.yaml]
+    quick_steps: [inventory, check_raw, check_params, check_docs]
+  - id: build
+    stream: build
+    name: Build
+    procedure: Build integrity
+    graph: graphs/build.yaml
+    triggers:
+      events: [ai_edit, turn_end, build, commit]
+      phrases: [verify the build, check builds]
+      files: [Makefile, "*.md", BUILDS.md]
+    quick_steps: [read_map, check_ledger, check_hardcoding, check_ai_touch, check_prefs]

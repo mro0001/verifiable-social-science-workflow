@@ -1,0 +1,30 @@
+[
+  {
+    "check": "attribute_origin",
+    "evidence": "castellanos2017",
+    "item": "r02",
+    "message": "not checked, author's warrant (sentence moved, text unchanged)",
+    "severity": "info"
+  },
+  {
+    "check": "match_references",
+    "evidence": "refs.yaml",
+    "item": "castellanos2017",
+    "message": "cited only in the author's own sentences; reference not checked",
+    "severity": "info"
+  },
+  {
+    "check": "match_references",
+    "evidence": "refs.yaml",
+    "item": "osei2015",
+    "message": "in the reference list but not cited in the draft",
+    "severity": "info"
+  },
+  {
+    "check": "reuse_prior",
+    "evidence": "sha256:30ec7adba66f",
+    "item": "r06",
+    "message": "verdict carried over from the check of 2026-09-30 (sentence and retrieved copy unchanged)",
+    "severity": "info"
+  }
+]

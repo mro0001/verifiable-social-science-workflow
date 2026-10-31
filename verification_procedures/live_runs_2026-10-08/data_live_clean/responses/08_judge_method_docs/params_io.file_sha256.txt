@@ -1,0 +1,1 @@
+{"matches": true, "mismatches": [], "reason": "The docstring accurately describes the code's behavior of reading a file in binary mode and returning a 'sha256:' prefixed hex digest."}

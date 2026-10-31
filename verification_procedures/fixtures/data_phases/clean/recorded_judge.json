@@ -1,0 +1,30 @@
+{
+  "find_descriptions:analysis": {
+    "descriptions": [
+      {"quote": "We regressed satisfaction on income in thousands by ordinary least squares.",
+       "where": [{"file": "s2_model.py", "start": 7, "end": 7}, {"file": "s2_model.py", "start": 10, "end": 14}]},
+      {"quote": "The table reports the intercept and the slope to three decimals.",
+       "where": [{"file": "s2_model.py", "start": 16, "end": 20}]}
+    ]
+  },
+  "find_descriptions:cleaning": {
+    "descriptions": [
+      {"quote": "Rows with a missing income were dropped.",
+       "where": [{"file": "s1_clean.py", "start": 14, "end": 16}]},
+      {"quote": "We kept respondents aged 18 or older.",
+       "where": [{"file": "s1_clean.py", "start": 19, "end": 21}]},
+      {"quote": "Incomes above 250,000 were top-coded to 250,000.",
+       "where": [{"file": "s1_clean.py", "start": 24, "end": 28}]}
+    ]
+  },
+  "find_descriptions:collection": {
+    "descriptions": [
+      {"quote": "We drew a synthetic sample of 60 respondents with a fixed random seed.",
+       "where": [{"file": "s0_collect.py", "start": 7, "end": 13}]},
+      {"quote": "Each record gives the respondent's region, age, income, and satisfaction on a five-point scale.",
+       "where": [{"file": "s0_collect.py", "start": 9, "end": 12}]},
+      {"quote": "The sample was saved once as the raw file and never edited.",
+       "where": [{"file": "s0_collect.py", "start": 15, "end": 19}]}
+    ]
+  }
+}

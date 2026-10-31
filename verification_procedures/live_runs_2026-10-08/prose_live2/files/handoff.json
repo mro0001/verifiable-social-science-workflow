@@ -1,0 +1,79 @@
+[
+  {
+    "after": "We draw on personnel records from 52 agencies in three states [@alvarez2019].",
+    "before": "We draw on personnel records from 48 agencies in three states [@alvarez2019].",
+    "change_id": "c03",
+    "kind": "edit",
+    "streams": [
+      "data"
+    ],
+    "token_diff": {
+      "numbers": {
+        "added": [
+          "52"
+        ],
+        "removed": [
+          "48"
+        ]
+      }
+    }
+  },
+  {
+    "after": "First-year turnover is especially costly for small agencies [@park2020].",
+    "before": "Turnover in the first year is costly for small agencies [@kim2018].",
+    "change_id": "c04",
+    "kind": "edit",
+    "streams": [
+      "citations"
+    ],
+    "token_diff": {
+      "citations": {
+        "added": [
+          "park2020"
+        ],
+        "removed": [
+          "kim2018"
+        ]
+      }
+    }
+  },
+  {
+    "after": "One clerk said the process \"felt like a genuine conversation about the work.\"",
+    "before": "One clerk said the process \"felt like a real conversation about the job.\"",
+    "change_id": "c06",
+    "kind": "edit",
+    "streams": [
+      "citations"
+    ],
+    "token_diff": {
+      "quotes": {
+        "added": [
+          "felt like a genuine conversation about the work."
+        ],
+        "removed": [
+          "felt like a real conversation about the job."
+        ]
+      }
+    }
+  },
+  {
+    "after": "The results show that structured interviews reduce early exits by 9 percentage points.",
+    "before": "The results suggest that structured interviews may reduce early exits by 9 percentage points.",
+    "change_id": "c08",
+    "kind": "edit",
+    "streams": [
+      "data"
+    ],
+    "token_diff": {
+      "strength": {
+        "added": [
+          "show"
+        ],
+        "removed": [
+          "may",
+          "suggest"
+        ]
+      }
+    }
+  }
+]

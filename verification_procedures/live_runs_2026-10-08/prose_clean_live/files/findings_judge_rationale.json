@@ -1,0 +1,9 @@
+[
+  {
+    "check": "judge_rationale",
+    "evidence": "The rationale accurately describes the deletion of a redundant sentence, but the removal of the sentence itself constit… (live:qwen/qwen3.5-122b)",
+    "item": "c04",
+    "message": "change alters meaning beyond what the rationale says",
+    "severity": "warning"
+  }
+]

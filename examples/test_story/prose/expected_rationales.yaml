@@ -1,0 +1,16 @@
+# Written by hand. What the audit layer should write out for the test story.
+# Each entry is one sentence the story session added to manuscript.md, with the
+# assistant's own text before that edit as its stated reason. The anchor is the
+# added sentence, and session_ref is the session's public id.
+- id: r01
+  anchor: "Clear end dates for assignments made volunteers more willing to sign up again [@dumont2014]."
+  kind: insert
+  rationale: "I'll add the first finding after your sentence on fit."
+  session: "5f3c0413-2a7d-4b9e-8c61-a0d4e7b2c913"
+  session_ref: S55ac19fb97b9
+- id: r02
+  anchor: "Recognition events reduced exit among long-serving volunteers [@nakamura2020]."
+  kind: insert
+  rationale: "Now the second finding."
+  session: "5f3c0413-2a7d-4b9e-8c61-a0d4e7b2c913"
+  session_ref: S55ac19fb97b9

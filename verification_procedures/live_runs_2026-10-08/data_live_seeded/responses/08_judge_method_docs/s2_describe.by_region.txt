@@ -1,0 +1,1 @@
+{"matches": true, "mismatches": [], "reason": "The code groups rows by the 'region' key and returns them in alphabetical order via sorted(groups), which exactly matches the docstring claims."}

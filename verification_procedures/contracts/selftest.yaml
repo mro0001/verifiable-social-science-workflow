@@ -1,0 +1,18 @@
+list_items:
+  reads: [words.txt]
+  produces:
+    items.json: {items: {id: str, word: str}}
+    count.json: {n: int}
+judge_items:
+  reads: [items.json]
+  produces:
+    judge_items.json: {items: {item_id: str, is_color: bool}}
+skipped_branch:
+  reads: [items.json]
+  produces: {}
+report:
+  reads_optional: ["findings_*.json"]  # any upstream findings, including findings_unjudged_<node>.json
+  reads: [judge_items.json]
+  produces:
+    findings.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+    report.md: {headings: [Summary, Problems]}

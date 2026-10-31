@@ -1,0 +1,10 @@
+# A synthetic copy of an ssh config. No host here is real and no key is named
+# that exists.
+Host github.example.invalid
+    User git
+
+Host cluster
+    HostName cluster.example.edu
+    User scholar
+    IdentityFile ~/.ssh/id_ed25519_cluster
+    IdentitiesOnly yes

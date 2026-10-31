@@ -1,0 +1,1 @@
+{"matches": true, "mismatches": [], "reason": "The docstring accurately describes the sequence of cleaning rules and the final write operations shown in the code."}

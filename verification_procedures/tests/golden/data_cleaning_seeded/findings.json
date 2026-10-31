@@ -1,0 +1,23 @@
+[
+  {
+    "check": "check_descriptions",
+    "evidence": "We kept only respondents aged 18 or older.",
+    "item": "d02",
+    "message": "The quote is not in the final build's text.",
+    "severity": "warning"
+  },
+  {
+    "check": "check_descriptions",
+    "evidence": "",
+    "item": "d04",
+    "message": "The finding step gave no place in the scripts that carries out this description.",
+    "severity": "warning"
+  },
+  {
+    "check": "outline_steps",
+    "evidence": "",
+    "item": "s1_clean.py line 31",
+    "message": "The function winsorize is never called by the script, so it is not a step.",
+    "severity": "info"
+  }
+]

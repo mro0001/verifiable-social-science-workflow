@@ -1,0 +1,40 @@
+# Contracts for the knowledge base server graph. A run's inputs are the call,
+# request.json ({"tool": ..., "arguments": {...}}), and the exported index,
+# kb_index.json (kb-index version 1). Every answering step reads the routed
+# call and the index and writes answer.json. Only respond writes the response.
+read_request:
+  reads: [request.json, kb_index.json]
+  produces:
+    request_ok.json: {route: [orient_kb, search_kb, list_entries, get_entry, lookup_provenance, refuse], tool: str, arguments: dict, problem: str, error_code: ["", bad_request, bad_index]}
+    findings_read_request.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+orient_kb:
+  reads: [request_ok.json, kb_index.json]
+  produces:
+    answer.json: {tool: str, result: dict, returned: list}
+search_kb:
+  reads: [request_ok.json, kb_index.json]
+  produces:
+    answer.json: {tool: str, result: dict, returned: list}
+list_entries:
+  reads: [request_ok.json, kb_index.json]
+  produces:
+    answer.json: {tool: str, result: dict, returned: list}
+get_entry:
+  reads: [request_ok.json, kb_index.json]
+  produces:
+    answer.json: {tool: str, result: dict, returned: list}
+lookup_provenance:
+  reads: [request_ok.json, kb_index.json]
+  produces:
+    answer.json: {tool: str, result: dict, returned: list}
+refuse:
+  reads: [request_ok.json, kb_index.json]
+  produces:
+    answer.json: {tool: str, result: dict, returned: list}
+respond:
+  reads: [request_ok.json, answer.json]
+  reads_optional: ["findings_*.json"]  # read_request's findings, so the response carries the refusal's warning
+  produces:
+    response.json: {tool: str, result: dict}
+    findings.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+    report.md: {headings: [Summary, Problems, Call]}

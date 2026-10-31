@@ -1,0 +1,12 @@
+# Synthetic knowledge base for the server graph
+
+> Three made-up entries for the mcp_kb tests.
+
+## FORMATS
+
+- [The build ledger](formats/formats-ledger.md): The build ledger holds one row per numbered build.
+- [The numbers manifest](formats/formats-manifest.md): The numbers manifest maps each placeholder key to the output that produced it.
+
+## LOOP
+
+- [The review loop](loop/loop-review.md): The scholar reviews each build in Word and hands it back.

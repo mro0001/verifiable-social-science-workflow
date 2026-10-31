@@ -1,0 +1,15 @@
+# Planted faults in the seeded prose fixture, for the prose report of version 0.3. item is
+# the change id (cNN) or the record entry id (rNN) as in the findings. A fault is caught when
+# a blocking finding or a warning names its check and item.
+faults:
+  - {id: F1, check: rationale_coverage, item: c05, what: an AI change with no recorded reason (record entry r09)}
+  - {id: F2, check: content_handoff, item: c03, what: an AI change that alters a number (48 -> 52)}
+  - {id: F3, check: content_handoff, item: c04, what: an AI change that swaps a citation key}
+  - {id: F4, check: content_handoff, item: c06, what: an AI change that alters a quoted passage}
+  - {id: F5, check: content_handoff, item: c08, what: an AI change that strengthens a claim (suggest, may -> show)}
+  - {id: F6, check: rationale_coverage, item: r08, what: a record entry naming a sentence that did not change}
+  - {id: F7, check: rationale_coverage, item: c09, what: the record says edit and the diff says insert}
+# Must appear in no blocking finding or warning.
+not_flagged:
+  - {id: N1, item: c01, kind: move, what: 'a moved sentence, which must not be an insert plus a delete, and which the record gives as a delete entry and an insert entry (r01 and r10)'}
+  - {id: N2, item: c07, kind: scholar, what: the scholar's own change, which no record entry names, listed and not checked}

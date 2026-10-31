@@ -1,0 +1,30 @@
+[
+  {
+    "verdict": "supports",
+    "reason": "The located passage on page 7 explicitly states that across the 48 programs in the panel, 31% of first-year volunteers exited before completing six months of service, which matches the claim's numbers, scope, and direction exactly.",
+    "item_id": "r01",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:2c75656dee250bc6f73e2f9e977f7d05b18e9c36dc7baeb51d22c7d58fddd895"
+  },
+  {
+    "verdict": "supports",
+    "reason": "The located passage on page 33 explicitly states that Moreno calls the issue the 'role-match problem' and argues it is invisible in sign-up data because such forms record availability rather than purpose, matching the claim exactly.",
+    "item_id": "r03",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:62cfa94dfd3599f7e27a1c69e303ef7f706ac7491e6c2f2e85aff47941683021"
+  },
+  {
+    "verdict": "supports",
+    "reason": "The located passage explicitly states that volunteers with flexible schedules contributed more hours but had no difference in tenure, which directly matches the claim's assertion of an association with more hours but not longer tenure.",
+    "item_id": "r04",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:5cca02540641fd4c38010e79645dd97edb72cb865cecb431e218e3d73cb8ddbf"
+  },
+  {
+    "verdict": "supports",
+    "reason": "The located passage explicitly states that in two of the three cities, volunteers with a named staff contact stayed longer, which directly matches the claim's assertion regarding the number of cities and the outcome.",
+    "item_id": "r05",
+    "executor": "live:qwen/qwen3.5-122b",
+    "prompt_sha256": "sha256:17aa272b03d0d4d8a2c35ebc9f76c015d1545f0b7f15af9232e826194e934a45"
+  }
+]

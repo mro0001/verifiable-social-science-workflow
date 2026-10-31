@@ -1,0 +1,9 @@
+[
+  {
+    "check": "check_numbers",
+    "evidence": "numbers.yml '0.015'; replayed table_model.csv estimate = '0.011'",
+    "item": "slope_income_k",
+    "message": "manuscript number does not come from the process",
+    "severity": "blocking"
+  }
+]

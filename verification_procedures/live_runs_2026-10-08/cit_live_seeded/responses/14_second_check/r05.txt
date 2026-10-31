@@ -1,0 +1,5 @@
+{
+  "agree": true,
+  "verdict": "does_not_support",
+  "reason": "The source reports a 24% drop in twelve‑month retention, not the 42% claimed."
+}

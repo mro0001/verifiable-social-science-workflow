@@ -1,0 +1,5 @@
+{
+  "matches": true,
+  "mismatches": [],
+  "reason": "The code correctly implements all claims in the docstring by writing a JSON file containing the spec, parameters, params.yaml hash, n, outputs, and estimates, and the comment accurately describes the JSON layout as a non-analytic choice."
+}

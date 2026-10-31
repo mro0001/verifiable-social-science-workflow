@@ -1,0 +1,31 @@
+You are the independent second checker for one citation. A first checker judged that the source does not fully support the sentence. Read the source yourself first, decide, and only then compare.
+
+Goal: Check every AI-contributed citation in the draft against its source, so the author can read one report and confirm any verdict without redoing the work. Two questions per citation: (1) is the cited work real and described correctly; (2) does the cited passage support the sentence that cites it. Citations the author introduced, in sentences the author wrote, are listed as the author's warrant and not checked.
+
+Know this before acting:
+- collect_verdicts -> second_check: Recheck from the retrieved copy first, then compare with the first verdict; agree only if you reach the same verdict on your own.
+    avoid: Deferring to the first checker instead of reading the source.
+    avoid: A source that says the opposite (Burge inverted).
+- second_check -> settle_verdicts: Keep both verdicts; a disagreement is shown to the author, not resolved silently.
+    avoid: Overwriting the first verdict with the second.
+
+Claim sentence (judge it as worded now): Marchetti calls the records volunteers leave behind "civic paradata" [@marchetti2012].
+Cited work: @marchetti2012: Marchetti, P. (2012). Administrative traces of volunteer work. Records and Society. doi:10.5555/rs.2012.0109
+Access: fulltext
+Passage the first checker located (p. 3): This article studies the administrative traces of volunteer activity: sign-in sheets, shift logs, and incident forms. These records are kept for operational reasons and are rarely analyzed.
+
+Full retrieved copy:
+<<<
+Administrative traces of volunteer work
+Paolo Marchetti (SYNTHETIC)
+
+[p. 3]
+This article studies the administrative traces of volunteer activity: sign-in sheets, shift logs, and incident forms. These records are kept for operational reasons and are rarely analyzed.
+>>>
+
+First checker's verdict: does_not_support, because: The source describes the records as 'administrative traces' but does not use the specific term 'civic paradata' attributed to Marchetti in the claim.
+
+Verdicts: supports / partly / does_not_support (same meanings as for the first checker: partly = the source says less or with conditions the sentence drops; does_not_support = it says something else, the opposite, or nothing).
+
+Answer with a single JSON object and nothing else; agree is true only if your own verdict equals the first checker's:
+{"agree": true | false, "verdict": "supports" | "partly" | "does_not_support", "reason": "<one sentence>"}

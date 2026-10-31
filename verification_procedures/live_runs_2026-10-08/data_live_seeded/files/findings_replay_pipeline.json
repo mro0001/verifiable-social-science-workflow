@@ -1,0 +1,23 @@
+[
+  {
+    "check": "replay_pipeline",
+    "evidence": "line 16: committed '  \"params_sha256\": \"sha256:f2dd99589ab9088ba40d9eacf1ca176fd2f2ef4a829' / replayed '  \"params_sha256\": \"sha256:0a5141ade02767b3bc4075e416ab782c0e31d33014e'",
+    "item": "model_record_model.json",
+    "message": "output does not reproduce: hand-edited or stale",
+    "severity": "blocking"
+  },
+  {
+    "check": "replay_pipeline",
+    "evidence": "line 4: committed 'South,10,0,91.320,3.200' / replayed 'South,10,0,86.820,3.200'",
+    "item": "table_descriptives.csv",
+    "message": "output does not reproduce: hand-edited or stale",
+    "severity": "blocking"
+  },
+  {
+    "check": "replay_pipeline",
+    "evidence": "<replay>/s3_model.py:50: UserWarning: 3 rows dropped: blank satisfaction or income_k   warnings.warn(\"%d rows dropped: blank %s or %s\" % (dropped, outcome, predictor))",
+    "item": "s3_model.py",
+    "message": "step wrote warnings to stderr while exiting 0",
+    "severity": "warning"
+  }
+]
