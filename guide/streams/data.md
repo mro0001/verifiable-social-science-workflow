@@ -35,7 +35,7 @@ The score prints `{"faults": 2, "recall": 1.0, "missed": []} extras=0`. The plan
 
 ## See it on a real proposal
 
-[The final-numbers report on the appendix](https://github.com/mro0001/verifiable-proposal-demo/blob/main/verification/appendix/data/report.md) reruns the pipeline from the raw archives, and all 152 numbers agree with the rerun.
+[The final-numbers report on the appendix](https://github.com/mro0001/verifiable-proposal-demo/blob/main/project/verification/appendix/data/report.md) reruns the pipeline from the raw archives, and all 152 numbers agree with the rerun.
 
 ## Go deeper
 

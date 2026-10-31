@@ -24,7 +24,7 @@ The score prints `{"faults": 7, "recall": 1.0, "missed": []} extras=0`, so all 7
 
 ## See it on a real proposal
 
-[The build report on the proposal](https://github.com/mro0001/verifiable-proposal-demo/blob/main/verification/proposal/build/report.md) finds one source for each document and no AI write to a build folder.
+[The build report on the proposal](https://github.com/mro0001/verifiable-proposal-demo/blob/main/project/verification/proposal/build/report.md) finds one source for each document and no AI write to a build folder.
 
 ## Go deeper
 

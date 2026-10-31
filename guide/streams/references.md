@@ -27,7 +27,7 @@ The score prints `{"faults": 13, "recall": 1.0, "missed": []} extras=0`, so all 
 
 ## See it on a real proposal
 
-[The references report on the proposal](https://github.com/mro0001/verifiable-proposal-demo/blob/main/verification/proposal/citations/report.md) lists 35 citations, 32 of them first named by an AI.
+[The references report on the proposal](https://github.com/mro0001/verifiable-proposal-demo/blob/main/project/verification/proposal/citations/report.md) lists 35 citations, 32 of them first named by an AI.
 
 ## Go deeper
 

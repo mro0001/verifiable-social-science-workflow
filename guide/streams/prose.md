@@ -28,7 +28,7 @@ The score prints `{"faults": 7, "recall": 1.0, "missed": []} extras=0`, so all 7
 
 ## See it on a real proposal
 
-[The prose report on the proposal](https://github.com/mro0001/verifiable-proposal-demo/blob/main/verification/proposal/prose/report.md) lists 72 changes, all of them the AI's.
+[The prose report on the proposal](https://github.com/mro0001/verifiable-proposal-demo/blob/main/project/verification/proposal/prose/report.md) lists 72 changes, all of them the AI's.
 
 ## Go deeper
 
