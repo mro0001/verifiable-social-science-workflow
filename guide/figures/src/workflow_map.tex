@@ -1,0 +1,80 @@
+\def\DoNotLoadEpstopdf{}
+\documentclass[tikz,border=4pt]{standalone}
+\input{appendixstyle.tex}
+% The repository map: the proposal's layer figure (Figure A1 of the appendix) with the
+% folder that holds each part. Each layer is a folder and each column is a stream.
+% Build a highlighted copy by defining \hole before this file is read, for example
+%   pdflatex -jobname=map_audit "\def\hole{(13.85,2.1) rectangle (16.25,-3.7)}\input{workflow_map.tex}"
+% Everything outside the hole is faded. Without \hole the plain map is drawn.
+\begin{document}
+\hyphenpenalty=10000
+\begin{tikzpicture}
+\tikzset{lab/.style={font=\fontsize{9}{11}\selectfont\bfseries, anchor=west, align=left, text width=2.4cm},
+         col/.style={minimum width=2.5cm, minimum height=0.8cm, text width=2.3cm, font=\fontsize{9}{11}\selectfont\bfseries}}
+\newcommand{\pg}[1]{{\fontsize{8}{9.6}\selectfont\ttfamily\mdseries #1\par}}
+\newcommand{\sm}[1]{{\fontsize{8}{9.6}\selectfont\mdseries #1\par}}
+\foreach \i in {0,1,2,3} {\pgfmathsetmacro{\x}{3.95+2.75*\i}\expandafter\xdef\csname cx\i\endcsname{\x}}
+% scholar, and the features that help the scholar adopt the workflow
+\node[person, col, minimum width=4.4cm, text width=4.2cm] (sch) at (8.1,2.85) {Scholar};
+\node[anchor=west, align=left, text width=4.6cm, text=cmuted] at (0,2.85) {\pg{features/}\sm{setup, project organizer, portal}};
+% observability band
+\fill[cgreenfill!60!white] (2.6,0.75) rectangle (13.6,1.95);
+\draw[cgreen, line width=0.8pt] (2.6,0.75) -- (13.6,0.75) (2.6,1.95) -- (13.6,1.95);
+\node[lab, text=cgreen] at (0,1.35) {Observability layer\par\vspace{2pt}\pg{observability/}};
+\foreach \x/\t in {5.1/Model reasoning, 8.1/Tool calls, 11.1/Tool results} {
+  \node[box, draw=cgreen, fill=cgreenfill, text=cgreen, minimum width=2.4cm, text width=2.2cm, minimum height=0.85cm, font=\fontsize{9}{11}\selectfont\bfseries] at (\x,1.35) {\t};
+}
+\draw[->, line width=0.9pt, cgreen] (9.6,1.95) -- (9.6,0 |- sch.south);
+\node[font=\fontsize{8}{9.6}\selectfont, text=cgreen, anchor=west, inner sep=1pt] at (9.72,2.2) {live view};
+% audit band
+\fill[cauditfill!60!white] (14.0,1.95) rectangle (16.1,-3.55);
+\draw[caudit, line width=0.8pt] (14.0,1.95) -- (14.0,-3.55) (16.1,1.95) -- (16.1,-3.55);
+\node[font=\fontsize{9}{11}\selectfont\bfseries, text=caudit, anchor=north, align=center] at (15.05,1.88) {Audit layer\\{\fontsize{8}{9.6}\selectfont\ttfamily\mdseries audit\_layer/}};
+\tikzset{aui/.style={box, draw=caudit, fill=cauditfill, text=caudit, minimum width=1.9cm, text width=1.75cm, minimum height=0.75cm, font=\fontsize{9}{11}\selectfont\bfseries}}
+\node[aui] (a0) at (15.05,0.45) {Session transcripts};
+\node[aui] (a1) at (15.05,-0.6) {Tool call\\logs};
+\node[aui] (a2) at (15.05,-1.6) {Metadata};
+\node[aui] (a3) at (15.05,-2.65) {Databases};
+\draw[->, line width=0.9pt, caudit] (14.0,-3.25) -- (13.6,-3.25);
+\draw[->, line width=0.9pt, caudit] (14.0,1.35) -- (13.6,1.35);
+% AI harness, reached through the connections
+\node[ai, col, minimum width=5.6cm, text width=5.4cm, minimum height=0.95cm] (h) at (8.1,0) {AI harness\par\sm{any harness, reached through \texttt{connections/}}};
+\draw[<->, line width=0.8pt, cink] (6.6,0 |- sch.south) -- (6.6,0 |- h.north);
+\draw[->, line width=0.9pt, caudit] (h.east) -- (14.0,0 |- h.east);
+\draw[line width=0.8pt, cbrass] (h.south) -- (8.1,-0.85);
+\draw[line width=0.8pt, cbrass] (3.95,-0.85) -- (12.2,-0.85);
+% AI contributions, the four streams
+\node[lab, text=cbrass] at (0,-1.5) {AI contributions\par\vspace{2pt}\sm{four streams}};
+\foreach \i/\t in {0/Prose, 1/References, 2/Data and\\analysis code, 3/Build} {
+  \node[ai, col] (s\i) at (\csname cx\i\endcsname,-1.5) {\t};
+  \draw[flow, cbrass] (\csname cx\i\endcsname,-0.85) -- (s\i.north);
+}
+% verification layer
+\fill[credfill!60!white] (2.6,-2.45) rectangle (13.6,-3.55);
+\draw[cred, line width=0.8pt] (2.6,-2.45) -- (13.6,-2.45) (2.6,-3.55) -- (13.6,-3.55);
+\node[lab, text=cred] at (0,-3.05) {Verification layer\par\vspace{2pt}\pg{verification\_\\procedures/}};
+\foreach \i/\t/\u in {0/Change review/prose.yaml, 1/Source support/citations.yaml, 2/Code/data.yaml, 3/Build integrity/build.yaml} {
+  \node[ver, col, minimum height=0.9cm] (v\i) at (\csname cx\i\endcsname,-3.0) {\t\par\pg{\u}};
+  \draw[flow, cbrass] (s\i.south) -- (v\i.north);
+}
+% reproducible pipeline
+\node[lab, text=cslate] at (0,-4.55) {Reproducible pipeline\par\vspace{2pt}\pg{ospipe/}};
+\foreach \i/\t/\u/\f in {0/manuscript text/manuscript.md/\pg, 1/bibliography/refs.bib/\pg, 2/computed results/numbers.yml/\pg, 3/build/one build command/\sm} {
+  \node[pipe, col, font=\fontsize{9}{11}\selectfont, minimum height=1.0cm, text width=2.5cm, inner xsep=1.5pt] (p\i) at (\csname cx\i\endcsname,-4.55) {\t\par\f{\u}};
+  \draw[flow, cred] (v\i.south) -- (p\i.north);
+}
+\node[prod, col, minimum width=2.3cm, text width=2.1cm, minimum height=1.0cm] (rp) at (14.95,-4.55) {Research product\par{\fontsize{8}{9.6}\selectfont\mdseries\color{white!85!cslate} numbered build\par}};
+\draw[line width=0.8pt, cslate] (p0.south) -- ++(0,-0.22) -- ($(p3.south)+(0,-0.22)$);
+\foreach \i in {1,2} {\draw[line width=0.8pt, cslate] (p\i.south) -- ++(0,-0.22);}
+\draw[flow, cslate] ($(p3.south)+(0,-0.22)$) -- (p3.south);
+\draw[flow, cslate] (p3.east) -- (rp.west);
+\node[pipe, fill=white, minimum width=10.75cm, minimum height=0.6cm, font=\fontsize{9}{11}\selectfont\bfseries] (vc) at (8.075,-5.8) {Version control (Git)};
+% what the figure does not draw as a box
+\node[anchor=west, align=left, text width=16cm, text=cmuted, font=\fontsize{8}{9.6}\selectfont] at (0,-6.6) {The arrows into and out of the verification layer are plain file copies, kept in \texttt{handoffs/}. A sample project to try is in \texttt{examples/}.};
+% optional highlight: fade everything outside \hole
+\ifdefined\hole
+  \fill[white, opacity=0.72, even odd rule] (current bounding box.south west) rectangle (current bounding box.north east) \hole;
+  \draw[cink, line width=1.3pt, rounded corners=3pt] \hole;
+\fi
+\end{tikzpicture}
+\end{document}

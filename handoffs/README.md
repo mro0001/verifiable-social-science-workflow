@@ -2,6 +2,10 @@
 
 Each handoff is a plain file copy from one layer's files to another's. They are kept here, in one place, so a scholar can replace each one when connecting the layers. No layer's code calls them. A scholar runs them by hand, and the end-to-end tests run them as commands.
 
+![The map with the verification layer highlighted, the layer these handoffs feed and read from](../guide/figures/map_verification.png)
+
+These handoffs are the arrows into and out of the verification layer on the map. [Back to the map](../README.md).
+
 A handoff only copies. It never converts, merges, or decides anything, and it never reads a record's content beyond what its row says.
 
 | Script | Stream | Copies from (layer and path) | Copies to |

@@ -1,31 +1,66 @@
 # An AI-Enhanced Workflow for Verifiable Social Science
 
-This repository is the research artifact of the workflow, a prototype that builds research products from plain-text files, records and tags the AI work behind them, and checks each AI contribution before the scholar approves or holds it. With it a reader can build a research product from plain text, run the four verification procedures on the test files that come with them, and run the tests and commands below. The proposal's technical appendix explains how each part works and gives its status.
+This repository is the research artifact of the workflow, a prototype that builds research products from plain-text files, records and tags the AI work behind them, and checks each AI contribution before the scholar approves or holds it.
 
-## Layout
+![The workflow's layers, each labeled with the folder that holds it. Rows are layers and columns are the four streams of AI contributions.](guide/figures/map.png)
 
-Each folder holds one part of the workflow, and the layers share no code. Only files and command lines cross from one layer to another.
+**See it run on a real project.** [verifiable-proposal-demo](https://github.com/mro0001/verifiable-proposal-demo) holds this workflow's reports on its own proposal and technical appendix.
+
+## Each layer is a folder
+
+| On the map | Folder | What it does |
+|---|---|---|
+| Scholar | [`features/`](features/README.md) | Sets up the workflow and each project, organizes a project, and builds the learning portal |
+| Observability layer | [`observability/`](observability/README.md) | Shows AI work as it happens |
+| AI harness | [`connections/`](connections/README.md) | Connects the scholar's own harness, model, and software through wrappers, MCP servers, and adapters |
+| Audit layer | [`audit_layer/`](audit_layer/README.md) | Records and tags every AI session and tool call, and holds the databases |
+| Verification layer | [`verification_procedures/`](verification_procedures/README.md) | Checks the AI contributions in each stream and writes a report for the scholar |
+| Reproducible pipeline | [`ospipe/`](ospipe/README.md) | Builds each research product from plain text, filling every number from one numbers file |
+| Arrows into and out of the verification layer | [`handoffs/`](handoffs/README.md) | Copies files from one layer to another |
+| Not on the map | [`examples/`](examples/README.md) | A sample project, and the test story every layer's tests use |
+
+The layers share no code. Only files and command lines cross from one layer to another.
+
+## Each column is a stream
+
+| Stream | Check | What a program checks | What a model does |
+|---|---|---|---|
+| [Prose](guide/streams/prose.md) | Change review | Each AI change to the text has a recorded reason, and changes to numbers, citations, quotes, negations, or a claim's strength are flagged | Nothing |
+| [References](guide/streams/references.md) | Source support | Each cited work exists, and each quote is word for word in its source | Locates the passage a sentence draws on |
+| [Data and analysis code](guide/streams/data.md) | Code | Every number the text cites comes out the same in a rerun from the raw data | Nothing. In the three phase reports, finds the sentences that describe a phase and the lines that carry it out |
+| [Build](guide/streams/build.md) | Build integrity | Every build comes from the build command, and no AI wrote into a build | Nothing |
+
+A model never gives a verdict. Programs check, and the scholar approves or holds each item.
+
+## Try it in a minute
+
+Nothing here uses the network or calls a model, apart from installing the packages.
+
+```
+python3 -m pip install -r requirements.txt
+cd verification_procedures
+VG_OFFLINE=1 python3 vg.py run graphs/citations.yaml --run runs/try_citations --inputs fixtures/citations/seeded --judge recorded:fixtures/citations/seeded/recorded_judge.json
+python3 vg.py score --run runs/try_citations --truth fixtures/citations/seeded/truth.yaml
+```
+
+The last command prints `{"faults": 13, "recall": 1.0, "missed": []} extras=0`. The references check caught all 13 faults planted in a synthetic manuscript, and its report is `runs/try_citations/files/report.md`. Each stream's page gives the same two commands for its own check.
+
+## Full reference
+
+### Other files
 
 | Path | What it is |
 |---|---|
-| `ospipe/` | The reproducible pipeline, documents and programs that build each research product from plain-text files. Each module has its own `CONTRACT.md`, listed in `ospipe/MODULES.md` |
-| `audit_layer/` | The audit layer, which captures, records, stores, and tags every AI session transcript and tool call. It also holds the databases, including the knowledge base where the procedural graphs are kept, whose entries are in `audit_layer/kb/corpus/`, and writes a public, searchable index of a project's AI sessions that names the AI contributions each session made to the final reports while the transcripts stay private |
-| `verification_procedures/` | The verification layer, programs and sequential steps that identify AI contributions in four streams, check them, and write a report for each stream. The scholar approves or holds each item. The Word review modules are in `verification_procedures/review/` |
-| `observability/` | The observability layer, which lets the scholar watch AI work as it happens, including the work of subagents, AI programs outside the harness, and the knowledge base entries the AI reads |
-| `connections/` | The wrappers, Model Context Protocol (MCP) servers, and adapters through which the scholar's own software, such as an AI harness, an AI model, and statistical software, reaches the workflow |
-| `features/` | Pipeline setup, a project organizer, and an interactive web portal, which make the workflow easier to adopt and to learn |
-| `handoffs/` | Plain file copies from one layer's files to another's, kept in one place so each can be replaced when the layers are connected |
-| `examples/` | A small sample project with two research products built from one set of computed results, and the one synthetic test story every layer's tests come from |
 | `templates/notes/` | The notes layer template, ten areas with boundary rules |
 | `design/` | The verification procedures design of October 9, 2026 and the file protocol of September 18, 2026, which the appendix cites, and the authors' design notes of October 8, 2026, on the four verification streams, which the graphs cite by date. `design/README.md` says what each file is |
 | `MANUSCRIPT_WORKFLOW.md` | The design spec the procedural graphs and knowledge base entries cite. Its dated status sections are kept as history |
 | `verification_procedures/live_runs_2026-10-08/` | The records of the seven live model runs of October 8, 2026 |
 
-## Requirements
+### Requirements
 
 The commands need Python 3.9 or later with the packages in `requirements.txt` (PyYAML, python-docx 1.2 or later, and pytest), installed with `pip install -r requirements.txt`. They also need Pandoc 3 and Make on the command path. The stored test builds were made with Pandoc 3.9.0.2. Microsoft Word 16 is needed only for the Word compare script, `verification_procedures/review/word_compare.applescript`, which takes full paths.
 
-## Run the prototype offline
+### Run the prototype offline
 
 None of these commands uses the network or calls an AI model, apart from installing the packages. The first block installs the packages and runs the eight test suites from the repository's folder. Each suite runs in its own folder, since test file names repeat across folders.
 
@@ -88,29 +123,29 @@ Three settings change how the references procedure looks up a DOI that its cache
 
 Section A4 of the technical appendix gives the expected result of each block.
 
-## Use it on your own project
+### Use it on your own project
 
 To use the workflow on your own work, run `python3 -m features setup system` once from the repository's folder, then `python3 -m features setup project` for each project. `features/setup/GUIDE.md` gives the answers each command reads, where each one writes, and what setup never does.
 
-## Status
+### Status
 
 Every layer is built and tested. At this commit the eight suites pass with the counts below.
 
 | Suite | Tests |
 |---|---|
-| `ospipe` | 426 |
-| `verification_procedures` | 748 |
-| `audit_layer` | 1,217 |
-| `examples/test_story` | 40 |
-| `handoffs/tests` | 98 |
+| `ospipe` | 443 |
+| `verification_procedures` | 872 |
+| `audit_layer` | 1,333 |
+| `examples/test_story` | 39 |
+| `handoffs/tests` | 148 |
 | `observability/tests` | 338 |
-| `connections/tests` | 554 |
-| `features/tests` | 641 |
-| Total | 4,062 |
+| `connections/tests` | 559 |
+| `features/tests` | 644 |
+| Total | 4,376 |
 
 Nothing has yet been run live on this build. The records of the seven live model runs of October 8, 2026, on an earlier build, are in `verification_procedures/live_runs_2026-10-08/`.
 
-## License
+### License
 
 The license of each file follows its type.
 

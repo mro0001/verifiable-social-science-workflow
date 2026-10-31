@@ -2,6 +2,10 @@
 
 The connectors reach the scholar's own harness, model, and software without replacing them (appendix A2.2, Figure A2). They sit outside any single project, so one setup serves every project. The repository installs nothing. Every step below is done by hand, and each says how to undo it.
 
+![The map with the AI harness and its connections highlighted](../guide/figures/map_connections.png)
+
+These connectors are how the AI harness, the AI model, and the scholar's other software reach every layer of the map. [Back to the map](../README.md).
+
 Run every command from the repository folder, or set `PYTHONPATH` to it, since `connections` is a folder of this repository and is not installed. The `python3` must be one that has PyYAML. Python 3.9 is enough.
 
 ## The connectors and their commands

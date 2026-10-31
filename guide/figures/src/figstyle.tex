@@ -1,0 +1,33 @@
+% Shared style for proposal figures (2026-10-22 visuals pass).
+% Sized to print at 6.5 in (16.5 cm) wide; body text 9 pt sans, nothing below 8 pt.
+\usepackage[T1]{fontenc}
+\usepackage[scaled=0.95]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,positioning,calc,patterns.meta}
+\definecolor{cink}{HTML}{16191F}
+\definecolor{cmuted}{HTML}{4B5563}
+\definecolor{cslate}{HTML}{2F4858}
+\definecolor{cslatefill}{HTML}{E9EFF3}
+\definecolor{cbrass}{HTML}{7A5C12}
+\definecolor{cbrassfill}{HTML}{F5EFDE}
+\definecolor{cred}{HTML}{8C2F39}
+\definecolor{credfill}{HTML}{F8E9EA}
+\definecolor{cgreen}{HTML}{235C53}
+\definecolor{cgreenfill}{HTML}{E3F0EC}
+\definecolor{caudit}{HTML}{5B3A8E}
+\definecolor{cauditfill}{HTML}{EFE9F6}
+\definecolor{cghost}{HTML}{6B7280}
+\definecolor{cghostfill}{HTML}{F3F4F6}
+\tikzset{
+  >={Triangle[length=5pt,width=4.5pt]},
+  box/.style={draw, rounded corners=1.5pt, line width=0.8pt, align=center, inner sep=4pt, font=\fontsize{9}{11}\selectfont},
+  sub/.style={font=\fontsize{8}{9.6}\selectfont, text=cmuted},
+  ai/.style={box, draw=cbrass, fill=cbrassfill, text=cbrass},
+  ver/.style={box, draw=cred, fill=credfill, text=cred},
+  pipe/.style={box, draw=cslate, fill=cslatefill, text=cslate},
+  prod/.style={box, draw=cslate, fill=cslate, text=white},
+  person/.style={box, draw=cink, fill=white, text=cink},
+  ghost/.style={box, draw=cghost, fill=cghostfill, text=cghost, dash pattern=on 3pt off 2pt},
+  flow/.style={->, line width=0.8pt},
+}

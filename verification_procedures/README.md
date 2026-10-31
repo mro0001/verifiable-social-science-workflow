@@ -2,6 +2,10 @@
 
 Procedural graphs for the four verification streams. Each graph is a verification standard written so it can run: the steps, the order, the conditions that route the work, and the pitfalls the checker meets at the step where they bite. Every run leaves step records, a trail, and a report, so the check itself can be checked.
 
+![The map with the verification layer highlighted](../guide/figures/map_verification.png)
+
+This folder is the verification layer on the map. Each stream has a page that follows its column: [prose](../guide/streams/prose.md), [references](../guide/streams/references.md), [data and analysis code](../guide/streams/data.md), and [build](../guide/streams/build.md). [Back to the map](../README.md).
+
 This is the procedural-graph idea from the Methods and Theory Graph pilot (Lu et al. 2026, arXiv 2609.09153) applied to verification standards and templates, not to methods.
 
 ## Layout

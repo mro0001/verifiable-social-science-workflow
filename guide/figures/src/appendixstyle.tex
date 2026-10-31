@@ -1,0 +1,32 @@
+% Shared style for the technical appendix figures (2026-10-26).
+% Builds on the proposal's figstyle.tex (same fonts, colors, and box styles) and adds
+% one encoding for development status, used the same way in every appendix figure.
+%   built and tested   solid border (the proposal's normal box styles)
+%   built, no test     solid border, and the box text says "no test"
+%   specified          dashed border            -> add the key  spec
+%   planned            dotted grey border        -> use the style planned
+%   no code (by hand)  dotted arrow              -> add the key  byhand
+%   outside the artifact  solid grey border      -> use the style outside
+\input{figstyle.tex}
+\renewcommand{\ttdefault}{lmtt}% vector typewriter font (same design as the default, not a bitmap)
+\tikzset{
+  spec/.style={dash pattern=on 3pt off 2pt},
+  planned/.style={box, draw=cghost, fill=cghostfill, text=cghost, dash pattern=on 0.9pt off 1.6pt},
+  outside/.style={box, draw=cghost, fill=white, text=cghost},
+  byhand/.style={dash pattern=on 0.9pt off 1.6pt},
+  prog/.style={font=\fontsize{8}{9.6}\selectfont\ttfamily},
+  legendbox/.style={draw, rounded corners=1pt, line width=0.8pt, minimum width=0.55cm, minimum height=0.32cm, inner sep=0pt},
+  legendtext/.style={font=\fontsize{8}{9.6}\selectfont, text=cink, anchor=west, inner sep=1pt},
+}
+% \statuslegend{x}{y} draws the four-item status legend with its left edge at (x,y).
+\newcommand{\statuslegend}[2]{%
+  \begin{scope}[shift={(#1,#2)}]
+    \node[legendbox, draw=cink, fill=white] (lg1) at (0.275,0) {};
+    \node[legendtext] at (0.65,0) {Built and tested};
+    \node[legendbox, draw=cink, fill=white, spec] (lg2) at (3.35,0) {};
+    \node[legendtext] at (3.725,0) {Specified};
+    \node[legendbox, draw=cghost, fill=cghostfill, dash pattern=on 0.9pt off 1.6pt] (lg3) at (5.75,0) {};
+    \node[legendtext] at (6.125,0) {Planned};
+    \node[legendbox, draw=cghost, fill=white] (lg4) at (7.85,0) {};
+    \node[legendtext] at (8.225,0) {Outside the research artifact};
+  \end{scope}}
