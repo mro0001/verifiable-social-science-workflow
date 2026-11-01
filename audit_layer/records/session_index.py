@@ -36,7 +36,16 @@ from the templates in session_index_templates/.
   sessions whose public ids are listed (withheld). Each is labeled as written
   by a model, and as reviewed by the author only when a person's review wrote
   the session's current row (choice 4). In them the home folder's path
-  becomes ~ and each scrub term, in any case, becomes [withheld].
+  becomes ~ and each scrub term, in any case, becomes [withheld]. A term is
+  matched as a whole word, with no letter just before or after it, and its
+  words may be joined by a space, by nothing, or by one '.', '_', or '-', the
+  way the publish check matches it, so a short name inside a longer word, such
+  as Man inside manuscript, is left as it is.
+- Each scrub term, in any case, also becomes [withheld] in every file name
+  the index writes, the files a session read, edited, and wrote, in
+  sessions.csv, each session's page, and index.html, and in the project's
+  name, since a file or folder can be named for the scholar. Two names that
+  become the same are listed once.
 - A contribution reached the final report when its item is in the stream's
   latest results file given, the last one given for the stream, and names
   the session's public id in its sessions list. Its reference id is
@@ -59,6 +68,7 @@ import io
 import json
 import os
 import re
+import unicodedata
 from collections import namedtuple
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -348,9 +358,9 @@ def _row(store, session, events, files, other, contributions, summaries, withhel
         "models": list(session["models"] or []),
         "parent": _parent(session["harness_session_id"]),
         "tool_calls": tool_calls,
-        "files_read": sorted(files["read"]),
-        "files_edited": sorted(files["edited"]),
-        "files_written": sorted(files["wrote"]),
+        "files_read": _scrubbed_names(files["read"], scrub),
+        "files_edited": _scrubbed_names(files["edited"], scrub),
+        "files_written": _scrubbed_names(files["wrote"], scrub),
         "other_files": other,
     }
     row.update(_model_fields(session, ref, summaries, withheld, scrub, homes))
@@ -466,13 +476,36 @@ def _model_fields(session, ref, summaries, withheld, scrub, homes) -> Dict[str, 
     return scrubbed
 
 
+def _scrub_pattern(term):
+    """A term as a whole word, case ignored: its words joined by any space, by nothing, or
+    by one '.', '_', or '-', with no letter just before or after."""
+    tokens = [re.escape(token) for token in unicodedata.normalize("NFC", term).split()]
+    return re.compile(r"(?<![^\W\d_])" + r"(?:\s+|[._-]?)".join(tokens) + r"(?![^\W\d_])", re.IGNORECASE)
+
+
 def _scrub(text: str, terms: Sequence[str], homes: Sequence[str]) -> str:
-    """The text with each home path made ~ and each term, in any case, made [withheld]."""
+    """The text with each home path made ~ and each term, in any case and as a whole word,
+    made [withheld]."""
     for home in homes:
         text = text.replace(home, "~")
-    for term in sorted(terms, key=len, reverse=True):
-        text = re.sub(re.escape(term), SCRUBBED, text, flags=re.IGNORECASE)
+    # An empty term would match between every two characters, so it is left out.
+    for term in sorted((term for term in terms if term.strip()), key=len, reverse=True):
+        text = _scrub_pattern(term).sub(SCRUBBED, text)
     return text
+
+
+def _scrubbed_names(names, terms):
+    """The file names with each term, in any case, made [withheld], sorted, each once.
+
+    A name is relative to the project or an earlier folder, so it holds no home
+    path, and only the terms are replaced.
+    """
+    found = []
+    for name in names:
+        name = _scrub(name, terms, ())
+        if name not in found:
+            found.append(name)
+    return sorted(found)
 
 
 def write_session_index(
@@ -490,7 +523,8 @@ def write_session_index(
 
     results are the results files given, each a file or PRODUCT=FILE,
     withhold the public ids whose model fields are withheld, scrub the terms
-    written as [withheld], and also the folders the project's work was done in
+    written as [withheld] in the model fields and in every file name the index
+    writes, and also the folders the project's work was done in
     before it moved. Every file is made before any is written, so a refusal
     leaves the folder as it was.
     """
@@ -512,7 +546,8 @@ def write_session_index(
         if ref not in listed:
             raise SessionIndexError(f"the withhold list names {ref}, which no session in the index has")
     unlisted = sorted(ref for ref in contributions if ref not in listed)
-    name = os.path.basename(os.path.realpath(str(project)))
+    # The project's folder name is written too, so a term in it is replaced as in a file's name.
+    name = _scrub(os.path.basename(os.path.realpath(str(project))), scrub, ())
     planned = [(CSV_FILE, _csv(rows))]
     planned.append((README_FILE, _readme(rows, name, summaries, withhold, scrub)))
     for row in rows:
@@ -594,6 +629,9 @@ def _readme(rows, name, summaries, withhold, scrub) -> str:
             "In them only the home folder's path is written as ~, so they may name other files"
             " and full paths."
         )
+    files_note = ""
+    if scrub:
+        files_note = " In these names each term on the scrub list, in any case, is written as [withheld]."
     table = [
         "| Session | Started | Minutes | Harness | Title | AI contributions in the final reports |",
         "|---|---|---|---|---|---|",
@@ -614,6 +652,7 @@ def _readme(rows, name, summaries, withhold, scrub) -> str:
             "project": _md(name),
             "sessions": _count(len(rows), "AI session"),
             "contributing": str(contributing),
+            "files_note": files_note,
             "model_note": " ".join(notes),
             "table": "\n".join(table),
         },

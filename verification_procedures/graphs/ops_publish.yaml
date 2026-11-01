@@ -1,0 +1,84 @@
+# Checking a verification repository before it is published, written as a
+# procedural graph. The run reads the settings that python3 -m features publish
+# build writes beside its output (publish_check.yaml) and the repository it
+# wrote, packed as repo.tar. Code lives in implementations/ops/, which the
+# GitHub and cluster procedures share. The patterns the file scan looks for
+# are named here in words and written out only in the step's code.
+stream: ops
+version: 0.1
+title: Check a verification repository before it is published
+goal: >
+  Check a folder written by python3 -m features publish build before it goes
+  public: that it holds no private file or text, that every number its README
+  shows still comes from its results files, and that each research product
+  rebuilds from it.
+triggers:
+  - The scholar asks to check a verification repository before it is published.
+  - A folder written by publish build is about to be published.
+contracts: contracts/ops_publish.yaml
+entry: publish_settings
+exit: publish_report
+nodes:
+  - {id: publish_settings, kind: tool, does: "Read the settings file, fill each missing field with its default, and block on a value of the wrong kind or a workflow folder that is not an absolute path."}
+  - {id: publish_files, kind: tool, does: "Scan every file in the repository and in each archive it holds, and block on a private folder, a run folder, a database, a credential-like name, an archive that cannot be scanned, a file too large, an email address, a home folder path on a Mac, Linux, or Windows machine or a temporary folder, an excluded folder, a key, a name from the settings, a raw id of an indexed session, an author named in an Office file, a tar header that names its maker, or a file a .gitignore in the repository would hide from git."}
+  - {id: publish_counts, kind: tool, does: "Recount every number the manifest records from the results files, the ledgers, the numbers file, the references, and the session index in the repository, and block on a count that differs, a generated page changed after it was assembled, or a file missing from the repository or not listed in its manifest."}
+  - {id: publish_rebuild, kind: tool, does: "Rebuild each research product with make from a copy of the repository's project folder, dated by its latest build, and block when make fails or the new build's text differs from the latest one."}
+  - {id: publish_report, kind: tool, does: "Write a report with the settings, the file scan, the recount, and the rebuild."}
+edges:
+  - from: publish_settings
+    rel: LEADS_TO
+    to: publish_files
+    check: "settings.json:valid == true"
+    condition: Nothing in the settings file is blocking.
+    guidance: Scan every file of the repository with the settings' terms, allow entries, and size limits before any number is checked.
+    pitfalls:
+      - Treating a scan with no terms as clean, when a name the scholar wants kept out is found only when the settings list it.
+    source: proposed
+  - from: publish_settings
+    rel: CONVERGES_TO
+    to: publish_report
+    check: "settings.json:valid == false"
+    condition: The settings file has a blocking problem.
+    guidance: Report each problem with the field it names, and scan no files.
+    pitfalls:
+      - Guessing a setting the file does not give, when the defaults are the only values the check may assume.
+    source: proposed
+  - from: publish_files
+    rel: LEADS_TO
+    to: publish_counts
+    condition: Always, once every file is scanned.
+    guidance: Recount every number from the files in the repository, whatever the scan found, so the report lists every problem at once.
+    pitfalls:
+      - Accepting a finding with a broad allow entry, when an entry with only a path accepts every finding in every file it matches.
+      - Publishing an archive this check cannot open, when its files are never scanned.
+      - Trusting a file's name to say what it holds, when a compressed file, an older Office file, or plain text can carry any name.
+      - Printing a key or a term in the report, when the report may be shared and only a short hash or the term's number belongs there.
+    source: proposed
+  - from: publish_counts
+    rel: TRIGGERS
+    to: publish_rebuild
+    check: "settings.json:rebuild == true"
+    condition: The settings ask for each product to be rebuilt.
+    guidance: Rebuild each product from a copy of the repository's project folder, at the date of its latest numbered build.
+    pitfalls:
+      - Trusting a number the README shows, when only the results files give it and the recount compares the two.
+      - Editing a generated page by hand after it was assembled, when the manifest records its checksum and the page is assembled again instead.
+    source: proposed
+  - from: publish_counts
+    rel: CONVERGES_TO
+    to: publish_report
+    check: "settings.json:rebuild == false"
+    condition: The settings turn the rebuild off.
+    guidance: Report the scan and the recount, and say that no product was rebuilt.
+    pitfalls:
+      - Calling the products rebuildable when the rebuild did not run.
+    source: proposed
+  - from: publish_rebuild
+    rel: CONVERGES_TO
+    to: publish_report
+    condition: Always, once each product was rebuilt, failed, or was skipped.
+    guidance: Report each product with its latest build, the rebuilt checksum, and whether the text matches.
+    pitfalls:
+      - Reading different bytes as a different build, when another pandoc version gives the same text in other bytes.
+      - Rebuilding without the latest build's date, when the date is part of the bytes.
+    source: proposed

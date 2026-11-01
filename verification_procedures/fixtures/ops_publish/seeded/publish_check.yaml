@@ -1,0 +1,10 @@
+# Settings for checking the synthetic verification repository. The workflow
+# folder and the excluded folder are synthetic, and rebuild is false, so a run
+# only scans the files and recounts the numbers.
+workflow_root: /scholar/workflow
+terms: [Jordan Doe]
+allow: []
+max_file_mb: 100
+warn_file_mb: 50
+rebuild: false
+excluded_folders: [/scholar/private_records]

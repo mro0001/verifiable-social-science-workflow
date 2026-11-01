@@ -431,7 +431,10 @@ def main(argv=None) -> int:
     index_out.add_argument(
         "--scrub",
         metavar="FILE",
-        help="a file listing terms, one to a line, written as [withheld] in the model-written fields",
+        help=(
+            "a file listing terms, one to a line, each written as [withheld], in any case,"
+            " in the model-written fields and in the file names the index lists"
+        ),
     )
 
     args = parser.parse_args(argv)

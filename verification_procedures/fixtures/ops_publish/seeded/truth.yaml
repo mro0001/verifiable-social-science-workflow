@@ -1,0 +1,18 @@
+# The faults the seeded repository adds to the clean one. Each item is a file's
+# path in the tar, a tar's path and a member's, a folder, or a count's key.
+faults:
+  - {id: f01, check: publish_files, item: project/manuscript.md}
+  - {id: f02, check: publish_files, item: project/params.yaml}
+  - {id: f03, check: publish_files, item: project/.env}
+  - {id: f04, check: publish_files, item: project/audit/session_writes.jsonl}
+  - {id: f05, check: publish_files, item: project/deploy/notes.txt}
+  - {id: f06, check: publish_files, item: project/acknowledgments.md}
+  - {id: f07, check: publish_files, item: project/drafts/draft.docx}
+  - {id: f08, check: publish_counts, item: docs/reading_reports.md}
+  - {id: f09, check: publish_counts, item: citations.ai}
+  - {id: f10, check: publish_files, item: project/verification/runs/x}
+  - {id: f11, check: publish_files, item: project/verification/paper/prose/report.md}
+  - {id: f12, check: publish_files, item: project/session_log.txt}
+  - {id: f13, check: publish_files, item: "project/archive.tar:inner.tar"}
+  - {id: f14, check: publish_files, item: project/keys/token.txt}
+  - {id: f15, check: publish_counts, item: prose.changes}

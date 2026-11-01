@@ -1,10 +1,11 @@
 """The features' command line, python3 -m features.
 
-Three command groups, setup, organize, and portal, which later steps fill.
-A group given with no command prints its help. setup system is step F3,
+Four command groups, setup, organize, portal, and publish, which later steps
+fill. A group given with no command prints its help. setup system is step F3,
 setup project is step F5, setup plan is step S1, organize scan is steps F6
 and F7, organize check is step F8, organize apply is step F9, organize undo
-and organize log are step F10, and portal build is step F15.
+and organize log are step F10, portal build is step F15, and publish plan and
+publish build follow the publish design.
 """
 import argparse
 import sys
@@ -15,6 +16,7 @@ from features.organizer import inventory as organize_inventory
 from features.organizer import proposals as organize_proposals
 from features.organizer import undo as organize_undo
 from features.portal import render as portal_render
+from features.publish import commands as publish_commands
 from features.setup import plan as setup_plan
 from features.setup import project as setup_project
 from features.setup import system as setup_system
@@ -23,13 +25,14 @@ GROUPS = (
     ("setup", "set up the scholar's system once, then each project"),
     ("organize", "propose, check, apply, and undo changes to a project's files"),
     ("portal", "build the portal, a static site to learn and critique the workflow"),
+    ("publish", "assemble a verification repository from a verified project, to check and publish"),
 )
 
 
 def _parser():
     parser = argparse.ArgumentParser(
         prog="features",
-        description="Pipeline setup, the project organizer, and the portal.")
+        description="Pipeline setup, the project organizer, the portal, and publishing.")
     parser.add_argument("--version", action="version", version="features " + __version__)
     groups = parser.add_subparsers(dest="group", metavar="GROUP")
     helps = {}
@@ -47,6 +50,8 @@ def _parser():
             organize_undo.add_commands(commands)
         if name == "portal":
             portal_render.add_command(commands)
+        if name == "publish":
+            publish_commands.add_command(commands)
         helps[name] = group
     return parser, helps
 

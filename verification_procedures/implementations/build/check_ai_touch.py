@@ -8,7 +8,11 @@ in the map plus ship/.
 - build write that did not come from `make <its deliverable>` -> warning
 - ai writes to canonical sources are expected and only counted
 A line that gives its session's public id, session_ref, puts it on the finding for an
-AI write, so the report can name the session.
+AI write, so the report can name the session. The evidence names the session by that
+public id, and by the line's session only when the line gives no session_ref, since the
+audit layer's session is the harness's own id, which ties a published report to the
+private transcript. An unreadable line that is still a JSON object shows its session the
+same way.
 """
 import json
 import posixpath
@@ -16,6 +20,27 @@ import posixpath
 import _lib
 
 NODE = "check_ai_touch"
+
+
+def session_ref(w):
+    """The public id the line gives as session_ref, else empty text."""
+    ref = w.get("session_ref") if isinstance(w, dict) else None
+    return ref.strip() if isinstance(ref, str) else ""
+
+
+def unreadable(line):
+    """The first 80 characters of an unreadable line, with its session given as its
+    session_ref when the line is a JSON object that gives both."""
+    try:
+        w = json.loads(line)
+    except ValueError:
+        return line[:80]
+    raw = w.get("session") if isinstance(w, dict) else None
+    ref = session_ref(w)
+    if ref and isinstance(raw, str) and raw:
+        for form in (raw, json.dumps(raw)[1:-1]):
+            line = line.replace(form, ref)
+    return line[:80]
 
 
 def main():
@@ -31,17 +56,19 @@ def main():
             actor, path, tool, session = w["actor"], posixpath.normpath(w["path"]), w.get("tool", ""), w.get("session", "")
         except (ValueError, KeyError, AttributeError):
             findings.append(_lib.finding(NODE, "warning", "session_writes.jsonl:%d" % n,
-                                         "Unreadable record line; a write that cannot be read cannot be cleared.", line[:80]))
+                                         "Unreadable record line; a write that cannot be read cannot be cleared.",
+                                         unreadable(line)))
             continue
         owner = next((owners[p] for p in owners if path.startswith(p)), None)
         protected = owner is not None or path.startswith("ship/")
-        ev = "session %s, %s via %s" % (session, actor, tool)
+        ref = session_ref(w)
+        ev = "session %s, %s via %s" % (ref or session, actor, tool)
         if actor == "ai":
             if protected:
                 found = _lib.finding(NODE, "blocking", path,
                                      "AI touched the deliverable directly; only the map's build rule may write here.", ev)
-                if isinstance(w.get("session_ref"), str) and w["session_ref"]:
-                    found["session_ref"] = w["session_ref"]
+                if ref:
+                    found["session_ref"] = ref
                 findings.append(found)
             elif path in canon:
                 ai_canon += 1

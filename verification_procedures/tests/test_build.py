@@ -312,3 +312,52 @@ def test_rebuild_uses_the_ledger_dates_midnight(tmp_path):
     rb = files_json(rd, "rebuild.json")
     assert (rb["rebuilt"], rb["matched"]) == (1, 1), rb
     assert [f for f in files_json(rd, "findings_rebuild.json") if f["severity"] != "info"] == []
+
+
+# ---------------------------------------------------------------- the session's public id
+
+# A harness's own id for a session, as the audit layer's record gives it in session.
+RAW_SESSION = "0b6e3a52-7c41-4d9e-a8f3-5e2c71d09b46"
+
+
+def _public_id(raw):
+    """The session's public id, as the audit layer works it out."""
+    return "S" + _sha(raw.encode("utf-8"))[:12]
+
+
+def test_check_ai_touch_names_a_session_by_its_public_id_and_never_by_its_raw_id(tmp_path):
+    """The audit layer's record gives the harness's own id as session and the public id as
+    session_ref. The evidence names the public id, so the raw id reaches no finding, field,
+    results file, or report, and a line that gives no session_ref keeps its session."""
+    ref = _public_id(RAW_SESSION)
+    lines = [
+        {"actor": "ai", "path": "builds/slides/v001.html", "session": RAW_SESSION, "session_ref": ref,
+         "tool": "edited"},
+        {"actor": "ai", "path": "builds/paper/v002.html", "session": "s-0105", "tool": "Write"},
+        {"actor": "author", "path": "builds/paper/v001.md", "session": RAW_SESSION, "session_ref": ref,
+         "tool": "Edit"},
+        # no actor or path, so the line cannot be read
+        {"session": RAW_SESSION, "session_ref": ref, "tool": "edited"},
+    ]
+    inputs = tmp_path / "inputs"
+    inputs.mkdir()
+    shutil.copy(FIX / "seeded" / "project.tar", inputs / "project.tar")
+    (inputs / "session_writes.jsonl").write_text("".join(json.dumps(line) + "\n" for line in lines))
+    rd = run_fixture(tmp_path, "public_id", inputs)
+    got = {f["item"]: f for f in files_json(rd, "findings_check_ai_touch.json")}
+    assert got["builds/slides/v001.html"]["evidence"] == "session %s, ai via edited" % ref
+    assert got["builds/slides/v001.html"]["session_ref"] == ref
+    assert got["builds/paper/v002.html"]["evidence"] == "session s-0105, ai via Write"
+    assert "session_ref" not in got["builds/paper/v002.html"]
+    assert got["builds/paper/v001.md"]["evidence"] == "session %s, author via Edit" % ref
+    assert got["session_writes.jsonl:4"]["severity"] == "warning"
+    assert ref in got["session_writes.jsonl:4"]["evidence"]
+    # Only the input copied into the run holds the raw id.
+    outputs = [rd / "results.json"] + [p for p in sorted((rd / "files").iterdir())
+                                       if p.name not in ("session_writes.jsonl", "project.tar")]
+    assert "report.md" in [p.name for p in outputs]
+    for p in outputs:
+        assert RAW_SESSION not in p.read_text(encoding="utf-8", errors="replace"), p.name
+    report = (rd / "files" / "report.md").read_text()
+    assert "- The AI write to builds/slides/v001.html came from session %s." % ref in report
+    assert run("verify", "--run", str(rd)).returncode == 0

@@ -10,8 +10,9 @@ session's AI contributions in the final reports by the results files given
 (choice 5).
 
 The sessions are the test story's synthetic Claude Code sessions, the
-synthetic subagent conversation in fixtures/claude_code, and two synthetic
-sessions written here that ran in another folder, with the folder token
+synthetic subagent conversation in fixtures/claude_code, two synthetic
+sessions written here that ran in another folder, and, for the scrub of file
+names, one written here whose files are named with a term, with the folder token
 {{PROJECT}} replaced with a temporary folder. The model pass answers from a
 recorded book written here, the results files are written here, and every
 test runs with its home folder inside a temporary folder. No real session
@@ -60,6 +61,8 @@ SUBAGENT_ID = STORY_ID + "/agent-" + AGENT_ID
 # file, so it touched the project, and the second does not.
 READER_ID = "d4c3b2a1-0f9e-4d8c-b7a6-152433425160"
 ELSEWHERE_ID = "e5d4c3b2-1a0f-4e9d-8c7b-261534435261"
+# A synthetic session run in the project whose files are named with the scrub's word.
+NAMED_ID = "f6e5d4c3-2b1a-4f0e-9d8c-372645546372"
 
 STORY_REF = "S55ac19fb97b9"
 TOUCH_REF = "Sadbdcaecef34"
@@ -81,7 +84,11 @@ def write_session(path, lines):
 
 
 def synthetic(session_id, cwd, start, reads):
-    """A Claude Code session run in cwd, reading each file of reads, with one model and a version."""
+    """A Claude Code session run in cwd, reading each file of reads, with one model and a version.
+
+    An entry of reads that is a pair (tool, path) calls that tool, Read, Edit, or
+    Write, on the path instead.
+    """
     records = []
     previous = None
 
@@ -108,6 +115,12 @@ def synthetic(session_id, cwd, start, reads):
         }
     )
     for number, path in enumerate(reads):
+        tool, path = path if isinstance(path, tuple) else ("Read", path)
+        given = {"file_path": str(path)}
+        if tool == "Edit":
+            given.update({"old_string": "draft", "new_string": "notes"})
+        elif tool == "Write":
+            given["content"] = "notes"
         call = "toolu_%s_%d" % (session_id[:8], number)
         add(
             {
@@ -116,9 +129,7 @@ def synthetic(session_id, cwd, start, reads):
                 "message": {
                     "role": "assistant",
                     "model": "claude-synthetic-2",
-                    "content": [
-                        {"type": "tool_use", "id": call, "name": "Read", "input": {"file_path": str(path)}}
-                    ],
+                    "content": [{"type": "tool_use", "id": call, "name": tool, "input": given}],
                 },
             }
         )
@@ -790,6 +801,101 @@ def test_without_a_scrub_list_the_home_path_is_still_replaced(index, home_folder
     reader = by_id(index)[public_id(READER_ID)]
     assert reader["gist"] == "The AI read notes kept in ~/elsewhere and the manuscript."
     assert SECRET in reader["title"]
+    assert "In these names each term" not in (index / "README.md").read_text(encoding="utf-8")
+
+
+# The files the named session reads, edits, and writes, each named with the scrub's
+# word in another case, and the names the index gives them under the scrub. The two
+# notes files differ only in case, so they become one name.
+NAMED_FILES = [
+    ("Read", "notes/%s_own_words.md" % SECRET),
+    ("Read", "notes/%s_own_words.md" % SECRET.lower()),
+    ("Edit", "drafts_%s/plan.md" % SECRET.upper()),
+    ("Write", "%s.md" % SECRET.lower()),
+]
+SCRUBBED_FILES = {
+    "files_read": ["notes/[withheld]_own_words.md"],
+    "files_edited": ["drafts_[withheld]/plan.md"],
+    "files_written": ["[withheld].md"],
+}
+
+
+@pytest.fixture
+def named(tmp_path, captured, project):
+    """The store with a session run in the project whose files are named with the scrub's word."""
+    calls = [(tool, project / name) for tool, name in NAMED_FILES]
+    path = write_session(
+        tmp_path / "root" / "-encoded-project-folder" / (NAMED_ID + ".jsonl"),
+        synthetic(NAMED_ID, project, "2026-10-21T17:00", calls),
+    )
+    capture_session(captured, "claude_code", path, {"excluded_folders": []})
+    return captured
+
+
+def test_the_scrub_replaces_each_term_in_the_file_names_the_index_writes(
+    tmp_path, named, audit_home, project
+):
+    # A file named for the scholar, such as notes in their own words, is listed
+    # under the scrub with the name written as [withheld], in every file of the index.
+    terms = tmp_path / "scrub.txt"
+    terms.write_text(SECRET + "\n", encoding="utf-8")
+    out = tmp_path / "index"
+    assert write_index(audit_home, project, out, "--scrub", terms) == 0
+    ref = public_id(NAMED_ID)
+    row = by_id(out)[ref]
+    for column, names in SCRUBBED_FILES.items():
+        assert row[column] == "; ".join(names), column
+    entry = [item for item in html_data(out) if item["public_id"] == ref][0]
+    for column, names in SCRUBBED_FILES.items():
+        assert entry[column] == names, column
+    page = (out / (ref + ".md")).read_text(encoding="utf-8")
+    assert "| Project files read | notes/[withheld]_own_words.md |" in page
+    assert "| Project files edited | drafts_[withheld]/plan.md |" in page
+    assert "| Project files written | [withheld].md |" in page
+    readme = (out / "README.md").read_text(encoding="utf-8")
+    assert (
+        "each named relative to the project folder. In these names each term on the scrub"
+        " list, in any case, is written as [withheld]." in readme
+    )
+    for path, text in every_text(out).items():
+        assert SECRET.lower() not in text.lower(), path
+
+
+def test_without_a_scrub_list_the_file_names_are_written_as_they_are(tmp_path, named, audit_home, project):
+    out = tmp_path / "index"
+    assert write_index(audit_home, project, out) == 0
+    row = by_id(out)[public_id(NAMED_ID)]
+    assert row["files_read"] == "notes/%s_own_words.md; notes/%s_own_words.md" % (SECRET, SECRET.lower())
+    assert row["files_edited"] == "drafts_%s/plan.md" % SECRET.upper()
+    assert row["files_written"] == "%s.md" % SECRET.lower()
+
+
+def test_a_term_inside_a_longer_word_is_left_as_it_is(tmp_path, named, audit_home, project):
+    # A short word of a name, such as Man inside manuscript, is replaced only where it
+    # stands as a whole word, so no file name and no title loses part of a word.
+    terms = tmp_path / "scrub.txt"
+    terms.write_text("Quill\nDraft\nOwn Words\n", encoding="utf-8")
+    out = tmp_path / "index"
+    assert write_index(audit_home, project, out, "--scrub", terms) == 0
+    row = by_id(out)[public_id(NAMED_ID)]
+    assert row["files_read"] == "notes/%s_[withheld].md; notes/%s_[withheld].md" % (SECRET, SECRET.lower())
+    assert row["files_edited"] == "drafts_%s/plan.md" % SECRET.upper()
+    assert row["files_written"] == "%s.md" % SECRET.lower()
+    assert by_id(out)[public_id(READER_ID)]["title"] == "Look over the %s notes" % SECRET
+
+
+def test_the_scrub_replaces_a_term_in_the_projects_name(tmp_path, captured, audit_home, home_folder):
+    # The project's folder name heads the README and index.html.
+    folder = home_folder / "projects" / ("%s_thesis" % SECRET)
+    folder.mkdir(parents=True)
+    terms = tmp_path / "scrub.txt"
+    terms.write_text(SECRET + "\n", encoding="utf-8")
+    out = tmp_path / "index"
+    assert write_index(audit_home, folder, out, "--scrub", terms) == 0
+    assert (out / "README.md").read_text(encoding="utf-8").startswith("# AI sessions of [withheld]_thesis\n")
+    assert "<title>AI sessions of [withheld]_thesis</title>" in (out / "index.html").read_text(encoding="utf-8")
+    for path, text in every_text(out).items():
+        assert SECRET.lower() not in text.lower(), path
 
 
 # ------------------------------------------------------------------ no transcript text

@@ -8,7 +8,7 @@ This folder lists every AI session that touched the project {{project}}, {{sessi
 - `index.html`, the same rows on one page, with a search box.
 - One page for each session, named by its public id.
 - For each session, its public id, its start and its length in minutes, the harness and its version, the models that answered in it, and, for a subagent, the public id of the session that started it.
-- Its tool calls counted by verb, and the project files it read, edited, and wrote, each named relative to the project folder.
+- Its tool calls counted by verb, and the project files it read, edited, and wrote, each named relative to the project folder.{{files_note}}
 - The sha256 and the size in bytes of its transcript.
 - The title, gist, summary, and keywords a model wrote for the session. Each session marks them as written by a model, and as not reviewed by the author unless a person reviewed them. {{model_note}}
 - The session's AI contributions that reached the final verification reports. Each has a reference id, the stream and the item, such as `citations/r02`. The stream's report and results file name the same item with the same public id. Beside each is the run of the results file and the decision recorded for the item, approved, held, not yet decided, or needs no decision.

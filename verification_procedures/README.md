@@ -26,12 +26,13 @@ This is the procedural-graph idea from the Methods and Theory Graph pilot (Lu et
 | `review/` | The Word review modules `returns`, `reconcile`, `annotate`, and `lint`, and the Word compare script (see Word review) |
 | `runs/` | One folder per run (gitignored) |
 
-Besides the four streams and the self-test (`selftest`), `graphs/` holds five more procedures, each a graph the same runtime runs.
+Besides the four streams and the self-test (`selftest`), `graphs/` holds six more procedures, each a graph the same runtime runs.
 
 - `llm_runs` evaluates a finished run of another procedure, without rerunning it or asking a model anything.
 - `mcp_kb` answers one call to one of the knowledge base server's read-only tools from the exported index.
 - `ops_github` adds a project to version control on GitHub.
 - `ops_hpc` connects a project to a university computing cluster.
+- `ops_publish` checks a verification repository that `python3 -m features publish build` wrote before it is published: it scans every file for private files and text, recounts every number its manifest records, and rebuilds each product.
 - `wrap_git` turns the lines the git wrapper writes into events in the audit layer's event schema.
 
 ## How a run works

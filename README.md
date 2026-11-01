@@ -10,7 +10,7 @@ This repository is the research artifact of the workflow, a prototype that build
 
 | On the map | Folder | What it does |
 |---|---|---|
-| Scholar | [`features/`](features/README.md) | Sets up the workflow and each project, organizes a project, and builds the learning portal |
+| Scholar | [`features/`](features/README.md) | Sets up the workflow and each project, organizes a project, builds the learning portal, and assembles a verification repository to check and publish |
 | Observability layer | [`observability/`](observability/README.md) | Shows AI work as it happens |
 | AI harness | [`connections/`](connections/README.md) | Connects the scholar's own harness, model, and software through wrappers, MCP servers, and adapters |
 | Audit layer | [`audit_layer/`](audit_layer/README.md) | Records and tags every AI session and tool call, and holds the databases |
@@ -127,21 +127,23 @@ Section A4 of the technical appendix gives the expected result of each block.
 
 To use the workflow on your own work, run `python3 -m features setup system` once from the repository's folder, then `python3 -m features setup project` for each project. `features/setup/GUIDE.md` gives the answers each command reads, where each one writes, and what setup never does.
 
+When the reports are done, `python3 -m features publish plan DIR`, then `python3 -m features publish build DIR --out OUT`, assembles a verification repository like the demo's, `python3 vg.py run graphs/ops_publish.yaml` from `verification_procedures/` checks it before it goes public, and `features/publish/GUIDE.md` gives the answers file and what publishing never does.
+
 ### Status
 
-Every layer is built and tested. At this commit the eight suites pass with the counts below.
+Every layer is built and tested. At this commit the eight suites pass with the counts below. One more features test, which runs git itself, is skipped on a machine where git does not run from Python.
 
 | Suite | Tests |
 |---|---|
 | `ospipe` | 443 |
-| `verification_procedures` | 872 |
-| `audit_layer` | 1,333 |
-| `examples/test_story` | 39 |
+| `verification_procedures` | 954 |
+| `audit_layer` | 1,337 |
+| `examples/test_story` | 40 |
 | `handoffs/tests` | 148 |
 | `observability/tests` | 338 |
 | `connections/tests` | 559 |
-| `features/tests` | 644 |
-| Total | 4,376 |
+| `features/tests` | 876 |
+| Total | 4,695 |
 
 Nothing has yet been run live on this build. The records of the seven live model runs of October 8, 2026, on an earlier build, are in `verification_procedures/live_runs_2026-10-08/`.
 

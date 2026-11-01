@@ -21,7 +21,7 @@ python3 -m features setup system --answers system_answers.yaml
 python3 -m features setup project ~/research/my_study --answers project_answers.yaml
 ```
 
-The [pipeline setup guide](../../setup/GUIDE.md) gives the fields of each answers file and what setup never does. The [project organizer guide](../../organizer/GUIDE.md) shows how an AI session proposes changes to a project's files and how the scholar applies and undoes them.
+The [pipeline setup guide](../../setup/GUIDE.md) gives the fields of each answers file and what setup never does. The [project organizer guide](../../organizer/GUIDE.md) shows how an AI session proposes changes to a project's files and how the scholar applies and undoes them. The [publishing guide](../../publish/GUIDE.md) shows how to turn a verified project into a verification repository, check it before it goes public, and put it on GitHub.
 
 ## Build the sample project
 

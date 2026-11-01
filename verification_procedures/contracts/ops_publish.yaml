@@ -1,0 +1,29 @@
+# Contracts for checking a verification repository before it is published. A
+# run's inputs are the settings file publish_check.yaml and the repository,
+# packed as repo.tar, both written by python3 -m features publish build.
+publish_settings:
+  reads: [publish_check.yaml]
+  produces:
+    settings.json: {task: str, valid: bool, workflow_root: str, terms: list, allow: list, max_file_mb: number, warn_file_mb: number, rebuild: bool, excluded_folders: list, excluded_paths: list}
+    findings_publish_settings.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+publish_files:
+  reads: [repo.tar, settings.json]
+  produces:
+    scan.json: {files: int, text_files: int, office_files: int, archives: int, archive_members: int, images: int, blocked: int, warned: int, accepted: int}
+    findings_publish_files.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+publish_counts:
+  reads: [repo.tar, settings.json]
+  produces:
+    counts.json: {checked: int, differ: int, not_rechecked: int, generated_changed: int, files_changed: int, files_unlisted: int, reports_missing: int, rows: list}
+    findings_publish_counts.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+publish_rebuild:
+  reads: [repo.tar, settings.json]
+  produces:
+    rebuild.json: {products: list}
+    findings_publish_rebuild.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+publish_report:
+  reads: [settings.json]
+  reads_optional: ["findings_*.json", scan.json, counts.json, rebuild.json]
+  produces:
+    findings.json: {items: {check: str, severity: [blocking, warning, info], item: str, message: str}}
+    report.md: {headings: [Summary, Problems, Settings, Files, Counts, Rebuild, Notes]}

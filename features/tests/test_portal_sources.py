@@ -34,6 +34,7 @@ REQUIRED_DOCS = [
     ("examples/sample_project/README.md", "implement"),
     ("features/setup/GUIDE.md", "implement"),
     ("features/organizer/GUIDE.md", "implement"),
+    ("features/publish/GUIDE.md", "implement"),
     ("features/portal/pages/critique.md", "critique"),
 ]
 OPTIONAL_DOCS = [

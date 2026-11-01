@@ -100,12 +100,15 @@ def test_build_end_to_end(tmp_path):
     touch = [f for f in by_id[TOUCHED]["findings"]
              if f["check"] == "check_ai_touch" and f["severity"] == "blocking"]
     assert len(touch) == 1
-    assert session_id in touch[0]["evidence"]
 
     # The AI's write to the build names its session by its public id, in its
-    # item, in its results file item, and in a line of the report. The
-    # deliverables name none.
+    # evidence, in its item, in its results file item, and in a line of the
+    # report, and the harness's own id for the session reaches none of them.
+    # The deliverables name no session.
     ref = steps.public_id(session_id)
+    assert touch[0]["evidence"] == "session %s, ai via edited" % ref
+    assert session_id not in (run_dir / "results.json").read_text(encoding="utf-8")
+    assert session_id not in steps.report(run_dir)
     fields = {item["id"]: item for item in steps.fields(run_dir)}
     assert fields[TOUCHED]["sessions"] == [ref]
     assert [i for i, item in fields.items() if "sessions" in item] == [TOUCHED]

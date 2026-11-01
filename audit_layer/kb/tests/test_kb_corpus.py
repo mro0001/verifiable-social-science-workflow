@@ -38,6 +38,7 @@ PROCEDURE_IDS = [
     "procedures-mcp-kb",
     "procedures-ops-github",
     "procedures-ops-hpc",
+    "procedures-ops-publish",
     "procedures-prose",
     "procedures-selftest",
     "procedures-wrap-git",

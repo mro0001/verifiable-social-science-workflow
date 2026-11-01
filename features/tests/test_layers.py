@@ -166,7 +166,7 @@ def test_version_prints_the_package_version():
     assert result.stdout.strip() == "features 0.1"
 
 
-@pytest.mark.parametrize("group", ["setup", "organize", "portal"])
+@pytest.mark.parametrize("group", ["setup", "organize", "portal", "publish"])
 def test_a_group_with_no_command_prints_its_help(group):
     result = _features(group)
     assert result.returncode == 0, result.stderr

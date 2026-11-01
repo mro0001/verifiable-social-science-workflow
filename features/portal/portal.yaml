@@ -28,6 +28,10 @@ docs:
     title: Project organizer guide
     section: implement
     optional: false
+  - path: features/publish/GUIDE.md
+    title: Publishing guide
+    section: implement
+    optional: false
   - path: features/portal/pages/critique.md
     title: Critique the workflow
     section: critique
